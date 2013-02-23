@@ -2,7 +2,8 @@
 	"name": "extensions.silverstripe.org",
 	"description": "The SilverStripe extensions listing site",
 	"require": {
-		"silverstripe/framework": "3.1.*"
+		"silverstripe/framework": "3.1.*",
+		"silverstripe/multivaluefield": "*"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "3.7.*",

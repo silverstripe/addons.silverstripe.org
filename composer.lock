@@ -1,5 +1,5 @@
 {
-    "hash": "b7b3edadd58056e31546d6eba2b6a871",
+    "hash": "7dd1ce8c57bed8683d588582780bea7a",
     "packages": [
         {
             "name": "composer/installers",
@@ -115,6 +115,42 @@
             "homepage": "http://silverstripe.org",
             "keywords": [
                 "framework",
+                "silverstripe"
+            ]
+        },
+        {
+            "name": "silverstripe/multivaluefield",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nyeholt/silverstripe-multivaluefield.git",
+                "reference": "4f52f934f8d358ba56883b2b6b265991f2144eb1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nyeholt/silverstripe-multivaluefield/zipball/4f52f934f8d358ba56883b2b6b265991f2144eb1",
+                "reference": "4f52f934f8d358ba56883b2b6b265991f2144eb1",
+                "shasum": ""
+            },
+            "require": {
+                "silverstripe/framework": ">=3.0.0"
+            },
+            "time": "2012-11-23 01:01:34",
+            "type": "silverstripe-module",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Marcus Nyeholt",
+                    "email": "marcus@silverstripe.com.au"
+                }
+            ],
+            "description": "A DB field + form fields for storing multiple values in a single property (serialized).",
+            "keywords": [
+                "dbfield",
+                "formfield",
                 "silverstripe"
             ]
         }

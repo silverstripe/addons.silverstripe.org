@@ -2,5 +2,6 @@
 .project
 .settings
 framework
+multivaluefield
 sqlite3
 vendor
