@@ -1,0 +1,7 @@
+Injector:
+  ExtensionUpdater:
+    constructor:
+      - %$PackagistService
+  UpdateExtensionsTask:
+    constructor:
+      - %$ExtensionUpdater
