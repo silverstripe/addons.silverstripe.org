@@ -3,6 +3,7 @@
 	"description": "The SilverStripe extensions listing site",
 	"require": {
 		"composer/composer": "1.0.*",
+		"guzzle/guzzle": "3.2.*",
 		"silverstripe/framework": "3.1.*",
 		"silverstripe/multivaluefield": "*"
 	},
