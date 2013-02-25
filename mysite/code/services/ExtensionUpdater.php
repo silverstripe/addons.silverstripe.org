@@ -44,6 +44,18 @@ class ExtensionUpdater {
 	private function updateExtension(ExtensionPackage $ext, array $versions) {
 		DB::getConn()->transactionStart();
 
+		if (!$ext->VendorID) {
+			$vendor = ExtensionVendor::get()->filter('Name', $ext->getVendorName())->first();
+
+			if (!$vendor) {
+				$vendor = new ExtensionVendor();
+				$vendor->Name = $ext->getVendorName();
+				$vendor->write();
+			}
+
+			$ext->VendorID = $vendor->ID;
+		}
+
 		try {
 			$details = $this->packagist->getPackageDetails($ext->Name);
 			$details = $details['package'];

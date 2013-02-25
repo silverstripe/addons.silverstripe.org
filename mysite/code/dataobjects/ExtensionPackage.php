@@ -14,8 +14,19 @@ class ExtensionPackage extends DataObject {
 		'LastUpdated' => 'SS_Datetime'
 	);
 
+	public static $has_one = array(
+		'Vendor' => 'ExtensionVendor'
+	);
+
 	public static $has_many = array(
 		'Versions' => 'ExtensionVersion'
 	);
+
+	/**
+	 * @return string
+	 */
+	public function getVendorName() {
+		return substr($this->Name, 0, strpos($this->Name, '/'));
+	}
 
 }

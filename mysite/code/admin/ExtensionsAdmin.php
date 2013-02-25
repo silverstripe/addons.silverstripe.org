@@ -10,6 +10,7 @@ class ExtensionsAdmin extends ModelAdmin {
 
 	public static $managed_models = array(
 		'ExtensionPackage',
+		'ExtensionVendor',
 		'ExtensionAuthor'
 	);
 
