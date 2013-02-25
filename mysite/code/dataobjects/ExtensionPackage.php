@@ -9,7 +9,6 @@ class ExtensionPackage extends DataObject {
 		'Description' => 'Text',
 		'Type' => 'Varchar(100)',
 		'Repository' => 'Varchar(255)',
-		'Keywords' => 'MultiValueField',
 		'Downloads' => 'Int',
 		'LastUpdated' => 'SS_Datetime'
 	);
@@ -20,6 +19,10 @@ class ExtensionPackage extends DataObject {
 
 	public static $has_many = array(
 		'Versions' => 'ExtensionVersion'
+	);
+
+	public static $many_many = array(
+		'Keywords' => 'ExtensionKeyword'
 	);
 
 	/**

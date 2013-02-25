@@ -8,7 +8,6 @@ class ExtensionVersion extends DataObject {
 		'Name' => 'Varchar(255)',
 		'Description' => 'Text',
 		'Type' => 'Varchar(100)',
-		'Keywords' => 'MultiValueField',
 		'Extra' => 'MultiValueField',
 		'Homepage' => 'Varchar(255)',
 		'Version' => 'Varchar(100)',
@@ -37,7 +36,8 @@ class ExtensionVersion extends DataObject {
 	);
 
 	public static $many_many = array(
-		'Authors' => 'ExtensionAuthor'
+		'Authors' => 'ExtensionAuthor',
+		'Keywords' => 'ExtensionKeyword'
 	);
 
 }

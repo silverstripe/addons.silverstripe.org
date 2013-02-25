@@ -90,17 +90,16 @@ class ExtensionUpdater {
 		$version->Type = $package->getType();
 		$version->Description = $package->getDescription();
 
-		$keywords = $package->getKeywords() ?: array();
-		$existing = $ext->Keywords->getValue() ?: array();
+		$keywords = $package->getKeywords();
 
-		foreach ($keywords as $keyword) {
-			if (!in_array($keyword, $existing)) {
-				$existing[] = $keyword;
+		if ($keywords) {
+			foreach ($keywords as $keyword) {
+				$keyword = ExtensionKeyword::get_by_name($keyword);
+
+				$ext->Keywords()->add($keyword);
+				$version->Keywords()->add($keyword);
 			}
 		}
-
-		$version->Keywords->setValue($keywords);
-		$ext->Keywords->setValue($existing);
 
 		$version->Version = $package->getVersion();
 		$version->PrettyVersion = $package->getPrettyVersion();
