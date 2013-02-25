@@ -9,3 +9,5 @@ $database = 'extensions';
 require_once 'conf/ConfigureFromEnv.php';
 
 MySQLDatabase::set_connection_charset('utf8');
+
+SSViewer::set_theme('extensions');
