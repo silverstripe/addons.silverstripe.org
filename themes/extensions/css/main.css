@@ -1,0 +1,17 @@
+#tags {
+	list-style: none;
+	margin: 0 0 10px 0;
+}
+
+#tags li a {
+	background: #F4F4F4;
+	border-radius: 4px;
+	display: block;
+	float: left;
+	margin: 0 5px 5px 0;
+	padding: 5px;
+}
+
+#tags li a:hover {
+	background: #EEE;
+}

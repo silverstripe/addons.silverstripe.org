@@ -1,0 +1,6 @@
+---
+After: framework
+---
+Director:
+  rules:
+    "tags": TagsController
