@@ -2,6 +2,12 @@ Injector:
   ExtensionUpdater:
     constructor:
       - %$PackagistService
+  SilverStripeVersionUpdater:
+    constructor:
+      - %$PackagistService
   UpdateExtensionsTask:
     constructor:
       - %$ExtensionUpdater
+  UpdateSilverStripeVersionsTask:
+    constructor:
+      - %$SilverStripeVersionUpdater

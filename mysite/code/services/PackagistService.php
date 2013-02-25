@@ -74,4 +74,23 @@ class PackagistService {
 		return $this->client->get("/packages/$name.json")->send()->json();
 	}
 
+	/**
+	 * Gets all versions of a package by name.
+	 *
+	 * @param $name
+	 * @return \Composer\Package\PackageInterface[]
+	 */
+	public function getPackageVersions($name) {
+		$packages = array();
+		$loader = new ArrayLoader();
+
+		foreach ($this->repository->getMinimalPackages() as $info) {
+			if ($info['name'] == $name) {
+				$packages[] = $loader->load($info['raw']);
+			}
+		}
+
+		return $packages;
+	}
+
 }

@@ -2,6 +2,7 @@
 
 use Composer\Package\AliasPackage;
 use Composer\Package\CompletePackage;
+use Composer\Package\LinkConstraint\VersionConstraint;
 use Guzzle\Http\Exception\ClientErrorResponseException;
 
 /**
@@ -14,6 +15,11 @@ class ExtensionUpdater {
 	 */
 	private $packagist;
 
+	/**
+	 * @var SilverStripeVersion[]
+	 */
+	private $silverstripes = array();
+
 	public function __construct(PackagistService $packagist) {
 		$this->packagist = $packagist;
 	}
@@ -22,6 +28,10 @@ class ExtensionUpdater {
 	 * Updates all extensions.
 	 */
 	public function update() {
+		foreach (SilverStripeVersion::get() as $version) {
+			$this->silverstripes[$version->ID] = $version->getConstraint();
+		}
+
 		foreach ($this->packagist->getGroupedPackages() as $name => $versions) {
 			$ext = ExtensionPackage::get()->filter('Name', $name)->first();
 
@@ -124,6 +134,7 @@ class ExtensionUpdater {
 		$ext->Versions()->add($version);
 
 		$this->updateLinks($version, $package);
+		$this->updateCompatibility($ext, $version, $package);
 		$this->updateAuthors($version, $package);
 	}
 
@@ -172,6 +183,34 @@ class ExtensionUpdater {
 			$link->Description = $description;
 
 			$version->Links()->add($link);
+		}
+	}
+
+	private function updateCompatibility(
+		ExtensionPackage $ext, ExtensionVersion $version, CompletePackage $package
+	) {
+		$require = null;
+
+		foreach ($package->getRequires() as $name => $link) {
+			if ($name == 'silverstripe/framework') {
+				$require = $link;
+				break;
+			}
+
+			if ($name == 'silverstripe/cms') {
+				$require = $link;
+			}
+		}
+
+		if (!$require) {
+			return;
+		}
+
+		foreach ($this->silverstripes as $id => $link) {
+			if ($require->getConstraint()->matches($link)) {
+				$ext->CompatibleVersions()->add($id);
+				$version->CompatibleVersions()->add($id);
+			}
 		}
 	}
 

@@ -37,7 +37,8 @@ class ExtensionVersion extends DataObject {
 
 	public static $many_many = array(
 		'Authors' => 'ExtensionAuthor',
-		'Keywords' => 'ExtensionKeyword'
+		'Keywords' => 'ExtensionKeyword',
+		'CompatibleVersions' => 'SilverStripeVersion'
 	);
 
 }
