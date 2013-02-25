@@ -8,6 +8,7 @@ class ExtensionVersion extends DataObject {
 		'Name' => 'Varchar(255)',
 		'Description' => 'Text',
 		'Type' => 'Varchar(100)',
+		'Released' => 'SS_Datetime',
 		'Extra' => 'MultiValueField',
 		'Homepage' => 'Varchar(255)',
 		'Version' => 'Varchar(100)',

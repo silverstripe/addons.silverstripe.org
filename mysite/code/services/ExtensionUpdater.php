@@ -100,6 +100,7 @@ class ExtensionUpdater {
 		$version->Name = $package->getName();
 		$version->Type = $package->getType();
 		$version->Description = $package->getDescription();
+		$version->Released = $package->getReleaseDate()->getTimestamp();
 
 		$keywords = $package->getKeywords();
 
