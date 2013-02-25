@@ -8,6 +8,7 @@ class ExtensionPackage extends DataObject {
 		'Name' => 'Varchar(255)',
 		'Description' => 'Text',
 		'Type' => 'Varchar(100)',
+		'Released' => 'SS_Datetime',
 		'Repository' => 'Varchar(255)',
 		'Downloads' => 'Int',
 		'LastUpdated' => 'SS_Datetime'

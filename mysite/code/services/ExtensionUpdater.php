@@ -72,6 +72,7 @@ class ExtensionUpdater {
 
 			$ext->Type = $details['type'];
 			$ext->Description = $details['description'];
+			$ext->Released = $details['time'];
 			$ext->Repository = $details['repository'];
 
 			if (isset($details['downloads']['total']) && is_int($details['downloads']['total'])) {
