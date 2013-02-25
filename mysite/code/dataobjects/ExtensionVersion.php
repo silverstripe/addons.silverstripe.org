@@ -42,4 +42,8 @@ class ExtensionVersion extends DataObject {
 		'CompatibleVersions' => 'SilverStripeVersion'
 	);
 
+	public function getDisplayVersion() {
+		return $this->PrettyAlias ?: $this->PrettyVersion;
+	}
+
 }

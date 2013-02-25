@@ -3,4 +3,5 @@ After: framework
 ---
 Director:
   rules:
+    "": HomeController
     "tags": TagsController
