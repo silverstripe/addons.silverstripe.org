@@ -42,6 +42,10 @@ class ExtensionVersion extends DataObject {
 		'CompatibleVersions' => 'SilverStripeVersion'
 	);
 
+	public static $default_sort = array(
+		'ID' => 'DESC'
+	);
+
 	public function getDisplayVersion() {
 		return $this->PrettyAlias ?: $this->PrettyVersion;
 	}

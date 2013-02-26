@@ -8,10 +8,12 @@ class ExtensionPackage extends DataObject {
 		'Name' => 'Varchar(255)',
 		'Description' => 'Text',
 		'Type' => 'Varchar(100)',
+		'Readme' => 'HTMLText',
 		'Released' => 'SS_Datetime',
 		'Repository' => 'Varchar(255)',
 		'Downloads' => 'Int',
-		'LastUpdated' => 'SS_Datetime'
+		'LastUpdated' => 'SS_Datetime',
+		'LastBuilt' => 'SS_Datetime'
 	);
 
 	public static $has_one = array(

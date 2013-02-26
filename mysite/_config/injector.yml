@@ -1,4 +1,7 @@
 Injector:
+  ExtensionBuilder:
+    constructor:
+      - %$PackagistService
   ExtensionUpdater:
     constructor:
       - %$PackagistService
