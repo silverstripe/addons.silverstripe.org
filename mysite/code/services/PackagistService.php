@@ -14,15 +14,25 @@ class PackagistService {
 	const PACKAGIST_URL = 'https://packagist.org';
 
 	/**
+	 * @var Composer\Composer
+	 */
+	private $composer;
+
+	/**
 	 * @var Composer\Repository\RepositoryInterface
 	 */
 	private $repository;
 
 	public function __construct() {
-		$conf = array('url' => self::PACKAGIST_URL);
+		$this->composer = Factory::create(new NullIO());
+		$this->client = new Client(self::PACKAGIST_URL);
+	}
 
-		$this->repository = new ComposerRepository($conf, new NullIO(), Factory::createConfig());
-		$this->client = new Client($conf['url']);
+	/**
+	 * @return Composer\Composer
+	 */
+	public function getComposer() {
+		return $this->composer;
 	}
 
 	/**
@@ -34,9 +44,11 @@ class PackagistService {
 		$packages = array();
 		$loader = new ArrayLoader();
 
-		foreach ($this->repository->getMinimalPackages() as $info) {
-			if (strpos($info['raw']['type'], 'silverstripe-') === 0) {
-				$packages[] = $loader->load($info['raw']);
+		foreach ($this->composer->getRepositoryManager()->getRepositories() as $repo) {
+			foreach ($repo->getMinimalPackages() as $info) {
+				if (strpos($info['raw']['type'], 'silverstripe-') === 0) {
+					$packages[] = $loader->load($info['raw']);
+				}
 			}
 		}
 
@@ -84,9 +96,11 @@ class PackagistService {
 		$packages = array();
 		$loader = new ArrayLoader();
 
-		foreach ($this->repository->getMinimalPackages() as $info) {
-			if ($info['name'] == $name) {
-				$packages[] = $loader->load($info['raw']);
+		foreach ($this->composer->getRepositoryManager()->getRepositories() as $repo) {
+			foreach ($repo->getMinimalPackages() as $info) {
+				if ($info['name'] == $name) {
+					$packages[] = $loader->load($info['raw']);
+				}
 			}
 		}
 
