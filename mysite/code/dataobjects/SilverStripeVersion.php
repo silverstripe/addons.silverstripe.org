@@ -14,6 +14,11 @@ class SilverStripeVersion extends DataObject {
 		'Minor' => 'Int'
 	);
 
+	public static $default_sort = array(
+		'Major' => 'DESC',
+		'Minor' => 'DESC'
+	);
+
 	/**
 	 * @return Composer\Package\LinkConstraint\LinkConstraintInterface
 	 */
