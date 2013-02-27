@@ -36,4 +36,12 @@ class ExtensionPackage extends DataObject {
 		return substr($this->Name, 0, strpos($this->Name, '/'));
 	}
 
+	public function getTypeIcon() {
+		switch ($this->Type) {
+			case 'module': return 'icon-gift';
+			case 'theme': return 'icon-picture';
+			default: return 'icon-question-sign';
+		}
+	}
+
 }

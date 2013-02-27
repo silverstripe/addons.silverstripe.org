@@ -70,7 +70,7 @@ class ExtensionUpdater {
 			$details = $this->packagist->getPackageDetails($ext->Name);
 			$details = $details['package'];
 
-			$ext->Type = $details['type'];
+			$ext->Type = str_replace('silverstripe-', '', $details['type']);
 			$ext->Description = $details['description'];
 			$ext->Released = $details['time'];
 			$ext->Repository = $details['repository'];
@@ -98,7 +98,7 @@ class ExtensionUpdater {
 		}
 
 		$version->Name = $package->getName();
-		$version->Type = $package->getType();
+		$version->Type = str_replace('silverstripe-', '', $package->getType());
 		$version->Description = $package->getDescription();
 		$version->Released = $package->getReleaseDate()->getTimestamp();
 
