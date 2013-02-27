@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<% base_tag %>
+
 		<title>$Title &middot; SilverStripe Extensions</title>
+		$MetaTags(false)
 
 		<% require css("themes/extensions/bootstrap/css/bootstrap.min.css") %>
 		<% require themedCSS("main") %>
