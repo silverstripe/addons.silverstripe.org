@@ -4,4 +4,5 @@ After: framework
 Director:
   rules:
     "": HomeController
+    "extensions": ExtensionsController
     "tags": TagsController

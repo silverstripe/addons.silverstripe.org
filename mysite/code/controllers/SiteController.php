@@ -9,6 +9,7 @@ class SiteController extends Controller {
 
 		$controllers = array(
 			'HomeController',
+			'ExtensionsController',
 			'TagsController'
 		);
 
