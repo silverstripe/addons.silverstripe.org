@@ -2,6 +2,7 @@
 	"name": "extensions.silverstripe.org",
 	"description": "The SilverStripe extensions listing site",
 	"require": {
+		"ajshort/silverstripe-elastica": "*",
 		"composer/composer": "1.0.*",
 		"dflydev/markdown": "1.0.*",
 		"ezyang/htmlpurifier": "4.5.*",

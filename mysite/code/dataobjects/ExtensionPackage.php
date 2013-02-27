@@ -1,4 +1,8 @@
 <?php
+
+use Elastica\Document;
+use Elastica\Type\Mapping;
+
 /**
  * A root extension package with one or more versions.
  */
@@ -29,6 +33,10 @@ class ExtensionPackage extends DataObject {
 		'CompatibleVersions' => 'SilverStripeVersion'
 	);
 
+	public static $extensions = array(
+		'SilverStripe\\Elastica\\Searchable'
+	);
+
 	/**
 	 * @return string
 	 */
@@ -42,6 +50,35 @@ class ExtensionPackage extends DataObject {
 			case 'theme': return 'icon-picture';
 			default: return 'icon-question-sign';
 		}
+	}
+
+	public function Link() {
+		return Controller::join_links(
+			Director::baseURL(), 'extensions', $this->Name
+		);
+	}
+
+	public function getElasticaMapping() {
+		return new Mapping(null, array(
+			'name' => array('type' => 'string'),
+			'description' => array('type' => 'string'),
+			'type' => array('type' => 'string'),
+			'silverstripes' => array('type' => 'string', 'index_name' => 'silverstripe'),
+			'vendor' => array('type' => 'string'),
+			'tags' => array('type' => 'string', 'index_name' => 'tag')
+		));
+	}
+
+	public function getElasticaDocument() {
+		return new Document($this->ID, array(
+			'name' => $this->Name,
+			'description' => $this->Description,
+			'type' => $this->Type,
+			'silverstripes' => $this->CompatibleVersions()->column('Name'),
+			'vendor' => $this->getVendorName(),
+			'tags' => $this->Keywords()->column('Name'),
+			'_boost' => sqrt($this->Downloads)
+		));
 	}
 
 }

@@ -5,6 +5,7 @@ Injector:
   ExtensionUpdater:
     constructor:
       - %$PackagistService
+      - %$SilverStripe\Elastica\ElasticaService
   SilverStripeVersionUpdater:
     constructor:
       - %$PackagistService

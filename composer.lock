@@ -1,6 +1,53 @@
 {
-    "hash": "19a8ce6d0600aad6953280c329518df8",
+    "hash": "e1c2316da096161db2ae0e1f7bcf8876",
     "packages": [
+        {
+            "name": "ajshort/silverstripe-elastica",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ajshort/silverstripe-elastica.git",
+                "reference": "1f8bb0e1a4f3ab91a779825e4771e1acc7945cbc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ajshort/silverstripe-elastica/zipball/1f8bb0e1a4f3ab91a779825e4771e1acc7945cbc",
+                "reference": "1f8bb0e1a4f3ab91a779825e4771e1acc7945cbc",
+                "shasum": ""
+            },
+            "require": {
+                "ruflin/elastica": "dev-master",
+                "silverstripe/framework": ">=3.1"
+            },
+            "type": "silverstripe-module",
+            "extra": {
+                "installer-name": "elastica"
+            },
+            "autoload": {
+                "psr-0": {
+                    "SilverStripe\\Elastica": "src/"
+                }
+            },
+            "notification-url": "http://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Andrew Short",
+                    "email": "andrewjshort@gmail.com"
+                }
+            ],
+            "description": "Provides Elastic Search integration for SilverStripe DataObjects using Elastica",
+            "homepage": "http://github.com/ajshort/silverstripe-elastica",
+            "keywords": [
+                "elastica",
+                "elasticsearch",
+                "search",
+                "silverstripe"
+            ],
+            "time": "2013-02-27 03:00:49"
+        },
         {
             "name": "composer/composer",
             "version": "dev-master",
@@ -250,12 +297,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "bc2a86d1b1b984ac0e1859307dfd18c78841167a"
+                "reference": "81d15dd3e019f1ebdd69142bb32700e16c3cdf0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/bc2a86d1b1b984ac0e1859307dfd18c78841167a",
-                "reference": "bc2a86d1b1b984ac0e1859307dfd18c78841167a",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/81d15dd3e019f1ebdd69142bb32700e16c3cdf0e",
+                "reference": "81d15dd3e019f1ebdd69142bb32700e16c3cdf0e",
                 "shasum": ""
             },
             "require": {
@@ -334,7 +381,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2013-02-25 03:38:40"
+            "time": "2013-02-26 18:30:03"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -392,6 +439,55 @@
             "time": "2012-01-03 00:33:17"
         },
         {
+            "name": "ruflin/Elastica",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ruflin/Elastica.git",
+                "reference": "e6167d772b96e178fac18402e65ee517e825ed39"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ruflin/Elastica/zipball/e6167d772b96e178fac18402e65ee517e825ed39",
+                "reference": "e6167d772b96e178fac18402e65ee517e825ed39",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "munkie/elasticsearch-thrift-php": "1.4.*",
+                "phpunit/phpunit": "3.7.*"
+            },
+            "suggest": {
+                "munkie/elasticsearch-thrift-php": "Allow using thrift transport"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Elastica": "lib/",
+                    "Elastica\\Test": "test/lib/"
+                }
+            },
+            "notification-url": "http://packagist.org/downloads/",
+            "license": [
+                "Apache 2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Ruflin",
+                    "homepage": "http://ruflin.com/"
+                }
+            ],
+            "description": "Elasticsearch Client",
+            "homepage": "http://ruflin.github.com/Elastica/",
+            "keywords": [
+                "client",
+                "search"
+            ],
+            "time": "2013-02-25 15:30:16"
+        },
+        {
             "name": "seld/jsonlint",
             "version": "1.1.1",
             "source": {
@@ -444,12 +540,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silverstripe/sapphire.git",
-                "reference": "fc3239e2d6f47e0dd19868c41d95b5a264fcdf01"
+                "reference": "bea1b9002d389f5bc9ac0c7d1fc9b320e119cfe0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/sapphire/zipball/fc3239e2d6f47e0dd19868c41d95b5a264fcdf01",
-                "reference": "fc3239e2d6f47e0dd19868c41d95b5a264fcdf01",
+                "url": "https://api.github.com/repos/silverstripe/sapphire/zipball/bea1b9002d389f5bc9ac0c7d1fc9b320e119cfe0",
+                "reference": "bea1b9002d389f5bc9ac0c7d1fc9b320e119cfe0",
                 "shasum": ""
             },
             "require": {
@@ -482,7 +578,7 @@
                 "framework",
                 "silverstripe"
             ],
-            "time": "2013-02-26 00:58:28"
+            "time": "2013-02-26 12:28:35"
         },
         {
             "name": "silverstripe/multivaluefield",
@@ -628,12 +724,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Finder.git",
-                "reference": "3b6261bea9fd81593c1083087f11816df53a7fea"
+                "reference": "3f500bdf0b759cd9f08c85c089622e6d587343a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Finder/zipball/3b6261bea9fd81593c1083087f11816df53a7fea",
-                "reference": "3b6261bea9fd81593c1083087f11816df53a7fea",
+                "url": "https://api.github.com/repos/symfony/Finder/zipball/3f500bdf0b759cd9f08c85c089622e6d587343a4",
+                "reference": "3f500bdf0b759cd9f08c85c089622e6d587343a4",
                 "shasum": ""
             },
             "require": {
@@ -650,7 +746,7 @@
                     "Symfony\\Component\\Finder\\": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -666,7 +762,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "http://symfony.com",
-            "time": "2013-02-04 12:42:02"
+            "time": "2013-02-26 16:28:03"
         },
         {
             "name": "symfony/process",

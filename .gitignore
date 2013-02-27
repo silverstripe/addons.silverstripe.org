@@ -1,6 +1,7 @@
 .idea
 .project
 .settings
+elastica
 framework
 multivaluefield
 sqlite3

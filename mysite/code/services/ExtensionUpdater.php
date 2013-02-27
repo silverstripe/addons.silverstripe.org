@@ -4,6 +4,7 @@ use Composer\Package\AliasPackage;
 use Composer\Package\CompletePackage;
 use Composer\Package\LinkConstraint\VersionConstraint;
 use Guzzle\Http\Exception\ClientErrorResponseException;
+use SilverStripe\Elastica\ElasticaService;
 
 /**
  * Updates all extensions from Packagist.
@@ -16,12 +17,18 @@ class ExtensionUpdater {
 	private $packagist;
 
 	/**
+	 * @var SilverStripe\Elastica\ElasticaService
+	 */
+	private $elastica;
+
+	/**
 	 * @var SilverStripeVersion[]
 	 */
 	private $silverstripes = array();
 
-	public function __construct(PackagistService $packagist) {
+	public function __construct(PackagistService $packagist, ElasticaService $elastica) {
 		$this->packagist = $packagist;
+		$this->elastica = $elastica;
 	}
 
 	/**
@@ -31,6 +38,8 @@ class ExtensionUpdater {
 		foreach (SilverStripeVersion::get() as $version) {
 			$this->silverstripes[$version->ID] = $version->getConstraint();
 		}
+
+		$this->elastica->startBulkIndex();
 
 		foreach ($this->packagist->getGroupedPackages() as $name => $versions) {
 			$ext = ExtensionPackage::get()->filter('Name', $name)->first();
@@ -49,6 +58,8 @@ class ExtensionUpdater {
 				return !($version instanceof AliasPackage);
 			}));
 		}
+
+		$this->elastica->endBulkIndex();
 	}
 
 	private function updateExtension(ExtensionPackage $ext, array $versions) {
