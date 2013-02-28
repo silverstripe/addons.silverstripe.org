@@ -63,7 +63,7 @@ class ExtensionPackage extends DataObject {
 			'name' => array('type' => 'string'),
 			'description' => array('type' => 'string'),
 			'type' => array('type' => 'string'),
-			'silverstripes' => array('type' => 'string', 'index_name' => 'silverstripe'),
+			'compatibility' => array('type' => 'string', 'index_name' => 'compatible'),
 			'vendor' => array('type' => 'string'),
 			'tags' => array('type' => 'string', 'index_name' => 'tag')
 		));
@@ -74,7 +74,7 @@ class ExtensionPackage extends DataObject {
 			'name' => $this->Name,
 			'description' => $this->Description,
 			'type' => $this->Type,
-			'silverstripes' => $this->CompatibleVersions()->column('Name'),
+			'compatibility' => $this->CompatibleVersions()->column('Name'),
 			'vendor' => $this->getVendorName(),
 			'tags' => $this->Keywords()->column('Name'),
 			'_boost' => sqrt($this->Downloads)
