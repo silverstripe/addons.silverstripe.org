@@ -30,6 +30,7 @@ class ExtensionPackage extends DataObject {
 
 	public static $many_many = array(
 		'Keywords' => 'ExtensionKeyword',
+		'Screenshots' => 'Image',
 		'CompatibleVersions' => 'SilverStripeVersion'
 	);
 

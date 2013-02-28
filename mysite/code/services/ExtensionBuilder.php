@@ -12,6 +12,8 @@ class ExtensionBuilder {
 
 	const EXTENSIONS_DIR = 'extensions';
 
+	const SCREENSHOTS_DIR = 'screenshots';
+
 	private $packagist;
 
 	public function __construct(PackagistService $packagist) {
@@ -42,6 +44,7 @@ class ExtensionBuilder {
 
 			$this->download($package, $path);
 			$this->buildReadme($extension, $path);
+			$this->buildScreenshots($extension, $package, $path);
 		}
 
 		$extension->LastBuilt = $time;
@@ -81,6 +84,75 @@ class ExtensionBuilder {
 				$extension->Readme = $readme;
 				return;
 			}
+		}
+	}
+
+	private function buildScreenshots(ExtensionPackage $extension, PackageInterface $package, $path) {
+		$extra = $package->getExtra();
+		$screenshots = array();
+		$target = self::SCREENSHOTS_DIR . '/' . $extension->Name;
+
+		if (isset($extra['screenshots'])) {
+			$screenshots = (array) $extra['screenshots'];
+		} elseif (isset($extra['screenshot'])) {
+			$screenshots = (array) $extra['screenshot'];
+		}
+
+		// Delete existing screenshots.
+		foreach ($extension->Screenshots() as $screenshot) {
+			$screenshot->delete();
+		}
+
+		$extension->Screenshots()->removeAll();
+
+		foreach ($screenshots as $screenshot) {
+			if (!is_string($screenshot)) {
+				continue;
+			}
+
+			$scheme = parse_url($screenshot, PHP_URL_SCHEME);
+
+			// Handle absolute image URLs.
+			if ($scheme == 'http' || $scheme == 'https') {
+				$temp = TEMP_FOLDER . '/' . md5($screenshot);
+
+				if (!copy($screenshot, $temp)) {
+					continue;
+				}
+
+				$data = array(
+					'name' => basename($screenshot),
+					'size' => filesize($temp),
+					'tmp_name' => $temp,
+					'error' => 0
+				);
+			}
+			// Handle images that are included in the repository.
+			else {
+				$source = $path . '/' . ltrim($screenshot, '/');
+
+				// Prevent directory traversal.
+				if ($source != realpath($source)) {
+					continue;
+				}
+
+				if (!file_exists($source)) {
+					continue;
+				}
+
+				$data = array(
+					'name' => basename($source),
+					'size' => filesize($source),
+					'tmp_name' => $source,
+					'error' => 0
+				);
+			}
+
+			$upload = new Upload();
+			$upload->setValidator(new ExtensionBuilderScreenshotValidator());
+			$upload->load($data, $target);
+
+			$extension->Screenshots()->add($upload->getFile());
 		}
 	}
 
