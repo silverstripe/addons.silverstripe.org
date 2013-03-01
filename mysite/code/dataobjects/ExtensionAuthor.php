@@ -26,4 +26,12 @@ class ExtensionAuthor extends DataObject {
 		);
 	}
 
+	public function Link() {
+		return Controller::join_links(Director::baseURL(), 'authors', $this->ID);
+	}
+
+	public function Extensions() {
+		return ExtensionPackage::get()->filter('ID', $this->Versions()->column('ExtensionID'));
+	}
+
 }
