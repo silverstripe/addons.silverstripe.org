@@ -5,5 +5,6 @@ Director:
   rules:
     "": HomeController
     "extensions": ExtensionsController
+    "vendors": VendorsController
     "authors": AuthorsController
     "tags": TagsController

@@ -111,16 +111,16 @@
 }
 
 /* line 115, ../sass/main.scss */
-#authors, #tags {
+#authors, #tags, #vendors {
   list-style: none;
   margin: 0;
 }
 /* line 119, ../sass/main.scss */
-#authors li, #tags li {
+#authors li, #tags li, #vendors li {
   float: left;
 }
 /* line 122, ../sass/main.scss */
-#authors li a, #tags li a {
+#authors li a, #tags li a, #vendors li a {
   background: #efefef;
   display: block;
   margin: 0 5px 5px 0;
@@ -130,18 +130,12 @@
   white-space: nowrap;
 }
 /* line 131, ../sass/main.scss */
-#authors li a:hover, #tags li a:hover {
+#authors li a:hover, #tags li a:hover, #vendors li a:hover {
   background: #dedede;
   text-decoration: none;
 }
-
-/* line 139, ../sass/main.scss */
-#authors li {
-  width: 20%;
-}
-
-/* line 143, ../sass/main.scss */
-#tags li .label {
+/* line 138, ../sass/main.scss */
+#authors .label, #tags .label, #vendors .label {
   background: #dedede;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -150,4 +144,14 @@
   border-radius: 0;
   color: #666;
   text-shadow: none;
+}
+
+/* line 146, ../sass/main.scss */
+#authors li, #vendors li {
+  width: 20%;
+}
+
+/* line 150, ../sass/main.scss */
+#vendors .label {
+  float: right;
 }

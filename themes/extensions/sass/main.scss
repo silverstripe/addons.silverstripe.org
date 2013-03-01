@@ -112,7 +112,7 @@ $light-blue: #45B2E6;
   padding: 15px;
 }
 
-#authors, #tags {
+#authors, #tags, #vendors {
   list-style: none;
   margin: 0;
 
@@ -134,15 +134,19 @@ $light-blue: #45B2E6;
       }
     }
   }
+
+  .label {
+    background: $med-gray;
+    @include border-radius(0);
+    color: #666;
+    text-shadow: none;
+  }
 }
 
-#authors li {
+#authors li, #vendors li {
   width: 20%;
 }
 
-#tags li .label {
-  background: $med-gray;
-  @include border-radius(0);
-  color: #666;
-  text-shadow: none;
+#vendors .label {
+  float: right;
 }
