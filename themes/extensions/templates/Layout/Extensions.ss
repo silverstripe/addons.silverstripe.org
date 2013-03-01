@@ -2,6 +2,40 @@
 	<h1>$Title</h1>
 </div>
 
+<% with $ExtensionsSearchForm %>
+	<form $FormAttributes>
+		<fieldset>
+			<% with $FieldMap %>
+				<% with $search %>
+					<label for="$ID">$Title</label> $Field
+				<% end_with %>
+
+				<div class="row">
+					<div class="span4">
+						<% with $type %>
+							<label for="$ID">$Title</label> $Field
+						<% end_with %>
+					</div>
+					<div class="span4">
+						<% with $compatibility %>
+							<label for="$ID">$Title</label> $Field
+						<% end_with %>
+					</div>
+					<div class="span4">
+						<% with $sort %>
+						<label for="$ID">$Title</label> $Field
+						<% end_with %>
+					</div>
+				</div>
+			<% end_with %>
+
+			<button type="submit" class="btn btn-info">
+				<i class="icon-search icon-white"></i> Search
+			</button>
+		</fieldset>
+	</form>
+<% end_with %>
+
 <% if $Extensions %>
 	<table id="extensions" class="table table-striped">
 		<tbody>

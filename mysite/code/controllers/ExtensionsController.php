@@ -106,7 +106,13 @@ class ExtensionsController extends SiteController {
 			$list = new ResultList($this->elastica->getIndex(), $query);
 
 			if ($sort) {
-				$list = ExtensionPackage::get()->byIDs($list->column('ID'));
+				$ids = $list->column('ID');
+
+				if ($ids) {
+					$list = ExtensionPackage::get()->byIDs($ids);
+				} else {
+					$list = new ArrayList();
+				}
 			}
 		} else {
 			if (!$sort) $sort = 'downloads';
@@ -122,6 +128,44 @@ class ExtensionsController extends SiteController {
 		$list->setPageLength(15);
 
 		return $list;
+	}
+
+	public function ExtensionsSearchForm() {
+		$form = new Form(
+			$this,
+			'ExtensionsSearchForm',
+			new FieldList(array(
+				TextField::create('search', 'Search')
+					->setValue($this->request->getVar('search'))
+					->addExtraClass('input-block-level'),
+				DropdownField::create('sort', 'Sort By')
+					->setSource(array(
+						'name' => 'Name',
+						'downloads' => 'Most downloaded',
+						'newest' => 'Newest'
+					))
+					->setEmptyString('Best match')
+					->setValue($this->request->getVar('sort'))
+					->addExtraClass('input-block-level'),
+				DropdownField::create('type', 'Search For')
+					->setSource(array(
+						'module' => 'Modules',
+						'theme' => 'Themes'
+					))
+					->setEmptyString('Modules and themes')
+					->setValue($this->request->getVar('type'))
+					->addExtraClass('input-block-level'),
+				CheckboxSetField::create('compatibility', 'Compatible With')
+					->setSource(SilverStripeVersion::get()->map('Name', 'Name'))
+					->setValue($this->request->getVar('compatibility'))
+					->setTemplate('ExtensionsSearchFormCompatibility')
+			)),
+			new FieldList()
+		);
+
+		return $form
+			->setFormMethod('GET')
+			->setFormAction($this->Link());
 	}
 
 }
