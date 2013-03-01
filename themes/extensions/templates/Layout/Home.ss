@@ -9,7 +9,7 @@
 
 <div class="row">
 	<div class="span6">
-		<h3><a href="/extensions?sort=popular">Popular Extensions</a></h3>
+		<h3><a href="/extensions?sort=downloads">Popular Extensions</a></h3>
 		<ol>
 			<% loop $PopularExtensions %>
 				<li>

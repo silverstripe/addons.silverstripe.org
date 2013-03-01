@@ -7,12 +7,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ajshort/silverstripe-elastica.git",
-                "reference": "1f8bb0e1a4f3ab91a779825e4771e1acc7945cbc"
+                "reference": "7c6466db783986b68021bf4d83dd1b9aec95b8a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ajshort/silverstripe-elastica/zipball/1f8bb0e1a4f3ab91a779825e4771e1acc7945cbc",
-                "reference": "1f8bb0e1a4f3ab91a779825e4771e1acc7945cbc",
+                "url": "https://api.github.com/repos/ajshort/silverstripe-elastica/zipball/7c6466db783986b68021bf4d83dd1b9aec95b8a3",
+                "reference": "7c6466db783986b68021bf4d83dd1b9aec95b8a3",
                 "shasum": ""
             },
             "require": {
@@ -28,7 +28,7 @@
                     "SilverStripe\\Elastica": "src/"
                 }
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -46,7 +46,7 @@
                 "search",
                 "silverstripe"
             ],
-            "time": "2013-02-27 03:00:49"
+            "time": "2013-03-01 03:39:13"
         },
         {
             "name": "composer/composer",

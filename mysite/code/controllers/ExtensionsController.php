@@ -1,4 +1,14 @@
 <?php
+
+use Elastica\Filter\BoolAnd;
+use Elastica\Filter\Term;
+use Elastica\Filter\Terms;
+use Elastica\Query;
+use Elastica\Query\Match;
+use Elastica\Search;
+use SilverStripe\Elastica\ElasticaService;
+use SilverStripe\Elastica\ResultList;
+
 /**
  * Lists and searches extensions.
  */
@@ -13,8 +23,21 @@ class ExtensionsController extends SiteController {
 		'extension'
 	);
 
+	public static $dependencies = array(
+		'ElasticaService' => '%$SilverStripe\Elastica\ElasticaService'
+	);
+
+	/**
+	 * @var \SilverStripe\Elastica\ElasticaService
+	 */
+	private $elastica;
+
 	public function index() {
 		return $this->renderWith(array('Extensions', 'Page'));
+	}
+
+	public function setElasticaService(ElasticaService $elastica) {
+		$this->elastica = $elastica;
 	}
 
 	public function extension($request) {
@@ -40,8 +63,63 @@ class ExtensionsController extends SiteController {
 	public function Extensions() {
 		$list = ExtensionPackage::get();
 
+		$search = $this->request->getVar('search');
+		$type = $this->request->getVar('type');
+		$compat = $this->request->getVar('compatibility');
+		$tags = $this->request->getVar('tags');
+		$sort = $this->request->getVar('sort');
+
+		if (!in_array($sort, array('name', 'downloads', 'newest'))) {
+			$sort = null;
+		}
+
+		// Proxy out a search to elastic if any parameters are set.
+		if ($search || $type || $compat || $tags) {
+			$filter = new BoolAnd();
+
+			$query = new Query();
+			$query->setSize(count($list));
+
+			if ($search) {
+				$match = new Match();
+				$match->setField('_all', $search);
+
+				$query->setQuery($match);
+			}
+
+			if ($type) {
+				$filter->addFilter(new Term(array('type' => $type)));
+			}
+
+			if ($compat) {
+				$filter->addFilter(new Terms('compatible', (array) $compat));
+			}
+
+			if ($tags) {
+				$filter->addFilter(new Terms('tag', (array) $tags));
+			}
+
+			if ($type || $compat || $tags) {
+				$query->setFilter($filter);
+			}
+
+			$list = new ResultList($this->elastica->getIndex(), $query);
+
+			if ($sort) {
+				$list = ExtensionPackage::get()->byIDs($list->column('ID'));
+			}
+		} else {
+			if ($sort) $sort = 'downloads';
+		}
+
+		switch ($sort) {
+			case 'name': $list = $list->sort('Name'); break;
+			case 'newest': $list = $list->sort('Released', 'DESC'); break;
+			case 'downloads': $list = $list->sort('Downloads', 'DESC'); break;
+		}
+
 		$list = new PaginatedList($list, $this->request);
-		$list->setPageLength(20);
+		$list->setPageLength(15);
 
 		return $list;
 	}

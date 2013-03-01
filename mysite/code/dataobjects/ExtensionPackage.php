@@ -66,7 +66,9 @@ class ExtensionPackage extends DataObject {
 			'type' => array('type' => 'string'),
 			'compatibility' => array('type' => 'string', 'index_name' => 'compatible'),
 			'vendor' => array('type' => 'string'),
-			'tags' => array('type' => 'string', 'index_name' => 'tag')
+			'tags' => array('type' => 'string', 'index_name' => 'tag'),
+			'released' => array('type' => 'date'),
+			'downloads' => array('type' => 'integer')
 		));
 	}
 
@@ -78,6 +80,8 @@ class ExtensionPackage extends DataObject {
 			'compatibility' => $this->CompatibleVersions()->column('Name'),
 			'vendor' => $this->getVendorName(),
 			'tags' => $this->Keywords()->column('Name'),
+			'released' => $this->obj('Released')->Format('c'),
+			'downloads' => $this->Downloads,
 			'_boost' => sqrt($this->Downloads)
 		));
 	}
