@@ -15,12 +15,14 @@ use SilverStripe\Elastica\ResultList;
 class ExtensionsController extends SiteController {
 
 	public static $url_handlers = array(
-		'$Vendor!/$Name!' => 'extension'
+		'$Vendor!/$Name!' => 'extension',
+		'$Vendor!' => 'vendor'
 	);
 
 	public static $allowed_actions = array(
 		'index',
-		'extension'
+		'extension',
+		'vendor'
 	);
 
 	public static $dependencies = array(
@@ -50,6 +52,17 @@ class ExtensionsController extends SiteController {
 		}
 
 		return new ExtensionController($this, $ext);
+	}
+
+	public function vendor($request) {
+		$name = $request->param('Vendor');
+		$vendor = ExtensionVendor::get()->filter('Name', $name)->first();
+
+		if (!$vendor) {
+			$this->httpError(404);
+		}
+
+		return new VendorController($this, $vendor);
 	}
 
 	public function Title() {

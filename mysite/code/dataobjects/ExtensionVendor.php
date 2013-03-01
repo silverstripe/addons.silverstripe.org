@@ -12,4 +12,8 @@ class ExtensionVendor extends DataObject {
 		'Extensions' => 'ExtensionPackage'
 	);
 
+	public function Authors() {
+		return $this->Extensions()->relation('Versions')->relation('Authors');
+	}
+
 }

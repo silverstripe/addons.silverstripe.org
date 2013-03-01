@@ -35,6 +35,8 @@ class ExtensionPackage extends DataObject {
 		'CompatibleVersions' => 'SilverStripeVersion'
 	);
 
+	public static $default_sort = 'Name';
+
 	public static $extensions = array(
 		'SilverStripe\\Elastica\\Searchable'
 	);
