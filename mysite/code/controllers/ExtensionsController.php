@@ -109,7 +109,7 @@ class ExtensionsController extends SiteController {
 				$list = ExtensionPackage::get()->byIDs($list->column('ID'));
 			}
 		} else {
-			if ($sort) $sort = 'downloads';
+			if (!$sort) $sort = 'downloads';
 		}
 
 		switch ($sort) {
