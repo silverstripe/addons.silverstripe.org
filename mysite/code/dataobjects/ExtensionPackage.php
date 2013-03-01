@@ -17,7 +17,8 @@ class ExtensionPackage extends DataObject {
 		'Repository' => 'Varchar(255)',
 		'Downloads' => 'Int',
 		'LastUpdated' => 'SS_Datetime',
-		'LastBuilt' => 'SS_Datetime'
+		'LastBuilt' => 'SS_Datetime',
+		'BuildQueued' => 'Boolean'
 	);
 
 	public static $has_one = array(

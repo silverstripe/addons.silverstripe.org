@@ -22,13 +22,19 @@ class ExtensionUpdater {
 	private $elastica;
 
 	/**
+	 * @var ResqueService
+	 */
+	private $resque;
+
+	/**
 	 * @var SilverStripeVersion[]
 	 */
 	private $silverstripes = array();
 
-	public function __construct(PackagistService $packagist, ElasticaService $elastica) {
+	public function __construct(PackagistService $packagist, ElasticaService $elastica, ResqueService $resque) {
 		$this->packagist = $packagist;
 		$this->elastica = $elastica;
+		$this->resque = $resque;
 	}
 
 	/**
@@ -66,11 +72,11 @@ class ExtensionUpdater {
 		DB::getConn()->transactionStart();
 
 		if (!$ext->VendorID) {
-			$vendor = ExtensionVendor::get()->filter('Name', $ext->getVendorName())->first();
+			$vendor = ExtensionVendor::get()->filter('Name', $ext->VendorName())->first();
 
 			if (!$vendor) {
 				$vendor = new ExtensionVendor();
-				$vendor->Name = $ext->getVendorName();
+				$vendor->Name = $ext->VendorName();
 				$vendor->write();
 			}
 
@@ -93,6 +99,26 @@ class ExtensionUpdater {
 
 		foreach ($versions as $version) {
 			$this->updateVersion($ext, $version);
+		}
+
+		// If there is no build, then queue one up if the extension requires
+		// one.
+		if (!$ext->BuildQueued) {
+			if (!$ext->BuiltAt) {
+				$this->resque->queue('first_build', 'BuildExtensionJob', array('id' => $ext->ID));
+				$ext->BuildQueued = true;
+			} else {
+				$built = (int) $ext->obj('BuiltAt')->format('U');
+
+				foreach ($versions as $version) {
+					if ($version->getReleaseDate()->getTimestamp() > $built) {
+						$this->resque->queue('update', 'BuildExtensionJob', array('id' => $ext->ID));
+						$ext->BuildQueued = true;
+
+						break;
+					}
+				}
+			}
 		}
 
 		$ext->LastUpdated = time();

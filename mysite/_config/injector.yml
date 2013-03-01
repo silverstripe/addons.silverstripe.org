@@ -6,6 +6,7 @@ Injector:
     constructor:
       - %$PackagistService
       - %$SilverStripe\Elastica\ElasticaService
+      - %$ResqueService
   SilverStripeVersionUpdater:
     constructor:
       - %$PackagistService

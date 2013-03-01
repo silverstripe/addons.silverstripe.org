@@ -1,5 +1,5 @@
 {
-    "hash": "e1c2316da096161db2ae0e1f7bcf8876",
+    "hash": "2fab63899a70a90d9ab74a2ce9a4c0ee",
     "packages": [
         {
             "name": "ajshort/silverstripe-elastica",
@@ -49,17 +49,109 @@
             "time": "2013-03-01 03:39:13"
         },
         {
+            "name": "chrisboulton/php-resque",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/chrisboulton/php-resque.git",
+                "reference": "c18b5441f5ffe0b309b92298d97919fdd076bf7f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/chrisboulton/php-resque/zipball/c18b5441f5ffe0b309b92298d97919fdd076bf7f",
+                "reference": "c18b5441f5ffe0b309b92298d97919fdd076bf7f",
+                "shasum": ""
+            },
+            "require": {
+                "colinmollenhour/credis": "dev-master",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "suggest": {
+                "ext-proctitle": "Allows php-resque to rename the title of UNIX processes to show the status of a worker.",
+                "ext-redis": "Native PHP extension for Redis connectivity. Credis will automatically utilize when available."
+            },
+            "bin": [
+                "bin/resque"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Resque": "lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Boulton",
+                    "email": "chris@bigcommerce.com"
+                }
+            ],
+            "description": "Redis backed library for creating background jobs and processing them later. Based on resque for Ruby.",
+            "homepage": "http://www.github.com/chrisboulton/php-resque/",
+            "keywords": [
+                "background",
+                "job",
+                "redis",
+                "resque"
+            ],
+            "time": "2013-02-28 12:57:04"
+        },
+        {
+            "name": "colinmollenhour/credis",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/colinmollenhour/credis.git",
+                "reference": "2a8adc5745f6331a657ff167307faa901b885715"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/colinmollenhour/credis/zipball/2a8adc5745f6331a657ff167307faa901b885715",
+                "reference": "2a8adc5745f6331a657ff167307faa901b885715",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "Client.php",
+                    "Cluster.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Colin Mollenhour",
+                    "email": "colin@mollenhour.com"
+                }
+            ],
+            "description": "Credis is a lightweight interface to the Redis key-value store which wraps the phpredis library when available for better performance.",
+            "homepage": "https://github.com/colinmollenhour/credis",
+            "time": "2013-01-12 23:02:40"
+        },
+        {
             "name": "composer/composer",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "7f861d0c07808d8482bb281a6965ba3b315b639a"
+                "reference": "98ada572ec52875dfa70e0cb9851dd5f8a34f006"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/7f861d0c07808d8482bb281a6965ba3b315b639a",
-                "reference": "7f861d0c07808d8482bb281a6965ba3b315b639a",
+                "url": "https://api.github.com/repos/composer/composer/zipball/98ada572ec52875dfa70e0cb9851dd5f8a34f006",
+                "reference": "98ada572ec52875dfa70e0cb9851dd5f8a34f006",
                 "shasum": ""
             },
             "require": {
@@ -91,7 +183,7 @@
                     "Composer": "src/"
                 }
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -115,7 +207,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2013-02-25 17:23:32"
+            "time": "2013-02-28 19:28:07"
         },
         {
             "name": "composer/installers",
@@ -297,12 +389,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "81d15dd3e019f1ebdd69142bb32700e16c3cdf0e"
+                "reference": "8d68969a8b22ec5175c4361bdc4fec9790592247"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/81d15dd3e019f1ebdd69142bb32700e16c3cdf0e",
-                "reference": "81d15dd3e019f1ebdd69142bb32700e16c3cdf0e",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/8d68969a8b22ec5175c4361bdc4fec9790592247",
+                "reference": "8d68969a8b22ec5175c4361bdc4fec9790592247",
                 "shasum": ""
             },
             "require": {
@@ -355,7 +447,7 @@
                     "Guzzle": "src/"
                 }
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -381,7 +473,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2013-02-26 18:30:03"
+            "time": "2013-03-01 06:25:58"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -540,12 +632,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silverstripe/sapphire.git",
-                "reference": "bea1b9002d389f5bc9ac0c7d1fc9b320e119cfe0"
+                "reference": "1fef42681aa846bd9e1ffdc8d04a040fb2aa5d5a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/sapphire/zipball/bea1b9002d389f5bc9ac0c7d1fc9b320e119cfe0",
-                "reference": "bea1b9002d389f5bc9ac0c7d1fc9b320e119cfe0",
+                "url": "https://api.github.com/repos/silverstripe/sapphire/zipball/1fef42681aa846bd9e1ffdc8d04a040fb2aa5d5a",
+                "reference": "1fef42681aa846bd9e1ffdc8d04a040fb2aa5d5a",
                 "shasum": ""
             },
             "require": {
@@ -558,7 +650,7 @@
                     "tests/behat/features/bootstrap"
                 ]
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -578,7 +670,7 @@
                 "framework",
                 "silverstripe"
             ],
-            "time": "2013-02-26 12:28:35"
+            "time": "2013-02-28 19:54:12"
         },
         {
             "name": "silverstripe/multivaluefield",
@@ -623,12 +715,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console.git",
-                "reference": "f65e34d058f0990a724f78e8d091dc0a20e439ac"
+                "reference": "fae82dad073a491b91a2ad6cda2ef5d8b19a5152"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/f65e34d058f0990a724f78e8d091dc0a20e439ac",
-                "reference": "f65e34d058f0990a724f78e8d091dc0a20e439ac",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/fae82dad073a491b91a2ad6cda2ef5d8b19a5152",
+                "reference": "fae82dad073a491b91a2ad6cda2ef5d8b19a5152",
                 "shasum": ""
             },
             "require": {
@@ -661,7 +753,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "http://symfony.com",
-            "time": "2013-01-31 21:39:01"
+            "time": "2013-03-01 06:43:27"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -724,12 +816,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Finder.git",
-                "reference": "3f500bdf0b759cd9f08c85c089622e6d587343a4"
+                "reference": "0b33214ce24e33b6d11fd7de8784ff34ba16711f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Finder/zipball/3f500bdf0b759cd9f08c85c089622e6d587343a4",
-                "reference": "3f500bdf0b759cd9f08c85c089622e6d587343a4",
+                "url": "https://api.github.com/repos/symfony/Finder/zipball/0b33214ce24e33b6d11fd7de8784ff34ba16711f",
+                "reference": "0b33214ce24e33b6d11fd7de8784ff34ba16711f",
                 "shasum": ""
             },
             "require": {
@@ -746,7 +838,7 @@
                     "Symfony\\Component\\Finder\\": ""
                 }
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -762,7 +854,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "http://symfony.com",
-            "time": "2013-02-26 16:28:03"
+            "time": "2013-03-01 06:43:27"
         },
         {
             "name": "symfony/process",
@@ -817,7 +909,7 @@
 
     ],
     "minimum-stability": "dev",
-    "stability-flags": [
-
-    ]
+    "stability-flags": {
+        "chrisboulton/php-resque": 20
+    }
 }
