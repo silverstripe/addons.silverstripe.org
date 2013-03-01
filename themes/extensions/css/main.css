@@ -109,3 +109,29 @@
   margin-top: 20px;
   padding: 15px;
 }
+
+/* line 115, ../sass/main.scss */
+#authors {
+  list-style: none;
+  margin: 0;
+}
+/* line 119, ../sass/main.scss */
+#authors li {
+  float: left;
+  width: 20%;
+}
+/* line 123, ../sass/main.scss */
+#authors li a {
+  background: #efefef;
+  display: block;
+  margin: 0 5px 5px 0;
+  overflow: hidden;
+  padding: 5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* line 132, ../sass/main.scss */
+#authors li a:hover {
+  background: #dedede;
+  text-decoration: none;
+}

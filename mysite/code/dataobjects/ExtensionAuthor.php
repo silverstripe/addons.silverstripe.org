@@ -15,4 +15,15 @@ class ExtensionAuthor extends DataObject {
 		'Versions' => 'ExtensionVersion'
 	);
 
+	public static $default_sort = 'Name';
+
+	public function GravatarUrl($size, $default = 'mm') {
+		return sprintf(
+			'http://www.gravatar.com/avatar/%s?s=%d&d=%s',
+			md5(strtolower(trim($this->Email))),
+			$size,
+			$default
+		);
+	}
+
 }

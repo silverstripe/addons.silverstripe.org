@@ -111,3 +111,28 @@ $light-blue: #45B2E6;
   margin-top: 20px;
   padding: 15px;
 }
+
+#authors {
+  list-style: none;
+  margin: 0;
+
+  li {
+    float: left;
+    width: 20%;
+
+    a {
+      background: $light-gray;
+      display: block;
+      margin: 0 5px 5px 0;
+      overflow: hidden;
+      padding: 5px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      &:hover {
+        background: $med-gray;
+        text-decoration: none;
+      }
+    }
+  }
+}
