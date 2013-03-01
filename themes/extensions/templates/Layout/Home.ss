@@ -1,30 +1,34 @@
-<div class="page-header">
-	<h1>Home</h1>
-</div>
-
-<form action="/extensions" method="get">
+<form id="home-extensions-search" action="/extensions" method="get">
 	<input name="search" type="text" class="input-block-level">
 	<button type="submit" class="btn"><i class="icon-search"></i> Search Extensions</button>
 </form>
 
 <div class="row">
-	<div class="span6">
+	<div class="extensions-box span6">
 		<h3><a href="/extensions?sort=downloads">Popular Extensions</a></h3>
-		<ol>
-			<% loop $PopularExtensions %>
+		<ol class="extensions">
+			<% loop $PopularExtensions(6) %>
 				<li>
-					<a href="$Link">$Title</a> <i class="icon-download"></i> $Downloads
+					<a href="$Link">
+						<span class="meta"><i class="icon-download"></i> $Downloads</span>
+						<span class="name">$Name</span>
+						<span class="description">$Description</span>
+					</a>
 				</li>
 			<% end_loop %>
 		</ol>
 	</div>
 
-	<div class="span6">
+	<div class="extensions-box span6">
 		<h3><a href="/extensions?sort=newest">Newest Extensions</a></h3>
-		<ol>
-			<% loop $NewestExtensions %>
+		<ol class="extensions">
+			<% loop $NewestExtensions(6) %>
 				<li>
-					<a href="$Link">$Title</a> $Released.Date
+					<a href="$Link">
+						<span class="meta">$Released.Date</span>
+						<span class="name">$Name</span>
+						<span class="description">$Description</span>
+					</a>
 				</li>
 			<% end_loop %>
 		</ol>
@@ -32,23 +36,30 @@
 </div>
 
 <div class="row">
-	<div class="span6">
+	<div class="extensions-box span6">
 		<h3>Random Extensions</h3>
-		<ul>
-			<% loop $RandomExtensions %>
+		<ul class="extensions">
+			<% loop $RandomExtensions(6) %>
 				<li>
-					<a href="$Link">$Title</a>
+					<a href="$Link">
+						<span class="name">$Name</span>
+						<span class="description">$Description</span>
+					</a>
 				</li>
 			<% end_loop %>
 		</ul>
 	</div>
 
-	<div class="span6">
+	<div class="extensions-box span6">
 		<h3>Newest Releases</h3>
-		<ol>
-			<% loop $NewestReleases %>
+		<ol class="extensions">
+			<% loop $NewestReleases(6) %>
 				<li>
-					<a href="$Extension.Link">$Title</a> $DisplayVersion
+					<a href="$Link">
+						<span class="meta">$DisplayVersion</span>
+						<span class="name">$Name</span>
+						<span class="description">$Description</span>
+					</a>
 				</li>
 			<% end_loop %>
 		</ol>

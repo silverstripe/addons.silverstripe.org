@@ -1,17 +1,111 @@
-#tags {
-	list-style: none;
-	margin: 0 0 10px 0;
+/* line 10, ../sass/main.scss */
+#header .navbar-inner {
+  background: none;
+  border-bottom: 1px solid #efefef;
+  border-top: 3px solid #0b467f;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  padding: 35px 0;
+}
+/* line 18, ../sass/main.scss */
+#header .brand {
+  padding-bottom: 0;
+  padding-top: 0;
+}
+/* line 22, ../sass/main.scss */
+#header .brand:hover {
+  opacity: .8;
+}
+/* line 27, ../sass/main.scss */
+#header .nav {
+  float: right;
+  margin-bottom: -5px;
+}
+/* line 31, ../sass/main.scss */
+#header .nav a {
+  color: #0b467f;
+  line-height: 45px;
+  padding: 0 20px;
+}
+/* line 36, ../sass/main.scss */
+#header .nav a:hover {
+  border-bottom: 5px solid #efefef;
+}
+/* line 41, ../sass/main.scss */
+#header .nav .active a {
+  background: none;
+  border-bottom: 5px solid #45b2e6;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
-#tags li a {
-	background: #F4F4F4;
-	border-radius: 4px;
-	display: block;
-	float: left;
-	margin: 0 5px 5px 0;
-	padding: 5px;
+/* line 49, ../sass/main.scss */
+.page-header {
+  border-bottom: 5px solid #efefef;
+}
+/* line 52, ../sass/main.scss */
+.page-header h1 {
+  color: #0b467f;
+  margin-bottom: 0;
 }
 
-#tags li a:hover {
-	background: #EEE;
+/* line 58, ../sass/main.scss */
+.extensions-box {
+  margin-bottom: 15px;
+}
+/* line 61, ../sass/main.scss */
+.extensions-box h3 {
+  background: #F4F4F4;
+  border: 1px solid #dedede;
+  font-size: 16px;
+  margin: 0;
+  padding: 0 12px;
+}
+/* line 69, ../sass/main.scss */
+.extensions-box .extensions {
+  list-style: none;
+  margin: 0;
+}
+/* line 73, ../sass/main.scss */
+.extensions-box .extensions li a {
+  border: 1px solid #dedede;
+  border-bottom: 1px solid #efefef;
+  border-top: none;
+  display: block;
+  padding: 5px 10px;
+}
+/* line 80, ../sass/main.scss */
+.extensions-box .extensions li a:hover {
+  background: #efefef;
+  text-decoration: none;
+}
+/* line 85, ../sass/main.scss */
+.extensions-box .extensions li a .meta, .extensions-box .extensions li a .description {
+  color: #333;
+  font-size: 13px;
+}
+/* line 90, ../sass/main.scss */
+.extensions-box .extensions li a .meta {
+  float: right;
+  margin-bottom: 1px;
+}
+/* line 95, ../sass/main.scss */
+.extensions-box .extensions li a .description {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* line 103, ../sass/main.scss */
+.extensions-box .extensions li:last-child a {
+  border-bottom-color: #dedede;
+}
+
+/* line 109, ../sass/main.scss */
+#home-extensions-search {
+  background: #0b467f;
+  margin-top: 20px;
+  padding: 15px;
 }

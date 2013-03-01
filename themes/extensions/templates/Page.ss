@@ -16,7 +16,9 @@
 		<div id="header" class="navbar navbar-static-top">
 			<div class="navbar-inner">
 				<div class="container">
-					<a class="brand" href="/">SilverStripe Extensions</a>
+					<a class="brand" href="/">
+						<img src="$ThemeDir/images/header-logo.png" alt="SilverStripe Extensions">
+					</a>
 					<ul class="nav">
 						<% loop $Menu %>
 							<li class="<% if $Active %>active<% end_if %>">
