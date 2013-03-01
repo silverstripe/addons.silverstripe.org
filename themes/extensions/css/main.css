@@ -111,17 +111,16 @@
 }
 
 /* line 115, ../sass/main.scss */
-#authors {
+#authors, #tags {
   list-style: none;
   margin: 0;
 }
 /* line 119, ../sass/main.scss */
-#authors li {
+#authors li, #tags li {
   float: left;
-  width: 20%;
 }
-/* line 123, ../sass/main.scss */
-#authors li a {
+/* line 122, ../sass/main.scss */
+#authors li a, #tags li a {
   background: #efefef;
   display: block;
   margin: 0 5px 5px 0;
@@ -130,8 +129,25 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 132, ../sass/main.scss */
-#authors li a:hover {
+/* line 131, ../sass/main.scss */
+#authors li a:hover, #tags li a:hover {
   background: #dedede;
   text-decoration: none;
+}
+
+/* line 139, ../sass/main.scss */
+#authors li {
+  width: 20%;
+}
+
+/* line 143, ../sass/main.scss */
+#tags li .label {
+  background: #dedede;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+  color: #666;
+  text-shadow: none;
 }

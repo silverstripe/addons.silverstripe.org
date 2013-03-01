@@ -33,9 +33,13 @@ class TagsController extends SiteController {
 			->setOrderBy(array('"Count"' => 'DESC', '"Name"' => 'ASC'));
 
 		foreach ($query->execute() as $row) {
-			$result->push(new ArrayData($row + array(
-				'Link' => Controller::join_links($this->Link(), $row['ID'])
-			)));
+			$link = Controller::join_links(
+				Director::baseURL(), 'extensions', '?' . http_build_query(array(
+					'tags[]' => $row['Name']
+				))
+			);
+
+			$result->push(new ArrayData($row + array('Link' => $link)));
 		}
 
 		return $result;
