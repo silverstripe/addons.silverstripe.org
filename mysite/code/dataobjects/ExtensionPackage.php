@@ -41,14 +41,25 @@ class ExtensionPackage extends DataObject {
 		'SilverStripe\\Elastica\\Searchable'
 	);
 
-	/**
-	 * @return string
-	 */
-	public function getVendorName() {
+	public function Authors() {
+		return $this->Versions()->relation('Authors');
+	}
+
+	public function VendorName() {
 		return substr($this->Name, 0, strpos($this->Name, '/'));
 	}
 
-	public function getTypeIcon() {
+	public function VendorLink() {
+		return Controller::join_links(
+			Director::baseURL(), 'extensions', $this->VendorName()
+		);
+	}
+
+	public function PackageName() {
+		return substr($this->Name, strpos($this->Name, '/') + 1);
+	}
+
+	public function TypeIcon() {
 		switch ($this->Type) {
 			case 'module': return 'icon-gift';
 			case 'theme': return 'icon-picture';
@@ -60,6 +71,10 @@ class ExtensionPackage extends DataObject {
 		return Controller::join_links(
 			Director::baseURL(), 'extensions', $this->Name
 		);
+	}
+
+	public function PackagistUrl() {
+		return "https://packagist.org/packages/$this->Name";
 	}
 
 	public function getElasticaMapping() {
@@ -81,7 +96,7 @@ class ExtensionPackage extends DataObject {
 			'description' => $this->Description,
 			'type' => $this->Type,
 			'compatibility' => $this->CompatibleVersions()->column('Name'),
-			'vendor' => $this->getVendorName(),
+			'vendor' => $this->VendorName(),
 			'tags' => $this->Keywords()->column('Name'),
 			'released' => $this->obj('Released')->Format('c'),
 			'downloads' => $this->Downloads,

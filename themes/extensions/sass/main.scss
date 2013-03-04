@@ -53,6 +53,10 @@ $light-blue: #45B2E6;
     color: $dark-blue;
     margin-bottom: 0;
   }
+
+  .lead {
+    margin-bottom: 5px;
+  }
 }
 
 .extensions-box {
@@ -102,6 +106,56 @@ $light-blue: #45B2E6;
 
     li:last-child a {
       border-bottom-color: $med-gray;
+    }
+  }
+}
+
+.readme {
+  background: $light-gray;
+  padding: 0;
+
+  .content {
+    padding: 20px;
+  }
+
+  &:not(.collapsed) .icon-arrow-down {
+    display: none;
+  }
+
+  .toggle {
+    background: darken($light-gray, 1%);
+    border-top: 1px solid #E3E3E3;
+    display: block;
+    padding: 5px;
+    text-align: center;
+
+    &:hover {
+      background: darken($light-gray, 5%);
+    }
+  }
+
+  &.collapsed {
+    .icon-arrow-up {
+      display: none;
+    }
+    .icon-arrow-down {
+      display: inline-block;
+    }
+    .content {
+      max-height: 200px;
+      overflow:  hidden;
+      position: relative;
+
+      &:after {
+        @include background-image(linear-gradient(top, rgba(244, 244, 244, 0) 20%, #F4F4F4));
+        bottom: 0;
+        content: " ";
+        display: block;
+        height: 40px;
+        left: 0;
+        position: absolute;
+        right: 0;
+      }
     }
   }
 }

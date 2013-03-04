@@ -50,12 +50,16 @@
   color: #0b467f;
   margin-bottom: 0;
 }
+/* line 57, ../sass/main.scss */
+.page-header .lead {
+  margin-bottom: 5px;
+}
 
-/* line 58, ../sass/main.scss */
+/* line 62, ../sass/main.scss */
 .extensions-box {
   margin-bottom: 15px;
 }
-/* line 61, ../sass/main.scss */
+/* line 65, ../sass/main.scss */
 .extensions-box h3 {
   background: #F4F4F4;
   border: 1px solid #dedede;
@@ -63,12 +67,12 @@
   margin: 0;
   padding: 0 12px;
 }
-/* line 69, ../sass/main.scss */
+/* line 73, ../sass/main.scss */
 .extensions-box .extensions {
   list-style: none;
   margin: 0;
 }
-/* line 73, ../sass/main.scss */
+/* line 77, ../sass/main.scss */
 .extensions-box .extensions li a {
   border: 1px solid #dedede;
   border-bottom: 1px solid #efefef;
@@ -76,50 +80,105 @@
   display: block;
   padding: 5px 10px;
 }
-/* line 80, ../sass/main.scss */
+/* line 84, ../sass/main.scss */
 .extensions-box .extensions li a:hover {
   background: #efefef;
   text-decoration: none;
 }
-/* line 85, ../sass/main.scss */
+/* line 89, ../sass/main.scss */
 .extensions-box .extensions li a .meta, .extensions-box .extensions li a .description {
   color: #333;
   font-size: 13px;
 }
-/* line 90, ../sass/main.scss */
+/* line 94, ../sass/main.scss */
 .extensions-box .extensions li a .meta {
   float: right;
   margin-bottom: 1px;
 }
-/* line 95, ../sass/main.scss */
+/* line 99, ../sass/main.scss */
 .extensions-box .extensions li a .description {
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 103, ../sass/main.scss */
+/* line 107, ../sass/main.scss */
 .extensions-box .extensions li:last-child a {
   border-bottom-color: #dedede;
 }
 
-/* line 109, ../sass/main.scss */
+/* line 113, ../sass/main.scss */
+.readme {
+  background: #efefef;
+  padding: 0;
+}
+/* line 117, ../sass/main.scss */
+.readme .content {
+  padding: 20px;
+}
+/* line 121, ../sass/main.scss */
+.readme:not(.collapsed) .icon-arrow-down {
+  display: none;
+}
+/* line 125, ../sass/main.scss */
+.readme .toggle {
+  background: #ececec;
+  border-top: 1px solid #e3e3e3;
+  display: block;
+  padding: 5px;
+  text-align: center;
+}
+/* line 132, ../sass/main.scss */
+.readme .toggle:hover {
+  background: #e2e2e2;
+}
+/* line 138, ../sass/main.scss */
+.readme.collapsed .icon-arrow-up {
+  display: none;
+}
+/* line 141, ../sass/main.scss */
+.readme.collapsed .icon-arrow-down {
+  display: inline-block;
+}
+/* line 144, ../sass/main.scss */
+.readme.collapsed .content {
+  max-height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+/* line 149, ../sass/main.scss */
+.readme.collapsed .content:after {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(20%, rgba(244, 244, 244, 0)), color-stop(100%, #f4f4f4));
+  background-image: -webkit-linear-gradient(top, rgba(244, 244, 244, 0) 20%, #f4f4f4);
+  background-image: -moz-linear-gradient(top, rgba(244, 244, 244, 0) 20%, #f4f4f4);
+  background-image: -o-linear-gradient(top, rgba(244, 244, 244, 0) 20%, #f4f4f4);
+  background-image: linear-gradient(top, rgba(244, 244, 244, 0) 20%, #f4f4f4);
+  bottom: 0;
+  content: " ";
+  display: block;
+  height: 40px;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
+
+/* line 163, ../sass/main.scss */
 #home-extensions-search {
   background: #0b467f;
   margin-top: 20px;
   padding: 15px;
 }
 
-/* line 115, ../sass/main.scss */
+/* line 169, ../sass/main.scss */
 #authors, #tags, #vendors {
   list-style: none;
   margin: 0;
 }
-/* line 119, ../sass/main.scss */
+/* line 173, ../sass/main.scss */
 #authors li, #tags li, #vendors li {
   float: left;
 }
-/* line 122, ../sass/main.scss */
+/* line 176, ../sass/main.scss */
 #authors li a, #tags li a, #vendors li a {
   background: #efefef;
   display: block;
@@ -129,12 +188,12 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 131, ../sass/main.scss */
+/* line 185, ../sass/main.scss */
 #authors li a:hover, #tags li a:hover, #vendors li a:hover {
   background: #dedede;
   text-decoration: none;
 }
-/* line 138, ../sass/main.scss */
+/* line 192, ../sass/main.scss */
 #authors .label, #tags .label, #vendors .label {
   background: #dedede;
   -webkit-border-radius: 0;
@@ -146,12 +205,12 @@
   text-shadow: none;
 }
 
-/* line 146, ../sass/main.scss */
+/* line 200, ../sass/main.scss */
 #authors li, #vendors li {
   width: 20%;
 }
 
-/* line 150, ../sass/main.scss */
+/* line 204, ../sass/main.scss */
 #vendors .label {
   float: right;
 }

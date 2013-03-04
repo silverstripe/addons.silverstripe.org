@@ -46,7 +46,7 @@ class ExtensionVersion extends DataObject {
 		'ID' => 'DESC'
 	);
 
-	public function getDisplayVersion() {
+	public function DisplayVersion() {
 		return $this->PrettyAlias ?: $this->PrettyVersion;
 	}
 
