@@ -13,7 +13,13 @@ class BuildExtensionJob {
 	}
 
 	public function perform() {
-		Injector::inst()->get('ExtensionBuilder')->build(ExtensionPackage::get()->byID($this->args['id']));
+		$package = ExtensionPackage::get()->byID($this->args['id']);
+		$builder = Injector::inst()->get('ExtensionBuilder');
+
+		$builder->build($package);
+
+		$package->BuildQueued = false;
+		$package->write();
 	}
 
 }
