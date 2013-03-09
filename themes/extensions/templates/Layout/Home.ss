@@ -55,7 +55,7 @@
 		<ol class="extensions">
 			<% loop $NewestReleases(6) %>
 				<li>
-					<a href="$Link">
+					<a href="$Extension.Link">
 						<span class="meta">$DisplayVersion</span>
 						<span class="name">$Name</span>
 						<span class="description">$Description</span>
