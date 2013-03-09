@@ -54,12 +54,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/chrisboulton/php-resque.git",
-                "reference": "c18b5441f5ffe0b309b92298d97919fdd076bf7f"
+                "reference": "cd85e8be852d6ea33e26668b9e55218d2492e91a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/chrisboulton/php-resque/zipball/c18b5441f5ffe0b309b92298d97919fdd076bf7f",
-                "reference": "c18b5441f5ffe0b309b92298d97919fdd076bf7f",
+                "url": "https://api.github.com/repos/chrisboulton/php-resque/zipball/cd85e8be852d6ea33e26668b9e55218d2492e91a",
+                "reference": "cd85e8be852d6ea33e26668b9e55218d2492e91a",
                 "shasum": ""
             },
             "require": {
@@ -100,7 +100,7 @@
                 "redis",
                 "resque"
             ],
-            "time": "2013-02-28 12:57:04"
+            "time": "2013-03-07 03:56:25"
         },
         {
             "name": "colinmollenhour/credis",
@@ -146,12 +146,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "98ada572ec52875dfa70e0cb9851dd5f8a34f006"
+                "reference": "c54de4b72fccf355dd3788bb19bf4e623ab5f81d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/98ada572ec52875dfa70e0cb9851dd5f8a34f006",
-                "reference": "98ada572ec52875dfa70e0cb9851dd5f8a34f006",
+                "url": "https://api.github.com/repos/composer/composer/zipball/c54de4b72fccf355dd3788bb19bf4e623ab5f81d",
+                "reference": "c54de4b72fccf355dd3788bb19bf4e623ab5f81d",
                 "shasum": ""
             },
             "require": {
@@ -207,7 +207,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2013-02-28 19:28:07"
+            "time": "2013-03-07 10:46:02"
         },
         {
             "name": "composer/installers",
@@ -215,12 +215,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "v1.0.2"
+                "reference": "v1.0.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/v1.0.2",
-                "reference": "v1.0.2",
+                "url": "https://api.github.com/repos/composer/installers/zipball/v1.0.3",
+                "reference": "v1.0.3",
                 "shasum": ""
             },
             "replace": {
@@ -250,7 +250,7 @@
                 {
                     "name": "Kyle Robinson Young",
                     "email": "kyle@dontkry.com",
-                    "homepage": "http://dontkry.com",
+                    "homepage": "https://github.com/shama",
                     "role": "Developer"
                 }
             ],
@@ -276,9 +276,10 @@
                 "silverstripe",
                 "symfony",
                 "wordpress",
+                "yii",
                 "zend"
             ],
-            "time": "2013-02-18 00:51:06"
+            "time": "2013-03-02 22:45:58"
         },
         {
             "name": "dflydev/markdown",
@@ -389,12 +390,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "8d68969a8b22ec5175c4361bdc4fec9790592247"
+                "reference": "c3f285970120f3f2dd7db4e734c91e2980c9328a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/8d68969a8b22ec5175c4361bdc4fec9790592247",
-                "reference": "8d68969a8b22ec5175c4361bdc4fec9790592247",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/c3f285970120f3f2dd7db4e734c91e2980c9328a",
+                "reference": "c3f285970120f3f2dd7db4e734c91e2980c9328a",
                 "shasum": ""
             },
             "require": {
@@ -417,6 +418,7 @@
                 "guzzle/plugin-cache": "self.version",
                 "guzzle/plugin-cookie": "self.version",
                 "guzzle/plugin-curlauth": "self.version",
+                "guzzle/plugin-error-response": "self.version",
                 "guzzle/plugin-history": "self.version",
                 "guzzle/plugin-log": "self.version",
                 "guzzle/plugin-md5": "self.version",
@@ -438,7 +440,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.2-dev"
+                    "dev-master": "3.3-dev"
                 }
             },
             "autoload": {
@@ -473,7 +475,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2013-03-01 06:25:58"
+            "time": "2013-03-07 22:30:20"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -632,12 +634,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silverstripe/sapphire.git",
-                "reference": "1fef42681aa846bd9e1ffdc8d04a040fb2aa5d5a"
+                "reference": "07886c3e61c401e4c9bda1e6331bebbb606f46e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/sapphire/zipball/1fef42681aa846bd9e1ffdc8d04a040fb2aa5d5a",
-                "reference": "1fef42681aa846bd9e1ffdc8d04a040fb2aa5d5a",
+                "url": "https://api.github.com/repos/silverstripe/sapphire/zipball/07886c3e61c401e4c9bda1e6331bebbb606f46e4",
+                "reference": "07886c3e61c401e4c9bda1e6331bebbb606f46e4",
                 "shasum": ""
             },
             "require": {
@@ -670,7 +672,7 @@
                 "framework",
                 "silverstripe"
             ],
-            "time": "2013-02-28 19:54:12"
+            "time": "2013-03-08 14:12:20"
         },
         {
             "name": "silverstripe/multivaluefield",
@@ -715,12 +717,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console.git",
-                "reference": "fae82dad073a491b91a2ad6cda2ef5d8b19a5152"
+                "reference": "aa28bbe2c3c4210f9e9f44df16d71d63c53adf9b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/fae82dad073a491b91a2ad6cda2ef5d8b19a5152",
-                "reference": "fae82dad073a491b91a2ad6cda2ef5d8b19a5152",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/aa28bbe2c3c4210f9e9f44df16d71d63c53adf9b",
+                "reference": "aa28bbe2c3c4210f9e9f44df16d71d63c53adf9b",
                 "shasum": ""
             },
             "require": {
@@ -753,7 +755,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "http://symfony.com",
-            "time": "2013-03-01 06:43:27"
+            "time": "2013-03-06 17:50:21"
         },
         {
             "name": "symfony/event-dispatcher",
