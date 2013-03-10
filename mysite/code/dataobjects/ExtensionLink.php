@@ -16,4 +16,16 @@ class ExtensionLink extends DataObject {
 		'Target' => 'ExtensionPackage'
 	);
 
+	public function Link() {
+		if ($this->TargetID) {
+			return $this->Target()->Link();
+		}
+
+		if ($this->Name == 'php' || strpos($this->Name, 'ext-') === 0) {
+			return '';
+		}
+
+		return "https://packagist.org/packages/$this->Name";
+	}
+
 }

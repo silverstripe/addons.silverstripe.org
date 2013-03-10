@@ -36,6 +36,13 @@
 					<dd><a href="$Homepage">$Homepage</a></dd>
 				<% end_if %>
 			<% end_with %>
+
+			<% if $CompatibleVersions %>
+				<dt>Compatible with</dt>
+				<dd>
+					SilverStripe <% loop $CompatibleVersions %>$Name<% if not $Last %>, <% end_if %><% end_loop %>
+				</dd>
+			<% end_if %>
 		</dl>
 	</div>
 
@@ -43,6 +50,7 @@
 
 	<% with $Versions.First %>
 		<h3>Version $DisplayVersion</h3>
+		<% include ExtensionVersionDetails %>
 	<% end_with %>
 
 	<hr>
@@ -73,6 +81,7 @@
 						</div>
 						<div id="version-$ID" class="accordion-body collapse">
 							<div class="accordion-inner">
+								<% include ExtensionVersionDetails %>
 							</div>
 						</div>
 					</div>

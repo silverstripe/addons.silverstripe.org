@@ -50,4 +50,32 @@ class ExtensionVersion extends DataObject {
 		return $this->PrettyAlias ?: $this->PrettyVersion;
 	}
 
+	public function getRequires() {
+		return $this->Links()->filter('Type', 'require');
+	}
+
+	public function getRequiresDev() {
+		return $this->Links()->filter('Type', 'require-dev');
+	}
+
+	public function getSuggests() {
+		return $this->Links()->filter('Type', 'suggest');
+	}
+
+	public function getProvides() {
+		return $this->Links()->filter('Type', 'provide');
+	}
+
+	public function getConflicts() {
+		return $this->Links()->filter('Type', 'conflict');
+	}
+
+	public function getReplaces() {
+		return $this->Links()->filter('Type', 'replace');
+	}
+
+	public function InstallLink() {
+		return Controller::join_links($this->Extension()->Link(), 'install', $this->ID);
+	}
+
 }

@@ -10,6 +10,7 @@
 		<% require themedCSS("main") %>
 
 		<% require javascript("//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js") %>
+		<% require javascript("themes/extensions/bootstrap/js/bootstrap.min.js") %>
 		<% require javascript("themes/extensions/javascript/main.js") %>
 	</head>
 	<body>
