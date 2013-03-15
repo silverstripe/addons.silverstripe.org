@@ -1,0 +1,5 @@
+Injector:
+  SilverStripe\Elastica\ElasticaService:
+    constructor:
+      - %$Elastica\Client
+      - extensions
