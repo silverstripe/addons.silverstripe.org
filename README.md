@@ -55,3 +55,19 @@ Tasks
  * `sake dev/tasks/UpdateExtensionsTask`: Runs the extension updater.
  * `sake dev/tasks/UpdateSilverStripeVersionsTask`: Updates the available SilverStripe versions.
  * `sake dev/tasks/SilverStripe-Elastica-ReindexTask`: Defines and refreshes the elastic search index.
+
+Deployment
+============
+
+Deployment is handled through [Capistrano](https://github.com/capistrano/capistrano).
+
+Installation:
+
+	gem install capistrano capistrano-ext railsless-deploy
+
+Usage:
+
+	cap staging deploy:setup
+	cap staging deploy:update
+	cap production deploy:setup
+	cap production deploy:update
