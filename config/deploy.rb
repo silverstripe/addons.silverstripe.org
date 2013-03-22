@@ -1,5 +1,5 @@
-set :application, "extensions.silverstripe.org"
-set :repository,  "git://github.com/silverstripe/extensions.silverstripe.org.git"
+set :application, "addons.silverstripe.org"
+set :repository,  "git://github.com/silverstripe/addons.silverstripe.org.git"
 set :scm, :git
 set :branch, "pulls/capistrano"
 set :use_sudo, false
