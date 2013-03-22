@@ -8,13 +8,46 @@ project. It aggregates SilverStripe packages from [Packagist](http://packagist.o
 * [GitHub Project](https://github.com/silverstripe/addons.silverstripe.org)
 * [Issue Tracker](https://github.com/silverstripe/addons.silverstripe.org/issues)
 
-Installation
+Basic Installation
 ============
 
- * `composer install`
+ * `cd public && composer install`
  * Install and run dependencies (see below)
  * Configure elastic search in `mysite/_config/injector.yml`
  * Run all tasks to populate database (see below)
+
+Full Installation with VM
+============
+
+While you can set up your dev environment as usual,
+its likely differing from the production configuration.
+In order to stay as close as possible to the 
+
+**IMPORTANT**: These instructions currently assume that you
+have access to resources internal to SilverStripe Ltd.
+We're working on opening those up.
+
+First off, download and install some dependencies:
+
+ * [Puppet](https://puppetlabs.com/puppet/puppet-open-source/), as well as 
+ * [VirtualBox](https://www.virtualbox.org/)
+ * [Vagrant](http://downloads.vagrantup.com/)
+
+Then run through the following shell script:
+
+  # Get the base Vagrant box (downloads ~500MB)
+  vagrant box add squeeze http://tools.silverstripe.com/vagrant/squeeze.box
+  sudo chown `whoami` /Users/`whoami`/.vagrant.d/insecure_private_key
+
+  # Install SilverStripe's Puppet Manifests
+  git clone git@gitorious.silverstripe.com:infrastructure/puppet.git puppet
+  (cd puppet && ./checkout)
+
+  # Create VM (this will take a few minutes to create a new VM)
+  vagrant up
+
+Now you should be able to browse the website under `http://localhost:3000`,
+and access the VM on SSH via `vagrant ssh`. To shut down the VM again, use `vagrant halt`.
 
 Dependencies
 ============

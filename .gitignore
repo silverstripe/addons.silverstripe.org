@@ -6,3 +6,5 @@ framework
 multivaluefield
 sqlite3
 vendor
+.vagrant
+.vagrant*
