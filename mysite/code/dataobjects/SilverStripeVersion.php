@@ -4,7 +4,7 @@ use Composer\Package\LinkConstraint\MultiConstraint;
 use Composer\Package\LinkConstraint\VersionConstraint;
 
 /**
- * A SilverStripe version which an extension can be compatible with.
+ * A SilverStripe version which an add-on can be compatible with.
  */
 class SilverStripeVersion extends DataObject {
 

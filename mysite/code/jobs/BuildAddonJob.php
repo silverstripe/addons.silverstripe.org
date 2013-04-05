@@ -1,8 +1,8 @@
 <?php
 /**
- * A background job which builds a single extension.
+ * A background job which builds a single add-on.
  */
-class BuildExtensionJob {
+class BuildAddonJob {
 
 	public function setUp() {
 		global $databaseConfig;
@@ -13,8 +13,8 @@ class BuildExtensionJob {
 	}
 
 	public function perform() {
-		$package = ExtensionPackage::get()->byID($this->args['id']);
-		$builder = Injector::inst()->get('ExtensionBuilder');
+		$package = Addon::get()->byID($this->args['id']);
+		$builder = Injector::inst()->get('AddonBuilder');
 
 		$builder->build($package);
 

@@ -1,8 +1,8 @@
 <?php
 /**
- * An author who can be linked to several extensions.
+ * An author who can be linked to several add-ons.
  */
-class ExtensionAuthor extends DataObject {
+class AddonAuthor extends DataObject {
 
 	public static $db = array(
 		'Name' => 'Varchar(255)',
@@ -12,7 +12,7 @@ class ExtensionAuthor extends DataObject {
 	);
 
 	public static $belongs_many_many = array(
-		'Versions' => 'ExtensionVersion'
+		'Versions' => 'AddonVersion'
 	);
 
 	public static $default_sort = 'Name';
@@ -30,8 +30,8 @@ class ExtensionAuthor extends DataObject {
 		return Controller::join_links(Director::baseURL(), 'authors', $this->ID);
 	}
 
-	public function Extensions() {
-		return ExtensionPackage::get()->filter('ID', $this->Versions()->column('ExtensionID'));
+	public function Addons() {
+		return Addon::get()->filter('ID', $this->Versions()->column('AddonID'));
 	}
 
 }

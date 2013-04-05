@@ -11,7 +11,7 @@ class VendorController extends SiteController {
 	protected $parent;
 	protected $vendor;
 
-	public function __construct(Controller $parent, ExtensionVendor $vendor) {
+	public function __construct(Controller $parent, AddonVendor $vendor) {
 		$this->parent = $parent;
 		$this->vendor = $vendor;
 
@@ -30,8 +30,8 @@ class VendorController extends SiteController {
 		return $this->vendor;
 	}
 
-	public function Extensions() {
-		$list = new PaginatedList($this->vendor->Extensions(), $this->request);
+	public function Addons() {
+		$list = new PaginatedList($this->vendor->Addons(), $this->request);
 		$list->setPageLength(15);
 
 		return $list;

@@ -1,6 +1,6 @@
 <?php
 /**
- * Lists tags that are associated with extensions.
+ * Lists tags that are associated with add-ons.
  */
 class TagsController extends SiteController {
 
@@ -25,16 +25,16 @@ class TagsController extends SiteController {
 		$result = new ArrayList();
 
 		$query
-			->setSelect('"ExtensionKeyword"."ID", "Name"')
-			->selectField('COUNT("ExtensionKeywordID")', 'Count')
-			->setFrom('ExtensionKeyword')
-			->addLeftJoin('ExtensionPackage_Keywords', '"ExtensionKeywordID" = "ExtensionKeyword"."ID"')
+			->setSelect('"AddonKeyword"."ID", "Name"')
+			->selectField('COUNT("AddonKeywordID")', 'Count')
+			->setFrom('AddonKeyword')
+			->addLeftJoin('Addon_Keywords', '"AddonKeywordID" = "AddonKeyword"."ID"')
 			->setGroupBy('"ID"')
 			->setOrderBy(array('"Count"' => 'DESC', '"Name"' => 'ASC'));
 
 		foreach ($query->execute() as $row) {
 			$link = Controller::join_links(
-				Director::baseURL(), 'extensions', '?' . http_build_query(array(
+				Director::baseURL(), 'add-ons', '?' . http_build_query(array(
 					'tags[]' => $row['Name']
 				))
 			);

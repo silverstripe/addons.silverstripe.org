@@ -20,20 +20,20 @@ class HomeController extends SiteController {
 		return Director::baseURL();
 	}
 
-	public function PopularExtensions($limit = 10) {
-		return ExtensionPackage::get()->sort('Downloads', 'DESC')->limit($limit);
+	public function PopularAddons($limit = 10) {
+		return Addon::get()->sort('Downloads', 'DESC')->limit($limit);
 	}
 
-	public function NewestExtensions($limit = 10) {
-		return ExtensionPackage::get()->sort('Released', 'DESC')->limit($limit);
+	public function NewestAddons($limit = 10) {
+		return Addon::get()->sort('Released', 'DESC')->limit($limit);
 	}
 
-	public function RandomExtensions($limit = 10) {
-		return ExtensionPackage::get()->sort(DB::getConn()->random(), 'DESC')->limit($limit);
+	public function RandomAddons($limit = 10) {
+		return Addon::get()->sort(DB::getConn()->random(), 'DESC')->limit($limit);
 	}
 
-	public function NewestReleases($limit = 10) {
-		return ExtensionVersion::get()
+	public function NewestVersions($limit = 10) {
+		return AddonVersion::get()
 			->filter('Development', false)
 			->sort('Released', 'DESC')
 			->limit($limit);

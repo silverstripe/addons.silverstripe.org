@@ -1,2 +1,2 @@
 AdminRootController:
-  default_panel: ExtensionsAdmin
+  default_panel: AddonsAdmin

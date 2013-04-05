@@ -1,8 +1,8 @@
 <?php
 /**
- * A version of an extension package.
+ * A version of an add-on package.
  */
-class ExtensionVersion extends DataObject {
+class AddonVersion extends DataObject {
 
 	public static $db = array(
 		'Name' => 'Varchar(255)',
@@ -29,16 +29,16 @@ class ExtensionVersion extends DataObject {
 	);
 
 	public static $has_one = array(
-		'Extension' => 'ExtensionPackage'
+		'Addon' => 'Addon'
 	);
 
 	public static $has_many = array(
-		'Links' => 'ExtensionLink'
+		'Links' => 'AddonLink'
 	);
 
 	public static $many_many = array(
-		'Authors' => 'ExtensionAuthor',
-		'Keywords' => 'ExtensionKeyword',
+		'Authors' => 'AddonAuthor',
+		'Keywords' => 'AddonKeyword',
 		'CompatibleVersions' => 'SilverStripeVersion'
 	);
 
@@ -75,7 +75,7 @@ class ExtensionVersion extends DataObject {
 	}
 
 	public function InstallLink() {
-		return Controller::join_links($this->Extension()->Link(), 'install', $this->ID);
+		return Controller::join_links($this->Addon()->Link(), 'install', $this->ID);
 	}
 
 }

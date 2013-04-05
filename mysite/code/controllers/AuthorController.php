@@ -1,6 +1,6 @@
 <?php
 /**
- * Displays an individual author and lists their extensions.
+ * Displays an individual author and lists their add-ons.
  */
 class AuthorController extends SiteController {
 
@@ -11,7 +11,7 @@ class AuthorController extends SiteController {
 	protected $parent;
 	protected $author;
 
-	public function __construct(Controller $parent, ExtensionAuthor $author) {
+	public function __construct(Controller $parent, AddonAuthor $author) {
 		$this->parent = $parent;
 		$this->author = $author;
 

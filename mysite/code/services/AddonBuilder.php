@@ -1,16 +1,14 @@
 <?php
 
-use Composer\Package\Loader\ArrayLoader;
-use Composer\Package\Loader\JsonLoader;
 use Composer\Package\PackageInterface;
 use dflydev\markdown\MarkdownParser;
 
 /**
- * Downloads an extension and builds more details information about it.
+ * Downloads an add-on and builds more details information about it.
  */
-class ExtensionBuilder {
+class AddonBuilder {
 
-	const EXTENSIONS_DIR = 'extensions';
+	const ADDONS_DIR = 'add-ons';
 
 	const SCREENSHOTS_DIR = 'screenshots';
 
@@ -20,10 +18,10 @@ class ExtensionBuilder {
 		$this->packagist = $packagist;
 	}
 
-	public function build(ExtensionPackage $extension) {
+	public function build(Addon $addon) {
 		$composer = $this->packagist->getComposer();
 		$downloader = $composer->getDownloadManager();
-		$packages = $this->packagist->getPackageVersions($extension->Name);
+		$packages = $this->packagist->getPackageVersions($addon->Name);
 		$time = time();
 
 		if (!$packages) {
@@ -31,7 +29,7 @@ class ExtensionBuilder {
 		}
 
 		// Get the latest local and packagist version pair.
-		$version = $extension->Versions()->filter('Development', true)->first();
+		$version = $addon->Versions()->filter('Development', true)->first();
 
 		foreach ($packages as $package) {
 			if ($package->getVersion() != $version->Version) {
@@ -39,16 +37,16 @@ class ExtensionBuilder {
 			}
 
 			$path = implode('/', array(
-				TEMP_FOLDER, self::EXTENSIONS_DIR, $extension->Name
+				TEMP_FOLDER, self::ADDONS_DIR, $addon->Name
 			));
 
 			$this->download($package, $path);
-			$this->buildReadme($extension, $path);
-			$this->buildScreenshots($extension, $package, $path);
+			$this->buildReadme($addon, $path);
+			$this->buildScreenshots($addon, $package, $path);
 		}
 
-		$extension->LastBuilt = $time;
-		$extension->write();
+		$addon->LastBuilt = $time;
+		$addon->write();
 	}
 
 	protected function download(PackageInterface $package, $path) {
@@ -58,7 +56,7 @@ class ExtensionBuilder {
 			->download($package, $path);
 	}
 
-	private function buildReadme(ExtensionPackage $extension, $path) {
+	private function buildReadme(Addon $addon, $path) {
 		$candidates = array(
 			'README.md',
 			'README.markdown',
@@ -81,16 +79,16 @@ class ExtensionBuilder {
 				$purifier = new HTMLPurifier();
 				$readme = $purifier->purify($readme);
 
-				$extension->Readme = $readme;
+				$addon->Readme = $readme;
 				return;
 			}
 		}
 	}
 
-	private function buildScreenshots(ExtensionPackage $extension, PackageInterface $package, $path) {
+	private function buildScreenshots(Addon $addon, PackageInterface $package, $path) {
 		$extra = $package->getExtra();
 		$screenshots = array();
-		$target = self::SCREENSHOTS_DIR . '/' . $extension->Name;
+		$target = self::SCREENSHOTS_DIR . '/' . $addon->Name;
 
 		if (isset($extra['screenshots'])) {
 			$screenshots = (array) $extra['screenshots'];
@@ -99,11 +97,11 @@ class ExtensionBuilder {
 		}
 
 		// Delete existing screenshots.
-		foreach ($extension->Screenshots() as $screenshot) {
+		foreach ($addon->Screenshots() as $screenshot) {
 			$screenshot->delete();
 		}
 
-		$extension->Screenshots()->removeAll();
+		$addon->Screenshots()->removeAll();
 
 		foreach ($screenshots as $screenshot) {
 			if (!is_string($screenshot)) {
@@ -149,10 +147,10 @@ class ExtensionBuilder {
 			}
 
 			$upload = new Upload();
-			$upload->setValidator(new ExtensionBuilderScreenshotValidator());
+			$upload->setValidator(new AddonBuilderScreenshotValidator());
 			$upload->load($data, $target);
 
-			$extension->Screenshots()->add($upload->getFile());
+			$addon->Screenshots()->add($upload->getFile());
 		}
 	}
 

@@ -1,8 +1,8 @@
 <?php
 /**
- * Validates that an upload is a valid extension screenshot.
+ * Validates that an upload is a valid add-on screenshot.
  */
-class ExtensionBuilderScreenshotValidator extends Upload_Validator {
+class AddonBuilderScreenshotValidator extends Upload_Validator {
 
 	public function __construct() {
 		$this->setAllowedExtensions(array('jpg', 'jpeg', 'png'));

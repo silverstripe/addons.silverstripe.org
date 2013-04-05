@@ -7,9 +7,9 @@ use Guzzle\Http\Exception\ClientErrorResponseException;
 use SilverStripe\Elastica\ElasticaService;
 
 /**
- * Updates all extensions from Packagist.
+ * Updates all add-ons from Packagist.
  */
-class ExtensionUpdater {
+class AddonUpdater {
 
 	/**
 	 * @var PackagistService
@@ -38,7 +38,7 @@ class ExtensionUpdater {
 	}
 
 	/**
-	 * Updates all extensions.
+	 * Updates all add-ons.
 	 */
 	public function update() {
 		foreach (SilverStripeVersion::get() as $version) {
@@ -48,19 +48,19 @@ class ExtensionUpdater {
 		$this->elastica->startBulkIndex();
 
 		foreach ($this->packagist->getGroupedPackages() as $name => $versions) {
-			$ext = ExtensionPackage::get()->filter('Name', $name)->first();
+			$addon = Addon::get()->filter('Name', $name)->first();
 
-			if (!$ext) {
-				$ext = new ExtensionPackage();
-				$ext->Name = $name;
-				$ext->write();
+			if (!$addon) {
+				$addon = new Addon();
+				$addon->Name = $name;
+				$addon->write();
 			}
 
 			usort($versions, function ($a, $b) {
 				return version_compare($a->getVersion(), $b->getVersion());
 			});
 
-			$this->updateExtension($ext, array_filter($versions, function ($version) {
+			$this->updateAddon($addon, array_filter($versions, function ($version) {
 				return !($version instanceof AliasPackage);
 			}));
 		}
@@ -68,52 +68,52 @@ class ExtensionUpdater {
 		$this->elastica->endBulkIndex();
 	}
 
-	private function updateExtension(ExtensionPackage $ext, array $versions) {
+	private function updateAddon(Addon $addon, array $versions) {
 		DB::getConn()->transactionStart();
 
-		if (!$ext->VendorID) {
-			$vendor = ExtensionVendor::get()->filter('Name', $ext->VendorName())->first();
+		if (!$addon->VendorID) {
+			$vendor = AddonVendor::get()->filter('Name', $addon->VendorName())->first();
 
 			if (!$vendor) {
-				$vendor = new ExtensionVendor();
-				$vendor->Name = $ext->VendorName();
+				$vendor = new AddonVendor();
+				$vendor->Name = $addon->VendorName();
 				$vendor->write();
 			}
 
-			$ext->VendorID = $vendor->ID;
+			$addon->VendorID = $vendor->ID;
 		}
 
 		try {
-			$details = $this->packagist->getPackageDetails($ext->Name);
+			$details = $this->packagist->getPackageDetails($addon->Name);
 			$details = $details['package'];
 
-			$ext->Type = str_replace('silverstripe-', '', $details['type']);
-			$ext->Description = $details['description'];
-			$ext->Released = $details['time'];
-			$ext->Repository = $details['repository'];
+			$addon->Type = str_replace('silverstripe-', '', $details['type']);
+			$addon->Description = $details['description'];
+			$addon->Released = $details['time'];
+			$addon->Repository = $details['repository'];
 
 			if (isset($details['downloads']['total']) && is_int($details['downloads']['total'])) {
-				$ext->Downloads = $details['downloads']['total'];
+				$addon->Downloads = $details['downloads']['total'];
 			}
 		} catch (ClientErrorResponseException $e) {}
 
 		foreach ($versions as $version) {
-			$this->updateVersion($ext, $version);
+			$this->updateVersion($addon, $version);
 		}
 
-		// If there is no build, then queue one up if the extension requires
+		// If there is no build, then queue one up if the add-on requires
 		// one.
-		if (!$ext->BuildQueued) {
-			if (!$ext->BuiltAt) {
-				$this->resque->queue('first_build', 'BuildExtensionJob', array('id' => $ext->ID));
-				$ext->BuildQueued = true;
+		if (!$addon->BuildQueued) {
+			if (!$addon->BuiltAt) {
+				$this->resque->queue('first_build', 'BuildAddonJob', array('id' => $addon->ID));
+				$addon->BuildQueued = true;
 			} else {
-				$built = (int) $ext->obj('BuiltAt')->format('U');
+				$built = (int) $addon->obj('BuiltAt')->format('U');
 
 				foreach ($versions as $version) {
 					if ($version->getReleaseDate()->getTimestamp() > $built) {
-						$this->resque->queue('update', 'BuildExtensionJob', array('id' => $ext->ID));
-						$ext->BuildQueued = true;
+						$this->resque->queue('update', 'BuildAddonJob', array('id' => $addon->ID));
+						$addon->BuildQueued = true;
 
 						break;
 					}
@@ -121,17 +121,17 @@ class ExtensionUpdater {
 			}
 		}
 
-		$ext->LastUpdated = time();
-		$ext->write();
+		$addon->LastUpdated = time();
+		$addon->write();
 
 		DB::getConn()->transactionEnd();
 	}
 
-	private function updateVersion(ExtensionPackage $ext, CompletePackage $package) {
-		$version = $ext->Versions()->filter('Version', $package->getVersion())->first();
+	private function updateVersion(Addon $addon, CompletePackage $package) {
+		$version = $addon->Versions()->filter('Version', $package->getVersion())->first();
 
 		if (!$version) {
-			$version = new ExtensionVersion();
+			$version = new AddonVersion();
 		}
 
 		$version->Name = $package->getName();
@@ -143,9 +143,9 @@ class ExtensionUpdater {
 
 		if ($keywords) {
 			foreach ($keywords as $keyword) {
-				$keyword = ExtensionKeyword::get_by_name($keyword);
+				$keyword = AddonKeyword::get_by_name($keyword);
 
-				$ext->Keywords()->add($keyword);
+				$addon->Keywords()->add($keyword);
 				$version->Keywords()->add($keyword);
 			}
 		}
@@ -170,19 +170,19 @@ class ExtensionUpdater {
 		$version->License = $package->getLicense();
 		$version->Support = $package->getSupport();
 
-		$ext->Versions()->add($version);
+		$addon->Versions()->add($version);
 
 		$this->updateLinks($version, $package);
-		$this->updateCompatibility($ext, $version, $package);
+		$this->updateCompatibility($addon, $version, $package);
 		$this->updateAuthors($version, $package);
 	}
 
-	private function updateLinks(ExtensionVersion $version, CompletePackage $package) {
+	private function updateLinks(AddonVersion $version, CompletePackage $package) {
 		$getLink = function ($name, $type) use ($version) {
 			$link = $version->Links()->filter('Name', $name)->filter('Type', $type)->first();
 
 			if (!$link) {
-				$link = new ExtensionLink();
+				$link = new AddonLink();
 				$link->Name = $name;
 				$link->Type = $type;
 			}
@@ -202,13 +202,13 @@ class ExtensionUpdater {
 			if ($linked = $package->$method()) foreach ($linked as $link) {
 				/** @var $link \Composer\Package\Link */
 				$name = $link->getTarget();
-				$ext = ExtensionPackage::get()->filter('Name', $name)->first();
+				$addon = Addon::get()->filter('Name', $name)->first();
 
 				$local = $getLink($name, $type);
 				$local->Constraint = $link->getPrettyConstraint();
 
-				if ($ext) {
-					$local->TargetID = $ext->ID;
+				if ($addon) {
+					$local->TargetID = $addon->ID;
 				}
 
 				$version->Links()->add($local);
@@ -225,9 +225,7 @@ class ExtensionUpdater {
 		}
 	}
 
-	private function updateCompatibility(
-		ExtensionPackage $ext, ExtensionVersion $version, CompletePackage $package
-	) {
+	private function updateCompatibility(Addon $addon, AddonVersion $version, CompletePackage $package) {
 		$require = null;
 
 		foreach ($package->getRequires() as $name => $link) {
@@ -247,13 +245,13 @@ class ExtensionUpdater {
 
 		foreach ($this->silverstripes as $id => $link) {
 			if ($require->getConstraint()->matches($link)) {
-				$ext->CompatibleVersions()->add($id);
+				$addon->CompatibleVersions()->add($id);
 				$version->CompatibleVersions()->add($id);
 			}
 		}
 	}
 
-	private function updateAuthors(ExtensionVersion $version, CompletePackage $package) {
+	private function updateAuthors(AddonVersion $version, CompletePackage $package) {
 		if ($package->getAuthors()) foreach ($package->getAuthors() as $details) {
 			$author = null;
 
@@ -262,25 +260,25 @@ class ExtensionUpdater {
 			}
 
 			if (!empty($details['email'])) {
-				$author = ExtensionAuthor::get()->filter('Email', $details['email'])->first();
+				$author = AddonAuthor::get()->filter('Email', $details['email'])->first();
 			}
 
 			if (!$author && !empty($details['homepage'])) {
-				$author = ExtensionAuthor::get()
+				$author = AddonAuthor::get()
 					->filter('Name', $details['name'])
 					->filter('Homepage', $details['homepage'])
 					->first();
 			}
 
 			if (!$author && !empty($details['name'])) {
-				$author = ExtensionAuthor::get()
+				$author = AddonAuthor::get()
 					->filter('Name', $details['name'])
-					->filter('Versions.Extension.Name', $package->getName())
+					->filter('Versions.Addon.Name', $package->getName())
 					->first();
 			}
 
 			if (!$author) {
-				$author = new ExtensionAuthor();
+				$author = new AddonAuthor();
 			}
 
 			if(isset($details['name'])) $author->Name = $details['name'];

@@ -25,16 +25,16 @@ class VendorsController extends SiteController {
 		$result = new ArrayList();
 
 		$query
-			->setSelect('"ExtensionVendor"."Name"')
-			->selectField('COUNT("ExtensionPackage"."ID")'. 'Count')
-			->setFrom('"ExtensionVendor"')
-			->addLeftJoin('ExtensionPackage', '"ExtensionPackage"."VendorID" = "ExtensionVendor"."ID"')
-			->setGroupBy('"ExtensionVendor"."ID"')
+			->setSelect('"AddonVendor"."Name"')
+			->selectField('COUNT("Addon"."ID")'. 'Count')
+			->setFrom('"AddonVendor"')
+			->addLeftJoin('Addon', '"Addon"."VendorID" = "AddonVendor"."ID"')
+			->setGroupBy('"AddonVendor"."ID"')
 			->setOrderBy(array('"Count"' => 'DESC', '"Name"' => 'ASC'));
 
 		foreach ($query->execute() as $row) {
 			$link = Controller::join_links(
-				Director::baseURL(), 'extensions', $row['Name']
+				Director::baseURL(), 'add-ons', $row['Name']
 			);
 
 			$result->push(new ArrayData($row + array('Link' => $link)));

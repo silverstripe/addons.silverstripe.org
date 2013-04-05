@@ -1,12 +1,12 @@
-SilverStripe Extensions
-=======================
+SilverStripe Add-ons
+====================
 
-This is the [SilverStripe](http://silverstripe.org) extensions listing site
+This is the [SilverStripe](http://silverstripe.org) add-ons listing site
 project. It aggregates SilverStripe packages from [Packagist](http://packagist.org).
 
-* [SilverStripe Extensions](http://extensions.silverstripe.org)
-* [GitHub Project](https://github.com/silverstripe/extensions.silverstripe.org)
-* [Issue Tracker](https://github.com/silverstripe/extensions.silverstripe.org/issues)
+* [SilverStripe Add-ons](http://addons.silverstripe.org)
+* [GitHub Project](https://github.com/silverstripe/addons.silverstripe.org)
+* [Issue Tracker](https://github.com/silverstripe/addons.silverstripe.org/issues)
 
 Installation
 ============
@@ -22,7 +22,7 @@ Dependencies
 Elastic Search
 --------------
 
-[Elastic search](www.elasticsearch.org) is used to provide extension package indexing and searching. If a
+[Elastic search](www.elasticsearch.org) is used to provide add-on package indexing and searching. If a
 local installation of elastic search is used, the following configuration can be used
 in `mysite/_config/injector.yml`:
 
@@ -30,7 +30,7 @@ in `mysite/_config/injector.yml`:
       SilverStripe\Elastica\ElasticaService:
         constructor:
           - %$Elastica\Client
-          - extensions
+          - addons
 
 You should run the elastic search reindex task to create the mappings after installation.
 
@@ -38,7 +38,7 @@ Resque
 ------
 
 A [PHP implementation of resque](https://github.com/chrisboulton/php-resque) 
-is used to provide background building of extension
+is used to provide background building of add-ons
 details. As such an installation of [redis](http://redis.io/) must be present. If you wish to use a
 remote server, you can configure the `ResqueService` constructor parameters to
 specify the backend using the injector system (see `mysite/_config/injector.yml`).
@@ -52,7 +52,7 @@ new worker process can be spawned using the following command in the webroot:
 Tasks
 ============
 
- * `sake dev/tasks/UpdateExtensionsTask`: Runs the extension updater.
+ * `sake dev/tasks/UpdateAddonsTask`: Runs the add-on updater.
  * `sake dev/tasks/UpdateSilverStripeVersionsTask`: Updates the available SilverStripe versions.
  * `sake dev/tasks/SilverStripe-Elastica-ReindexTask`: Defines and refreshes the elastic search index.
 

@@ -19,7 +19,7 @@ class AuthorsController extends SiteController {
 
 	public function author($request) {
 		$id = $request->param('AuthorID');
-		$author = ExtensionAuthor::get()->byID($id);
+		$author = AddonAuthor::get()->byID($id);
 
 		if (!$author) {
 			$this->httpError(404);
@@ -37,7 +37,7 @@ class AuthorsController extends SiteController {
 	}
 
 	public function Authors() {
-		return ExtensionAuthor::get();
+		return AddonAuthor::get();
 	}
 
 }

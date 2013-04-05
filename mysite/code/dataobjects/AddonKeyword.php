@@ -1,30 +1,30 @@
 <?php
 /**
- * A keyword which is attached to extensions and versions.
+ * A keyword which is attached to add-ons and versions.
  */
-class ExtensionKeyword extends DataObject {
+class AddonKeyword extends DataObject {
 
 	public static $db = array(
 		'Name' => 'Varchar(255)'
 	);
 
 	public static $belongs_many_many = array(
-		'Extensions' => 'ExtensionPackage',
-		'Versions' => 'ExtensionVersion'
+		'Addons' => 'Addon',
+		'Versions' => 'AddonVersion'
 	);
 
 	/**
 	 * Gets a keyword object by name, creating one if it does not exist.
 	 *
 	 * @param string $name
-	 * @return ExtensionKeyword
+	 * @return AddonKeyword
 	 */
 	public static function get_by_name($name) {
 		$name = strtolower($name);
-		$kw = ExtensionKeyword::get()->filter('Name', $name)->first();
+		$kw = AddonKeyword::get()->filter('Name', $name)->first();
 
 		if (!$kw) {
-			$kw = new ExtensionKeyword();
+			$kw = new AddonKeyword();
 			$kw->Name = $name;
 			$kw->write();
 		}

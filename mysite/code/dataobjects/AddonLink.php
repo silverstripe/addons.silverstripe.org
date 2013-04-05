@@ -1,8 +1,8 @@
 <?php
 /**
- * A link from one extension to another, such as a requirement dependency.
+ * A link from one add-ons to another, such as a requirement dependency.
  */
-class ExtensionLink extends DataObject {
+class AddonLink extends DataObject {
 
 	public static $db = array(
 		'Name' => 'Varchar(100)',
@@ -12,8 +12,8 @@ class ExtensionLink extends DataObject {
 	);
 
 	public static $has_one = array(
-		'Source' => 'ExtensionVersion',
-		'Target' => 'ExtensionPackage'
+		'Source' => 'AddonVersion',
+		'Target' => 'Addon'
 	);
 
 	public function Link() {

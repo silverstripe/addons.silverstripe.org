@@ -1,8 +1,8 @@
 Injector:
-  ExtensionBuilder:
+  AddonBuilder:
     constructor:
       - %$PackagistService
-  ExtensionUpdater:
+  AddonUpdater:
     constructor:
       - %$PackagistService
       - %$SilverStripe\Elastica\ElasticaService
@@ -10,9 +10,9 @@ Injector:
   SilverStripeVersionUpdater:
     constructor:
       - %$PackagistService
-  UpdateExtensionsTask:
+  UpdateAddonsTask:
     constructor:
-      - %$ExtensionUpdater
+      - %$AddonUpdater
   UpdateSilverStripeVersionsTask:
     constructor:
       - %$SilverStripeVersionUpdater

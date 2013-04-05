@@ -4,9 +4,9 @@ use Elastica\Document;
 use Elastica\Type\Mapping;
 
 /**
- * A root extension package with one or more versions.
+ * An add-on with one or more versions.
  */
-class ExtensionPackage extends DataObject {
+class Addon extends DataObject {
 
 	public static $db = array(
 		'Name' => 'Varchar(255)',
@@ -22,15 +22,15 @@ class ExtensionPackage extends DataObject {
 	);
 
 	public static $has_one = array(
-		'Vendor' => 'ExtensionVendor'
+		'Vendor' => 'AddonVendor'
 	);
 
 	public static $has_many = array(
-		'Versions' => 'ExtensionVersion'
+		'Versions' => 'AddonVersion'
 	);
 
 	public static $many_many = array(
-		'Keywords' => 'ExtensionKeyword',
+		'Keywords' => 'AddonKeyword',
 		'Screenshots' => 'Image',
 		'CompatibleVersions' => 'SilverStripeVersion'
 	);
@@ -51,7 +51,7 @@ class ExtensionPackage extends DataObject {
 
 	public function VendorLink() {
 		return Controller::join_links(
-			Director::baseURL(), 'extensions', $this->VendorName()
+			Director::baseURL(), 'add-ons', $this->VendorName()
 		);
 	}
 
@@ -59,17 +59,9 @@ class ExtensionPackage extends DataObject {
 		return substr($this->Name, strpos($this->Name, '/') + 1);
 	}
 
-	public function TypeIcon() {
-		switch ($this->Type) {
-			case 'module': return 'icon-gift';
-			case 'theme': return 'icon-picture';
-			default: return 'icon-question-sign';
-		}
-	}
-
 	public function Link() {
 		return Controller::join_links(
-			Director::baseURL(), 'extensions', $this->Name
+			Director::baseURL(), 'add-ons', $this->Name
 		);
 	}
 

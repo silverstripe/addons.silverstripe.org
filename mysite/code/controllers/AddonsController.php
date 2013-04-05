@@ -10,18 +10,18 @@ use SilverStripe\Elastica\ElasticaService;
 use SilverStripe\Elastica\ResultList;
 
 /**
- * Lists and searches extensions.
+ * Lists and searches add-ons.
  */
-class ExtensionsController extends SiteController {
+class AddonsController extends SiteController {
 
 	public static $url_handlers = array(
-		'$Vendor!/$Name!' => 'extension',
+		'$Vendor!/$Name!' => 'addon',
 		'$Vendor!' => 'vendor'
 	);
 
 	public static $allowed_actions = array(
 		'index',
-		'extension',
+		'addon',
 		'vendor'
 	);
 
@@ -35,28 +35,28 @@ class ExtensionsController extends SiteController {
 	private $elastica;
 
 	public function index() {
-		return $this->renderWith(array('Extensions', 'Page'));
+		return $this->renderWith(array('Addons', 'Page'));
 	}
 
 	public function setElasticaService(ElasticaService $elastica) {
 		$this->elastica = $elastica;
 	}
 
-	public function extension($request) {
+	public function addon($request) {
 		$vendor = $request->param('Vendor');
 		$name = $request->param('Name');
-		$ext = ExtensionPackage::get()->filter('Name', "$vendor/$name")->first();
+		$addon = Addon::get()->filter('Name', "$vendor/$name")->first();
 
-		if (!$ext) {
+		if (!$addon) {
 			$this->httpError(404);
 		}
 
-		return new ExtensionController($this, $ext);
+		return new AddonController($this, $addon);
 	}
 
 	public function vendor($request) {
 		$name = $request->param('Vendor');
-		$vendor = ExtensionVendor::get()->filter('Name', $name)->first();
+		$vendor = AddonVendor::get()->filter('Name', $name)->first();
 
 		if (!$vendor) {
 			$this->httpError(404);
@@ -66,15 +66,15 @@ class ExtensionsController extends SiteController {
 	}
 
 	public function Title() {
-		return 'Extensions';
+		return 'Add-ons';
 	}
 
 	public function Link() {
-		return Controller::join_links(Director::baseURL(), 'extensions');
+		return Controller::join_links(Director::baseURL(), 'add-ons');
 	}
 
-	public function Extensions() {
-		$list = ExtensionPackage::get();
+	public function Addons() {
+		$list = Addon::get();
 
 		$search = $this->request->getVar('search');
 		$type = $this->request->getVar('type');
@@ -122,7 +122,7 @@ class ExtensionsController extends SiteController {
 				$ids = $list->column('ID');
 
 				if ($ids) {
-					$list = ExtensionPackage::get()->byIDs($ids);
+					$list = Addon::get()->byIDs($ids);
 				} else {
 					$list = new ArrayList();
 				}
@@ -143,15 +143,15 @@ class ExtensionsController extends SiteController {
 		return $list;
 	}
 
-	public function ExtensionsSearchForm() {
+	public function AddonsSearchForm() {
 		$form = new Form(
 			$this,
-			'ExtensionsSearchForm',
+			'AddonsSearchForm',
 			new FieldList(array(
-				TextField::create('search', 'Search')
+				TextField::create('search', 'Search for')
 					->setValue($this->request->getVar('search'))
 					->addExtraClass('input-block-level'),
-				DropdownField::create('sort', 'Sort By')
+				DropdownField::create('sort', 'Sort by')
 					->setSource(array(
 						'name' => 'Name',
 						'downloads' => 'Most downloaded',
@@ -160,7 +160,7 @@ class ExtensionsController extends SiteController {
 					->setEmptyString('Best match')
 					->setValue($this->request->getVar('sort'))
 					->addExtraClass('input-block-level'),
-				DropdownField::create('type', 'Search For')
+				DropdownField::create('type', 'Add-on type')
 					->setSource(array(
 						'module' => 'Modules',
 						'theme' => 'Themes'
@@ -168,10 +168,10 @@ class ExtensionsController extends SiteController {
 					->setEmptyString('Modules and themes')
 					->setValue($this->request->getVar('type'))
 					->addExtraClass('input-block-level'),
-				CheckboxSetField::create('compatibility', 'Compatible With')
+				CheckboxSetField::create('compatibility', 'Compatible SilverStripe versions')
 					->setSource(SilverStripeVersion::get()->map('Name', 'Name'))
 					->setValue($this->request->getVar('compatibility'))
-					->setTemplate('ExtensionsSearchFormCompatibility')
+					->setTemplate('AddonsSearchCheckboxSetField')
 			)),
 			new FieldList()
 		);

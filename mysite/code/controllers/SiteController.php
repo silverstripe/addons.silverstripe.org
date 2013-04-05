@@ -9,7 +9,7 @@ class SiteController extends Controller {
 
 		$controllers = array(
 			'HomeController',
-			'ExtensionsController',
+			'AddonsController',
 			'VendorsController',
 			'AuthorsController',
 			'TagsController'
