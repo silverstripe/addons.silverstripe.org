@@ -1,0 +1,41 @@
+#readme {
+  border: 2px solid @grayLighter;
+
+  #readme-inner {
+    overflow: hidden;
+    padding: 16px;
+    position: relative;
+  }
+
+  &.collapsed #readme-inner {
+    max-height: 200px;
+
+    &:after {
+      #gradient > .vertical(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+
+      bottom: 0;
+      content: " ";
+      display: block;
+      height: 40px;
+      left: 0;
+      position: absolute;
+      right: 0;
+    }
+  }
+
+  #readme-toggle {
+    background: @grayLighter;
+    display: block;
+    padding: 4px;
+    text-align: center;
+  }
+
+  .icon-arrow-down {
+    display: none;
+  }
+
+  &.collapsed {
+    .icon-arrow-up { display: none; }
+    .icon-arrow-down { display: inline; }
+  }
+}

@@ -1,0 +1,24 @@
+#authors {
+  list-style: none;
+  margin: 0;
+
+  li {
+    float: left;
+    width: 20%;
+
+    a {
+      background: lighten(@grayLighter, 2%);
+      display: block;
+      margin: 0 6px 6px 0;
+      overflow: hidden;
+      padding: 5px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      &:hover {
+        background: @grayLighter;
+        text-decoration: none;
+      }
+    }
+  }
+}

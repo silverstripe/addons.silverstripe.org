@@ -1,0 +1,132 @@
+.accordion {
+  .accordion-group {
+    border-bottom-width: 0;
+    margin-bottom: 0;
+
+    &:last-child {
+      border-bottom-width: 1px;
+    }
+  }
+
+  .accordion-separator {
+    background: lighten(@grayLighter, 2%);
+    color: lighten(@textColor, 15%);
+    font-weight: bold;
+
+    .accordion-heading {
+      padding: 8px 15px;
+    }
+  }
+}
+
+.addons-box {
+  margin-top: 16px;
+
+  h3 {
+    background: lighten(@grayLighter, 4%);
+    border: 2px solid @grayLighter;
+    border-bottom-width: 0;
+    font-size: 16px;
+    margin: 0;
+    padding: 0 8px;
+  }
+
+  ul, ol {
+    border: 2px solid @grayLighter;
+    border-top-width: 0;
+    margin: 0;
+
+    li {
+      list-style: none;
+
+      a {
+        border-top: 1px solid @grayLighter;
+        display: block;
+        padding: 8px;
+
+        &:hover {
+          background: lighten(@grayLighter, 4%);
+          text-decoration: none;
+        }
+      }
+
+      .meta, .description {
+        color: #333;
+        font-size: 13px;
+      }
+
+      .meta {
+        float: right;
+        margin-bottom: 1px;
+      }
+
+      .description {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+.btn {
+  &.btn-plain {
+    background: none;
+    border-color: @grayLighter;
+    .box-shadow(none);
+  }
+}
+
+.page-header {
+  border-bottom: 5px solid @grayLighter;
+  padding-bottom: @baseLineHeight * 0.2;
+
+  h1 {
+    color: @blueDark;
+  }
+  p {
+    font-size: (@baseFontSize * 1.4);
+    line-height: (@baseLineHeight * 1.4);
+  }
+}
+
+.pagination {
+  ul > li {
+    display: inline-block;
+    margin-right: 3px;
+
+    a, span {
+      border-left-width: 1px;
+    }
+
+    &.disabled span {
+      border: none;
+    }
+  }
+}
+
+.tags {
+  margin-left: 0;
+
+  li {
+    display: inline-block;
+
+    a {
+      background: @grayLighter;
+      display: block;
+      margin: 0 8px 12px 0;
+      padding: 6px;
+
+      &:hover {
+        background: darken(@grayLighter, 2%);
+        text-decoration: none;
+      }
+
+      .count {
+        color: @grayLight;
+      }
+    }
+  }
+}
+
