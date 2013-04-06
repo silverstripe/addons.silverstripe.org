@@ -53,7 +53,6 @@ class AddonUpdater {
 			if (!$addon) {
 				$addon = new Addon();
 				$addon->Name = $name;
-				$addon->write();
 			}
 
 			usort($versions, function ($a, $b) {
@@ -69,8 +68,6 @@ class AddonUpdater {
 	}
 
 	private function updateAddon(Addon $addon, array $versions) {
-		DB::getConn()->transactionStart();
-
 		if (!$addon->VendorID) {
 			$vendor = AddonVendor::get()->filter('Name', $addon->VendorName())->first();
 
@@ -123,12 +120,14 @@ class AddonUpdater {
 
 		$addon->LastUpdated = time();
 		$addon->write();
-
-		DB::getConn()->transactionEnd();
 	}
 
 	private function updateVersion(Addon $addon, CompletePackage $package) {
-		$version = $addon->Versions()->filter('Version', $package->getVersion())->first();
+		$version = null;
+
+		if ($addon->isInDB()) {
+			$version = $addon->Versions()->filter('Version', $package->getVersion())->first();
+		}
 
 		if (!$version) {
 			$version = new AddonVersion();
@@ -179,7 +178,11 @@ class AddonUpdater {
 
 	private function updateLinks(AddonVersion $version, CompletePackage $package) {
 		$getLink = function ($name, $type) use ($version) {
-			$link = $version->Links()->filter('Name', $name)->filter('Type', $type)->first();
+			$link = null;
+
+			if ($version->isInDB()) {
+				$link = $version->Links()->filter('Name', $name)->filter('Type', $type)->first();
+			}
 
 			if (!$link) {
 				$link = new AddonLink();
