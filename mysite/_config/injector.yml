@@ -16,3 +16,7 @@ Injector:
   UpdateSilverStripeVersionsTask:
     constructor:
       - %$SilverStripeVersionUpdater
+  SilverStripe\Elastica\ElasticaService:
+    constructor:
+      - %$Elastica\Client
+      - addons
