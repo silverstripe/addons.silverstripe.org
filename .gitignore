@@ -8,3 +8,4 @@ sqlite3
 vendor
 .vagrant
 .vagrant*
+node_modules/

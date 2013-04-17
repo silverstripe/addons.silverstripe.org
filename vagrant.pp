@@ -32,15 +32,6 @@ ss::virtualhost {
     mysql_password => "password",
     mysql_database => "addons",
     git_deploy => true;
-
-  # "addons-staging": domainname => "staging.addons.silverstripe.org",
-  #   aliases => [  "staging.addons.silverstripe.org", "staging.addons.sites.silverstripe.org" ],
-  #   deployers => [ sminnee, hfried, ischommer, "qa-servers" ],
-
-  #   mysql_username => "addons-st",
-  #   mysql_password => "password",
-  #   mysql_database => "SS_addons_staging",
-  #   git_deploy => true;
 }
 
 include nginx::install
@@ -52,7 +43,7 @@ sudo::conf {
 }
 
 cron { UpdateExtensionsTask:
-  command => "php /sites/addons/www/framework/cli-script.php dev/tasks/UpdateExtensionsTask",
+  command => "php /sites/addons/www/framework/cli-script.php dev/tasks/UpdateAddonsTask",
   user    => www-data,
   hour    => '*',
   minute  => '*/30'

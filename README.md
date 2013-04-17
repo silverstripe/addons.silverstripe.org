@@ -89,6 +89,24 @@ Tasks
  * `sake dev/tasks/UpdateSilverStripeVersionsTask`: Updates the available SilverStripe versions.
  * `sake dev/tasks/SilverStripe-Elastica-ReindexTask`: Defines and refreshes the elastic search index.
 
+LESS Compilation
+===========
+
+The site uses [LESS](http://lesscss.org) for compiling CSS.
+One way to compile it is through [Grunt](http://gruntjs.org),
+which requires you to install [NodeJS](http://nodejs.org) first.
+
+  npm install -g grunt grunt-cli
+  npm install --save-dev
+
+To compile, run:
+
+  grunt less
+
+To watch for file changes, run:
+
+  grunt watch
+
 Deployment
 ============
 
