@@ -1,3 +1,5 @@
+<pre>composer require $Name $DisplayRequireVersion</pre>
+
 <div class="row-fluid">
 	<div class="span4">
 		<h5>Requires</h5>

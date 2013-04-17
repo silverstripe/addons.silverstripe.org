@@ -81,7 +81,7 @@
 						$DisplayVersion
 					</a>
 				</div>
-				<div id="version-$ID" class="accordion-body collapse in">
+				<div id="version-$ID" class="version accordion-body collapse in">
 					<div class="accordion-inner">
 						<% include AddonVersionDetails %>
 					</div>
@@ -104,7 +104,7 @@
 								$DisplayVersion
 							</a>
 						</div>
-						<div id="version-$ID" class="accordion-body collapse">
+						<div id="version-$ID" class="version accordion-body collapse">
 							<div class="accordion-inner">
 								<% include AddonVersionDetails %>
 							</div>

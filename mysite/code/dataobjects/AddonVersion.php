@@ -50,6 +50,10 @@ class AddonVersion extends DataObject {
 		return $this->PrettyAlias ?: $this->PrettyVersion;
 	}
 
+	public function DisplayRequireVersion() {
+		return str_replace('.x-dev', '.*@dev', $this->DisplayVersion());
+	}
+
 	public function getRequires() {
 		return $this->Links()->filter('Type', 'require');
 	}
