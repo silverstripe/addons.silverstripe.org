@@ -25,9 +25,15 @@ body {
       font: bold 16px "PT Sans", sans-serif;
       margin: 2px 0 0 10px;
       padding: 16px 14px;
+      
+      &.link {
+        &:hover, &:focus, &:active {
+          border-bottom: 5px solid @grayLighter;
+        }  
+      }
 
-      &:hover, &:focus, &:active {
-        border-bottom: 5px solid @grayLighter;
+      &.btn:hover, &.btn:focus {
+        background-position: 0 0;  
       }
     }
 
@@ -40,4 +46,7 @@ body {
 }
 
 #layout {
+  .content-narrow {
+    width: 70%; // better readability for free-form text
+  }
 }

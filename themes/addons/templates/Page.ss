@@ -20,8 +20,8 @@
 					</a>
 					<ul class="nav">
 						<% loop $Menu %>
-							<li class="<% if $Active %>active<% end_if %>">
-								<a href="$Link">$Title</a>
+							<li class="<% if $Active %>active<% end_if %> $MenuItemType">
+								<a href="$Link"<% if MenuItemType == 'button' %> class="btn"<% end_if %>>$Title</a>
 							</li>
 						<% end_loop %>
 					</ul>

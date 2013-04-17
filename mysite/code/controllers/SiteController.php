@@ -12,7 +12,8 @@ class SiteController extends Controller {
 			'AddonsController',
 			'VendorsController',
 			'AuthorsController',
-			'TagsController'
+			'TagsController',
+			'SubmitAddonController',
 		);
 
 		foreach ($controllers as $controller) {
@@ -28,11 +29,19 @@ class SiteController extends Controller {
 			$menu->push(new ArrayData(array(
 				'Title' => $inst->Title(),
 				'Link' => $inst->Link(),
-				'Active' => $active
+				'Active' => $active,
+				'MenuItemType' => $inst->MenuItemType()
 			)));
 		}
 
 		return $menu;
+	}
+
+	/**
+	 * @return String 'link' or 'button'
+	 */
+	public function MenuItemType() {
+		return 'link';
 	}
 
 }

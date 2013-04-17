@@ -1967,8 +1967,8 @@ table th[class*="span"],
  */
 @font-face {
   font-family: 'FontAwesome';
-  src: url('../bootstrap/less/../font/fontawesome-webfont.eot?v=3.0.1');
-  src: url('../bootstrap/less/../font/fontawesome-webfont.eot?#iefix&v=3.0.1') format('embedded-opentype'), url('../bootstrap/less/../font/fontawesome-webfont.woff?v=3.0.1') format('woff'), url('../bootstrap/less/../font/fontawesome-webfont.ttf?v=3.0.1') format('truetype');
+  src: url('../bootstrap/font/fontawesome-webfont.eot?v=3.0.1');
+  src: url('../bootstrap/font/fontawesome-webfont.eot?#iefix&v=3.0.1') format('embedded-opentype'), url('../bootstrap/font/fontawesome-webfont.woff?v=3.0.1') format('woff'), url('../bootstrap/font/fontawesome-webfont.ttf?v=3.0.1') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -6003,10 +6003,14 @@ body {
   margin: 2px 0 0 10px;
   padding: 16px 14px;
 }
-#header .nav a:hover,
-#header .nav a:focus,
-#header .nav a:active {
+#header .nav a.link:hover,
+#header .nav a.link:focus,
+#header .nav a.link:active {
   border-bottom: 5px solid #eeeeee;
+}
+#header .nav a.btn:hover,
+#header .nav a.btn:focus {
+  background-position: 0 0;
 }
 #header .nav .active a {
   background: none;
@@ -6014,6 +6018,9 @@ body {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+}
+#layout .content-narrow {
+  width: 70%;
 }
 #readme {
   border: 2px solid #eeeeee;

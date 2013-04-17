@@ -8,3 +8,4 @@ Director:
     "vendors": VendorsController
     "authors": AuthorsController
     "tags": TagsController
+    "submit": SubmitAddonController
