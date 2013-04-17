@@ -41,6 +41,21 @@ class Addon extends DataObject {
 		'SilverStripe\\Elastica\\Searchable'
 	);
 
+	/**
+	 * Gets the addon's versions sorted from newest to oldest.
+	 *
+	 * @return ArrayList
+	 */
+	public function SortedVersions() {
+		$versions = $this->Versions()->toArray();
+
+		usort($versions, function($a, $b) {
+			return version_compare($b->Version, $a->Version);
+		});
+
+		return new ArrayList($versions);
+	}
+
 	public function Authors() {
 		return $this->Versions()->relation('Authors');
 	}

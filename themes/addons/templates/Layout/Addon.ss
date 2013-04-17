@@ -74,7 +74,7 @@
 	<h3>Versions</h3>
 
 	<div id="versions" class="accordion">
-		<% with $Versions.First %>
+		<% with $SortedVersions.First %>
 			<div class="accordion-group">
 				<div class="accordion-heading">
 					<a class="accordion-toggle" data-toggle="collapse" data-parent="#versions" href="#version-$ID">
@@ -89,7 +89,7 @@
 			</div>
 		<% end_with %>
 
-		<% if $Versions.Count != 1 %>
+		<% if $SortedVersions.Count != 1 %>
 			<div class="accordion-group accordion-separator">
 				<div class="accordion-heading">
 					Other Versions
