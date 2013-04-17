@@ -1,7 +1,7 @@
 set :application, "addons.silverstripe.org"
 set :repository,  "git://github.com/silverstripe/addons.silverstripe.org.git"
 set :scm, :git
-set :branch, "pulls/capistrano"
+set :branch, "master"
 set :use_sudo, false
 set :current_dir, 'www'
 set :deploy_via, :remote_cache

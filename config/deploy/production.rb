@@ -1,4 +1,4 @@
-server "fozzie.rackspace.silverstripe.com", :app, :web, :db, :primary => true
+server "addons.silverstripe.org", :app, :web, :db, :primary => true
 set :deploy_to, "/sites/addons"
 set :user, "addons"
 set :webserver_group, "addons"
