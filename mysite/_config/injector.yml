@@ -7,6 +7,10 @@ Injector:
       - %$PackagistService
       - %$SilverStripe\Elastica\ElasticaService
       - %$ResqueService
+  RequestProcessor:
+    properties:
+      filters:
+        - %$SiteErrorPageFilter
   SilverStripeVersionUpdater:
     constructor:
       - %$PackagistService
