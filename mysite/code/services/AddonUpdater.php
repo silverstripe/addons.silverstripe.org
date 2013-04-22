@@ -53,6 +53,7 @@ class AddonUpdater {
 			if (!$addon) {
 				$addon = new Addon();
 				$addon->Name = $name;
+				$addon->write();
 			}
 
 			usort($versions, function ($a, $b) {
