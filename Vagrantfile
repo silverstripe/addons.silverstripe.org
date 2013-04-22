@@ -1,5 +1,7 @@
 Vagrant.configure("1") do |config|
   config.vm.forward_port 80, 3000
+  # Optional forward for Resque Web UI
+  config.vm.forward_port 8282, 8282
 end
 
 Vagrant.configure("2") do |config|
