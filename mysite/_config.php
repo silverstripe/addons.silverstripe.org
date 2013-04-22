@@ -4,6 +4,6 @@ global $project;
 $project = 'mysite';
 
 global $database;
-$database = 'extensions';
+$database = 'addons';
 
 require_once 'conf/ConfigureFromEnv.php';
