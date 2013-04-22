@@ -11,7 +11,9 @@ class apt_get_update {
   $sentinel = "/var/lib/apt/first-puppet-run"
 
   exec { "initial apt-get update":
-    command => "/usr/bin/apt-get update && touch ${sentinel}",
+    # Use German mirrors instead of NZ
+    command => "/usr/bin/perl -pi -e 's/\\.nz/\\.de/' /etc/apt/sources.list && /usr/bin/apt-get update && touch ${sentinel}",
+    # command => "/usr/bin/apt-get update && touch ${sentinel}",
     onlyif  => "/usr/bin/env test \\! -f ${sentinel} || /usr/bin/env test \\! -z \"$(find /etc/apt -type f -cnewer ${sentinel})\"",
     timeout => 3600,
   }
@@ -34,7 +36,17 @@ ss::virtualhost {
     git_deploy => true;
 }
 
-include nginx::install
+
+# TODO Fix port forwarding issue
+# $apache_port = 8080
+# include nginx::install
+# nginx::vhost {
+#     "addons": domainname => "addons.silverstripe.org",
+#     aliases => [ "addons.sites.silverstripe.org" ],
+#     docroot => "/sites/addons/www",
+#     errorlog => "/sites/addons/logs/nginx.error.log",
+#     accesslog => "/sites/addons/logs/nginx.access.log";
+# }  
 
 sudo::conf {
   'addons':
@@ -61,6 +73,31 @@ cron { SilverStripe-Elastica-ReindexTask:
   minute  => '0'
 }
 
+# God worker monitor: Required for Resque
+class {'god':
+  use_rvm => false,
+  ruby_version => '1.8.7',
+  service_provider => init,
+}
+$dir = '/sites/addons/www/'
+$uid = 'www-data'
+$gid = 'www-data'
+$env = "{'QUEUE' => 'first_build,update', 'APP_INCLUDE' => 'mysite/bin/silverstripe-resque.php'}"
+$start = 'php vendor/chrisboulton/php-resque/bin/resque'
+file { "/etc/god/conf.d/addons.god":
+  mode => 0755,
+  owner => 'www-data',
+  group => 'www-data',
+  content => template("god/confd-sample.god.erb"),  
+}
+
+# Resque: We use php-resque, but the original is handy for its web UI.
+# package { 'resque':
+#   ensure   => 'installed',
+#   provider => 'gem',
+# }
+
+# Redis: Queue backend (we use it through php-resque)
 class{'redis':
 	redis_bind_address => '127.0.0.1',
 }
