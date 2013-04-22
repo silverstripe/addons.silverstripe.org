@@ -39,8 +39,15 @@ class AddonUpdater {
 
 	/**
 	 * Updates all add-ons.
+	 *
+	 * @param Boolean Clear existing addons before updating them.
+	 * Will also clear their search index, and cascade the delete for associated data.
 	 */
-	public function update() {
+	public function update($clear = false) {
+		if($clear) {
+			Addon::get()->removeAll();
+		}
+
 		foreach (SilverStripeVersion::get() as $version) {
 			$this->silverstripes[$version->ID] = $version->getConstraint();
 		}

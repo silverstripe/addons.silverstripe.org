@@ -111,4 +111,12 @@ class Addon extends DataObject {
 		));
 	}
 
+	public function onBeforeDelete() {
+		parent::onBeforeDelete();
+
+		// Partially cascade delete. Leave author and keywords in place,
+		// since they might be related to other addons.
+		$this->Screenshots()->removeAll();
+		$this->Versions()->removeAll();
+	}
 }

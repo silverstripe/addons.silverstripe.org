@@ -15,7 +15,7 @@ class UpdateAddonsTask extends BuildTask {
 	}
 
 	public function run($request) {
-		$this->updater->update();
+		$this->updater->update((bool)$request->getVar('clear'));
 	}
 
 }
