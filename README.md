@@ -11,7 +11,7 @@ project. It aggregates SilverStripe packages from [Packagist](http://packagist.o
 Basic Installation
 ============
 
- * `cd public && composer install`
+ * `cd public && composer install --no-dev`
  * Install and run dependencies (see below)
  * Configure elastic search in `mysite/_config/injector.yml`
  * Run all tasks to populate database (see below)
