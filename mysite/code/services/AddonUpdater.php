@@ -159,8 +159,6 @@ class AddonUpdater {
 
 		$version->Version = $package->getVersion();
 		$version->PrettyVersion = $package->getPrettyVersion();
-		$version->Alias = $package->getAlias();
-		$version->PrettyAlias = $package->getPrettyAlias();
 		$version->Development = $package->isDev();
 
 		$version->SourceType = $package->getSourceType();
