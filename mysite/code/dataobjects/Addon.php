@@ -115,8 +115,16 @@ class Addon extends DataObject {
 		parent::onBeforeDelete();
 
 		// Partially cascade delete. Leave author and keywords in place,
-		// since they might be related to other addons.
+		// since they might be related to other addons, but remove all relation
+		// information.
+		foreach($this->Screenshots() as $image) {
+			$image->delete();
+		}
 		$this->Screenshots()->removeAll();
-		$this->Versions()->removeAll();
+		foreach($this->Versions() as $version) {
+			$version->delete();
+		}
+		$this->Keywords()->removeAll();
+		$this->CompatibleVersions()->removeAll();
 	}
 }
