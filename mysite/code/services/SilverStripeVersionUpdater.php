@@ -23,7 +23,7 @@ class SilverStripeVersionUpdater {
 
 			$match = preg_match(
 				'/^([0-9]+)\.([0-9]+)\.x-dev$/',
-				$package->getPrettyAlias() ?: $package->getPrettyVersion(),
+				$package->getPrettyVersion(),
 				$matches
 			);
 

@@ -4,6 +4,8 @@ use Composer\Factory;
 use Composer\IO\NullIO;
 use Composer\Package\Loader\ArrayLoader;
 use Composer\Repository\ComposerRepository;
+use Composer\DependencyResolver\Pool;
+use Packagist\Api\Client as Packagist;
 use Guzzle\Http\Client;
 
 /**
@@ -22,10 +24,18 @@ class PackagistService {
 	 * @var Composer\Repository\RepositoryInterface
 	 */
 	private $repository;
+	/**
+	 * @var Composer\DependencyResolver\Pool
+	 */
+	private $pool;
 
 	public function __construct() {
 		$this->composer = Factory::create(new NullIO());
 		$this->client = new Client(self::PACKAGIST_URL);
+		$this->pool = new Pool('dev');
+		foreach($this->composer->getRepositoryManager()->getRepositories() as $repo) {
+			$this->pool->addRepository($repo);
+		}
 	}
 
 	/**
@@ -43,11 +53,14 @@ class PackagistService {
 	public function getPackages() {
 		$packages = array();
 		$loader = new ArrayLoader();
+		$client = new Packagist;
 
-		foreach ($this->composer->getRepositoryManager()->getRepositories() as $repo) {
-			foreach ($repo->getMinimalPackages() as $info) {
-				if (strpos($info['raw']['type'], 'silverstripe-') === 0) {
-					$packages[] = $loader->load($info['raw']);
+		$names = $client->search('', array('type'=>'silverstripe'));
+
+		foreach($names as $name) {
+			foreach($this->pool->whatProvides($name->getName()) as $candidate) {
+				if(strpos($candidate->getType(), 'silverstripe-') === 0) {
+					$packages[] = $candidate;
 				}
 			}
 		}
@@ -93,18 +106,7 @@ class PackagistService {
 	 * @return \Composer\Package\PackageInterface[]
 	 */
 	public function getPackageVersions($name) {
-		$packages = array();
-		$loader = new ArrayLoader();
-
-		foreach ($this->composer->getRepositoryManager()->getRepositories() as $repo) {
-			foreach ($repo->getMinimalPackages() as $info) {
-				if ($info['name'] == $name) {
-					$packages[] = $loader->load($info['raw']);
-				}
-			}
-		}
-
-		return $packages;
+		return $this->pool->whatProvides($name);
 	}
 
 }
