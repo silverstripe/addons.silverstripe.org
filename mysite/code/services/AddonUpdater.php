@@ -5,6 +5,8 @@ use Composer\Package\CompletePackage;
 use Composer\Package\LinkConstraint\VersionConstraint;
 use Guzzle\Http\Exception\ClientErrorResponseException;
 use SilverStripe\Elastica\ElasticaService;
+use Packagist\Api\Result\Package;
+use Composer\Package\Version\VersionParser;
 
 /**
  * Updates all add-ons from Packagist.
@@ -54,7 +56,10 @@ class AddonUpdater {
 
 		$this->elastica->startBulkIndex();
 
-		foreach ($this->packagist->getGroupedPackages() as $name => $versions) {
+		foreach ($this->packagist->getPackages() as $package) {
+			$name = $package->getName();
+			$versions = $package->getVersions();
+
 			$addon = Addon::get()->filter('Name', $name)->first();
 
 			if (!$addon) {
@@ -64,18 +69,16 @@ class AddonUpdater {
 			}
 
 			usort($versions, function ($a, $b) {
-				return version_compare($a->getVersion(), $b->getVersion());
+				return version_compare($a->getVersionNormalized(), $b->getVersionNormalized());
 			});
 
-			$this->updateAddon($addon, array_filter($versions, function ($version) {
-				return !($version instanceof AliasPackage);
-			}));
+			$this->updateAddon($addon, $package, $versions);
 		}
 
 		$this->elastica->endBulkIndex();
 	}
 
-	private function updateAddon(Addon $addon, array $versions) {
+	private function updateAddon(Addon $addon, Package $package, array $versions) {
 		if (!$addon->VendorID) {
 			$vendor = AddonVendor::get()->filter('Name', $addon->VendorName())->first();
 
@@ -88,19 +91,11 @@ class AddonUpdater {
 			$addon->VendorID = $vendor->ID;
 		}
 
-		try {
-			$details = $this->packagist->getPackageDetails($addon->Name);
-			$details = $details['package'];
-
-			$addon->Type = str_replace('silverstripe-', '', $details['type']);
-			$addon->Description = $details['description'];
-			$addon->Released = $details['time'];
-			$addon->Repository = $details['repository'];
-
-			if (isset($details['downloads']['total']) && is_int($details['downloads']['total'])) {
-				$addon->Downloads = $details['downloads']['total'];
-			}
-		} catch (ClientErrorResponseException $e) {}
+		$addon->Type = str_replace('silverstripe-', '', $package->getType());
+		$addon->Description = $package->getDescription();
+		$addon->Released = strtotime($package->getTime());
+		$addon->Repository = $package->getRepository();
+		$addon->Downloads = $package->getDownloads()->getTotal();
 
 		foreach ($versions as $version) {
 			$this->updateVersion($addon, $version);
@@ -116,7 +111,7 @@ class AddonUpdater {
 				$built = (int) $addon->obj('BuiltAt')->format('U');
 
 				foreach ($versions as $version) {
-					if ($version->getReleaseDate()->getTimestamp() > $built) {
+					if (strtotime($version->getTime()) > $built) {
 						$this->resque->queue('update', 'BuildAddonJob', array('id' => $addon->ID));
 						$addon->BuildQueued = true;
 
@@ -130,7 +125,7 @@ class AddonUpdater {
 		$addon->write();
 	}
 
-	private function updateVersion(Addon $addon, CompletePackage $package) {
+	private function updateVersion(Addon $addon, Version $package) {
 		$version = null;
 
 		if ($addon->isInDB()) {
@@ -144,8 +139,7 @@ class AddonUpdater {
 		$version->Name = $package->getName();
 		$version->Type = str_replace('silverstripe-', '', $package->getType());
 		$version->Description = $package->getDescription();
-		$version->Released = $package->getReleaseDate()->getTimestamp();
-
+		$version->Released = strtotime($package->getTime());
 		$keywords = $package->getKeywords();
 
 		if ($keywords) {
@@ -157,25 +151,30 @@ class AddonUpdater {
 			}
 		}
 
-		$version->Version = $package->getVersion();
-		$version->PrettyVersion = $package->getPrettyVersion();
-		$version->Alias = $package->getAlias();
-		$version->PrettyAlias = $package->getPrettyAlias();
-		$version->Development = $package->isDev();
+		$version->Version = $package->getVersionNormalized();
+		$version->PrettyVersion = $package->getVersion();
+		//$version->Alias = $package->getAlias();
+		//$version->PrettyAlias = $package->getPrettyAlias();
 
-		$version->SourceType = $package->getSourceType();
-		$version->SourceUrl = $package->getSourceUrl();
-		$version->SourceReference = $package->getSourceReference();
+		$stability = VersionParser::parseStability($package->getVersion());
+		$isDev = $stability === 'dev';
+		$version->Development = $isDev;
 
-		$version->DistType = $package->getDistType();
-		$version->DistUrl = $package->getDistUrl();
-		$version->DistReference = $package->getDistReference();
-		$version->DistChecksum = $package->getDistSha1Checksum();
+		$version->SourceType = $package->getSource()->getType();
+		$version->SourceUrl = $package->getSource()->getUrl();
+		$version->SourceReference = $package->getSource()->getReference();
+		
+		if($package->getDist()) {
+			$version->DistType = $package->getDist()->getType();
+			$version->DistUrl = $package->getDist()->getUrl();
+			$version->DistReference = $package->getDist()->getReference();
+			$version->DistChecksum = $package->getDist()->getShasum();
+		}
 
 		$version->Extra = $package->getExtra();
 		$version->Homepage = $package->getHomepage();
 		$version->License = $package->getLicense();
-		$version->Support = $package->getSupport();
+		// $version->Support = $package->getSupport();
 
 		$addon->Versions()->add($version);
 
@@ -202,21 +201,20 @@ class AddonUpdater {
 		};
 
 		$types = array(
-			'require' => 'getRequires',
-			'require-dev' => 'getDevRequires',
-			'provide' => 'getProvides',
-			'conflict' => 'getConflicts',
-			'replace' => 'getReplaces'
+			'require' => 'getRequire',
+			'require-dev' => 'getRequireDev',
+			'provide' => 'getProvide',
+			'conflict' => 'getConflict',
+			'replace' => 'getReplace'
 		);
 
 		foreach ($types as $type => $method) {
-			if ($linked = $package->$method()) foreach ($linked as $link) {
-				/** @var $link \Composer\Package\Link */
-				$name = $link->getTarget();
+			if ($linked = $package->$method()) foreach ($linked as $link => $constraint) {
+				$name = $link;
 				$addon = Addon::get()->filter('Name', $name)->first();
 
 				$local = $getLink($name, $type);
-				$local->Constraint = $link->getPrettyConstraint();
+				$local->Constraint = $constraint;
 
 				if ($addon) {
 					$local->TargetID = $addon->ID;
@@ -226,20 +224,21 @@ class AddonUpdater {
 			}
 		}
 
-		$suggested = $suggested = $package->getSuggests();
+		//to-do api have no method to get this.
+/*		$suggested = $package->getSuggests();
 
 		if ($suggested) foreach ($suggested as $package => $description) {
 			$link = $getLink($package, 'suggest');
 			$link->Description = $description;
 
 			$version->Links()->add($link);
-		}
+		}*/
 	}
 
 	private function updateCompatibility(Addon $addon, AddonVersion $version, CompletePackage $package) {
 		$require = null;
 
-		foreach ($package->getRequires() as $name => $link) {
+		if($package->getRequire()) foreach ($package->getRequire() as $name => $link) {
 			if ($name == 'silverstripe/framework') {
 				$require = $link;
 				break;
@@ -255,7 +254,7 @@ class AddonUpdater {
 		}
 
 		foreach ($this->silverstripes as $id => $link) {
-			if ($require->getConstraint()->matches($link)) {
+			if ($require == $link) {
 				$addon->CompatibleVersions()->add($id);
 				$version->CompatibleVersions()->add($id);
 			}
@@ -266,24 +265,24 @@ class AddonUpdater {
 		if ($package->getAuthors()) foreach ($package->getAuthors() as $details) {
 			$author = null;
 
-			if (empty($details['name']) && empty($details['email'])) {
+			if ($details->getName() && $details->getEmail()) {
 				continue;
 			}
 
-			if (!empty($details['email'])) {
-				$author = AddonAuthor::get()->filter('Email', $details['email'])->first();
+			if ($details->getEmail()) {
+				$author = AddonAuthor::get()->filter('Email', $details->getEmail())->first();
 			}
 
-			if (!$author && !empty($details['homepage'])) {
+			if (!$author && $details->getHomepage()) {
 				$author = AddonAuthor::get()
-					->filter('Name', $details['name'])
-					->filter('Homepage', $details['homepage'])
+					->filter('Name', $details->getName())
+					->filter('Homepage', $details->getHomepage())
 					->first();
 			}
 
-			if (!$author && !empty($details['name'])) {
+			if (!$author && $details->getName()) {
 				$author = AddonAuthor::get()
-					->filter('Name', $details['name'])
+					->filter('Name', $details->getName())
 					->filter('Versions.Addon.Name', $package->getName())
 					->first();
 			}
@@ -292,10 +291,12 @@ class AddonUpdater {
 				$author = new AddonAuthor();
 			}
 
-			if(isset($details['name'])) $author->Name = $details['name'];
-			if(isset($details['email'])) $author->Email = $details['email'];
-			if(isset($details['homepage'])) $author->Homepage = $details['homepage'];
-			if(isset($details['role'])) $author->Role = $details['role'];
+			if($details->getName()) $author->Name = $details->getName();
+			if($details->getEmail()) $author->Email = $details->getEmail();
+			if($details->getHomepage()) $author->Homepage = $details->getHomepage();
+			
+			//to-do not supported by API
+			//if(isset($details['role'])) $author->Role = $details['role'];
 
 			$version->Authors()->add($author->write());
 		}
