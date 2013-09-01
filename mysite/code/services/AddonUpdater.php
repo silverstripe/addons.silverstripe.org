@@ -48,6 +48,11 @@ class AddonUpdater {
 	public function update($clear = false) {
 		if($clear) {
 			Addon::get()->removeAll();
+			AddonAuthor::get()->removeAll();
+	      	AddonKeyword::get()->removeAll();
+	      	AddonLink::get()->removeAll();
+	      	AddonVendor::get()->removeAll();
+	      	AddonVersion::get()->removeAll();
 		}
 
 		foreach (SilverStripeVersion::get() as $version) {
