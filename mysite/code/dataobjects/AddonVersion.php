@@ -13,8 +13,6 @@ class AddonVersion extends DataObject {
 		'Homepage' => 'Varchar(255)',
 		'Version' => 'Varchar(100)',
 		'PrettyVersion' => 'Varchar(100)',
-		'Alias' => 'Varchar(100)',
-		'PrettyAlias' => 'Varchar(100)',
 		'Development' => 'Boolean',
 		'License' => 'MultiValueField',
 		'SourceType' => 'Varchar(100)',
@@ -47,7 +45,7 @@ class AddonVersion extends DataObject {
 	);
 
 	public function DisplayVersion() {
-		return $this->PrettyAlias ?: $this->PrettyVersion;
+		return $this->PrettyVersion;
 	}
 
 	public function DisplayRequireVersion() {

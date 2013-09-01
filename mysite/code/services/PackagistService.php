@@ -11,8 +11,6 @@ use Guzzle\Http\Client;
  */
 class PackagistService {
 
-	const PACKAGIST_URL = 'https://packagist.org';
-
 	/**
 	 * @var Composer\Composer
 	 */
@@ -25,7 +23,7 @@ class PackagistService {
 
 	public function __construct() {
 		$this->composer = Factory::create(new NullIO());
-		$this->client = new Client(self::PACKAGIST_URL);
+		$this->client = new Packagist\Api\Client();
 	}
 
 	/**
@@ -38,17 +36,21 @@ class PackagistService {
 	/**
 	 * Gets all SilverStripe packages.
 	 *
-	 * @return \Composer\Package\PackageInterface[]
+	 * @return Packagist\Api\Package[]
 	 */
 	public function getPackages() {
 		$packages = array();
 		$loader = new ArrayLoader();
 
-		foreach ($this->composer->getRepositoryManager()->getRepositories() as $repo) {
-			foreach ($repo->getMinimalPackages() as $info) {
-				if (strpos($info['raw']['type'], 'silverstripe-') === 0) {
-					$packages[] = $loader->load($info['raw']);
-				}
+		$addonTypes = array(
+			'silverstripe-module',
+			'silverstripe-theme'
+		);
+
+		foreach ($addonTypes as $type) {
+			$repositoriesNames = $this->client->all(array('type' => $type));
+			foreach ($repositoriesNames as $name) {
+				$packages[] = $this->client->get($name);
 			}
 		}
 
@@ -83,7 +85,7 @@ class PackagistService {
 	 * @return array
 	 */
 	public function getPackageDetails($name) {
-		return $this->client->get("/packages/$name.json")->send()->json();
+		return $this->client->get($name);
 	}
 
 	/**
@@ -96,12 +98,10 @@ class PackagistService {
 		$packages = array();
 		$loader = new ArrayLoader();
 
-		foreach ($this->composer->getRepositoryManager()->getRepositories() as $repo) {
-			foreach ($repo->getMinimalPackages() as $info) {
-				if ($info['name'] == $name) {
-					$packages[] = $loader->load($info['raw']);
-				}
-			}
+		$package = $this->client->get($name);
+
+		foreach ($package->getVersions() as $repo) {
+			$packages[] = $repo;
 		}
 
 		return $packages;

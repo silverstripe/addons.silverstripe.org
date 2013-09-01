@@ -2,6 +2,9 @@
 /**
  * Updates the available SilverStripe versions.
  */
+
+use Composer\Package\Version\VersionParser;
+
 class SilverStripeVersionUpdater {
 
 	/**
@@ -17,13 +20,18 @@ class SilverStripeVersionUpdater {
 		$versions = $this->packagist->getPackageVersions('silverstripe/framework');
 
 		foreach ($versions as $package) {
-			if (!$package->isDev()) {
+			$version = $package->getVersion();
+			$stability = VersionParser::parseStability($version);
+
+			$isDev = $stability === 'dev';
+			
+			if (!$isDev) {
 				continue;
 			}
 
 			$match = preg_match(
 				'/^([0-9]+)\.([0-9]+)\.x-dev$/',
-				$package->getPrettyAlias() ?: $package->getPrettyVersion(),
+				$version,
 				$matches
 			);
 
