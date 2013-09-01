@@ -2,9 +2,9 @@
 	"name": "extensions.silverstripe.org",
 	"description": "The SilverStripe extensions listing site",
 	"require": {
+		"composer/installers": "*",
 		"ajshort/silverstripe-elastica": "*",
 		"chrisboulton/php-resque": "*",
-		"composer/installers": "*",
 		"composer/composer": "*",
 		"dflydev/markdown": "1.0.*",
 		"ezyang/htmlpurifier": "4.5.*",

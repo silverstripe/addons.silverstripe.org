@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "2f9c6703275b9f4941ff75641baf9733",
+    "hash": "470ffce3d824d4e9c358433fca651f4b",
     "packages": [
         {
             "name": "ajshort/silverstripe-elastica",
