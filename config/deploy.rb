@@ -71,7 +71,6 @@ namespace :composer do
 		run "if [ -d #{previous_release}/framework ]; then cp -a #{previous_release}/framework #{latest_release}/framework; fi"
 	end
 	task :install do
-		run "sh -c 'cd #{latest_release} && curl -s http://getcomposer.org/installer | php'"
-		run "sh -c 'cd #{release_path} && ./composer.phar install'"
+		run "sh -c 'cd #{latest_release} && composer install'"
 	end
 end

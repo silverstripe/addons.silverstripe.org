@@ -4,6 +4,7 @@
 	"require": {
 		"ajshort/silverstripe-elastica": "*",
 		"chrisboulton/php-resque": "*",
+		"composer/installers": "*",
 		"composer/composer": "*",
 		"dflydev/markdown": "1.0.*",
 		"ezyang/htmlpurifier": "4.5.*",
