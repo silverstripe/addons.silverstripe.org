@@ -153,8 +153,6 @@ class AddonUpdater {
 
 		$version->Version = $package->getVersionNormalized();
 		$version->PrettyVersion = $package->getVersion();
-		//$version->Alias = $package->getAlias();
-		//$version->PrettyAlias = $package->getPrettyAlias();
 
 		$stability = VersionParser::parseStability($package->getVersion());
 		$isDev = $stability === 'dev';
