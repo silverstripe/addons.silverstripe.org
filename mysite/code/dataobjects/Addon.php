@@ -116,7 +116,16 @@ class Addon extends DataObject {
 
 		// Partially cascade delete. Leave author and keywords in place,
 		// since they might be related to other addons.
-		$this->Screenshots()->removeAll();
-		$this->Versions()->removeAll();
+		foreach($this->Screenshots() as $image) {
+	    	$image->delete();
+   		}
+   		$this->Screenshots()->removeAll();
+
+		foreach($this->Versions() as $version) {
+    		$version->delete();
+    	}
+		
+		$this->Keywords()->removeAll();
+	   	$this->CompatibleVersions()->removeAll();
 	}
 }

@@ -80,4 +80,17 @@ class AddonVersion extends DataObject {
 		return Controller::join_links($this->Addon()->Link(), 'install', $this->ID);
 	}
 
+	public function onBeforeDelete() {
+		parent::onBeforeDelete();
+
+	    // Remove our relations but leave the related objects for objects
+	    // that may be used by other objects.
+		foreach($this->Links() as $link) {
+			$link->delete();
+		}
+		$this->Authors()->removeAll();
+		$this->Keywords()->removeAll();
+		$this->CompatibleVersions()->removeAll();
+	}
+
 }
