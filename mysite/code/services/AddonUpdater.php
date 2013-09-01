@@ -228,7 +228,7 @@ class AddonUpdater {
 		}
 
 		//to-do api have no method to get this.
-/*		$suggested = $package->getSuggests();
+		/*$suggested = $package->getSuggests();
 
 		if ($suggested) foreach ($suggested as $package => $description) {
 			$link = $getLink($package, 'suggest');
@@ -268,7 +268,7 @@ class AddonUpdater {
 		if ($package->getAuthors()) foreach ($package->getAuthors() as $details) {
 			$author = null;
 
-			if ($details->getName() && $details->getEmail()) {
+			if (!$details->getName() && !$details->getEmail()) {
 				continue;
 			}
 
