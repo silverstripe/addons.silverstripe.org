@@ -83,8 +83,8 @@ class AddonVersion extends DataObject {
 	public function onBeforeDelete() {
 		parent::onBeforeDelete();
 
-	    // Remove our relations but leave the related objects for objects
-	    // that may be used by other objects.
+		// Remove our relations but leave the related objects for objects
+		// that may be used by other objects.
 		foreach($this->Links() as $link) {
 			$link->delete();
 		}
