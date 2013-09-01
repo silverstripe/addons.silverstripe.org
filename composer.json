@@ -3,14 +3,14 @@
 	"description": "The SilverStripe extensions listing site",
 	"require": {
 		"ajshort/silverstripe-elastica": "*",
-		"chrisboulton/php-resque": "dev-master",
-		"composer/composer": "1.0.*",
+		"chrisboulton/php-resque": "*",
+		"composer/composer": "*",
 		"dflydev/markdown": "1.0.*",
 		"ezyang/htmlpurifier": "4.5.*",
 		"guzzle/guzzle": "3.2.*",
 		"silverstripe/framework": "3.1.*",
 		"silverstripe/multivaluefield": "*",
-		"knplabs/packagist-api": "0.1.*@dev"
+		"knplabs/packagist-api": "*"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "3.7.*",
