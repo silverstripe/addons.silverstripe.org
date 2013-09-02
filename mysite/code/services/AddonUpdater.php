@@ -134,7 +134,7 @@ class AddonUpdater {
 		$version = null;
 
 		if ($addon->isInDB()) {
-			$version = $addon->Versions()->filter('Version', $package->getVersion())->first();
+			$version = $addon->Versions()->filter('Version', $package->getVersionNormalized())->first();
 		}
 
 		if (!$version) {
