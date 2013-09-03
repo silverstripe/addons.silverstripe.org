@@ -80,7 +80,7 @@ To actually run the background tasks you need to spawn worker processes. On a
 production server this should be set up using a process monitor such as god. A
 new worker process can be spawned using the following command in the webroot:
 
-    QUEUE=first_build,update APP_INCLUDE=mysite/bin/silverstripe-resque.php php vendor/chrisboulton/php-resque/bin/resque
+    ./framework/sake dev/resque/run queue=first_build,update
 
 Tasks
 ============
