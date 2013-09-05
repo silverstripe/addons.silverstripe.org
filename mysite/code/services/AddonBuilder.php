@@ -1,5 +1,6 @@
 <?php
 
+use Composer\Package\Package;
 use Composer\Package\PackageInterface;
 use dflydev\markdown\MarkdownParser;
 
@@ -21,24 +22,41 @@ class AddonBuilder {
 	public function build(Addon $addon) {
 		$composer = $this->packagist->getComposer();
 		$downloader = $composer->getDownloadManager();
-		$packages = $this->packagist->getPackageVersions($addon->Name);
+		$packageVersions = $this->packagist->getPackageVersions($addon->Name);
 		$time = time();
 
-		if (!$packages) {
+		if (!$packageVersions) {
 			throw new Exception('Could not find corresponding Packagist versions');
 		}
 
 		// Get the latest local and packagist version pair.
 		$version = $addon->Versions()->filter('Development', true)->first();
-
-		foreach ($packages as $package) {
-			if ($package->getVersion() != $version->Version) {
+		foreach ($packageVersions as $packageVersion) {
+			if ($packageVersion->getVersionNormalized() != $version->Version) {
 				continue;
 			}
 
 			$path = implode('/', array(
 				TEMP_FOLDER, self::ADDONS_DIR, $addon->Name
 			));
+
+			// Convert PackagistAPI result into class compatible with Composer logic
+			$package = new Package(
+				$addon->Name, 
+				$packageVersion->getVersionNormalized(), 
+				$packageVersion->getVersion()
+			);
+			$package->setExtra($packageVersion->getExtra());
+			if($source = $packageVersion->getSource()) {
+				$package->setSourceUrl($source->getUrl());
+				$package->setSourceType($source->getType());
+				$package->setSourceReference($source->getReference());
+			}
+			if($dist = $packageVersion->getDist()) {
+				$package->setDistUrl($dist->getUrl());
+				$package->setDistType($dist->getType());
+				$package->setDistReference($dist->getReference());
+			}
 
 			$this->download($package, $path);
 			$this->buildReadme($addon, $path);
@@ -77,7 +95,9 @@ class AddonBuilder {
 				$readme = $parser->transformMarkdown(file_get_contents($path));
 
 				$purifier = new HTMLPurifier();
-				$readme = $purifier->purify($readme);
+				$readme = $purifier->purify($readme, array(
+					'Cache.SerializerPath' => TEMP_FOLDER
+				));
 
 				$addon->Readme = $readme;
 				return;

@@ -101,12 +101,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "72919e04b0dfdedf160ca49c0da88bd782d7ac99"
+                "reference": "9b70b89b8f8d60b56b5900ea232109427604c748"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/72919e04b0dfdedf160ca49c0da88bd782d7ac99",
-                "reference": "72919e04b0dfdedf160ca49c0da88bd782d7ac99",
+                "url": "https://api.github.com/repos/composer/composer/zipball/9b70b89b8f8d60b56b5900ea232109427604c748",
+                "reference": "9b70b89b8f8d60b56b5900ea232109427604c748",
                 "shasum": ""
             },
             "require": {
@@ -162,7 +162,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2013-08-31 13:55:12"
+            "time": "2013-09-02 10:12:29"
         },
         {
             "name": "composer/installers",
