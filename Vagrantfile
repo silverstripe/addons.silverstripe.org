@@ -6,11 +6,11 @@ end
 
 Vagrant.configure("2") do |config|
   config.vm.box = "squeeze"
-  config.vm.synced_folder ".", "/sites/addons/www/"
+  config.vm.synced_folder ".", "/sites/addons/www/", :owner=>"www-data",:group=>"www-data", :extra => "dmode=777,fmode=666"
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = ""
     puppet.manifest_file = "vagrant.pp"
     puppet.module_path = "puppet/modules"
-    #puppet.options = "--verbose --debug"
+    # puppet.options = "--verbose --debug"
   end
 end
