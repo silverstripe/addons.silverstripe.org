@@ -24,7 +24,12 @@ class BuildAddonsTask extends BuildTask {
 
 		foreach($addons as $addon) {
 			$this->log(sprintf('Building "%s"', $addon->Name));
-			$this->builder->build($addon);
+			try {
+				$this->builder->build($addon);
+			} catch(RuntimeException $e) {
+				$this->log('Error: ' . $e->getMessage());
+			}
+			
 			$addon->BuildQueued = false;
 			$addon->write();
 		}
