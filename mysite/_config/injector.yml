@@ -24,3 +24,6 @@ Injector:
     constructor:
       - %$Elastica\Client
       - addons
+  BuildAddonsTask:
+    constructor:
+      - %$AddonBuilder
