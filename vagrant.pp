@@ -22,6 +22,11 @@ class { 'apt_get_update':
   stage => pre,
 }
 
+# Required for addon README downloads
+package { 'subversion':
+  ensure   => 'installed',
+}
+
 include ss::lamp
 
 # Canonical SilverStripe LAMP configuration
