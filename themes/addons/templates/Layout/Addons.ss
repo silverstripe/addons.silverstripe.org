@@ -33,6 +33,11 @@
 				</div>
 			</div>
 		<% end_with %>
+		<div id="legacy-search-notice" class="alert" style="display: none;">
+			Some 2.4 compatible modules aren't listed here,
+			you might have better luck <br>searching through our
+			legacy database at <a href="http://www.silverstripe.org/modules">silverstripe.org/modules</a>
+		</div>
 	</form>
 <% end_with %>
 
