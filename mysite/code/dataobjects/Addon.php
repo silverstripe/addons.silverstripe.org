@@ -93,7 +93,8 @@ class Addon extends DataObject {
 			'vendor' => array('type' => 'string'),
 			'tags' => array('type' => 'string', 'index_name' => 'tag'),
 			'released' => array('type' => 'date'),
-			'downloads' => array('type' => 'integer')
+			'downloads' => array('type' => 'long'),
+			'readme' => array('type' => 'string')
 		));
 	}
 
