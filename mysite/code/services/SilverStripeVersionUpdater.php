@@ -12,6 +12,12 @@ class SilverStripeVersionUpdater {
 	 */
 	private $packagist;
 
+	/**
+	 * @config
+	 * @var array
+	 */
+	protected $versionBlacklist = array('2.5.x-dev');
+
 	public function __construct(PackagistService $packagist) {
 		$this->packagist = $packagist;
 	}
@@ -21,11 +27,17 @@ class SilverStripeVersionUpdater {
 
 		foreach ($versions as $package) {
 			$version = $package->getVersion();
+
+			// Replace version by branch alias if applicable
+			$extra = $package->getExtra();
+			if(isset($extra['branch-alias'][$version])) {
+				$version = $extra['branch-alias'][$version];
+			}
 			$stability = VersionParser::parseStability($version);
 
 			$isDev = $stability === 'dev';
 			
-			if (!$isDev) {
+			if (!$isDev || in_array($version, $this->versionBlacklist)) {
 				continue;
 			}
 
@@ -55,6 +67,14 @@ class SilverStripeVersionUpdater {
 				$record->write();
 			}
 		}
+	}
+
+	public function setVersionBlacklist($list) {
+		$this->versionBlacklist = $list;
+	}
+
+	public function getVersionBlacklist() {
+		return $this->versionBlacklist;
 	}
 
 }
