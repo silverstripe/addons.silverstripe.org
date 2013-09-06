@@ -79,22 +79,22 @@ cron { SilverStripe-Elastica-ReindexTask:
 }
 
 # God worker monitor: Required for Resque
-class {'god':
-  use_rvm => false,
-  ruby_version => '1.8.7',
-  service_provider => init,
-}
-$dir = '/sites/addons/www/'
-$uid = 'www-data'
-$gid = 'www-data'
-$env = "{'QUEUE' => 'first_build,update', 'APP_INCLUDE' => 'mysite/bin/silverstripe-resque.php'}"
-$start = 'php vendor/chrisboulton/php-resque/bin/resque'
-file { "/etc/god/conf.d/addons.god":
-  mode => 0755,
-  owner => 'www-data',
-  group => 'www-data',
-  content => template("god/confd-sample.god.erb"),  
-}
+# class {'god':
+#   use_rvm => false,
+#   ruby_version => '1.8.7',
+#   service_provider => init,
+# }
+# $dir = '/sites/addons/www/'
+# $uid = 'www-data'
+# $gid = 'www-data'
+# $env = "{'QUEUE' => 'first_build,update', 'APP_INCLUDE' => 'mysite/bin/silverstripe-resque.php'}"
+# $start = 'php vendor/chrisboulton/php-resque/bin/resque'
+# file { "/etc/god/conf.d/addons.god":
+#   mode => 0755,
+#   owner => 'www-data',
+#   group => 'www-data',
+#   content => template("god/confd-sample.god.erb"),  
+# }
 
 # Resque: We use php-resque, but the original is handy for its web UI.
 # package { 'resque':
