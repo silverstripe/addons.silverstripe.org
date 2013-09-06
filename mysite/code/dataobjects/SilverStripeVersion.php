@@ -26,8 +26,8 @@ class SilverStripeVersion extends DataObject {
 		$next = $this->Major . '.' . ($this->Minor + 1);
 
 		return new MultiConstraint(array(
-			new VersionConstraint('>=', "$this->Major.$this->Minor.0.0"),
-			new VersionConstraint('<', "$next.0.0")
+			new VersionConstraint('>=', "$this->Major.$this->Minor.*"),
+			new VersionConstraint('<', "$next.*")
 		));
 	}
 

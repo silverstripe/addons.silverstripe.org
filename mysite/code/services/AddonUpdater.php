@@ -29,14 +29,25 @@ class AddonUpdater {
 	private $resque;
 
 	/**
+	 * @var Composer\Package\Version\VersionParser
+	 */
+	private $versionParser;
+
+	/**
 	 * @var SilverStripeVersion[]
 	 */
 	private $silverstripes = array();
 
-	public function __construct(PackagistService $packagist, ElasticaService $elastica, ResqueService $resque) {
+	public function __construct(
+		PackagistService $packagist, 
+		ElasticaService $elastica, 
+		ResqueService $resque, 
+		VersionParser $versionParser
+	) {
 		$this->packagist = $packagist;
 		$this->elastica = $elastica;
 		$this->resque = $resque;
+		$this->versionParser = $versionParser;
 	}
 
 	/**
@@ -259,8 +270,12 @@ class AddonUpdater {
 			return;
 		}
 
+		$addon->CompatibleVersions()->removeAll();
+		$version->CompatibleVersions()->removeAll();
+
 		foreach ($this->silverstripes as $id => $link) {
-			if ($require == $link) {
+			$constraint = $this->versionParser->parseConstraints($require);
+			if ($link->matches($constraint)) {
 				$addon->CompatibleVersions()->add($id);
 				$version->CompatibleVersions()->add($id);
 			}
