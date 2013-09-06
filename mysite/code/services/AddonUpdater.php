@@ -44,9 +44,10 @@ class AddonUpdater {
 	 *
 	 * @param Boolean Clear existing addons before updating them.
 	 * Will also clear their search index, and cascade the delete for associated data.
+	 * @param Array Limit to specific addons, using their name incl. vendor prefix.
 	 */
-	public function update($clear = false) {
-		if($clear) {
+	public function update($clear = false, $limitAddons = null) {
+		if($clear && !$limitAddons) {
 			Addon::get()->removeAll();
 			AddonAuthor::get()->removeAll();
 			AddonKeyword::get()->removeAll();
@@ -64,6 +65,8 @@ class AddonUpdater {
 		foreach ($this->packagist->getPackages() as $package) {
 			$name = $package->getName();
 			$versions = $package->getVersions();
+
+			if($limitAddons && !in_array($name, $limitAddons)) continue;
 
 			$addon = Addon::get()->filter('Name', $name)->first();
 
