@@ -88,6 +88,9 @@ Tasks
  * `sake dev/tasks/UpdateAddonsTask`: Runs the add-on updater.
  * `sake dev/tasks/UpdateSilverStripeVersionsTask`: Updates the available SilverStripe versions.
  * `sake dev/tasks/SilverStripe-Elastica-ReindexTask`: Defines and refreshes the elastic search index.
+ * `sake dev/tasks/BuildAddonsTask`: Manually build addons, downloading screenshots
+   and a README for display through the website. There's no need to set up a cron job
+   for this task if you're using the resque queue.
 
 LESS Compilation
 ===========
