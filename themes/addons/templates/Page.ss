@@ -5,11 +5,13 @@
 
 		<title>$Title &middot; SilverStripe Add-ons</title>
 		$MetaTags(false)
-
+		
 		<% require themedCSS("addons") %>
+		<% require css("//silverstripe.org/toolbar/css/toolbar.css") %>
 		<% require javascript("//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js") %>
 		<% require javascript("themes/addons/bootstrap/js/bootstrap.min.js") %>
 		<% require javascript("themes/addons/javascript/addons.js") %>
+		<% require javascript("//silverstripe.org/toolbar/javascript/toolbar.js?site=addons&amp;searchShow=true") %>
 	</head>
 	<body>
 		<div id="header" class="navbar navbar-static-top">
