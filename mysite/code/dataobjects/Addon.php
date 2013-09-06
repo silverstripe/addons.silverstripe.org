@@ -108,6 +108,7 @@ class Addon extends DataObject {
 			'tags' => $this->Keywords()->column('Name'),
 			'released' => $this->obj('Released')->Format('c'),
 			'downloads' => $this->Downloads,
+			'readme' => strip_tags($this->Readme),
 			'_boost' => sqrt($this->Downloads)
 		));
 	}
