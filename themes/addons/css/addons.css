@@ -6076,6 +6076,11 @@ body {
   margin: 0 -16px 0;
   padding: 0 16px 9px 16px;
 }
+#versions .version pre .install-cmd {
+  float: left;
+  width: auto;
+  padding-right: 16px;
+}
 #author dl {
   margin-top: 0;
 }

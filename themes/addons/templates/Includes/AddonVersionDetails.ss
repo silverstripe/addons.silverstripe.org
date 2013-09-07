@@ -1,4 +1,28 @@
-<pre>composer require $Name $DisplayRequireVersion</pre>
+<div class="row-fluid">
+	<pre>composer require $Name $DisplayRequireVersion</pre>
+	<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
+		width="110"
+		height="14"
+		class="clippy">
+	<param name="movie" value="$ThemeDir/thirdparty/clippy/clippy.swf"/>
+	<param name="allowScriptAccess" value="always" />
+	<param name="quality" value="high" />
+	<param name="scale" value="noscale" />
+	<param NAME="FlashVars" value="text=composer require $Name $DisplayRequireVersion">
+	<param name="bgcolor" value="#fff">
+	<embed src="$ThemeDir/thirdparty/clippy/clippy.swf"
+		width="110"
+		height="14"
+		name="clippy"
+		quality="high"
+		allowScriptAccess="always"
+		type="application/x-shockwave-flash"
+		pluginspage="http://www.macromedia.com/go/getflashplayer"
+		FlashVars="text=composer require $Name $DisplayRequireVersion"
+		bgcolor="#fff"
+	/>
+	</object>
+</div>
 
 <div class="row-fluid">
 	<div class="span4">
