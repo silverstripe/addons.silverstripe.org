@@ -16,6 +16,8 @@ class Addon extends DataObject {
 		'Released' => 'SS_Datetime',
 		'Repository' => 'Varchar(255)',
 		'Downloads' => 'Int',
+		'DownloadsMonthly' => 'Int',
+		'Favers' => 'Int',
 		'LastUpdated' => 'SS_Datetime',
 		'LastBuilt' => 'SS_Datetime',
 		'BuildQueued' => 'Boolean'

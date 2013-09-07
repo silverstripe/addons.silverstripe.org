@@ -115,6 +115,8 @@ class AddonUpdater {
 		$addon->Released = strtotime($package->getTime());
 		$addon->Repository = $package->getRepository();
 		$addon->Downloads = $package->getDownloads()->getTotal();
+		$addon->DownloadsMonthly = $package->getDownloads()->getMonthly();
+		$addon->Favers = $package->getFavers();
 
 		foreach ($versions as $version) {
 			$this->updateVersion($addon, $version);
