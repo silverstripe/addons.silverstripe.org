@@ -1,4 +1,8 @@
-<div class="row-fluid">
+<div class="row-fluid install-box">
+	<strong class="install-box-label">Install</strong>
+	<a href="http://doc.silverstripe.org/framework/en/topics/modules#installation">
+		<i class="icon-question-sign"></i>
+	</a>
 	<pre>composer require $Name $DisplayRequireVersion</pre>
 	<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
 		width="110"

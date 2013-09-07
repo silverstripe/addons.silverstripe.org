@@ -29,7 +29,7 @@
 		</ul>
 	<% end_if %>
 
-	<dl>
+	<dl id="metadata">
 		<% with $Versions.First %>
 			<% if $Homepage %>
 				<dt>Homepage:</dt>

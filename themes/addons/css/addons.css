@@ -5967,6 +5967,25 @@ dl dd {
 .tags li a .count {
   color: #999999;
 }
+.install-box {
+  background: none;
+  border-color: #EEE;
+  border-width: 0 0 1px 0;
+  line-height: 40px;
+}
+.install-box > * {
+  float: left;
+  display: inline-block;
+  vertical-align: middle;
+}
+.install-box pre {
+  color: #888;
+  background: none;
+  border: none;
+}
+.install-box .install-box-label {
+  margin-right: 5px;
+}
 .addons-search-row {
   padding-right: 165px;
   position: relative;
@@ -6068,18 +6087,10 @@ body {
 #versions .version .accordion-heading {
   font-weight: bold;
 }
-#versions .version pre {
-  background: none;
-  border-color: #EEE;
-  border-width: 0 0 1px 0;
-  color: #888;
-  margin: 0 -16px 0;
-  padding: 0 16px 9px 16px;
-}
-#versions .version pre .install-cmd {
+#metadata dt {
+  clear: left;
   float: left;
-  width: auto;
-  padding-right: 16px;
+  width: 100px;
 }
 #author dl {
   margin-top: 0;
