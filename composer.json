@@ -1,9 +1,12 @@
 {
 	"name": "extensions.silverstripe.org",
 	"description": "The SilverStripe extensions listing site",
+	"repositories": [
+		{"url": "https://github.com/chillu/silverstripe-elastica.git", "type": "vcs"}
+	],
 	"require": {
 		"composer/installers": "*",
-		"ajshort/silverstripe-elastica": "*",
+		"ajshort/silverstripe-elastica": "dev-pulls/resultlist-missing-objs",
 		"chrisboulton/php-resque": "1.2.*",
 		"composer/composer": "*",
 		"dflydev/markdown": "1.0.*",

@@ -3,20 +3,20 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "9ea76f0d999465e685a43949bcbf3433",
+    "hash": "1fe61dc4a49d849cd721ccaa1ceda72a",
     "packages": [
         {
             "name": "ajshort/silverstripe-elastica",
-            "version": "dev-master",
+            "version": "dev-pulls/resultlist-missing-objs",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ajshort/silverstripe-elastica.git",
-                "reference": "7c6466db783986b68021bf4d83dd1b9aec95b8a3"
+                "url": "https://github.com/chillu/silverstripe-elastica.git",
+                "reference": "b74916afa308ca2ca878e1bdd36dfe1278c625f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ajshort/silverstripe-elastica/zipball/7c6466db783986b68021bf4d83dd1b9aec95b8a3",
-                "reference": "7c6466db783986b68021bf4d83dd1b9aec95b8a3",
+                "url": "https://api.github.com/repos/chillu/silverstripe-elastica/zipball/b74916afa308ca2ca878e1bdd36dfe1278c625f6",
+                "reference": "b74916afa308ca2ca878e1bdd36dfe1278c625f6",
                 "shasum": ""
             },
             "require": {
@@ -32,7 +32,6 @@
                     "SilverStripe\\Elastica": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -50,7 +49,11 @@
                 "search",
                 "silverstripe"
             ],
-            "time": "2013-03-01 03:39:13"
+            "support": {
+                "issues": "http://github.com/ajshort/silverstripe-elastica/issues",
+                "source": "https://github.com/chillu/silverstripe-elastica/tree/pulls/resultlist-missing-objs"
+            },
+            "time": "2013-09-07 11:27:51"
         },
         {
             "name": "chrisboulton/php-resque",
@@ -1578,9 +1581,9 @@
 
     ],
     "minimum-stability": "dev",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "ajshort/silverstripe-elastica": 20
+    },
     "platform": [
 
     ],
