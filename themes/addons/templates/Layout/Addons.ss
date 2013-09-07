@@ -57,7 +57,9 @@
 					</td>
 					<td><a href="$Link">$Name</a></td>
 					<td>$Description.LimitCharacters(60)</td>
-					<td><i class="icon-download"></i> $Downloads</td>
+					<td>
+						<% include AddonDownloadStats %>
+					</td>
 				</tr>
 			<% end_loop %>
 		</tbody>

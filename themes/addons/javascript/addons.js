@@ -12,4 +12,7 @@ jQuery(function($) {
 			$('#legacy-search-notice')[doShow ? 'show' : 'hide']();
 		});
 	});
+
+	// Bootstrap tooltips
+	$('[data-toggle=tooltip]').tooltip();
 });
