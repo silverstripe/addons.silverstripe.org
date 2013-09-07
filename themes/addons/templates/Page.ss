@@ -34,5 +34,7 @@
 		<div id="layout" class="container">
 			$Layout
 		</div>
+
+		<% include Footer %>
 	</body>
 </html>

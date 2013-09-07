@@ -6041,6 +6041,12 @@ body {
 #layout .content-narrow {
   width: 70%;
 }
+#footer {
+  margin-top: 2em;
+  text-align: center;
+  font-style: italic;
+  font-size: 12px;
+}
 #readme {
   border: 2px solid #eeeeee;
 }
