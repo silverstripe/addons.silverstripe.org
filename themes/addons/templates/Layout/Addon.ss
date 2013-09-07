@@ -37,15 +37,6 @@
 			<% end_if %>
 		<% end_with %>
 
-		<% if $Authors %>
-			<dt>Authors:</dt>
-			<dd>
-				<% loop $Authors %>
-					<a href="$Link">$Name</a><% if not $Last %>, <% end_if %>
-				<% end_loop %>
-			</dd>
-		<% end_if %>
-
 		<dt>Packagist:</dt>
 		<dd><a href="$PackagistUrl">$PackagistUrl</a></dd>
 
@@ -75,6 +66,22 @@
 			/>
 			</object>
 		</dd>
+
+		<% if $Authors %>
+			<dt>Authors:</dt>
+			<dd>
+				<ul id="authors">
+				<% loop $Authors %>
+					<li>
+						<a href="$Link">
+							<img src="$GravatarUrl(32)" class="img-polaroid" alt="$Name.ATT">
+							$Name
+						</a>
+					</li>
+				<% end_loop %>
+				</ul>
+			</dd>
+		<% end_if %>
 	</dl>
 
 	<hr>
