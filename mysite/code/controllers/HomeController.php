@@ -4,6 +4,14 @@
  */
 class HomeController extends SiteController {
 
+	private static $popular_blacklist = array(
+		'silverstripe/framework',
+		'silverstripe/cms',
+		'silverstripe/sqlite3',
+		'silverstripe/postgresql',
+		'silverstripe-themes/simple'
+	);
+
 	public static $allowed_actions = array(
 		'index'
 	);
@@ -21,7 +29,10 @@ class HomeController extends SiteController {
 	}
 
 	public function PopularAddons($limit = 10) {
-		return Addon::get()->sort('Downloads', 'DESC')->limit($limit);
+		return Addon::get()
+			->sort('Downloads', 'DESC')
+			->exclude('Name', $this->config()->popular_blacklist)
+			->limit($limit);
 	}
 
 	public function NewestAddons($limit = 10) {
