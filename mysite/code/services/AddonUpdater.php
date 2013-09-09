@@ -258,6 +258,8 @@ class AddonUpdater {
 		$require = null;
 
 		if($package->getRequire()) foreach ($package->getRequire() as $name => $link) {
+			if((string)$link == 'self.version') continue;
+
 			if ($name == 'silverstripe/framework') {
 				$require = $link;
 				break;
