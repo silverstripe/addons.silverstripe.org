@@ -105,45 +105,20 @@
 	<h3>Versions</h3>
 
 	<div id="versions" class="accordion">
-		<% with $SortedVersions.First %>
+		<% loop $SortedVersions %>
 			<div class="accordion-group">
 				<div class="accordion-heading">
 					<a class="accordion-toggle" data-toggle="collapse" data-parent="#versions" href="#version-$ID">
 						$DisplayVersion
 					</a>
 				</div>
-				<div id="version-$ID" class="version accordion-body collapse in">
+				<div id="version-$ID" class="version accordion-body collapse<% if First %> in<% end_if %>">
 					<div class="accordion-inner">
 						<% include AddonVersionDetails %>
 					</div>
 				</div>
 			</div>
-		<% end_with %>
-
-		<% if $SortedVersions.Count != 1 %>
-			<div class="accordion-group accordion-separator">
-				<div class="accordion-heading">
-					Other Versions
-				</div>
-			</div>
-
-			<% loop $Versions %>
-				<% if not $First %>
-					<div class="accordion-group">
-						<div class="accordion-heading">
-							<a class="accordion-toggle" data-toggle="collapse" data-parent="#versions" href="#version-$ID">
-								$DisplayVersion
-							</a>
-						</div>
-						<div id="version-$ID" class="version accordion-body collapse">
-							<div class="accordion-inner">
-								<% include AddonVersionDetails %>
-							</div>
-						</div>
-					</div>
-				<% end_if %>
-			<% end_loop %>
-		<% end_if %>
+		<% end_loop %>
 	</div>
 
 	<div id="disqus_thread"></div>
