@@ -74,7 +74,7 @@
 		Now you're ready to submit the module. Please note that it takes a couple of minutes for the
 		changes to be picked up by addons.silverstripe.org.
 	</p>
-	<p><a href="http://packagist.org/submit" class="btn btn-primary">Submit on packagist.org</a></p>
+	<p><a href="https://packagist.org/packages/submit" class="btn btn-primary">Submit on packagist.org</a></p>
 	<p>
 		It's helpful to set up 
 		<a href="http://doc.silverstripe.org/framework/en/installation/composer">SilverStripe with Composer</a>,
