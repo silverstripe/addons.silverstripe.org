@@ -58,6 +58,10 @@ class Addon extends DataObject {
 		return new ArrayList($versions);
 	}
 
+	public function MasterVersion() {
+		return $this->Versions()->filter('Version', array('dev-master', 'trunk'))->First();
+	}
+
 	public function Authors() {
 		return $this->Versions()->relation('Authors');
 	}

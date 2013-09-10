@@ -30,19 +30,19 @@
 	<% end_if %>
 
 	<dl id="metadata">
-		<% with $Versions.First %>
+		<% with $MasterVersion %>
 			<% if $Homepage %>
 				<dt>Homepage:</dt>
-				<dd><a href="$Homepage">$Homepage</a></dd>
+				<dd><a href="$Homepage" rel="nofollow">$Homepage</a></dd>
 			<% end_if %>
 		<% end_with %>
 
 		<dt>Packagist:</dt>
-		<dd><a href="$PackagistUrl">$PackagistUrl</a></dd>
+		<dd><a href="$PackagistUrl" rel="nofollow">$PackagistUrl</a></dd>
 
 		<dt>Repository:</dt>
 		<dd>
-			<a href="$Repository">$Repository</a>
+			$Repository
 			<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
 				width="110"
 				height="14"
