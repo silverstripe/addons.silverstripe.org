@@ -50,4 +50,27 @@ class HomeController extends SiteController {
 			->limit($limit);
 	}
 
+	public function ChartData(){
+		$chartData = array ();
+		$list = ArrayList::create(array());
+
+		$addons = Addon::get()->where("Created >= DATE_SUB(NOW(), INTERVAL 30 DAY)");
+		$addons = GroupedList::create($addons);
+		$groupedAddons = $addons->GroupedBy("DateCreated");
+
+		foreach($groupedAddons as $group) {
+			$date = date('j M Y', strtotime( $group->DateCreated));
+			if(!isset($map[$date])) $chartData[$date] = 0;
+			$chartData[$date] += $group->Children->Count();
+		}
+
+		if(count($chartData)) foreach($chartData as $x => $y) {
+			$list->push(ArrayData::create(array(
+				'XValue' => $x,
+				'YValue' => $y
+			)));
+		}
+		
+		return $list;
+	}
 }

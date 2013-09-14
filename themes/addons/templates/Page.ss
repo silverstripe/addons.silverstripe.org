@@ -12,6 +12,8 @@
 		<% require javascript("themes/addons/bootstrap/js/bootstrap.min.js") %>
 		<% require javascript("themes/addons/javascript/addons.js") %>
 		<% require javascript("//silverstripe.org/toolbar/javascript/toolbar.js?site=addons&amp;searchShow=true") %>
+		<% require javascript("//www.google.com/jsapi") %>
+		<% require javascript("themes/addons/javascript/chart.js") %>
 	</head>
 	<body>
 		<div id="header" class="navbar navbar-static-top">
