@@ -54,14 +54,20 @@ class HomeController extends SiteController {
 		$chartData = array ();
 		$list = ArrayList::create(array());
 
-		$addons = Addon::get()->where("Created >= DATE_SUB(NOW(), INTERVAL 30 DAY)");
-		$addons = GroupedList::create($addons);
-		$groupedAddons = $addons->GroupedBy("DateCreated");
+		$sqlQuery = new SQLQuery();
+		$sqlQuery->setFrom('Addon');
+		$sqlQuery->setSelect('Created');
+		$sqlQuery->selectField('COUNT(*)', 'CountInOneDay');
+		$sqlQuery->addWhere('Created >= DATE_SUB(NOW(), INTERVAL 30 DAY)');
+		$sqlQuery->addGroupBy('DATE(Created)');
 
-		foreach($groupedAddons as $group) {
-			$date = date('j M Y', strtotime( $group->DateCreated));
-			if(!isset($map[$date])) $chartData[$date] = 0;
-			$chartData[$date] += $group->Children->Count();
+		$result = $sqlQuery->execute();
+
+		if(count($result)) foreach($result as $row) {
+  			$date = date('j M Y', strtotime($row['Created']));
+			if(!isset($chartData[$date])) {
+				$chartData[$date] = $row['CountInOneDay'];
+			}	
 		}
 
 		if(count($chartData)) foreach($chartData as $x => $y) {
