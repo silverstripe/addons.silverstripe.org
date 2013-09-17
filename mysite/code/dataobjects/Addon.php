@@ -138,6 +138,6 @@ class Addon extends DataObject {
 	}
 
 	public function getDateCreated() {
-        return date('Y-m-d', strtotime($this->Created));
-    }
+		return date('Y-m-d', strtotime($this->Created));
+	}
 }

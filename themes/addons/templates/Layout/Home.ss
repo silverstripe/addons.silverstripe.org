@@ -90,7 +90,6 @@ If you need to access the legacy extensions site, you can still visit <a href="h
 				<% loop ChartData %>
 					<div class="chart-data" data-x="$XValue" data-y="$YValue"></div>
 				<% end_loop %>
-
 				<div  id="chart-canvas"></div>
 			</li>
 		</ul>

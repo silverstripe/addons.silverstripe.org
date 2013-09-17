@@ -50,31 +50,35 @@ class HomeController extends SiteController {
 			->limit($limit);
 	}
 
-	public function ChartData(){
-		$chartData = array ();
+	public function ChartData() {
+		$chartData = array();
 		$list = ArrayList::create(array());
 
 		$sqlQuery = new SQLQuery();
 		$sqlQuery->setFrom('Addon');
 		$sqlQuery->setSelect('Created');
 		$sqlQuery->selectField('COUNT(*)', 'CountInOneDay');
-		$sqlQuery->addWhere('Created >= DATE_SUB(NOW(), INTERVAL 30 DAY)');
+		$sqlQuery->addWhere('"Created" >= DATE_SUB(NOW(), INTERVAL 30 DAY)');
 		$sqlQuery->addGroupBy('DATE(Created)');
 
 		$result = $sqlQuery->execute();
 
-		if(count($result)) foreach($result as $row) {
-  			$date = date('j M Y', strtotime($row['Created']));
-			if(!isset($chartData[$date])) {
-				$chartData[$date] = $row['CountInOneDay'];
-			}	
-		}
+		if(count($result)) {
+			foreach($result as $row) {
+				$date = date('j M Y', strtotime($row['Created']));
+				if(!isset($chartData[$date])) {
+					$chartData[$date] = $row['CountInOneDay'];
+				}	
+			}
+		} 
 
-		if(count($chartData)) foreach($chartData as $x => $y) {
-			$list->push(ArrayData::create(array(
-				'XValue' => $x,
-				'YValue' => $y
-			)));
+		if(count($chartData)) {
+			foreach($chartData as $x => $y) {
+				$list->push(ArrayData::create(array(
+					'XValue' => $x,
+					'YValue' => $y
+				)));
+			}
 		}
 		
 		return $list;
