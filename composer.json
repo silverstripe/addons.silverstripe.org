@@ -19,8 +19,7 @@
 	},
 	"require-dev": {
 		"phpunit/phpunit": "3.7.*",
-		"silverstripe/sqlite3": "*",
-		"silverstripe/behat-extension": "*"
+		"silverstripe/sqlite3": "*"
 	},
 	"minimum-stability": "dev"
 }
