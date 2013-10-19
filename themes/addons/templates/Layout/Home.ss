@@ -82,6 +82,7 @@ If you need to access the legacy extensions site, you can still visit <a href="h
 	</div>
 </div>
 
+<% cached List(Addon).Max(Created) %>
 <div class="row">
 	<div class="addons-box span12">
 		<h3>Statistics</h3>
@@ -95,3 +96,4 @@ If you need to access the legacy extensions site, you can still visit <a href="h
 		</ul>
 	</div>
 </div>
+<% end_cached %>
