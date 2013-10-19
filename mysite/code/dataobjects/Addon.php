@@ -136,4 +136,8 @@ class Addon extends DataObject {
 		$this->Keywords()->removeAll();
 		$this->CompatibleVersions()->removeAll();
 	}
+
+	public function getDateCreated() {
+		return date('Y-m-d', strtotime($this->Created));
+	}
 }

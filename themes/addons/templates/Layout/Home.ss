@@ -81,3 +81,17 @@ If you need to access the legacy extensions site, you can still visit <a href="h
 		</ul>
 	</div>
 </div>
+
+<div class="row">
+	<div class="addons-box span12">
+		<h3>Statistics</h3>
+		<ul>
+			<li>
+				<% loop ChartData %>
+					<div class="chart-data" data-x="$XValue" data-y="$YValue"></div>
+				<% end_loop %>
+				<div  id="chart-canvas"></div>
+			</li>
+		</ul>
+	</div>
+</div>
