@@ -52,6 +52,21 @@ class AddonVersion extends DataObject {
 		return str_replace('.x-dev', '.*@dev', $this->DisplayVersion());
 	}
 
+	/**
+	 * Fallback to SourceUrl with normalized github links.
+	 */
+	public function DisplayHomepage() {
+		if($this->Homepage) {
+			return $this->Homepage;
+		} else {
+			return str_replace(
+				array('git://github.com', 'git@github.com'),
+				'https://github.com',
+				$this->SourceUrl
+			);
+		}
+	}
+
 	public function getRequires() {
 		return $this->Links()->filter('Type', 'require');
 	}

@@ -31,10 +31,13 @@
 
 	<dl id="metadata">
 		<% with $MasterVersion %>
-			<% if $Homepage %>
-				<dt>Homepage:</dt>
-				<dd><a href="$Homepage" rel="nofollow">$Homepage</a></dd>
-			<% end_if %>
+			<dt>Homepage:</dt>
+			<dd>
+				<% if $DisplayHomepage %>
+				<a href="$DisplayHomepage" rel="nofollow">$DisplayHomepage</a>
+				<% end_if %>
+			</dd>
+			
 		<% end_with %>
 
 		<dt>Packagist:</dt>
