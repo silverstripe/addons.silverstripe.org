@@ -44,4 +44,8 @@ class SiteController extends Controller {
 		return 'link';
 	}
 
+	public function GATrackingCode() {
+		return defined('GA_TRACKING_CODE') ? GA_TRACKING_CODE : null;
+	}
+
 }
