@@ -720,12 +720,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silverstripe/silverstripe-framework.git",
-                "reference": "69c888a2ac7a1b80416d031d43ebc1763a2a1793"
+                "reference": "8d796cbea080ce01c72c1513b0dedbb1f3202a2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/silverstripe-framework/zipball/69c888a2ac7a1b80416d031d43ebc1763a2a1793",
-                "reference": "69c888a2ac7a1b80416d031d43ebc1763a2a1793",
+                "url": "https://api.github.com/repos/silverstripe/silverstripe-framework/zipball/8d796cbea080ce01c72c1513b0dedbb1f3202a2a",
+                "reference": "8d796cbea080ce01c72c1513b0dedbb1f3202a2a",
                 "shasum": ""
             },
             "require": {
@@ -758,7 +758,7 @@
                 "framework",
                 "silverstripe"
             ],
-            "time": "2013-10-18 09:06:32"
+            "time": "2013-12-12 21:39:13"
         },
         {
             "name": "silverstripe/multivaluefield",
