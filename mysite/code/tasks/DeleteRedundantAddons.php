@@ -8,12 +8,10 @@ class DeleteRedundantAddons extends BuildTask {
 
 	protected $description = 'Deletes packages removed from Packagist';
 
-	private $updater;
-
 	public function run($request) {
 		$dateOneWeekAgo  = date('Y-m-d', strtotime('-1 week'));
 
-		$addons = Addon::get()->filter('LastUpdated:LessThan' ,$dateOneWeekAgo);
+		$addons = Addon::get()->filter('LastUpdated:LessThan' , $dateOneWeekAgo);
 
 		foreach ($addons as $addon) {
 
