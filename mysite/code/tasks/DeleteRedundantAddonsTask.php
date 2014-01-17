@@ -14,19 +14,23 @@ class DeleteRedundantAddonsTask extends BuildTask {
 		$addons = Addon::get()->filter('LastUpdated:LessThan' , $dateOneWeekAgo);
 
 		foreach ($addons as $addon) {
+			try {
+				$addon->Keywords()->removeAll();
+				$addon->Screenshots()->removeAll();
+				$addon->CompatibleVersions()->removeAll();
 
-			$addon->Keywords()->removeAll();
-			$addon->Screenshots()->removeAll();
-			$addon->CompatibleVersions()->removeAll();
+				foreach ($addon->Versions() as $version) {
+					$version->Authors()->removeAll();
+					$version->Keywords()->removeAll();
+					$version->CompatibleVersions()->removeAll();
+					$version->delete();
+				}
 
-			foreach ($addon->Versions() as $version) {
-				$version->Authors()->removeAll();
-				$version->Keywords()->removeAll();
-				$version->CompatibleVersions()->removeAll();
-				$version->delete();
+				$addon->delete();
+			} catch(Elastica\Exception\NotFoundException $e) {
+				// no-op
 			}
-
-			$addon->delete();
+			
 		}
 	}
 
