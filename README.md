@@ -91,6 +91,8 @@ Tasks
  * `sake dev/tasks/BuildAddonsTask`: Manually build addons, downloading screenshots
    and a README for display through the website. There's no need to set up a cron job
    for this task if you're using the resque queue.
+ * `sake dev/tasks/DeleteRedundantAddonsTask`: Deletes addons which haven't been updated 
+   from packagist in a specified amount of time, which implies they're no longer available there.
 
 LESS Compilation
 ===========
