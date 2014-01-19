@@ -87,6 +87,15 @@
 		<% end_if %>
 	</dl>
 
+	<% if IsHostedOnGitHub %>
+		<div class="zip-download">
+			<p>We Recommend using <a href="http://getcomposer.org" target="_blank">Composer</a> to install Add-ons, but if you don't want to you can download a zipfile:</p>
+			<div class="download-button">
+				<a href="$GitHubZipDownloadLink" class="btn btn-primary"><span class="icon-download-alt"></span><strong>Download zip</strong></a>
+			</div>		
+		</div>
+	<% end_if %>
+
 	<hr>
 
 	<% if $Readme %>

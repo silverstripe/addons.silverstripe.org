@@ -140,4 +140,27 @@ class Addon extends DataObject {
 	public function getDateCreated() {
 		return date('Y-m-d', strtotime($this->Created));
 	}
+
+	public function IsHostedOnGitHub() {
+		return strpos($this->Repository, 'github');
+	}
+
+	public function GitHubZipDownloadLink() {
+		$downloadLink = '';
+	
+		if($this->IsHostedOnGitHub()) {
+
+			if(strpos($this->Repository, '.git')) {
+				$repositoryLink = str_replace('git@github.com:', '', $this->Repository);
+				$repositoryLink = str_replace('.git', '', $repositoryLink);
+				
+				$repositoryLink = 'https://github.com/' . $repositoryLink ;
+				$downloadLink = $repositoryLink . '/archive/master.zip';
+			} else {
+				$downloadLink = $this->Repository . '/archive/master.zip';
+			}
+		}
+
+		return $downloadLink;
+	}
 }
