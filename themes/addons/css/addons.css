@@ -5868,6 +5868,37 @@ dl dd {
 .accordion .accordion-separator .accordion-heading {
   padding: 8px 15px;
 }
+.add-ons h3 {
+  font-weight: 300;
+}
+.add-ons h3 i {
+  padding-right: 12px;
+}
+.table-addons {
+  margin-top: 16px;
+}
+.addons-list-type {
+  overflow: hidden;
+  clear: both;
+}
+.addons-list-type a {
+  dispaly: block;
+  float: right;
+  width: 20px;
+  margin-right: 15px;
+}
+.addons-list-type a:hover {
+  text-decoration: none;
+  color: #dedede;
+}
+.addons-list-type a.current {
+  color: #dedede;
+}
+.addons-list-type i {
+  width: 20px;
+  height: 20px;
+  font-size: 1.4em;
+}
 .addons-box {
   margin-top: 16px;
 }
@@ -5918,6 +5949,44 @@ dl dd {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.addons-box .addons-box-holder {
+  border: 2px solid #eeeeee;
+  border-top-width: 0;
+  margin: 0;
+  border-top: 1px solid #eeeeee;
+  padding: 8px;
+  overflow: hidden;
+}
+.addons-box .addons-box-holder .placeholder {
+  float: left;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border: 1px solid #eeeeee;
+  margin-right: 10px;
+  background: url(../images/logo-placeholder.png) top left no-repeat;
+  text-align: center;
+}
+.addons-box .addons-box-holder .placeholder.img {
+  background: none;
+  border: 0;
+}
+.addons-box .addons-box-holder .version {
+  float: left;
+  width: 37%;
+  color: #777;
+}
+.addons-box .addons-box-holder .meta {
+  float: right;
+  width: 25%;
+  text-align: right;
+  margin-bottom: 1px;
+}
+.addons-box .addons-box-holder .description {
+  display: block;
+  clear: right;
+  margin: 35px 0 0 162px;
 }
 .btn.btn-plain {
   background: none;

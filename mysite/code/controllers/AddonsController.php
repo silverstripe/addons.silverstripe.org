@@ -73,6 +73,15 @@ class AddonsController extends SiteController {
 		return Controller::join_links(Director::baseURL(), 'add-ons');
 	}
 
+	public function ListView() {
+		$view = $this->request->getVar('view');
+		if($view) {
+			return $view;
+		} else {
+			return 'list';
+		}
+	}
+
 	public function Addons() {
 		$list = Addon::get();
 
@@ -81,6 +90,11 @@ class AddonsController extends SiteController {
 		$compat = $this->request->getVar('compatibility');
 		$tags = $this->request->getVar('tags');
 		$sort = $this->request->getVar('sort');
+		$view = $this->request->getVar('view');
+
+		if (!$view) {
+			$view = 'list';
+		}
 
 		if (!in_array($sort, array('name', 'downloads', 'newest'))) {
 			$sort = null;
@@ -138,7 +152,7 @@ class AddonsController extends SiteController {
 		}
 
 		$list = new PaginatedList($list, $this->request);
-		$list->setPageLength(15);
+		$list->setPageLength(16);
 
 		return $list;
 	}
