@@ -3408,17 +3408,17 @@ input[type="button"].btn-block {
 .btn-primary {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #1a8ceb;
-  background-image: -moz-linear-gradient(top, #1aa8eb, #1a63eb);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#1aa8eb), to(#1a63eb));
-  background-image: -webkit-linear-gradient(top, #1aa8eb, #1a63eb);
-  background-image: -o-linear-gradient(top, #1aa8eb, #1a63eb);
-  background-image: linear-gradient(to bottom, #1aa8eb, #1a63eb);
+  background-color: #00de93;
+  background-image: -moz-linear-gradient(top, #00dea1, #00de93);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#00dea1), to(#00de93));
+  background-image: -webkit-linear-gradient(top, #00dea1, #00de93);
+  background-image: -o-linear-gradient(top, #00dea1, #00de93);
+  background-image: linear-gradient(to bottom, #00dea1, #00de93);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1aa8eb', endColorstr='#ff1a63eb', GradientType=0);
-  border-color: #1a63eb #1a63eb #0f45aa;
+  border-color: #00de93 #00de93 #0f45aa;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  *background-color: #1a63eb;
+  *background-color: #00de93;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
 
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
@@ -3430,7 +3430,7 @@ input[type="button"].btn-block {
 .btn-primary.disabled,
 .btn-primary[disabled] {
   color: #ffffff;
-  background-color: #1a63eb;
+  background-color: #00de93;
   *background-color: #1358d8;
 }
 .btn-primary:active,
@@ -6193,4 +6193,13 @@ body {
 }
 #home-search {
   margin-top: 16px;
+}
+div.zip-download p{
+  font-weight: bold;
+}
+div.zip-download div.download-button {
+  margin-left: 10px;
+}
+div.zip-download div.download-button a strong{
+  margin-left: 10px;
 }
