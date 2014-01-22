@@ -7,31 +7,50 @@ class SiteController extends Controller {
 	public function Menu() {
 		$menu = new ArrayList();
 
-		$controllers = array(
-			'HomeController',
-			'AddonsController',
-			'VendorsController',
-			'AuthorsController',
-			'TagsController',
-			'SubmitAddonController',
+		$menuEntries = array(
+			array('controller' => 'HomeController'),
+			array('controller' => 'AddonsController'),
+			array(
+				'link' => Controller::join_links(
+					singleton('AddonsController')->Link(),
+					'?type=theme&view=expanded'
+				),
+				'title' => 'Themes',
+			),
+			array('controller' => 'VendorsController'),
+			array('controller' => 'AuthorsController'),
+			array('controller' => 'TagsController'),
+			array('controller' => 'SubmitAddonController'),
 		);
 
-		foreach ($controllers as $controller) {
-			$inst = singleton($controller);
-			$active = false;
+		foreach ($menuEntries as $menuEntry) {
+			if(isset($menuEntry['controller'])) {
+				$inst = singleton($menuEntry['controller']);
+				$active = false;
 
-			foreach (self::$controller_stack as $candidate) {
-				if ($candidate instanceof $controller) {
-					$active = true;
+				foreach (self::$controller_stack as $candidate) {
+					$active = (
+						$candidate instanceof $menuEntry['controller']
+						&& $this->request->getVar('type') != 'theme'
+					);
 				}
-			}
 
-			$menu->push(new ArrayData(array(
-				'Title' => $inst->Title(),
-				'Link' => $inst->Link(),
-				'Active' => $active,
-				'MenuItemType' => $inst->MenuItemType()
-			)));
+				$menu->push(new ArrayData(array(
+					'Title' => $inst->Title(),
+					'Link' => $inst->Link(),
+					'Active' => $active,
+					'MenuItemType' => $inst->MenuItemType()
+				)));	
+			} else {
+				$active = ($this->request->getVar('type') == 'theme');
+				$menu->push(new ArrayData(array(
+					'Title' => $menuEntry['title'],
+					'Link' => $menuEntry['link'],
+					'Active' => $active,
+					'MenuItemType' => 'link',
+				)));
+			}
+			
 		}
 
 		return $menu;
