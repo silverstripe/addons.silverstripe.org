@@ -116,10 +116,13 @@ Deployment
 ============
 
 Deployment is handled through [Capistrano](https://github.com/capistrano/capistrano).
+Currently we only support Capistrano 2.x.
 
 Installation:
 
-	gem install capistrano capistrano-ext railsless-deploy
+	sudo gem install capistrano -v 2.15.5
+  sudo gem install capistrano-multiconfig -v 0.0.4
+  sudo gem install railsless-deploy
 
 Usage:
 
