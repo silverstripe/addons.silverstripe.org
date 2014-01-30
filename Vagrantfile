@@ -6,6 +6,7 @@ end
 
 Vagrant.configure("2") do |config|
   config.vm.box = "squeeze"
+  config.vm.box_url = "http://tools.silverstripe.com/vagrant/squeeze.box"
   config.vm.synced_folder ".", "/sites/addons/www/", :owner=>"www-data",:group=>"www-data"
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = ""
