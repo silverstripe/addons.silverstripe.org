@@ -43,8 +43,8 @@
 <% end_with %>
 <hr>
 <div class="addons-list-type">
-	<a href="{$Link}&view=expanded"<% if ListView = 'expanded' %> class="current"<% end_if %>><i class="icon-th-large"></i></a>
-	<a href="{$Link}&view=list"<% if ListView = 'list' %> class="current"<% end_if %>><i class="icon-th-list"></i></a>
+	<a href="$LinkWithSearch('view=expanded')"<% if ListView = 'expanded' %> class="current"<% end_if %>><i class="icon-th-large"></i></a>
+	<a href="$LinkWithSearch('view=list')"<% if ListView = 'list' %> class="current"<% end_if %>><i class="icon-th-list"></i></a>
 </div>
 <% if $Addons %>
 	<% if ListView = 'expanded' %>

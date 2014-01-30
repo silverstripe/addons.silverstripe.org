@@ -67,4 +67,12 @@ class SiteController extends Controller {
 		return defined('GA_TRACKING_CODE') ? GA_TRACKING_CODE : null;
 	}
 
+	public function LinkWithSearch($extraParamStr = '') {
+		$params = array_diff_key($this->request->getVars(), array('url' => null));
+		parse_str($extraParamStr, $extraParams);
+		$params = array_merge($params, (array)$extraParams);
+
+		return Controller::join_links($this->Link(), '?' . http_build_query($params));
+	}
+
 }
