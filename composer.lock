@@ -720,12 +720,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silverstripe/silverstripe-framework.git",
-                "reference": "8d796cbea080ce01c72c1513b0dedbb1f3202a2a"
+                "reference": "587c489d0f0350f1c70e18185b5545230bec96ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/silverstripe-framework/zipball/8d796cbea080ce01c72c1513b0dedbb1f3202a2a",
-                "reference": "8d796cbea080ce01c72c1513b0dedbb1f3202a2a",
+                "url": "https://api.github.com/repos/silverstripe/silverstripe-framework/zipball/587c489d0f0350f1c70e18185b5545230bec96ee",
+                "reference": "587c489d0f0350f1c70e18185b5545230bec96ee",
                 "shasum": ""
             },
             "require": {
@@ -758,20 +758,20 @@
                 "framework",
                 "silverstripe"
             ],
-            "time": "2013-12-12 21:39:13"
+            "time": "2014-01-30 00:59:29"
         },
         {
             "name": "silverstripe/multivaluefield",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/nyeholt/silverstripe-multivaluefield.git",
-                "reference": "f3accee1b7040954b170aeb704de27cd062033c9"
+                "url": "https://github.com/silverstripe-australia/silverstripe-multivaluefield.git",
+                "reference": "c5977306e0ee6de3d5e68cebef6077083850c093"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nyeholt/silverstripe-multivaluefield/zipball/f3accee1b7040954b170aeb704de27cd062033c9",
-                "reference": "f3accee1b7040954b170aeb704de27cd062033c9",
+                "url": "https://api.github.com/repos/silverstripe-australia/silverstripe-multivaluefield/zipball/c5977306e0ee6de3d5e68cebef6077083850c093",
+                "reference": "c5977306e0ee6de3d5e68cebef6077083850c093",
                 "shasum": ""
             },
             "require": {
@@ -794,7 +794,7 @@
                 "formfield",
                 "silverstripe"
             ],
-            "time": "2013-09-23 01:35:52"
+            "time": "2014-01-24 01:37:01"
         },
         {
             "name": "stojg/silverstripe-resque",
