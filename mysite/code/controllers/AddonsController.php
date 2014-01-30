@@ -73,6 +73,11 @@ class AddonsController extends SiteController {
 		return Controller::join_links(Director::baseURL(), 'add-ons');
 	}
 
+	function LinkWithSearch() {
+		$params = array_diff_key(array('url' => null, 'action_doSearch' => null), $this->request->getVars());
+		return Controller::join_links($this->Link(), '?' . http_build_query($params));
+	}
+
 	public function ListView() {
 		$view = $this->request->getVar('view');
 		if($view) {
