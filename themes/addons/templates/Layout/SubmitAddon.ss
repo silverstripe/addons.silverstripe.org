@@ -16,6 +16,11 @@
 		doesn't interact directly with Composer, store module metadata, or provide module downloads.
 	</p>
 
+	<p>
+		If you want to learn about creating modules with SilverStripe, read our 
+		["Module Development"](http://doc.silverstripe.org/framework/en/topics/module-development) guide.
+	</p>
+
 	<h3>Setup</h3>
 	<p>
 		First of all, your project needs to be in version control. Packagist supports Git, Subversion and Mercurial.
