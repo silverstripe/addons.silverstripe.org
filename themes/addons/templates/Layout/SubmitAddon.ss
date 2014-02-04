@@ -18,7 +18,7 @@
 
 	<p>
 		If you want to learn about creating modules with SilverStripe, read our 
-		["Module Development"](http://doc.silverstripe.org/framework/en/topics/module-development) guide.
+		<a href="http://doc.silverstripe.org/framework/en/topics/module-development">"Module Development"</a> guide.
 	</p>
 
 	<h3>Setup</h3>
