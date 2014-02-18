@@ -15,14 +15,16 @@ use SilverStripe\Elastica\ResultList;
 class AddonsController extends SiteController {
 
 	public static $url_handlers = array(
+		'rss' => 'rss',
 		'$Vendor!/$Name!' => 'addon',
-		'$Vendor!' => 'vendor'
+		'$Vendor!' => 'vendor',
 	);
 
 	public static $allowed_actions = array(
 		'index',
 		'addon',
-		'vendor'
+		'vendor',
+		'rss',
 	);
 
 	public static $dependencies = array(
@@ -193,6 +195,15 @@ class AddonsController extends SiteController {
 		return $form
 			->setFormMethod('GET')
 			->setFormAction($this->Link());
+	}
+
+	public function rss($request, $limit = 10) {
+		$addons = Addon::get()
+			->sort('Released', 'DESC')
+			->limit($limit);
+
+		$rss = new RSSFeed($addons, $this->Link(), "All addons");
+    	return $rss->outputToBrowser();
 	}
 
 }
