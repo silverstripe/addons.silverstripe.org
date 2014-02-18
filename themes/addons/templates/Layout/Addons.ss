@@ -1,4 +1,5 @@
 <div class="page-header">
+	<a class="pull-right" href="rss"><img src="themes/addons/images/feed-icon-14x14.png" alt="RSS Feed" /></a>
 	<h1>Modules and Themes</h1>
 </div>
 
