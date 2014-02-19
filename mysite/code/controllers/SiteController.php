@@ -5,7 +5,7 @@
 class SiteController extends Controller {
 
 	public function init() {
-	    RSSFeed::linkToFeed("add-ons/rss", "new module release");    
+	    RSSFeed::linkToFeed("add-ons/rss", "New modules on addons.silverstripe.org");    
 	    parent::init();
 	}
 
