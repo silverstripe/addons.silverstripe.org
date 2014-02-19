@@ -86,6 +86,10 @@ class Addon extends DataObject {
 		);
 	}
 
+	public function DescriptionText() {
+		return $this->Description;
+	}
+
 	public function PackagistUrl() {
 		return "https://packagist.org/packages/$this->Name";
 	}
