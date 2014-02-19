@@ -90,6 +90,10 @@ class Addon extends DataObject {
 		return $this->Description;
 	}
 
+	public function RSSTitle() {
+		return sprintf('New module release: %s', $this->Name);
+	}
+
 	public function PackagistUrl() {
 		return "https://packagist.org/packages/$this->Name";
 	}

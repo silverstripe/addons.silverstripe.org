@@ -202,7 +202,14 @@ class AddonsController extends SiteController {
 			->sort('Released', 'DESC')
 			->limit($limit);
 
-		$rss = new RSSFeed($addons, $this->Link(), "All addons");
+		$rss = new RSSFeed(
+			$addons, 
+			$this->Link(), 
+			"Newest addons on addons.silverstripe.org",
+			null,
+			'RSSTitle'
+		);
+
     	return $rss->outputToBrowser();
 	}
 
