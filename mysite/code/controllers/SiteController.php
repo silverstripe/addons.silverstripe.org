@@ -4,6 +4,11 @@
  */
 class SiteController extends Controller {
 
+	public function init() {
+	    RSSFeed::linkToFeed("add-ons/rss", "New modules on addons.silverstripe.org");    
+	    parent::init();
+	}
+
 	public function Menu() {
 		$menu = new ArrayList();
 

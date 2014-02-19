@@ -36,7 +36,10 @@ If you need to access the legacy extensions site, you can still visit <a href="h
 	</div>
 
 	<div class="addons-box span6">
-		<h3><a href="/add-ons?sort=newest">Newest Add-ons</a></h3>
+		<h3>
+			<a href="/add-ons?sort=newest">Newest Add-ons</a>
+			<a class="pull-right" href="/add-ons/rss"><img src="themes/addons/images/feed-icon-14x14.png" alt="RSS Feed" /></a>
+		</h3>
 		<ol>
 			<% loop $NewestAddons(5) %>
 				<li>
