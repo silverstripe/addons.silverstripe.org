@@ -1,2 +1,8 @@
 SSViewer:
   theme: addons
+GlobalNav:
+  hostname: 'http://ssorg-another.test.silverstripe.com/'
+  use_localhost: false
+SiteController:
+  extensions:
+    - GlobalNavExtension

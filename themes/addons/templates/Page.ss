@@ -7,15 +7,20 @@
 		$MetaTags(false)
 		
 		<% require themedCSS("addons") %>
-		<% require css("//silverstripe.org/toolbar/css/toolbar.css") %>
 		<% require javascript("//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js") %>
 		<% require javascript("themes/addons/bootstrap/js/bootstrap.min.js") %>
 		<% require javascript("themes/addons/javascript/addons.js") %>
-		<% require javascript("//silverstripe.org/toolbar/javascript/toolbar.js?site=addons&amp;searchShow=true") %>
 		<% require javascript("//www.google.com/jsapi") %>
 		<% require javascript("themes/addons/javascript/chart.js") %>
+		<script type="text/javascript" src="//use.typekit.net/emt4dhq.js"></script>
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 	</head>
-	<body>
+	<body class="theme-theme1">
+		<header data-0="background-position: 50% 50%;" data-544="background-position: 50% -30%;">
+			<div class="global-nav header-mask">
+				$GlobalNav
+			</div>
+		</header>
 		<div id="header" class="navbar navbar-static-top">
 			<div class="navbar-inner">
 				<div class="container">

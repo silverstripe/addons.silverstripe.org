@@ -2,8 +2,15 @@
 	"name": "extensions.silverstripe.org",
 	"description": "The SilverStripe extensions listing site",
 	"repositories": [
-		{"url": "https://github.com/chillu/silverstripe-elastica.git", "type": "vcs"}
-	],
+        {
+            "type": "vcs",
+            "url": "https://github.com/mandrew/silverstripe-globaltoolbar.git"
+        },
+        {	
+        	"url": "https://github.com/chillu/silverstripe-elastica.git",
+        	"type": "vcs"
+        }
+    ],	
 	"require": {
 		"composer/installers": "*",
 		"ajshort/silverstripe-elastica": "dev-pulls/resultlist-missing-objs",
@@ -15,7 +22,8 @@
 		"silverstripe/framework": "3.1.*",
 		"silverstripe/multivaluefield": "*",
 		"knplabs/packagist-api": "*",
-		"stojg/silverstripe-resque": "*"
+		"stojg/silverstripe-resque": "*",
+		"silverstripe/toolbar": "*"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "3.7.*",
