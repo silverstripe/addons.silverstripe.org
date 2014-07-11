@@ -4,6 +4,8 @@ global $project;
 $project = 'mysite';
 
 global $database;
-$database = 'addons';
+if (!defined('SS_DATABASE_NAME')) {
+	$database = 'addons';
+}
 
 require_once 'conf/ConfigureFromEnv.php';
