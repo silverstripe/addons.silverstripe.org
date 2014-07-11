@@ -1,11 +1,12 @@
 .idea
 .project
 .settings
-elastica
-framework
-multivaluefield
-sqlite3
-vendor
+/elastica/
+/framework/
+/multivaluefield/
+/sqlite3/
+/vendor/
 .vagrant
 .vagrant*
 node_modules/
+/silverstripe-resque/
