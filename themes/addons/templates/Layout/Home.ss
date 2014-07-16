@@ -1,13 +1,12 @@
 <div class="row">
 	<div class="span12">
-	<p>
-		Welcome to the new <a href="http://silverstripe.org">SilverStripe</a> add-on repository, based on the <a href="http://getcomposer.org">Composer</a> packaging system for PHP.  Use this site to find modules and themes to add to your SilverStripe site.  For best results, we recommend <a href="http://doc.silverstripe.org/framework/en/trunk/installation/composer">managing your project with Composer</a>.
-		If you need to access the legacy extensions site, you can still visit <a href="http://silverstripe.org/modules">modules</a>, <a href="http://silverstripe.org/themes">themes</a>, or <a href="http://silverstripe.org/widgets">widgets</a> for now, but please note that we will shut this down in the future.
-	</p>
+	Welcome to the new <a href="http://silverstripe.org">SilverStripe</a> add-on repository, based on the <a href="http://getcomposer.org">Composer</a> packaging system for PHP.  Use this site to find modules and themes to add to your SilverStripe site.  For best results, we recommend <a href="http://doc.silverstripe.org/framework/en/trunk/installation/composer">managing your project with Composer</a>.
+
+If you need to access the legacy extensions site, you can still visit <a href="http://silverstripe.org/modules">modules</a>, <a href="http://silverstripe.org/themes">themes</a>, or <a href="http://silverstripe.org/widgets">widgets</a> for now, but please note that we will shut this down in the future.
 	</div>
 </div>
 
-<%-- <form id="home-search" action="/add-ons" method="get">
+<form id="home-search" action="/add-ons" method="get">
 	<div class="addons-search-row">
 		<label for="addons-search">Search for</label>
 		<input id="addons-search" type="text" name="search" class="input-block-level">
@@ -16,11 +15,7 @@
 			<i class="icon-search"></i> Search Add-ons
 		</button>
 	</div>
-</form> --%>
-
-<div class="row">
-	<p class="alert alert-block alert-info">Search is currently offline, sorry!</p>
-</div>
+</form>
 
 <hr>
 
