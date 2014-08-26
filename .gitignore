@@ -9,3 +9,5 @@ vendor
 .vagrant
 .vagrant*
 node_modules/
+toolbar/
+silverstripe-resque/

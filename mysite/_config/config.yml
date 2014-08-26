@@ -3,6 +3,3 @@ SSViewer:
 GlobalNav:
   hostname: 'http://ssorg-another.test.silverstripe.com/'
   use_localhost: false
-SiteController:
-  extensions:
-    - GlobalNavExtension
