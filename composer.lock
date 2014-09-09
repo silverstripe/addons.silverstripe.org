@@ -844,12 +844,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silverstripe/silverstripe-globaltoolbar.git",
-                "reference": "2c265d9b555a463ee35b08d1ea68cc024f0019a4"
+                "reference": "09f82e05b0238e8f14ddc48da4824e90b0b05d59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/silverstripe-globaltoolbar/zipball/2c265d9b555a463ee35b08d1ea68cc024f0019a4",
-                "reference": "2c265d9b555a463ee35b08d1ea68cc024f0019a4",
+                "url": "https://api.github.com/repos/silverstripe/silverstripe-globaltoolbar/zipball/09f82e05b0238e8f14ddc48da4824e90b0b05d59",
+                "reference": "09f82e05b0238e8f14ddc48da4824e90b0b05d59",
                 "shasum": ""
             },
             "require": {
@@ -880,7 +880,7 @@
                 "source": "https://github.com/silverstripe/silverstripe-globaltoolbar/tree/master",
                 "issues": "https://github.com/silverstripe/silverstripe-globaltoolbar/issues"
             },
-            "time": "2014-09-09 05:31:25"
+            "time": "2014-09-09 05:39:42"
         },
         {
             "name": "stojg/silverstripe-resque",
