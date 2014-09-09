@@ -14,6 +14,7 @@
 		<% require javascript("themes/addons/javascript/chart.js") %>
 		<script type="text/javascript" src="//use.typekit.net/emt4dhq.js"></script>
 		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+		<script>window.GLOBAL_NAV_SECONDARY_ID = 16;</script>
 	</head>
 	<body class="theme-theme1">
 		<header data-0="background-position: 50% 50%;" data-544="background-position: 50% -30%;">
