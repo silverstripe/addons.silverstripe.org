@@ -12,6 +12,7 @@
 		<% require javascript("themes/addons/javascript/addons.js") %>
 		<% require javascript("//www.google.com/jsapi") %>
 		<% require javascript("themes/addons/javascript/chart.js") %>
+		<link rel="stylesheet" href="themes/addons/css/ionicons.min.css" />
 		<script type="text/javascript" src="//use.typekit.net/emt4dhq.js"></script>
 		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 		<script>window.GLOBAL_NAV_SECONDARY_ID = 16;</script>
