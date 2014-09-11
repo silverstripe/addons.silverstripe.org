@@ -4,6 +4,6 @@ After: 'toolbar/*'
 SSViewer:
   theme: addons
 GlobalNav:
-  hostname: 'http://ssorg-another.test.silverstripe.com/'
+  hostname: 'http://ssorg.dev/'
   css_path: '/themes/ssv3/css/toolbar.css'
   use_localhost: false
