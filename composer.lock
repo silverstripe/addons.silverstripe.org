@@ -173,12 +173,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "74fb0a7a1a23696d9c8cc2fba5903f6711cdd067"
+                "reference": "5914f4a3e90a9176c93e5dd0c8ad2b3679fda6ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/74fb0a7a1a23696d9c8cc2fba5903f6711cdd067",
-                "reference": "74fb0a7a1a23696d9c8cc2fba5903f6711cdd067",
+                "url": "https://api.github.com/repos/composer/installers/zipball/5914f4a3e90a9176c93e5dd0c8ad2b3679fda6ed",
+                "reference": "5914f4a3e90a9176c93e5dd0c8ad2b3679fda6ed",
                 "shasum": ""
             },
             "replace": {
@@ -220,6 +220,7 @@
                 "Hurad",
                 "MODX Evo",
                 "OXID",
+                "Thelia",
                 "WolfCMS",
                 "agl",
                 "annotatecms",
@@ -232,6 +233,7 @@
                 "drupal",
                 "elgg",
                 "fuelphp",
+                "grav",
                 "installer",
                 "joomla",
                 "kohana",
@@ -255,7 +257,7 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2014-08-18 20:00:12"
+            "time": "2014-09-16 22:11:26"
         },
         {
             "name": "dflydev/markdown",
@@ -596,12 +598,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/packagist-api.git",
-                "reference": "d29b260c9b9ccf536b0f7f876c879650c0c5d8e5"
+                "reference": "eb280cdae3e8bed1a2d3989548d30ec270b24fd3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/packagist-api/zipball/d29b260c9b9ccf536b0f7f876c879650c0c5d8e5",
-                "reference": "d29b260c9b9ccf536b0f7f876c879650c0c5d8e5",
+                "url": "https://api.github.com/repos/KnpLabs/packagist-api/zipball/eb280cdae3e8bed1a2d3989548d30ec270b24fd3",
+                "reference": "eb280cdae3e8bed1a2d3989548d30ec270b24fd3",
                 "shasum": ""
             },
             "require": {
@@ -611,7 +613,7 @@
             },
             "require-dev": {
                 "phpspec/php-diff": "*@dev",
-                "phpspec/phpspec2": "1.0.*@dev"
+                "phpspec/phpspec": "~2.0"
             },
             "type": "library",
             "extra": {
@@ -641,7 +643,7 @@
                 "composer",
                 "packagist"
             ],
-            "time": "2014-06-04 09:18:30"
+            "time": "2014-09-16 12:26:13"
         },
         {
             "name": "ruflin/elastica",
@@ -649,12 +651,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ruflin/Elastica.git",
-                "reference": "6c548474a15b74f06540b1163dc12f9d7ddda088"
+                "reference": "686fbdb702e46ac9045eddfd63222bdaea112012"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ruflin/Elastica/zipball/6c548474a15b74f06540b1163dc12f9d7ddda088",
-                "reference": "6c548474a15b74f06540b1163dc12f9d7ddda088",
+                "url": "https://api.github.com/repos/ruflin/Elastica/zipball/686fbdb702e46ac9045eddfd63222bdaea112012",
+                "reference": "686fbdb702e46ac9045eddfd63222bdaea112012",
                 "shasum": ""
             },
             "require": {
@@ -700,7 +702,7 @@
                 "client",
                 "search"
             ],
-            "time": "2014-08-30 06:29:31"
+            "time": "2014-09-14 19:21:28"
         },
         {
             "name": "seld/jsonlint",
@@ -754,12 +756,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silverstripe/silverstripe-framework.git",
-                "reference": "f0ca37fdea0f1b7f67d383e9cda968c8115ea0f1"
+                "reference": "6610a6a8fb6dc3ec19dddc5515c65672f3126d90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/silverstripe-framework/zipball/f0ca37fdea0f1b7f67d383e9cda968c8115ea0f1",
-                "reference": "f0ca37fdea0f1b7f67d383e9cda968c8115ea0f1",
+                "url": "https://api.github.com/repos/silverstripe/silverstripe-framework/zipball/6610a6a8fb6dc3ec19dddc5515c65672f3126d90",
+                "reference": "6610a6a8fb6dc3ec19dddc5515c65672f3126d90",
                 "shasum": ""
             },
             "require": {
@@ -795,7 +797,7 @@
                 "framework",
                 "silverstripe"
             ],
-            "time": "2014-09-08 23:43:05"
+            "time": "2014-09-15 21:35:53"
         },
         {
             "name": "silverstripe/multivaluefield",
@@ -844,12 +846,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silverstripe/silverstripe-globaltoolbar.git",
-                "reference": "1b3174d30e68c5556db2e0ae3e810def55c39ded"
+                "reference": "7ebc6091e8b41926d430f66da3bc279ea6137a12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/silverstripe-globaltoolbar/zipball/1b3174d30e68c5556db2e0ae3e810def55c39ded",
-                "reference": "1b3174d30e68c5556db2e0ae3e810def55c39ded",
+                "url": "https://api.github.com/repos/silverstripe/silverstripe-globaltoolbar/zipball/7ebc6091e8b41926d430f66da3bc279ea6137a12",
+                "reference": "7ebc6091e8b41926d430f66da3bc279ea6137a12",
                 "shasum": ""
             },
             "require": {
@@ -880,7 +882,7 @@
                 "source": "https://github.com/silverstripe/silverstripe-globaltoolbar/tree/master",
                 "issues": "https://github.com/silverstripe/silverstripe-globaltoolbar/issues"
             },
-            "time": "2014-09-11 01:14:30"
+            "time": "2014-09-17 02:43:54"
         },
         {
             "name": "stojg/silverstripe-resque",
