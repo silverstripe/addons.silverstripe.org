@@ -6194,3 +6194,9 @@ body {
 #home-search {
   margin-top: 16px;
 }
+
+#navWrapper .gsc-input input.gsc-input {
+  outline: none;
+  line-height: inherit;
+  height: auto;
+}
