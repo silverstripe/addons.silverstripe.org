@@ -111,22 +111,3 @@ To compile, run:
 To watch for file changes, run:
 
   grunt watch
-
-Deployment
-============
-
-Deployment is handled through [Capistrano](https://github.com/capistrano/capistrano).
-Currently we only support Capistrano 2.x.
-
-Installation:
-
-	sudo gem install capistrano -v 2.15.5
-  sudo gem install capistrano-multiconfig -v 0.0.4
-  sudo gem install railsless-deploy
-
-Usage:
-
-	cap staging deploy:setup
-	cap staging deploy:update
-	cap production deploy:setup
-	cap production deploy:update
