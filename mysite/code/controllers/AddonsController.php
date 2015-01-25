@@ -71,8 +71,12 @@ class AddonsController extends SiteController {
 		return 'Add-ons';
 	}
 
-	public function Link() {
-		return Controller::join_links(Director::baseURL(), 'add-ons');
+	public function Link($slug = null) {
+		if($slug){
+			return Controller::join_links(Director::baseURL(), 'add-ons', $slug);
+		} else {
+			return Controller::join_links(Director::baseURL(), 'add-ons');
+		}
 	}
 
 	public function ListView() {
