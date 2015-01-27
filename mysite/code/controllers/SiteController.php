@@ -13,7 +13,7 @@ class SiteController extends Controller {
 		$menu = new ArrayList();
 
 		$menuEntries = array(
-			array('controller' => 'HomeController'),
+			//array('controller' => 'HomeController'),
 			array('controller' => 'AddonsController'),
 			array(
 				'link' => Controller::join_links(

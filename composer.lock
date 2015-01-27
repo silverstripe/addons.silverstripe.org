@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f012aab9434d65f76acd5b3e348536e2",
+    "hash": "bc27eb36353a0ebc3f5d62a7736772d7",
     "packages": [
         {
             "name": "ajshort/silverstripe-elastica",
@@ -930,6 +930,50 @@
             "time": "2015-01-03 06:05:33"
         },
         {
+            "name": "silverstripe/toolbar",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/silverstripe/silverstripe-globaltoolbar.git",
+                "reference": "ebb6ac79792534577d975ee335782593c11e2d12"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/silverstripe/silverstripe-globaltoolbar/zipball/ebb6ac79792534577d975ee335782593c11e2d12",
+                "reference": "ebb6ac79792534577d975ee335782593c11e2d12",
+                "shasum": ""
+            },
+            "require": {
+                "unclecheese/display-logic": "1.1.*"
+            },
+            "type": "silverstripe-module",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ingo Schommer",
+                    "homepage": "http://chillu.com",
+                    "email": "ingo@silverstripe.com"
+                },
+                {
+                    "name": "Uncle Cheese",
+                    "homepage": "http://leftandmain.com",
+                    "email": "unclecheese@leftandmain.com"
+                }
+            ],
+            "description": "Navigation bar include showing SilverStripe community sites",
+            "homepage": "https://github.com/silverstripe/silverstripe-globaltoolbar/",
+            "keywords": [
+                "silverstripe"
+            ],
+            "support": {
+                "source": "https://github.com/silverstripe/silverstripe-globaltoolbar/tree/master",
+                "issues": "https://github.com/silverstripe/silverstripe-globaltoolbar/issues"
+            },
+            "time": "2015-01-14 01:48:59"
+        },
+        {
             "name": "stojg/silverstripe-resque",
             "version": "dev-master",
             "source": {
@@ -1174,6 +1218,50 @@
             "description": "Symfony Process Component",
             "homepage": "http://symfony.com",
             "time": "2015-01-25 04:39:35"
+        },
+        {
+            "name": "unclecheese/display-logic",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/unclecheese/silverstripe-display-logic.git",
+                "reference": "ddbaa4d74901eca83a91ab5c091d78b9167ec3d9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/unclecheese/silverstripe-display-logic/zipball/ddbaa4d74901eca83a91ab5c091d78b9167ec3d9",
+                "reference": "ddbaa4d74901eca83a91ab5c091d78b9167ec3d9",
+                "shasum": ""
+            },
+            "require": {
+                "silverstripe/framework": "3.*"
+            },
+            "replace": {
+                "silverstripe/display-logic": "*"
+            },
+            "type": "silverstripe-module",
+            "extra": {
+                "installer-name": "display_logic"
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Uncle Cheese",
+                    "email": "unclecheese@leftandmain.com"
+                }
+            ],
+            "description": "Allows assignment of conditions for display and hide of specific form fields based on client side behavior.",
+            "keywords": [
+                "Forms",
+                "cms",
+                "display",
+                "logic",
+                "silverstripe"
+            ],
+            "time": "2014-12-23 08:50:28"
         }
     ],
     "packages-dev": null,

@@ -2,8 +2,15 @@
 	"name": "extensions.silverstripe.org",
 	"description": "The SilverStripe extensions listing site",
 	"repositories": [
-		{"url": "https://github.com/chillu/silverstripe-elastica.git", "type": "vcs"}
-	],
+        {
+            "type": "vcs",
+            "url": "https://github.com/silverstripe/silverstripe-globaltoolbar.git"
+        },
+        {	
+        	"url": "https://github.com/chillu/silverstripe-elastica.git",
+        	"type": "vcs"
+        }
+    ],	
 	"require": {
 		"composer/installers": "*",
 		"ajshort/silverstripe-elastica": "dev-master#b74916afa308ca2ca878e1bdd36dfe1278c625f6",
@@ -13,6 +20,7 @@
 		"guzzle/guzzle": "3.2.*@stable",
 		"silverstripe/framework": "3.1.*@stable",
 		"silverstripe/multivaluefield": "*",
+		"silverstripe/toolbar": "*",
 		"knplabs/packagist-api": "1.*@stable",
 		"stojg/silverstripe-resque": "*",
 		"ruflin/elastica": "dev-master#f235765a7b2b088fb27510a75fe3472bb94188cf"
