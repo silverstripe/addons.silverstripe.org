@@ -39,8 +39,8 @@ Then run through the following shell script:
   vagrant box add squeeze http://tools.silverstripe.com/vagrant/squeeze.box
   sudo chown `whoami` /Users/`whoami`/.vagrant.d/insecure_private_key
 
-  # Install SilverStripe's Puppet Manifests
-  git clone git@gitorious.silverstripe.com:infrastructure/puppet.git puppet
+  # Install SilverStripe's Puppet Manifests (Private Repo)
+  git clone ssh://git@gitlab.silverstripe.com:2222/silverstripe-infrastructure/puppet-modules.git puppet
   (cd puppet && ./checkout)
 
   # Create VM (this will take a few minutes to create a new VM)
