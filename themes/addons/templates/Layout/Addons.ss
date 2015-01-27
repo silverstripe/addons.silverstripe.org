@@ -1,5 +1,5 @@
 <div class="page-header">
-	<h1>Modules and Themes <a class="pull-right" href="rss"><img src="themes/addons/images/feed-icon-28x28.png" width="20" alt="RSS Feed" /></a></h1>
+	<h1>Modules and Themes <a class="pull-right" href="$Link('rss')"><img src="themes/addons/images/feed-icon-28x28.png" width="20" alt="RSS Feed" /></a></h1>
 </div>
 
 <div class="add-ons">
@@ -112,4 +112,3 @@
 </div>
 
 	
-
