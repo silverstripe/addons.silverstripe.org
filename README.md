@@ -55,7 +55,7 @@ Dependencies
 Elastic Search
 --------------
 
-[Elastic search](www.elasticsearch.org) is used to provide add-on package indexing and searching. If a
+[Elastic search](http://www.elasticsearch.org) is used to provide add-on package indexing and searching. If a
 local installation of elastic search is used, the following configuration can be used
 in `mysite/_config/injector.yml`:
 
