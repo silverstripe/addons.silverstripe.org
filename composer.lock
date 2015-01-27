@@ -4,11 +4,11 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c98537176a4e982824f430273410094f",
+    "hash": "bc27eb36353a0ebc3f5d62a7736772d7",
     "packages": [
         {
             "name": "ajshort/silverstripe-elastica",
-            "version": "dev-pulls/resultlist-missing-objs",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/chillu/silverstripe-elastica.git",
@@ -16,7 +16,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/chillu/silverstripe-elastica/zipball/b74916afa308ca2ca878e1bdd36dfe1278c625f6",
+                "url": "https://api.github.com/repos/chillu/silverstripe-elastica/zipball/7c6466db783986b68021bf4d83dd1b9aec95b8a3",
                 "reference": "b74916afa308ca2ca878e1bdd36dfe1278c625f6",
                 "shasum": ""
             },
@@ -52,27 +52,40 @@
             ],
             "support": {
                 "issues": "http://github.com/ajshort/silverstripe-elastica/issues",
-                "source": "https://github.com/chillu/silverstripe-elastica/tree/pulls/resultlist-missing-objs"
+                "source": "https://github.com/chillu/silverstripe-elastica/tree/master"
             },
             "time": "2013-09-07 11:27:51"
         },
         {
             "name": "chrisboulton/php-resque",
-            "version": "1.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/chrisboulton/php-resque.git",
-                "reference": "0549d6c88a4aed934655b7c03b6153349d6c3ad0"
+                "reference": "c335bc35558e0683f95c3fd5dd11a5817c0a761f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/chrisboulton/php-resque/zipball/0549d6c88a4aed934655b7c03b6153349d6c3ad0",
-                "reference": "0549d6c88a4aed934655b7c03b6153349d6c3ad0",
+                "url": "https://api.github.com/repos/chrisboulton/php-resque/zipball/c335bc35558e0683f95c3fd5dd11a5817c0a761f",
+                "reference": "c335bc35558e0683f95c3fd5dd11a5817c0a761f",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "colinmollenhour/credis": "~1.2",
+                "ext-pcntl": "*",
+                "php": ">=5.3.0",
+                "psr/log": "1.0.0"
             },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "suggest": {
+                "ext-proctitle": "Allows php-resque to rename the title of UNIX processes to show the status of a worker.",
+                "ext-redis": "Native PHP extension for Redis connectivity. Credis will automatically utilize when available."
+            },
+            "bin": [
+                "bin/resque"
+            ],
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -97,7 +110,46 @@
                 "redis",
                 "resque"
             ],
-            "time": "2012-10-13 07:28:16"
+            "time": "2014-09-25 02:24:50"
+        },
+        {
+            "name": "colinmollenhour/credis",
+            "version": "1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/colinmollenhour/credis.git",
+                "reference": "7bd47b61fc3dad28aa881de45c71026256ad27cc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/colinmollenhour/credis/zipball/7bd47b61fc3dad28aa881de45c71026256ad27cc",
+                "reference": "7bd47b61fc3dad28aa881de45c71026256ad27cc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "Client.php",
+                    "Cluster.php",
+                    "Sentinel.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Colin Mollenhour",
+                    "email": "colin@mollenhour.com"
+                }
+            ],
+            "description": "Credis is a lightweight interface to the Redis key-value store which wraps the phpredis library when available for better performance.",
+            "homepage": "https://github.com/colinmollenhour/credis",
+            "time": "2014-11-13 18:40:25"
         },
         {
             "name": "composer/composer",
@@ -105,24 +157,24 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "2cb64c8a7254b748617baeff4316654bcf6bb551"
+                "reference": "825b4b9c63a29c586d005de8dbbcfdfeb86bbf6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/2cb64c8a7254b748617baeff4316654bcf6bb551",
-                "reference": "2cb64c8a7254b748617baeff4316654bcf6bb551",
+                "url": "https://api.github.com/repos/composer/composer/zipball/825b4b9c63a29c586d005de8dbbcfdfeb86bbf6f",
+                "reference": "825b4b9c63a29c586d005de8dbbcfdfeb86bbf6f",
                 "shasum": ""
             },
             "require": {
-                "justinrainbow/json-schema": "~1.1",
+                "justinrainbow/json-schema": "~1.3",
                 "php": ">=5.3.2",
-                "seld/jsonlint": "1.*",
+                "seld/jsonlint": "~1.0",
                 "symfony/console": "~2.3",
                 "symfony/finder": "~2.2",
                 "symfony/process": "~2.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "~3.7"
+                "phpunit/phpunit": "~4.0"
             },
             "suggest": {
                 "ext-openssl": "Enabling the openssl extension allows you to access https URLs for repositories and packages",
@@ -165,7 +217,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2014-09-18 15:58:10"
+            "time": "2015-01-20 16:39:06"
         },
         {
             "name": "composer/installers",
@@ -173,12 +225,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "1273cbb768f63b6436994df1b51724f8930505eb"
+                "reference": "2d91dc9ce37bbf876cd408d483270a07001d8c7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/1273cbb768f63b6436994df1b51724f8930505eb",
-                "reference": "1273cbb768f63b6436994df1b51724f8930505eb",
+                "url": "https://api.github.com/repos/composer/installers/zipball/2d91dc9ce37bbf876cd408d483270a07001d8c7d",
+                "reference": "2d91dc9ce37bbf876cd408d483270a07001d8c7d",
                 "shasum": ""
             },
             "replace": {
@@ -220,6 +272,7 @@
                 "Hurad",
                 "MODX Evo",
                 "OXID",
+                "SMF",
                 "Thelia",
                 "WolfCMS",
                 "agl",
@@ -230,6 +283,7 @@
                 "codeigniter",
                 "concrete5",
                 "croogo",
+                "dokuwiki",
                 "drupal",
                 "elgg",
                 "fuelphp",
@@ -257,20 +311,20 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2014-09-20 03:53:04"
+            "time": "2015-01-21 21:08:45"
         },
         {
             "name": "dflydev/markdown",
-            "version": "dev-master",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dflydev/dflydev-markdown.git",
-                "reference": "dee1f7a6b60776a94c10efa8340ccd486ec834b7"
+                "reference": "6baed9b50f29c980795b6656d43722aadb126f7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dflydev/dflydev-markdown/zipball/dee1f7a6b60776a94c10efa8340ccd486ec834b7",
-                "reference": "dee1f7a6b60776a94c10efa8340ccd486ec834b7",
+                "url": "https://api.github.com/repos/dflydev/dflydev-markdown/zipball/6baed9b50f29c980795b6656d43722aadb126f7e",
+                "reference": "6baed9b50f29c980795b6656d43722aadb126f7e",
                 "shasum": ""
             },
             "require": {
@@ -311,12 +365,13 @@
                     "homepage": "http://daringfireball.net"
                 }
             ],
-            "description": "PHP Markdown & Extra - DEPRECATED",
+            "description": "PHP Markdown & Extra",
             "homepage": "http://github.com/dflydev/dflydev-markdown",
             "keywords": [
                 "markdown"
             ],
-            "time": "2014-01-06 23:32:02"
+            "abandoned": "michelf/php-markdown",
+            "time": "2013-09-23 12:00:18"
         },
         {
             "name": "doctrine/inflector",
@@ -324,12 +379,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/inflector.git",
-                "reference": "64de2fe36d578c5d5f3807ac7984547bbba5f7c5"
+                "reference": "e5eaf8c7ded0877195b5d2848491e17b1c0a6c4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/inflector/zipball/64de2fe36d578c5d5f3807ac7984547bbba5f7c5",
-                "reference": "64de2fe36d578c5d5f3807ac7984547bbba5f7c5",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/e5eaf8c7ded0877195b5d2848491e17b1c0a6c4d",
+                "reference": "e5eaf8c7ded0877195b5d2848491e17b1c0a6c4d",
                 "shasum": ""
             },
             "require": {
@@ -355,17 +410,6 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
-                    "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/",
-                    "role": "Creator"
-                },
-                {
-                    "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com",
-                    "homepage": "http://www.instaclick.com"
-                },
-                {
                     "name": "Roman Borschel",
                     "email": "roman@code-factory.org"
                 },
@@ -374,10 +418,16 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
                     "name": "Johannes Schmitt",
-                    "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
-                    "role": "Developer of wrapped JMSSerializerBundle"
+                    "email": "schmittjoh@gmail.com"
                 }
             ],
             "description": "Common String Manipulations with regard to casing and singular/plural rules.",
@@ -388,7 +438,7 @@
                 "singularize",
                 "string"
             ],
-            "time": "2014-04-23 12:36:11"
+            "time": "2015-01-01 18:34:57"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -396,12 +446,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ezyang/htmlpurifier.git",
-                "reference": "v4.5.0"
+                "reference": "d516e2f8de435ea78cc6152abc425d3ff2c4d289"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/v4.5.0",
-                "reference": "v4.5.0",
+                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/d516e2f8de435ea78cc6152abc425d3ff2c4d289",
+                "reference": "d516e2f8de435ea78cc6152abc425d3ff2c4d289",
                 "shasum": ""
             },
             "require": {
@@ -424,7 +474,8 @@
                 {
                     "name": "Edward Z. Yang",
                     "email": "admin@htmlpurifier.org",
-                    "homepage": "http://ezyang.com"
+                    "homepage": "http://ezyang.com",
+                    "role": "Developer"
                 }
             ],
             "description": "Standards compliant HTML filter written in PHP",
@@ -440,12 +491,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "v3.2.0"
+                "reference": "3a3fa1c5af3ac29b5dcb216b708ee3c48b52325e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/v3.2.0",
-                "reference": "v3.2.0",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/3a3fa1c5af3ac29b5dcb216b708ee3c48b52325e",
+                "reference": "3a3fa1c5af3ac29b5dcb216b708ee3c48b52325e",
                 "shasum": ""
             },
             "require": {
@@ -594,7 +645,7 @@
         },
         {
             "name": "knplabs/packagist-api",
-            "version": "dev-master",
+            "version": "v1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/packagist-api.git",
@@ -646,6 +697,44 @@
             "time": "2014-09-17 13:49:46"
         },
         {
+            "name": "psr/log",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Psr\\Log\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for logging libraries",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
+            ],
+            "time": "2012-12-21 11:40:51"
+        },
+        {
             "name": "ruflin/elastica",
             "version": "dev-master",
             "source": {
@@ -655,35 +744,35 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ruflin/Elastica/zipball/f235765a7b2b088fb27510a75fe3472bb94188cf",
+                "url": "https://api.github.com/repos/ruflin/Elastica/zipball/222a99405e72ec051861a5524c7a8914a8c1e69b",
                 "reference": "f235765a7b2b088fb27510a75fe3472bb94188cf",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=5.4.0",
+                "psr/log": "~1.0"
             },
             "require-dev": {
+                "guzzlehttp/guzzle": "4.2.*",
                 "munkie/elasticsearch-thrift-php": "1.4.*",
-                "phpunit/phpunit": "4.1.*",
-                "psr/log": "~1.0",
-                "satooshi/php-coveralls": "dev-master"
+                "phpunit/phpunit": "4.1.*"
             },
             "suggest": {
-                "guzzlehttp/guzzle": "Allow using guzzle 4.x as the http transport (requires php 5.4)",
+                "egeloen/http-adapter": "Allow using httpadapter transport",
+                "guzzlehttp/guzzle": "Allow using guzzle 4.x as the http transport",
                 "monolog/monolog": "Logging request",
-                "munkie/elasticsearch-thrift-php": "Allow using thrift transport",
-                "psr/log": "for logging"
+                "munkie/elasticsearch-thrift-php": "Allow using thrift transport"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2.x-dev"
+                    "dev-master": "1.4.x-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Elastica": "lib/",
-                    "Elastica\\Test": "test/lib/"
+                "psr-4": {
+                    "Elastica\\": "lib/Elastica/",
+                    "Elastica\\Test\\": "test/lib/Elastica/Test/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -706,16 +795,16 @@
         },
         {
             "name": "seld/jsonlint",
-            "version": "1.3.0",
+            "version": "1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/jsonlint.git",
-                "reference": "a7bc2ec9520ad15382292591b617c43bdb1fec35"
+                "reference": "863ae85c6d3ef60ca49cb12bd051c4a0648c40c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/jsonlint/zipball/a7bc2ec9520ad15382292591b617c43bdb1fec35",
-                "reference": "a7bc2ec9520ad15382292591b617c43bdb1fec35",
+                "url": "https://api.github.com/repos/Seldaek/jsonlint/zipball/863ae85c6d3ef60ca49cb12bd051c4a0648c40c4",
+                "reference": "863ae85c6d3ef60ca49cb12bd051c4a0648c40c4",
                 "shasum": ""
             },
             "require": {
@@ -748,20 +837,20 @@
                 "parser",
                 "validator"
             ],
-            "time": "2014-09-05 15:36:20"
+            "time": "2015-01-04 21:18:15"
         },
         {
             "name": "silverstripe/framework",
-            "version": "3.1.x-dev",
+            "version": "3.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/silverstripe/silverstripe-framework.git",
-                "reference": "fb8b22c292f9d85666878b6cabf8cac0ec6afb1e"
+                "reference": "87d6250ea75f5e1c765d9004c51bd5ffd5633185"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/silverstripe-framework/zipball/fb8b22c292f9d85666878b6cabf8cac0ec6afb1e",
-                "reference": "fb8b22c292f9d85666878b6cabf8cac0ec6afb1e",
+                "url": "https://api.github.com/repos/silverstripe/silverstripe-framework/zipball/87d6250ea75f5e1c765d9004c51bd5ffd5633185",
+                "reference": "87d6250ea75f5e1c765d9004c51bd5ffd5633185",
                 "shasum": ""
             },
             "require": {
@@ -797,7 +886,7 @@
                 "framework",
                 "silverstripe"
             ],
-            "time": "2014-09-18 09:56:56"
+            "time": "2015-01-14 22:56:46"
         },
         {
             "name": "silverstripe/multivaluefield",
@@ -805,12 +894,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silverstripe-australia/silverstripe-multivaluefield.git",
-                "reference": "6ad6ae93c8e6367d6b17fd51662835015977d7b6"
+                "reference": "4ab53617be00f41b84a1f7dcc9bfc54752caa8f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe-australia/silverstripe-multivaluefield/zipball/6ad6ae93c8e6367d6b17fd51662835015977d7b6",
-                "reference": "6ad6ae93c8e6367d6b17fd51662835015977d7b6",
+                "url": "https://api.github.com/repos/silverstripe-australia/silverstripe-multivaluefield/zipball/4ab53617be00f41b84a1f7dcc9bfc54752caa8f0",
+                "reference": "4ab53617be00f41b84a1f7dcc9bfc54752caa8f0",
                 "shasum": ""
             },
             "require": {
@@ -838,7 +927,7 @@
                 "formfield",
                 "silverstripe"
             ],
-            "time": "2014-08-21 01:12:25"
+            "time": "2015-01-03 06:05:33"
         },
         {
             "name": "silverstripe/toolbar",
@@ -846,16 +935,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silverstripe/silverstripe-globaltoolbar.git",
-                "reference": "b930ace6a0e97aeaf9aaadaf37e242f8ca99dcf4"
+                "reference": "ebb6ac79792534577d975ee335782593c11e2d12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/silverstripe-globaltoolbar/zipball/b930ace6a0e97aeaf9aaadaf37e242f8ca99dcf4",
-                "reference": "b930ace6a0e97aeaf9aaadaf37e242f8ca99dcf4",
+                "url": "https://api.github.com/repos/silverstripe/silverstripe-globaltoolbar/zipball/ebb6ac79792534577d975ee335782593c11e2d12",
+                "reference": "ebb6ac79792534577d975ee335782593c11e2d12",
                 "shasum": ""
             },
             "require": {
-                "unclecheese/display-logic": "1.0.*"
+                "unclecheese/display-logic": "1.1.*"
             },
             "type": "silverstripe-module",
             "license": [
@@ -882,24 +971,24 @@
                 "source": "https://github.com/silverstripe/silverstripe-globaltoolbar/tree/master",
                 "issues": "https://github.com/silverstripe/silverstripe-globaltoolbar/issues"
             },
-            "time": "2014-09-18 02:53:24"
+            "time": "2015-01-14 01:48:59"
         },
         {
             "name": "stojg/silverstripe-resque",
-            "version": "1.0.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stojg/silverstripe-resque.git",
-                "reference": "feacb9d4b7df8cd8e8612463edeb3ca968e9106f"
+                "reference": "262897dd1ab4c9e553385258f21737b67126b198"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stojg/silverstripe-resque/zipball/feacb9d4b7df8cd8e8612463edeb3ca968e9106f",
-                "reference": "feacb9d4b7df8cd8e8612463edeb3ca968e9106f",
+                "url": "https://api.github.com/repos/stojg/silverstripe-resque/zipball/262897dd1ab4c9e553385258f21737b67126b198",
+                "reference": "262897dd1ab4c9e553385258f21737b67126b198",
                 "shasum": ""
             },
             "require": {
-                "chrisboulton/php-resque": ">=1.2"
+                "chrisboulton/php-resque": "dev-master#b0843f4dba7e914728539c4001b8325b68c44354"
             },
             "type": "silverstripe-module",
             "notification-url": "https://packagist.org/downloads/",
@@ -913,36 +1002,36 @@
                     "homepage": "http://www.stojg.se/"
                 }
             ],
-            "description": "Wraps around the resque code for background jobss",
+            "description": "Wraps around the resque code for background jobs",
             "homepage": "http://github.com/stojg/silverstripe-resque",
             "keywords": [
                 "redis",
                 "silverstripe"
             ],
-            "time": "2013-03-20 20:10:57"
+            "time": "2013-10-30 22:07:53"
         },
         {
             "name": "symfony/console",
-            "version": "dev-master",
+            "version": "2.7.x-dev",
             "target-dir": "Symfony/Component/Console",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console.git",
-                "reference": "0f682ba7bd8102ed9374d247ca9c13236c2f1008"
+                "reference": "9f041fb5735b0d25d117e77ab8597a8376c74fbd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/0f682ba7bd8102ed9374d247ca9c13236c2f1008",
-                "reference": "0f682ba7bd8102ed9374d247ca9c13236c2f1008",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/9f041fb5735b0d25d117e77ab8597a8376c74fbd",
+                "reference": "9f041fb5735b0d25d117e77ab8597a8376c74fbd",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=5.3.9"
             },
             "require-dev": {
                 "psr/log": "~1.0",
-                "symfony/event-dispatcher": "~2.1",
-                "symfony/process": "~2.1"
+                "symfony/event-dispatcher": "~2.1|~3.0.0",
+                "symfony/process": "~2.1|~3.0.0"
             },
             "suggest": {
                 "psr/log": "For using the console logger",
@@ -952,7 +1041,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6-dev"
+                    "dev-master": "2.7-dev"
                 }
             },
             "autoload": {
@@ -976,31 +1065,32 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "http://symfony.com",
-            "time": "2014-09-17 09:54:14"
+            "time": "2015-01-25 05:59:26"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "dev-master",
+            "version": "2.7.x-dev",
             "target-dir": "Symfony/Component/EventDispatcher",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "68ab3c3f50eae2b152075da722204d4de67f596f"
+                "reference": "7a26717d431dfb092198d7c55f06788b2de5aaf7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/68ab3c3f50eae2b152075da722204d4de67f596f",
-                "reference": "68ab3c3f50eae2b152075da722204d4de67f596f",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/7a26717d431dfb092198d7c55f06788b2de5aaf7",
+                "reference": "7a26717d431dfb092198d7c55f06788b2de5aaf7",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=5.3.9"
             },
             "require-dev": {
                 "psr/log": "~1.0",
-                "symfony/config": "~2.0",
-                "symfony/dependency-injection": "~2.0",
-                "symfony/stopwatch": "~2.2"
+                "symfony/config": "~2.0,>=2.0.5|~3.0.0",
+                "symfony/dependency-injection": "~2.6|~3.0.0",
+                "symfony/expression-language": "~2.6|~3.0.0",
+                "symfony/stopwatch": "~2.3|~3.0.0"
             },
             "suggest": {
                 "symfony/dependency-injection": "",
@@ -1009,7 +1099,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6-dev"
+                    "dev-master": "2.7-dev"
                 }
             },
             "autoload": {
@@ -1033,30 +1123,30 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "http://symfony.com",
-            "time": "2014-07-28 13:20:53"
+            "time": "2015-01-16 15:11:56"
         },
         {
             "name": "symfony/finder",
-            "version": "dev-master",
+            "version": "2.7.x-dev",
             "target-dir": "Symfony/Component/Finder",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Finder.git",
-                "reference": "b7b98cf609a94ebc4cd299b736282901223a4b12"
+                "reference": "0c737de96a94d14a51738d285ad426a102baac0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Finder/zipball/b7b98cf609a94ebc4cd299b736282901223a4b12",
-                "reference": "b7b98cf609a94ebc4cd299b736282901223a4b12",
+                "url": "https://api.github.com/repos/symfony/Finder/zipball/0c737de96a94d14a51738d285ad426a102baac0e",
+                "reference": "0c737de96a94d14a51738d285ad426a102baac0e",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=5.3.9"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6-dev"
+                    "dev-master": "2.7-dev"
                 }
             },
             "autoload": {
@@ -1080,30 +1170,30 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "http://symfony.com",
-            "time": "2014-09-03 09:12:11"
+            "time": "2015-01-09 06:51:41"
         },
         {
             "name": "symfony/process",
-            "version": "dev-master",
+            "version": "2.7.x-dev",
             "target-dir": "Symfony/Component/Process",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Process.git",
-                "reference": "24aaa0ac728c19170ba4c12663e4cde098c7bac1"
+                "reference": "f3ab493718070b936e21b202422466db35c1c298"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Process/zipball/24aaa0ac728c19170ba4c12663e4cde098c7bac1",
-                "reference": "24aaa0ac728c19170ba4c12663e4cde098c7bac1",
+                "url": "https://api.github.com/repos/symfony/Process/zipball/f3ab493718070b936e21b202422466db35c1c298",
+                "reference": "f3ab493718070b936e21b202422466db35c1c298",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=5.3.9"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6-dev"
+                    "dev-master": "2.7-dev"
                 }
             },
             "autoload": {
@@ -1127,20 +1217,20 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "http://symfony.com",
-            "time": "2014-09-17 09:54:14"
+            "time": "2015-01-25 04:39:35"
         },
         {
             "name": "unclecheese/display-logic",
-            "version": "1.0.4",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/unclecheese/silverstripe-display-logic.git",
-                "reference": "051a860ebd65006493a19ce3381f9af3de8be875"
+                "reference": "ddbaa4d74901eca83a91ab5c091d78b9167ec3d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/unclecheese/silverstripe-display-logic/zipball/051a860ebd65006493a19ce3381f9af3de8be875",
-                "reference": "051a860ebd65006493a19ce3381f9af3de8be875",
+                "url": "https://api.github.com/repos/unclecheese/silverstripe-display-logic/zipball/ddbaa4d74901eca83a91ab5c091d78b9167ec3d9",
+                "reference": "ddbaa4d74901eca83a91ab5c091d78b9167ec3d9",
                 "shasum": ""
             },
             "require": {
@@ -1160,8 +1250,7 @@
             "authors": [
                 {
                     "name": "Uncle Cheese",
-                    "email": "unclecheese@leftandmain.com",
-                    "homepage": "http://leftandmain.com"
+                    "email": "unclecheese@leftandmain.com"
                 }
             ],
             "description": "Allows assignment of conditions for display and hide of specific form fields based on client side behavior.",
@@ -1172,485 +1261,23 @@
                 "logic",
                 "silverstripe"
             ],
-            "time": "2014-07-02 03:45:20"
+            "time": "2014-12-23 08:50:28"
         }
     ],
-    "packages-dev": [
-        {
-            "name": "phpunit/php-code-coverage",
-            "version": "1.2.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "fe2466802556d3fe4e4d1d58ffd3ccfd0a19be0b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/fe2466802556d3fe4e4d1d58ffd3ccfd0a19be0b",
-                "reference": "fe2466802556d3fe4e4d1d58ffd3ccfd0a19be0b",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3",
-                "phpunit/php-file-iterator": ">=1.3.0@stable",
-                "phpunit/php-text-template": ">=1.2.0@stable",
-                "phpunit/php-token-stream": ">=1.1.3,<1.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "3.7.*@dev"
-            },
-            "suggest": {
-                "ext-dom": "*",
-                "ext-xdebug": ">=2.0.5"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.2.x-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "PHP/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "include-path": [
-                ""
-            ],
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Sebastian Bergmann",
-                    "email": "sb@sebastian-bergmann.de",
-                    "role": "lead"
-                }
-            ],
-            "description": "Library that provides collection, processing, and rendering functionality for PHP code coverage information.",
-            "homepage": "https://github.com/sebastianbergmann/php-code-coverage",
-            "keywords": [
-                "coverage",
-                "testing",
-                "xunit"
-            ],
-            "time": "2014-09-02 10:13:14"
-        },
-        {
-            "name": "phpunit/php-file-iterator",
-            "version": "1.3.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/php-file-iterator.git",
-                "reference": "acd690379117b042d1c8af1fafd61bde001bf6bb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/acd690379117b042d1c8af1fafd61bde001bf6bb",
-                "reference": "acd690379117b042d1c8af1fafd61bde001bf6bb",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "File/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "include-path": [
-                ""
-            ],
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Sebastian Bergmann",
-                    "email": "sb@sebastian-bergmann.de",
-                    "role": "lead"
-                }
-            ],
-            "description": "FilterIterator implementation that filters files based on a list of suffixes.",
-            "homepage": "https://github.com/sebastianbergmann/php-file-iterator/",
-            "keywords": [
-                "filesystem",
-                "iterator"
-            ],
-            "time": "2013-10-10 15:34:57"
-        },
-        {
-            "name": "phpunit/php-text-template",
-            "version": "1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/php-text-template.git",
-                "reference": "206dfefc0ffe9cebf65c413e3d0e809c82fbf00a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-text-template/zipball/206dfefc0ffe9cebf65c413e3d0e809c82fbf00a",
-                "reference": "206dfefc0ffe9cebf65c413e3d0e809c82fbf00a",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "Text/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "include-path": [
-                ""
-            ],
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Sebastian Bergmann",
-                    "email": "sb@sebastian-bergmann.de",
-                    "role": "lead"
-                }
-            ],
-            "description": "Simple template engine.",
-            "homepage": "https://github.com/sebastianbergmann/php-text-template/",
-            "keywords": [
-                "template"
-            ],
-            "time": "2014-01-30 17:20:04"
-        },
-        {
-            "name": "phpunit/php-timer",
-            "version": "1.0.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/php-timer.git",
-                "reference": "19689d4354b295ee3d8c54b4f42c3efb69cbc17c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/19689d4354b295ee3d8c54b4f42c3efb69cbc17c",
-                "reference": "19689d4354b295ee3d8c54b4f42c3efb69cbc17c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "PHP/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "include-path": [
-                ""
-            ],
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Sebastian Bergmann",
-                    "email": "sb@sebastian-bergmann.de",
-                    "role": "lead"
-                }
-            ],
-            "description": "Utility class for timing",
-            "homepage": "https://github.com/sebastianbergmann/php-timer/",
-            "keywords": [
-                "timer"
-            ],
-            "time": "2013-08-02 07:42:54"
-        },
-        {
-            "name": "phpunit/php-token-stream",
-            "version": "1.2.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "ad4e1e23ae01b483c16f600ff1bebec184588e32"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/ad4e1e23ae01b483c16f600ff1bebec184588e32",
-                "reference": "ad4e1e23ae01b483c16f600ff1bebec184588e32",
-                "shasum": ""
-            },
-            "require": {
-                "ext-tokenizer": "*",
-                "php": ">=5.3.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.2-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "PHP/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "include-path": [
-                ""
-            ],
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Sebastian Bergmann",
-                    "email": "sb@sebastian-bergmann.de",
-                    "role": "lead"
-                }
-            ],
-            "description": "Wrapper around PHP's tokenizer extension.",
-            "homepage": "https://github.com/sebastianbergmann/php-token-stream/",
-            "keywords": [
-                "tokenizer"
-            ],
-            "time": "2014-03-03 05:10:30"
-        },
-        {
-            "name": "phpunit/phpunit",
-            "version": "3.7.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "ae6cefd7cc84586a5ef27e04bae11ee940ec63dc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/ae6cefd7cc84586a5ef27e04bae11ee940ec63dc",
-                "reference": "ae6cefd7cc84586a5ef27e04bae11ee940ec63dc",
-                "shasum": ""
-            },
-            "require": {
-                "ext-ctype": "*",
-                "ext-dom": "*",
-                "ext-json": "*",
-                "ext-pcre": "*",
-                "ext-reflection": "*",
-                "ext-spl": "*",
-                "php": ">=5.3.3",
-                "phpunit/php-code-coverage": "~1.2",
-                "phpunit/php-file-iterator": "~1.3",
-                "phpunit/php-text-template": "~1.1",
-                "phpunit/php-timer": "~1.0",
-                "phpunit/phpunit-mock-objects": "~1.2",
-                "symfony/yaml": "~2.0"
-            },
-            "require-dev": {
-                "pear-pear.php.net/pear": "1.9.4"
-            },
-            "suggest": {
-                "phpunit/php-invoker": "~1.1"
-            },
-            "bin": [
-                "composer/bin/phpunit"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.7.x-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "PHPUnit/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "include-path": [
-                "",
-                "../../symfony/yaml/"
-            ],
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "lead"
-                }
-            ],
-            "description": "The PHP Unit Testing framework.",
-            "homepage": "http://www.phpunit.de/",
-            "keywords": [
-                "phpunit",
-                "testing",
-                "xunit"
-            ],
-            "time": "2014-04-30 12:24:19"
-        },
-        {
-            "name": "phpunit/phpunit-mock-objects",
-            "version": "1.2.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "c39c4511c3b007539eb170c32cbc2af49a07351a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/c39c4511c3b007539eb170c32cbc2af49a07351a",
-                "reference": "c39c4511c3b007539eb170c32cbc2af49a07351a",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3",
-                "phpunit/php-text-template": ">=1.1.1@stable"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "3.7.*@dev"
-            },
-            "suggest": {
-                "ext-soap": "*"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.2.x-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "PHPUnit/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "include-path": [
-                ""
-            ],
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Sebastian Bergmann",
-                    "email": "sb@sebastian-bergmann.de",
-                    "role": "lead"
-                }
-            ],
-            "description": "Mock Object library for PHPUnit",
-            "homepage": "https://github.com/sebastianbergmann/phpunit-mock-objects/",
-            "keywords": [
-                "mock",
-                "xunit"
-            ],
-            "time": "2014-02-16 12:43:56"
-        },
-        {
-            "name": "silverstripe/sqlite3",
-            "version": "1.3.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/silverstripe-labs/silverstripe-sqlite3.git",
-                "reference": "bd6bc17fc5deac62950d365c781dd1005c0f1d52"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe-labs/silverstripe-sqlite3/zipball/bd6bc17fc5deac62950d365c781dd1005c0f1d52",
-                "reference": "bd6bc17fc5deac62950d365c781dd1005c0f1d52",
-                "shasum": ""
-            },
-            "require": {
-                "silverstripe/framework": ">=3.0,<3.2"
-            },
-            "type": "silverstripe-module",
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "Ingo Schommer",
-                    "email": "ingo@silverstripe.com",
-                    "homepage": "http://chillu.com",
-                    "role": "tech-lead"
-                },
-                {
-                    "name": "Sean Harvey",
-                    "email": "sean@silverstripe.com",
-                    "homepage": "http://www.silverstripe.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Adds SQLite3 support to SilverStripe",
-            "keywords": [
-                "database",
-                "silverstripe",
-                "sqlite3"
-            ],
-            "time": "2014-07-10 23:25:12"
-        },
-        {
-            "name": "symfony/yaml",
-            "version": "dev-master",
-            "target-dir": "Symfony/Component/Yaml",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/Yaml.git",
-                "reference": "9f94dc5d8d7b49a9cb789853278af2b07a0aa4fd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/9f94dc5d8d7b49a9cb789853278af2b07a0aa4fd",
-                "reference": "9f94dc5d8d7b49a9cb789853278af2b07a0aa4fd",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.6-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Symfony\\Component\\Yaml\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                },
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                }
-            ],
-            "description": "Symfony Yaml Component",
-            "homepage": "http://symfony.com",
-            "time": "2014-09-17 09:54:14"
-        }
-    ],
-    "aliases": [
-
-    ],
+    "packages-dev": null,
+    "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "ajshort/silverstripe-elastica": 20
+        "ajshort/silverstripe-elastica": 20,
+        "dflydev/markdown": 0,
+        "ezyang/htmlpurifier": 0,
+        "guzzle/guzzle": 0,
+        "silverstripe/framework": 0,
+        "knplabs/packagist-api": 0,
+        "ruflin/elastica": 20
     },
     "prefer-stable": false,
-    "platform": [
-
-    ],
-    "platform-dev": [
-
-    ]
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
 }
