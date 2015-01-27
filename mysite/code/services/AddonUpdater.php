@@ -278,10 +278,15 @@ class AddonUpdater {
 		$version->CompatibleVersions()->removeAll();
 
 		foreach ($this->silverstripes as $id => $link) {
-			$constraint = $this->versionParser->parseConstraints($require);
-			if ($link->matches($constraint)) {
-				$addon->CompatibleVersions()->add($id);
-				$version->CompatibleVersions()->add($id);
+			try {
+				$constraint = $this->versionParser->parseConstraints($require);
+				if ($link->matches($constraint)) {
+					$addon->CompatibleVersions()->add($id);
+					$version->CompatibleVersions()->add($id);
+				}
+			} catch(Exception $e) {
+				// An exception here shouldn't prevent further updates.
+				Debug::log($addon->Name . "\t" . $addon->ID . "\t" . $e->getMessage());
 			}
 		}
 	}
