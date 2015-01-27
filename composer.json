@@ -6,16 +6,16 @@
 	],
 	"require": {
 		"composer/installers": "*",
-		"ajshort/silverstripe-elastica": "dev-pulls/resultlist-missing-objs",
-		"chrisboulton/php-resque": "1.2.*",
+		"ajshort/silverstripe-elastica": "dev-master#b74916afa308ca2ca878e1bdd36dfe1278c625f6",
 		"composer/composer": "*",
-		"dflydev/markdown": "1.0.*",
-		"ezyang/htmlpurifier": "4.5.*",
-		"guzzle/guzzle": "3.2.*",
-		"silverstripe/framework": "3.1.*",
+		"dflydev/markdown": "1.0.*@stable",
+		"ezyang/htmlpurifier": "4.5.*@stable",
+		"guzzle/guzzle": "3.2.*@stable",
+		"silverstripe/framework": "3.1.*@stable",
 		"silverstripe/multivaluefield": "*",
-		"knplabs/packagist-api": "*",
-		"stojg/silverstripe-resque": "*"
+		"knplabs/packagist-api": "1.*@stable",
+		"stojg/silverstripe-resque": "*",
+		"ruflin/elastica": "dev-master#f235765a7b2b088fb27510a75fe3472bb94188cf"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "3.7.*",
