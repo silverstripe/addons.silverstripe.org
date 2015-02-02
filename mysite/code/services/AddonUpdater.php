@@ -71,9 +71,18 @@ class AddonUpdater {
 			$this->silverstripes[$version->ID] = $version->getConstraint();
 		}
 
+		// This call to packagist can be expensive. Requests are served from a cache if usePackagistCache() returns true
+		$cache = SS_Cache::factory('addons');
+		if($this->usePackagistCache() && $packages = $cache->load('packagist')) {
+			$packages = unserialize($packages);
+		} else {
+			$packages = $this->packagist->getPackages();
+			$cache->save(serialize($packages), 'packagist');
+		}
+
 		$this->elastica->startBulkIndex();
 
-		foreach ($this->packagist->getPackages() as $package) {
+		foreach ($packages as $package) {
 			$name = $package->getName();
 			$versions = $package->getVersions();
 
@@ -95,6 +104,18 @@ class AddonUpdater {
 		}
 
 		$this->elastica->endBulkIndex();
+	}
+
+
+
+	/**
+	 * Check whether or not we should contact packagist or use a cached version. This allows to speed up the task
+	 * during development.
+	 *
+	 * @return bool
+	 */
+	protected function usePackagistCache() {
+		return Director::isDev();
 	}
 
 	private function updateAddon(Addon $addon, Package $package, array $versions) {
