@@ -170,7 +170,9 @@ class AddonBuilder {
 			$upload->setValidator(new AddonBuilderScreenshotValidator());
 			$upload->load($data, $target);
 
-			$addon->Screenshots()->add($upload->getFile());
+			if($file = $upload->getFile()) {
+				$addon->Screenshots()->add($file);
+			}
 		}
 	}
 
