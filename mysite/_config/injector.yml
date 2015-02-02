@@ -1,3 +1,6 @@
+---
+name: 'addonsinjector'
+---
 Injector:
   AddonBuilder:
     constructor:
@@ -21,10 +24,25 @@ Injector:
   UpdateSilverStripeVersionsTask:
     constructor:
       - %$SilverStripeVersionUpdater
-  SilverStripe\Elastica\ElasticaService:
-    constructor:
-      - %$Elastica\Client
-      - addons
   BuildAddonsTask:
     constructor:
       - %$AddonBuilder
+
+---
+Only:
+  environment: 'live'
+---
+Injector:
+  SilverStripe\Elastica\ElasticaService:
+    constructor:
+      - %$Elastica\Client
+      - 'addons'
+---
+Except:
+  environment: 'live'
+---
+Injector:
+  SilverStripe\Elastica\ElasticaService:
+    constructor:
+      - %$Elastica\Client
+      - 'addons-dev'
