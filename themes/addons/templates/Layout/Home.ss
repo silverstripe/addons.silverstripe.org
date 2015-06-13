@@ -1,8 +1,6 @@
 <div class="row">
 	<div class="span12">
-	Welcome to the new <a href="http://silverstripe.org">SilverStripe</a> add-on repository, based on the <a href="http://getcomposer.org">Composer</a> packaging system for PHP.  Use this site to find modules and themes to add to your SilverStripe site.  For best results, we recommend <a href="http://doc.silverstripe.org/framework/en/trunk/installation/composer">managing your project with Composer</a>.
-
-If you need to access the legacy extensions site, you can still visit <a href="http://silverstripe.org/modules">modules</a>, <a href="http://silverstripe.org/themes">themes</a>, or <a href="http://silverstripe.org/widgets">widgets</a> for now, but please note that we will shut this down in the future.
+	Welcome to the <a href="http://silverstripe.org">SilverStripe</a> add-on repository, based on the <a href="http://getcomposer.org">Composer</a> packaging system for PHP.  Use this site to find modules and themes to add to your SilverStripe website.  For best results, we recommend <a href="http://docs.silverstripe.org/en/getting_started/composer">managing your project with Composer</a>.
 	</div>
 </div>
 
