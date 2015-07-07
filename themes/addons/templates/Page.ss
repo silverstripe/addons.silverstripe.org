@@ -5,7 +5,7 @@
 
 		<title>$Title &middot; SilverStripe Add-ons</title>
 		$MetaTags(false)
-		
+
 		<% require themedCSS("addons") %>
 		<% require javascript("//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js") %>
 		<% require javascript("themes/addons/bootstrap/js/bootstrap.min.js") %>
@@ -21,7 +21,7 @@
 		<header data-0="background-position: 50% 50%;" data-544="background-position: 50% -30%;">
 			<div class="global-nav header-mask">
 				<div id="navWrapper">
-					$GlobalNav
+					$GlobalNav('addons')
 					<% include SearchBox %>
 				</div>
 			</div>
