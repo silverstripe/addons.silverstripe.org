@@ -6,11 +6,11 @@
             "type": "vcs",
             "url": "https://github.com/silverstripe/silverstripe-globaltoolbar.git"
         },
-        {	
+        {
         	"url": "https://github.com/chillu/silverstripe-elastica.git",
         	"type": "vcs"
         }
-    ],	
+    ],
 	"require": {
 		"composer/installers": "*",
 		"ajshort/silverstripe-elastica": "dev-master#b74916afa308ca2ca878e1bdd36dfe1278c625f6",
