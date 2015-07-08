@@ -4,7 +4,7 @@ After: 'toolbar/*'
 SSViewer:
   theme: addons
 GlobalNav:
-  hostname: 'http://www.silverstripe.org/'
+  hostname: '//www.silverstripe.org/'
   css_path: '/themes/ssv3/css/toolbar.css'
   use_localhost: false
 GlobalNavTemplateProvider:
