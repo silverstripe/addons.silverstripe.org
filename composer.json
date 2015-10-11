@@ -20,7 +20,7 @@
 		"guzzle/guzzle": "3.2.0",
 		"silverstripe/framework": "3.1.*@stable",
 		"silverstripe/multivaluefield": "*",
-		"silverstripe/toolbar": "3.0.*@stable",
+		"silverstripe/toolbar": "^4.0",
 		"knplabs/packagist-api": "1.*@stable",
 		"stojg/silverstripe-resque": "*",
 		"ruflin/elastica": "dev-master#f235765a7b2b088fb27510a75fe3472bb94188cf",

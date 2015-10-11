@@ -18,7 +18,7 @@
 		<script>window.GLOBAL_NAV_SECONDARY_ID = 16;</script>
 	</head>
 	<body class="theme-theme1">
-		<header data-0="background-position: 50% 50%;" data-544="background-position: 50% -30%;">
+		<header class="site-header" data-0="background-position: 50% 50%;" data-544="background-position: 50% -30%;">
 			<div class="global-nav header-mask">
 				<div id="navWrapper">
 					$GlobalNav('addons')
