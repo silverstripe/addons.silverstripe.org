@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cfe8959e054f5bd3f052ae88082e1b61",
+    "hash": "25955bc4f4cb8331ee900adcbc444a0d",
+    "content-hash": "a7be2cc2dd2f462319f3dc17d13021dc",
     "packages": [
         {
             "name": "ajshort/silverstripe-elastica",
@@ -157,21 +158,24 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "5d7036e7403377e4c06ecae1e52139fd00809246"
+                "reference": "7a9eb02190d334513e99a479510f87eed18cf958"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/5d7036e7403377e4c06ecae1e52139fd00809246",
-                "reference": "5d7036e7403377e4c06ecae1e52139fd00809246",
+                "url": "https://api.github.com/repos/composer/composer/zipball/7a9eb02190d334513e99a479510f87eed18cf958",
+                "reference": "7a9eb02190d334513e99a479510f87eed18cf958",
                 "shasum": ""
             },
             "require": {
-                "justinrainbow/json-schema": "~1.4",
+                "composer/semver": "^1.0",
+                "composer/spdx-licenses": "^1.0",
+                "justinrainbow/json-schema": "^1.4.4",
                 "php": ">=5.3.2",
                 "seld/cli-prompt": "~1.0",
                 "seld/jsonlint": "~1.0",
                 "seld/phar-utils": "~1.0",
                 "symfony/console": "~2.5",
+                "symfony/filesystem": "~2.5",
                 "symfony/finder": "~2.2",
                 "symfony/process": "~2.1"
             },
@@ -220,7 +224,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2015-07-08 17:10:35"
+            "time": "2015-10-07 10:05:33"
         },
         {
             "name": "composer/installers",
@@ -318,6 +322,128 @@
             "time": "2015-06-13 15:30:38"
         },
         {
+            "name": "composer/semver",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/semver.git",
+                "reference": "d0e1ccc6d44ab318b758d709e19176037da6b1ba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/semver/zipball/d0e1ccc6d44ab318b758d709e19176037da6b1ba",
+                "reference": "d0e1ccc6d44ab318b758d709e19176037da6b1ba",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.5",
+                "phpunit/phpunit-mock-objects": "~2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Composer\\Semver\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rob Bast",
+                    "email": "rob.bast@gmail.com"
+                },
+                {
+                    "name": "Nils Adermann",
+                    "email": "naderman@naderman.de",
+                    "homepage": "http://www.naderman.de"
+                },
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be",
+                    "homepage": "http://seld.be"
+                }
+            ],
+            "description": "Semver library that offers utilities, version constraint parsing and validation.",
+            "keywords": [
+                "semantic",
+                "semver",
+                "validation",
+                "versioning"
+            ],
+            "time": "2015-09-21 09:42:36"
+        },
+        {
+            "name": "composer/spdx-licenses",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/spdx-licenses.git",
+                "reference": "b2dbc76d1c3f81f33857cdd49c0be6ce7b87897d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/spdx-licenses/zipball/b2dbc76d1c3f81f33857cdd49c0be6ce7b87897d",
+                "reference": "b2dbc76d1c3f81f33857cdd49c0be6ce7b87897d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.5",
+                "phpunit/phpunit-mock-objects": "~2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Composer\\Spdx\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nils Adermann",
+                    "email": "naderman@naderman.de",
+                    "homepage": "http://www.naderman.de"
+                },
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be",
+                    "homepage": "http://seld.be"
+                },
+                {
+                    "name": "Rob Bast",
+                    "email": "rob.bast@gmail.com",
+                    "homepage": "http://robbast.nl"
+                }
+            ],
+            "description": "SPDX licenses list and validation library.",
+            "keywords": [
+                "license",
+                "spdx",
+                "validator"
+            ],
+            "time": "2015-10-05 11:33:06"
+        },
+        {
             "name": "dflydev/markdown",
             "version": "v1.0.3",
             "source": {
@@ -383,12 +509,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/inflector.git",
-                "reference": "b0b2feffb47906a03b570777c07044c529d1d124"
+                "reference": "097e7ba84f64a427e55008117ef2bb94096731dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/inflector/zipball/b0b2feffb47906a03b570777c07044c529d1d124",
-                "reference": "b0b2feffb47906a03b570777c07044c529d1d124",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/097e7ba84f64a427e55008117ef2bb94096731dc",
+                "reference": "097e7ba84f64a427e55008117ef2bb94096731dc",
                 "shasum": ""
             },
             "require": {
@@ -442,7 +568,7 @@
                 "singularize",
                 "string"
             ],
-            "time": "2015-07-07 15:32:45"
+            "time": "2015-10-07 18:00:26"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -582,16 +708,16 @@
         },
         {
             "name": "justinrainbow/json-schema",
-            "version": "dev-master",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/justinrainbow/json-schema.git",
-                "reference": "8cd1dbe6963a84d5155d77dd782d286613e570ac"
+                "reference": "a4bee9f4b344b66e0a0d96c7afae1e92edf385fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/8cd1dbe6963a84d5155d77dd782d286613e570ac",
-                "reference": "8cd1dbe6963a84d5155d77dd782d286613e570ac",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/a4bee9f4b344b66e0a0d96c7afae1e92edf385fe",
+                "reference": "a4bee9f4b344b66e0a0d96c7afae1e92edf385fe",
                 "shasum": ""
             },
             "require": {
@@ -612,8 +738,8 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "JsonSchema": "src/"
+                "psr-4": {
+                    "JsonSchema\\": "src/JsonSchema/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -644,25 +770,25 @@
                 "json",
                 "schema"
             ],
-            "time": "2015-07-01 15:25:33"
+            "time": "2015-09-08 22:28:04"
         },
         {
             "name": "knplabs/packagist-api",
-            "version": "v1.2",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/packagist-api.git",
-                "reference": "22eef9dfc163da33e78af2ae1487966774b54db5"
+                "reference": "9aebf8238943289d3bc3ab51e0014ed94a7a266a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/packagist-api/zipball/22eef9dfc163da33e78af2ae1487966774b54db5",
-                "reference": "22eef9dfc163da33e78af2ae1487966774b54db5",
+                "url": "https://api.github.com/repos/KnpLabs/packagist-api/zipball/9aebf8238943289d3bc3ab51e0014ed94a7a266a",
+                "reference": "9aebf8238943289d3bc3ab51e0014ed94a7a266a",
                 "shasum": ""
             },
             "require": {
                 "doctrine/inflector": "~1.0",
-                "guzzle/http": "~3.0",
+                "guzzle/guzzle": "~3.0",
                 "php": ">=5.3.2"
             },
             "require-dev": {
@@ -697,7 +823,7 @@
                 "composer",
                 "packagist"
             ],
-            "time": "2014-09-17 13:49:46"
+            "time": "2015-09-07 14:25:16"
         },
         {
             "name": "psr/log",
@@ -747,7 +873,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ruflin/Elastica/zipball/eb3a787259a6c50f87bce507ff24b124d91c4fe7",
+                "url": "https://api.github.com/repos/ruflin/Elastica/zipball/44f530ce3a5ea11fce75cd7c6cfbf5f81c787108",
                 "reference": "f235765a7b2b088fb27510a75fe3472bb94188cf",
                 "shasum": ""
             },
@@ -936,21 +1062,21 @@
         },
         {
             "name": "silverstripe/framework",
-            "version": "3.1.13",
+            "version": "3.1.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/silverstripe/silverstripe-framework.git",
-                "reference": "04b803dfc6dc60f2e6a38fa74f957156230b54be"
+                "reference": "c2a407a01b362981d070d6062fef52c8679e4a2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/silverstripe-framework/zipball/04b803dfc6dc60f2e6a38fa74f957156230b54be",
-                "reference": "04b803dfc6dc60f2e6a38fa74f957156230b54be",
+                "url": "https://api.github.com/repos/silverstripe/silverstripe-framework/zipball/c2a407a01b362981d070d6062fef52c8679e4a2b",
+                "reference": "c2a407a01b362981d070d6062fef52c8679e4a2b",
                 "shasum": ""
             },
             "require": {
                 "composer/installers": "*",
-                "php": ">=5.3.2"
+                "php": ">=5.3.2,<7"
             },
             "require-dev": {
                 "phpunit/phpunit": "~3.7@stable"
@@ -981,7 +1107,7 @@
                 "framework",
                 "silverstripe"
             ],
-            "time": "2015-05-28 06:59:11"
+            "time": "2015-09-18 02:51:04"
         },
         {
             "name": "silverstripe/multivaluefield",
@@ -989,12 +1115,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silverstripe-australia/silverstripe-multivaluefield.git",
-                "reference": "e7f1404bc973dbaed83b32e3b8c3931ce743861a"
+                "reference": "9e9b36bd12931ba52d29cecbb438712a3ff761b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe-australia/silverstripe-multivaluefield/zipball/e7f1404bc973dbaed83b32e3b8c3931ce743861a",
-                "reference": "e7f1404bc973dbaed83b32e3b8c3931ce743861a",
+                "url": "https://api.github.com/repos/silverstripe-australia/silverstripe-multivaluefield/zipball/9e9b36bd12931ba52d29cecbb438712a3ff761b4",
+                "reference": "9e9b36bd12931ba52d29cecbb438712a3ff761b4",
                 "shasum": ""
             },
             "require": {
@@ -1022,20 +1148,20 @@
                 "formfield",
                 "silverstripe"
             ],
-            "time": "2015-07-02 15:55:38"
+            "time": "2015-09-28 09:06:57"
         },
         {
             "name": "silverstripe/toolbar",
-            "version": "3.0.5",
+            "version": "4.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/silverstripe/silverstripe-globaltoolbar.git",
-                "reference": "aad67d0ebd2c1d469f732934f249836f636549fd"
+                "reference": "c69d4ba4a44cfc6bd56ec88e911dedcf6dbc15ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/silverstripe-globaltoolbar/zipball/aad67d0ebd2c1d469f732934f249836f636549fd",
-                "reference": "aad67d0ebd2c1d469f732934f249836f636549fd",
+                "url": "https://api.github.com/repos/silverstripe/silverstripe-globaltoolbar/zipball/c69d4ba4a44cfc6bd56ec88e911dedcf6dbc15ad",
+                "reference": "c69d4ba4a44cfc6bd56ec88e911dedcf6dbc15ad",
                 "shasum": ""
             },
             "require": {
@@ -1063,10 +1189,10 @@
                 "silverstripe"
             ],
             "support": {
-                "source": "https://github.com/silverstripe/silverstripe-globaltoolbar/tree/3.0.5",
+                "source": "https://github.com/silverstripe/silverstripe-globaltoolbar/tree/4.0.1",
                 "issues": "https://github.com/silverstripe/silverstripe-globaltoolbar/issues"
             },
-            "time": "2015-07-08 02:55:08"
+            "time": "2015-10-11 23:35:22"
         },
         {
             "name": "stojg/silverstripe-resque",
@@ -1074,12 +1200,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/stojg/silverstripe-resque.git",
-                "reference": "262897dd1ab4c9e553385258f21737b67126b198"
+                "reference": "7cb322a17d1fec6c0f8b28f6ab6b38dfbe62bc1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stojg/silverstripe-resque/zipball/262897dd1ab4c9e553385258f21737b67126b198",
-                "reference": "262897dd1ab4c9e553385258f21737b67126b198",
+                "url": "https://api.github.com/repos/stojg/silverstripe-resque/zipball/7cb322a17d1fec6c0f8b28f6ab6b38dfbe62bc1e",
+                "reference": "7cb322a17d1fec6c0f8b28f6ab6b38dfbe62bc1e",
                 "shasum": ""
             },
             "require": {
@@ -1094,7 +1220,7 @@
                 {
                     "name": "Stig Lindqvist",
                     "email": "stojg.lindqvist@gmail.com",
-                    "homepage": "http://www.stojg.se/"
+                    "homepage": "https://stojg.se/"
                 }
             ],
             "description": "Wraps around the resque code for background jobs",
@@ -1103,20 +1229,20 @@
                 "redis",
                 "silverstripe"
             ],
-            "time": "2013-10-30 22:07:53"
+            "time": "2015-09-07 11:39:20"
         },
         {
             "name": "symfony/console",
             "version": "2.8.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Console.git",
-                "reference": "333ddb595b2bc54f03bd093cf6b8b0f5c526b2eb"
+                "url": "https://github.com/symfony/console.git",
+                "reference": "3f8418691d71b6024adbb2a7add9598af5b0494c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/333ddb595b2bc54f03bd093cf6b8b0f5c526b2eb",
-                "reference": "333ddb595b2bc54f03bd093cf6b8b0f5c526b2eb",
+                "url": "https://api.github.com/repos/symfony/console/zipball/3f8418691d71b6024adbb2a7add9598af5b0494c",
+                "reference": "3f8418691d71b6024adbb2a7add9598af5b0494c",
                 "shasum": ""
             },
             "require": {
@@ -1125,7 +1251,6 @@
             "require-dev": {
                 "psr/log": "~1.0",
                 "symfony/event-dispatcher": "~2.1|~3.0.0",
-                "symfony/phpunit-bridge": "~2.7|~3.0.0",
                 "symfony/process": "~2.1|~3.0.0"
             },
             "suggest": {
@@ -1160,19 +1285,19 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2015-07-01 14:16:54"
+            "time": "2015-10-11 08:29:26"
         },
         {
             "name": "symfony/event-dispatcher",
             "version": "v2.7.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/EventDispatcher.git",
+                "url": "https://github.com/symfony/event-dispatcher.git",
                 "reference": "be3c5ff8d503c46768aeb78ce6333051aa6f26d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/be3c5ff8d503c46768aeb78ce6333051aa6f26d9",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/be3c5ff8d503c46768aeb78ce6333051aa6f26d9",
                 "reference": "be3c5ff8d503c46768aeb78ce6333051aa6f26d9",
                 "shasum": ""
             },
@@ -1221,24 +1346,67 @@
             "time": "2015-06-08 09:37:21"
         },
         {
-            "name": "symfony/finder",
+            "name": "symfony/filesystem",
             "version": "2.8.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Finder.git",
-                "reference": "9ecb7ee21ad2dd9451122fc1e6d1fc0acfd8d908"
+                "url": "https://github.com/symfony/filesystem.git",
+                "reference": "fc3fe52fef85e1f3e7775ffad92539e16c20e0af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Finder/zipball/9ecb7ee21ad2dd9451122fc1e6d1fc0acfd8d908",
-                "reference": "9ecb7ee21ad2dd9451122fc1e6d1fc0acfd8d908",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/fc3fe52fef85e1f3e7775ffad92539e16c20e0af",
+                "reference": "fc3fe52fef85e1f3e7775ffad92539e16c20e0af",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.9"
             },
-            "require-dev": {
-                "symfony/phpunit-bridge": "~2.7|~3.0.0"
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Filesystem\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Filesystem Component",
+            "homepage": "https://symfony.com",
+            "time": "2015-10-11 08:29:26"
+        },
+        {
+            "name": "symfony/finder",
+            "version": "2.8.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/finder.git",
+                "reference": "dcd5aaba34ca332abb7f33ec554ebd4d829cb202"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/dcd5aaba34ca332abb7f33ec554ebd4d829cb202",
+                "reference": "dcd5aaba34ca332abb7f33ec554ebd4d829cb202",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
             },
             "type": "library",
             "extra": {
@@ -1267,27 +1435,24 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2015-07-01 14:16:54"
+            "time": "2015-10-11 08:29:26"
         },
         {
             "name": "symfony/process",
             "version": "2.8.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Process.git",
-                "reference": "25d74c90d79e66905013714d8d188e4ccb5ff466"
+                "url": "https://github.com/symfony/process.git",
+                "reference": "4e1daf58b375ea7c506d525dc7801df1c9a6ebbd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Process/zipball/25d74c90d79e66905013714d8d188e4ccb5ff466",
-                "reference": "25d74c90d79e66905013714d8d188e4ccb5ff466",
+                "url": "https://api.github.com/repos/symfony/process/zipball/4e1daf58b375ea7c506d525dc7801df1c9a6ebbd",
+                "reference": "4e1daf58b375ea7c506d525dc7801df1c9a6ebbd",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.9"
-            },
-            "require-dev": {
-                "symfony/phpunit-bridge": "~2.7|~3.0.0"
             },
             "type": "library",
             "extra": {
@@ -1316,7 +1481,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2015-07-01 14:16:54"
+            "time": "2015-10-11 08:29:26"
         },
         {
             "name": "unclecheese/display-logic",
@@ -1515,16 +1680,16 @@
         },
         {
             "name": "phpunit/php-timer",
-            "version": "1.0.6",
+            "version": "1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-timer.git",
-                "reference": "83fe1bdc5d47658b727595c14da140da92b3d66d"
+                "reference": "3e82f4e9fc92665fafd9157568e4dcb01d014e5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/83fe1bdc5d47658b727595c14da140da92b3d66d",
-                "reference": "83fe1bdc5d47658b727595c14da140da92b3d66d",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/3e82f4e9fc92665fafd9157568e4dcb01d014e5b",
+                "reference": "3e82f4e9fc92665fafd9157568e4dcb01d014e5b",
                 "shasum": ""
             },
             "require": {
@@ -1552,7 +1717,7 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2015-06-13 07:35:30"
+            "time": "2015-06-21 08:01:12"
         },
         {
             "name": "phpunit/php-token-stream",
@@ -1776,20 +1941,17 @@
             "version": "2.8.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Yaml.git",
-                "reference": "000e7fc2653335cd42c6d21405dac1c74224a387"
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "725887b209844abda9d864de722515d0fc13dd75"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/000e7fc2653335cd42c6d21405dac1c74224a387",
-                "reference": "000e7fc2653335cd42c6d21405dac1c74224a387",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/725887b209844abda9d864de722515d0fc13dd75",
+                "reference": "725887b209844abda9d864de722515d0fc13dd75",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.9"
-            },
-            "require-dev": {
-                "symfony/phpunit-bridge": "~2.7|~3.0.0"
             },
             "type": "library",
             "extra": {
@@ -1818,7 +1980,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2015-07-01 14:16:54"
+            "time": "2015-10-11 08:29:26"
         }
     ],
     "aliases": [],
@@ -1828,7 +1990,6 @@
         "dflydev/markdown": 0,
         "ezyang/htmlpurifier": 0,
         "silverstripe/framework": 0,
-        "silverstripe/toolbar": 0,
         "knplabs/packagist-api": 0,
         "ruflin/elastica": 20
     },
