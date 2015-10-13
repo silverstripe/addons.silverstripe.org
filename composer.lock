@@ -162,7 +162,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/7a9eb02190d334513e99a479510f87eed18cf958",
+                "url": "https://api.github.com/repos/composer/composer/zipball/a54f84f05f915c6d42bed94de0cdcb4406a4707b",
                 "reference": "7a9eb02190d334513e99a479510f87eed18cf958",
                 "shasum": ""
             },
@@ -1026,7 +1026,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/phar-utils/zipball/336bb5ee20de511f3c1a164222fcfd194afcab3a",
+                "url": "https://api.github.com/repos/Seldaek/phar-utils/zipball/7009b5139491975ef6486545a39f3e6dad5ac30a",
                 "reference": "336bb5ee20de511f3c1a164222fcfd194afcab3a",
                 "shasum": ""
             },
@@ -1152,16 +1152,16 @@
         },
         {
             "name": "silverstripe/toolbar",
-            "version": "4.0.1",
+            "version": "4.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/silverstripe/silverstripe-globaltoolbar.git",
-                "reference": "c69d4ba4a44cfc6bd56ec88e911dedcf6dbc15ad"
+                "reference": "e3e0c35ca30fcae8e9bfd9ea74c977c228b9b43c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/silverstripe-globaltoolbar/zipball/c69d4ba4a44cfc6bd56ec88e911dedcf6dbc15ad",
-                "reference": "c69d4ba4a44cfc6bd56ec88e911dedcf6dbc15ad",
+                "url": "https://api.github.com/repos/silverstripe/silverstripe-globaltoolbar/zipball/e3e0c35ca30fcae8e9bfd9ea74c977c228b9b43c",
+                "reference": "e3e0c35ca30fcae8e9bfd9ea74c977c228b9b43c",
                 "shasum": ""
             },
             "require": {
@@ -1189,10 +1189,10 @@
                 "silverstripe"
             ],
             "support": {
-                "source": "https://github.com/silverstripe/silverstripe-globaltoolbar/tree/4.0.1",
+                "source": "https://github.com/silverstripe/silverstripe-globaltoolbar/tree/4.0.7",
                 "issues": "https://github.com/silverstripe/silverstripe-globaltoolbar/issues"
             },
-            "time": "2015-10-11 23:35:22"
+            "time": "2015-10-13 01:37:18"
         },
         {
             "name": "stojg/silverstripe-resque",
@@ -1241,7 +1241,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/3f8418691d71b6024adbb2a7add9598af5b0494c",
+                "url": "https://api.github.com/repos/symfony/console/zipball/89a795226477f66745e8ea10415e769304114920",
                 "reference": "3f8418691d71b6024adbb2a7add9598af5b0494c",
                 "shasum": ""
             },
@@ -1946,7 +1946,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/725887b209844abda9d864de722515d0fc13dd75",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/ff7f886a33f5b7a26a94d62f6e14bb9cf0e3bf5d",
                 "reference": "725887b209844abda9d864de722515d0fc13dd75",
                 "shasum": ""
             },
