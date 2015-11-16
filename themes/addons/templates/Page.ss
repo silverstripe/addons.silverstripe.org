@@ -35,7 +35,6 @@
 		<link rel="stylesheet" href="themes/addons/css/ionicons.min.css" />
 		<script type="text/javascript" src="//use.typekit.net/emt4dhq.js"></script>
 		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-		<script>window.GLOBAL_NAV_SECONDARY_ID = 16;</script>
 	</head>
 	<body class="theme-theme1">
 		<header class="site-header" data-0="background-position: 50% 50%;" data-544="background-position: 50% -30%;">
@@ -66,16 +65,24 @@
 
 		<% include Footer %>
 
-		<% if GATrackingCode %>
 		<script>
-		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-		  ga('create', '$GATrackingCode', 'silverstripe.org');
-		  ga('send', 'pageview');
+			ga('create', 'UA-84547-17', 'auto', {'allowLinker': true});
+			ga('require', 'linker');
+			ga('linker:autoLink', [
+				'www.silverstripe.com',
+				'www.silverstripe.org',
+				'addons.silverstripe.org',
+				'api.silverstripe.org',
+				'docs.silverstripe.org',
+				'userhelp.silverstripe.org',
+				'demo.silverstripe.org'
+			]);
+			ga('send', 'pageview')
 		</script>
-		<% end_if %>
 	</body>
 </html>
