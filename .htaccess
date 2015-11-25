@@ -22,11 +22,6 @@ ErrorDocument 500 /assets/error-500.html
 	SetEnv HTTP_MOD_REWRITE On
 	RewriteEngine On
 
-	# Redirect requests for $AbsoluteBaseURL/favicon.ico to $AbsoluteBaseURL/$ThemeDir/favicons/favicon.ico
-	RewriteCond %{REQUEST_URI} !^/favicon\.ico [NC]
-	RewriteCond %{REQUEST_URI} favicon\.ico [NC]
-	RewriteRule (.*) http://addons.silverstripe.org/themes/addons/favicons/favicon.ico [R=301,L]
-
 	RewriteCond %{REQUEST_URI} ^(.*)$
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteRule .* framework/main.php?url=%1 [QSA]
@@ -34,6 +29,5 @@ ErrorDocument 500 /assets/error-500.html
 	RewriteCond %{REQUEST_URI} ^(.*)/framework/main.php$
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteRule . %1/install.php? [R,L]
-
 </IfModule>
 ### SILVERSTRIPE END ###
