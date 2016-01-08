@@ -1,62 +1,11 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "25955bc4f4cb8331ee900adcbc444a0d",
-    "content-hash": "a7be2cc2dd2f462319f3dc17d13021dc",
+    "hash": "651913caf460f0103ed535d1555de5ac",
     "packages": [
-        {
-            "name": "ajshort/silverstripe-elastica",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/chillu/silverstripe-elastica.git",
-                "reference": "b74916afa308ca2ca878e1bdd36dfe1278c625f6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/chillu/silverstripe-elastica/zipball/7c6466db783986b68021bf4d83dd1b9aec95b8a3",
-                "reference": "b74916afa308ca2ca878e1bdd36dfe1278c625f6",
-                "shasum": ""
-            },
-            "require": {
-                "ruflin/elastica": "dev-master",
-                "silverstripe/framework": ">=3.1"
-            },
-            "type": "silverstripe-module",
-            "extra": {
-                "installer-name": "elastica"
-            },
-            "autoload": {
-                "psr-0": {
-                    "SilverStripe\\Elastica": "src/"
-                }
-            },
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Andrew Short",
-                    "email": "andrewjshort@gmail.com"
-                }
-            ],
-            "description": "Provides Elastic Search integration for SilverStripe DataObjects using Elastica",
-            "homepage": "http://github.com/ajshort/silverstripe-elastica",
-            "keywords": [
-                "elastica",
-                "elasticsearch",
-                "search",
-                "silverstripe"
-            ],
-            "support": {
-                "issues": "http://github.com/ajshort/silverstripe-elastica/issues",
-                "source": "https://github.com/chillu/silverstripe-elastica/tree/master"
-            },
-            "time": "2013-09-07 11:27:51"
-        },
         {
             "name": "chrisboulton/php-resque",
             "version": "dev-master",
@@ -1058,7 +1007,61 @@
             "keywords": [
                 "phra"
             ],
-            "time": "2015-05-01 12:45:48"
+            "time": "2015-10-13 18:44:15"
+        },
+        {
+            "name": "silverstripe-australia/elastica",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/silverstripe-australia/silverstripe-elastica.git",
+                "reference": "92ce2b5e18c7127adeafddde511e428cbeb9088a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/silverstripe-australia/silverstripe-elastica/zipball/92ce2b5e18c7127adeafddde511e428cbeb9088a",
+                "reference": "92ce2b5e18c7127adeafddde511e428cbeb9088a",
+                "shasum": ""
+            },
+            "require": {
+                "ruflin/elastica": "dev-master",
+                "silverstripe/framework": ">=3.1"
+            },
+            "replace": {
+                "ajshort/silverstripe-elastica": "self.version"
+            },
+            "type": "silverstripe-module",
+            "extra": {
+                "installer-name": "elastica"
+            },
+            "autoload": {
+                "psr-0": {
+                    "SilverStripe\\Elastica": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Marcus Nyeholt",
+                    "email": "marcus@silverstripe.com.au"
+                },
+                {
+                    "name": "Andrew Short",
+                    "email": "andrewjshort@gmail.com"
+                }
+            ],
+            "description": "Provides Elastic Search integration for SilverStripe DataObjects using Elastica",
+            "homepage": "http://github.com/ajshort/silverstripe-elastica",
+            "keywords": [
+                "elastica",
+                "elasticsearch",
+                "search",
+                "silverstripe"
+            ],
+            "time": "2015-05-27 21:27:25"
         },
         {
             "name": "silverstripe/framework",
@@ -1986,7 +1989,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "ajshort/silverstripe-elastica": 20,
         "dflydev/markdown": 0,
         "ezyang/htmlpurifier": 0,
         "silverstripe/framework": 0,

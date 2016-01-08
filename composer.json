@@ -5,15 +5,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/silverstripe/silverstripe-globaltoolbar.git"
-        },
-        {	
-        	"url": "https://github.com/chillu/silverstripe-elastica.git",
-        	"type": "vcs"
         }
     ],	
 	"require": {
 		"composer/installers": "*",
-		"ajshort/silverstripe-elastica": "dev-master#b74916afa308ca2ca878e1bdd36dfe1278c625f6",
 		"composer/composer": "*",
 		"dflydev/markdown": "1.0.*@stable",
 		"ezyang/htmlpurifier": "4.5.*@stable",
@@ -24,7 +19,8 @@
 		"knplabs/packagist-api": "1.*@stable",
 		"stojg/silverstripe-resque": "*",
 		"ruflin/elastica": "dev-master#f235765a7b2b088fb27510a75fe3472bb94188cf",
-		"symfony/event-dispatcher": "2.7.1"
+		"symfony/event-dispatcher": "2.7.1",
+		"silverstripe-australia/elastica": "*"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "3.7.*",
