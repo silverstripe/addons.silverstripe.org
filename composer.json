@@ -13,7 +13,7 @@
 		"dflydev/markdown": "1.0.*@stable",
 		"ezyang/htmlpurifier": "4.5.*@stable",
 		"guzzle/guzzle": "3.2.0",
-		"silverstripe/framework": "3.1.*@stable",
+		"silverstripe/framework": "~3.2.0@stable",
 		"silverstripe/multivaluefield": "*",
 		"silverstripe/toolbar": "^4.0",
 		"knplabs/packagist-api": "1.*@stable",
