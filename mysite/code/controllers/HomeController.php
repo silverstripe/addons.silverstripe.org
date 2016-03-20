@@ -56,7 +56,7 @@ class HomeController extends SiteController {
 
 		$sqlQuery = new SQLQuery();
 		$sqlQuery->setFrom('Addon');
-		$sqlQuery->setSelect('Created');
+		$sqlQuery->selectField('DATE(Created)', 'Created');
 		$sqlQuery->selectField('COUNT(*)', 'CountInOneDay');
 		$sqlQuery->addWhere('"Created" >= DATE_SUB(NOW(), INTERVAL 30 DAY)');
 		$sqlQuery->addGroupBy('DATE(Created)');
@@ -68,9 +68,9 @@ class HomeController extends SiteController {
 				$date = date('j M Y', strtotime($row['Created']));
 				if(!isset($chartData[$date])) {
 					$chartData[$date] = $row['CountInOneDay'];
-				}	
+				}
 			}
-		} 
+		}
 
 		if(count($chartData)) {
 			foreach($chartData as $x => $y) {
@@ -80,7 +80,7 @@ class HomeController extends SiteController {
 				)));
 			}
 		}
-		
+
 		return $list;
 	}
 }
