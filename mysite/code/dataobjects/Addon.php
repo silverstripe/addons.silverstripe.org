@@ -20,7 +20,9 @@ class Addon extends DataObject {
 		'Favers' => 'Int',
 		'LastUpdated' => 'SS_Datetime',
 		'LastBuilt' => 'SS_Datetime',
-		'BuildQueued' => 'Boolean'
+		'BuildQueued' => 'Boolean',
+		'HelpfulRobotData' => 'Text',
+		'HelpfulRobotScore' => 'Int',
 	);
 
 	public static $has_one = array(
@@ -147,5 +149,13 @@ class Addon extends DataObject {
 
 	public function getDateCreated() {
 		return date('Y-m-d', strtotime($this->Created));
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getHelpfulRobotData()
+	{
+		return json_decode($this->HelpfulRobotData, true);
 	}
 }
