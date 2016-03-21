@@ -27,22 +27,25 @@ Injector:
   BuildAddonsTask:
     constructor:
       - %$AddonBuilder
-
 ---
 Only:
   environment: 'live'
+After:
+  - '#elastica'
 ---
 Injector:
   SilverStripe\Elastica\ElasticaService:
     constructor:
       - %$Elastica\Client
-      - 'addons'
+      - addons
 ---
 Except:
   environment: 'live'
+After:
+  - '#elastica'
 ---
 Injector:
   SilverStripe\Elastica\ElasticaService:
     constructor:
       - %$Elastica\Client
-      - 'addons-dev'
+      - addons-dev
