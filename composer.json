@@ -1,30 +1,36 @@
 {
-	"name": "extensions.silverstripe.org",
-	"description": "The SilverStripe extensions listing site",
-	"repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/silverstripe/silverstripe-globaltoolbar.git"
-        }
-    ],	
-	"require": {
-		"composer/installers": "*",
-		"composer/composer": "*",
-		"dflydev/markdown": "1.0.*@stable",
-		"ezyang/htmlpurifier": "4.5.*@stable",
-		"guzzle/guzzle": "3.2.0",
-		"silverstripe/framework": "3.1.*@stable",
-		"silverstripe/multivaluefield": "*",
-		"silverstripe/toolbar": "^4.0",
-		"knplabs/packagist-api": "1.*@stable",
-		"stojg/silverstripe-resque": "*",
-		"ruflin/elastica": "dev-master#f235765a7b2b088fb27510a75fe3472bb94188cf",
-		"symfony/event-dispatcher": "2.7.1",
-		"silverstripe-australia/elastica": "*"
-	},
-	"require-dev": {
-		"phpunit/phpunit": "3.7.*",
-		"silverstripe/sqlite3": "*"
-	},
-	"minimum-stability": "dev"
+  "name": "extensions.silverstripe.org",
+  "description": "The SilverStripe extensions listing site",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/silverstripe/silverstripe-globaltoolbar.git"
+    }
+  ],
+  "require": {
+    "composer/installers": "*",
+    "composer/composer": "*",
+    "dflydev/markdown": "1.0.*@stable",
+    "ezyang/htmlpurifier": "4.5.*@stable",
+    "guzzle/guzzle": "3.2.0",
+    "silverstripe/framework": "3.1.*@stable",
+    "silverstripe/multivaluefield": "*",
+    "silverstripe/toolbar": "^4.0",
+    "knplabs/packagist-api": "1.*@stable",
+    "stojg/silverstripe-resque": "*",
+    "ruflin/elastica": "^3.1",
+    "silverstripe-australia/elastica": "^2.2",
+    "symfony/event-dispatcher": "^2.8",
+    "symfony/filesystem": "^2.8",
+    "symfony/process": "^2.8",
+    "symfony/finder": "^2.8",
+    "symfony/console": "^2.8",
+    "symfony/yaml": "^2.8"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.8",
+    "silverstripe/sqlite3": "*"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
