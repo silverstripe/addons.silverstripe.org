@@ -105,11 +105,11 @@ class Addon extends DataObject {
 			'name' => array('type' => 'string'),
 			'description' => array('type' => 'string'),
 			'type' => array('type' => 'string'),
-			'compatibility' => array('type' => 'string', 'index_name' => 'compatible'),
+			'compatibility' => array('type' => 'string'),
 			'vendor' => array('type' => 'string'),
-			'tags' => array('type' => 'string', 'index_name' => 'tag'),
+			'tags' => array('type' => 'string'),
 			'released' => array('type' => 'date'),
-			'downloads' => array('type' => 'long'),
+			'downloads' => array('type' => 'string'),
 			'readme' => array('type' => 'string')
 		));
 	}
@@ -123,7 +123,7 @@ class Addon extends DataObject {
 			'vendor' => $this->VendorName(),
 			'tags' => $this->Keywords()->column('Name'),
 			'released' => $this->obj('Released')->Format('c'),
-			'downloads' => $this->Downloads,
+			'downloads' => (int) $this->Downloads,
 			'readme' => strip_tags($this->Readme),
 			'_boost' => sqrt($this->Downloads)
 		));
@@ -154,7 +154,7 @@ class Addon extends DataObject {
 	/**
 	 * @return array
 	 */
-	public function getHelpfulRobotData()
+	public function HelpfulRobotData()
 	{
 		return json_decode($this->HelpfulRobotData, true);
 	}
