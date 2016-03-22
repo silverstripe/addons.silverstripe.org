@@ -4,6 +4,18 @@
 			<a href="/add-ons" class="btn btn-plain"><i class="icon-arrow-left"></i> Back to add-ons</a>
 		</p>
 
+		<div class="rating pull-right">
+			<div class="circle green">
+				<div class="circle-half"></div>
+			</div>
+			<div class="circle grey">
+				<div class="circle-half"></div>
+			</div>
+			<div class="circle green"></div>
+			<p>68<small>/100</small></p>
+			<a href="#" class="rating-question"><i class="icon-question-sign"></i></a>
+		</div>
+
 		<h1>
 			<a href="$VendorLink">$VendorName</a> / $PackageName
 		</h1>
@@ -104,6 +116,42 @@
 
 		<hr>
 	<% end_if %>
+
+	<h3>Module rating breakdown</h3>
+
+	<div class="row">
+		<div class="span5">
+			<div class="rating rating-border">
+				<div class="circle green">
+					<div class="circle-half"></div>
+				</div>
+				<p>68<small>/100</small></p>
+			</div>
+			<p>Module rating system helping users find modules that are well supported. For more on how the rating system works visit <a href="#">Module standards</a></p>
+		</div>
+		<div class="span3 offset1">
+			<div class="rating-item">
+				<div class="circle circle-option-sml green">
+					<i class="icon-ok"></i>
+				</div>
+				<p>Supported item</p>
+			</div>
+			<div class="rating-item">
+				<div class="circle circle-option-sml green">
+					<i class="icon-ok"></i>
+				</div>
+				<p>Supported item</p>
+			</div>
+		</div>
+		<div class="span3">
+			<div class="rating-item">
+				<div class="circle circle-option-sml grey">
+					<i class="icon-ok"></i>
+				</div>
+				<p>Not so supported item</p>
+			</div>
+		</div>
+	</div>
 
 	<h3>Versions</h3>
 

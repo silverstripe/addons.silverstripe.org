@@ -26,7 +26,14 @@
 					<a href="$Link">
 						<span class="meta"><% include AddonDownloadStats %></span>
 						<span class="name">$Name</span>
-						<span class="description">$Description</span>
+						<div class="circle circle-sml green">
+							<div class="circle-half"></div>
+						</div>
+						<div class="circle circle-sml grey">
+							<div class="circle-half"></div>
+						</div>
+						<div class="circle circle-sml green"></div>
+						<span class="description">$Description Description</span>
 					</a>
 				</li>
 			<% end_loop %>
@@ -61,6 +68,13 @@
 					<a href="$Addon.Link">
 						<span class="meta">$Released.Date</span>
 						<span class="name">$Name</span>
+						<div class="circle circle-sml green">
+							<div class="circle-half"></div>
+						</div>
+						<div class="circle circle-sml grey">
+							<div class="circle-half"></div>
+						</div>
+						<div class="circle circle-sml green"></div>
 						<span class="description">$Description</span>
 					</a>
 				</li>
