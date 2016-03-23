@@ -26,14 +26,8 @@
 					<a href="$Link">
 						<span class="meta"><% include AddonDownloadStats %></span>
 						<span class="name">$Name</span>
-						<div class="circle circle-sml green">
-							<div class="circle-half"></div>
-						</div>
-						<div class="circle circle-sml grey">
-							<div class="circle-half"></div>
-						</div>
-						<div class="circle circle-sml green"></div>
-						<span class="description">$Description Description</span>
+						<% include ModuleRatingVisual SmallCircle=true %>
+						<span class="description">$Description</span>
 					</a>
 				</li>
 			<% end_loop %>
@@ -51,6 +45,7 @@
 					<a href="$Link">
 						<span class="meta">$Released.Date</span>
 						<span class="name">$Name</span>
+						<% include ModuleRatingVisual SmallCircle=true %>
 						<span class="description">$Description</span>
 					</a>
 				</li>
@@ -68,13 +63,7 @@
 					<a href="$Addon.Link">
 						<span class="meta">$Released.Date</span>
 						<span class="name">$Name</span>
-						<div class="circle circle-sml green">
-							<div class="circle-half"></div>
-						</div>
-						<div class="circle circle-sml grey">
-							<div class="circle-half"></div>
-						</div>
-						<div class="circle circle-sml green"></div>
+						<% include ModuleRatingVisual SmallCircle=true %>
 						<span class="description">$Description</span>
 					</a>
 				</li>
@@ -89,6 +78,7 @@
 				<li>
 					<a href="$Link">
 						<span class="name">$Name</span>
+						<% include ModuleRatingVisual SmallCircle=true %>
 						<span class="description">$Description</span>
 					</a>
 				</li>

@@ -5,15 +5,13 @@
 		</p>
 
 		<div class="rating pull-right">
-			<div class="circle green">
-				<div class="circle-half"></div>
-			</div>
-			<div class="circle grey">
-				<div class="circle-half"></div>
-			</div>
-			<div class="circle green"></div>
-			<p>68<small>/100</small></p>
-			<a href="#" class="rating-question"><i class="icon-question-sign"></i></a>
+			<% include ModuleRatingVisual %>
+			<% if $HelpfulRobotScore %>
+			<p>$HelpfulRobotScore<small>/100</small></p>
+			<% else %>
+			<p>N/A <small>&nbsp;</small></p>
+			<% end_if %>
+			<a href="#rating-breakdown" class="rating-question"><i class="icon-question-sign"></i></a>
 		</div>
 
 		<h1>
@@ -117,40 +115,112 @@
 		<hr>
 	<% end_if %>
 
-	<h3>Module rating breakdown</h3>
+	<h3 id="rating-breakdown">Module rating breakdown</h3>
 
 	<div class="row">
 		<div class="span5">
 			<div class="rating rating-border">
-				<div class="circle green">
-					<div class="circle-half"></div>
-				</div>
-				<p>68<small>/100</small></p>
+				<% include ModuleRatingVisual %>
+				<% if $HelpfulRobotScore %>
+				<p>$HelpfulRobotScore<small>/100</small></p>
+				<% else %>
+				<p>N/A <small>No data avaliable</small></p>
+				<% end_if %>
 			</div>
-			<p>Module rating system helping users find modules that are well supported. For more on how the rating system works visit <a href="#">Module standards</a></p>
+			<p>Module rating system helping users find modules that are well supported. For more on how the rating system works visit <a href="http://www.silverstripe.org/software/addons/supported-modules-definition/">Module standards</a></p>
+			<p><small>Score not correct? <a href="mailto:community@silverstripe.com">Let us know there is a problem</a></small></p>
 		</div>
+
+		<% if $HelpfulRobotData %>
 		<div class="span3 offset1">
 			<div class="rating-item">
-				<div class="circle circle-option-sml green">
+				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_readme_file %> green<% else %> grey<% end_if %>">
 					<i class="icon-ok"></i>
 				</div>
-				<p>Supported item</p>
+				<p>Readme</p>
 			</div>
 			<div class="rating-item">
-				<div class="circle circle-option-sml green">
+				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_license_file %> green<% else %> grey<% end_if %>">
 					<i class="icon-ok"></i>
 				</div>
-				<p>Supported item</p>
+				<p>License</p>
+			</div>
+			<div class="rating-item">
+				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_code_of_conduct_file %> green<% else %> grey<% end_if %>">
+					<i class="icon-ok"></i>
+				</div>
+				<p>Code of conduct</p>
+			</div>
+			<div class="rating-item">
+				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_contributing_file %> green<% else %> grey<% end_if %>">
+					<i class="icon-ok"></i>
+				</div>
+				<p>Contributing file</p>
+			</div>
+			<div class="rating-item">
+				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_change_log_file %> green<% else %> grey<% end_if %>">
+					<i class="icon-ok"></i>
+				</div>
+				<p>Change log</p>
+			</div>
+			<div class="rating-item">
+				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_git_attributes_file %> green<% else %> grey<% end_if %>">
+					<i class="icon-ok"></i>
+				</div>
+				<p>Git attributes file</p>
+			</div>
+			<div class="rating-item">
+				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_editor_config_file %> green<% else %> grey<% end_if %>">
+					<i class="icon-ok"></i>
+				</div>
+				<p>Editor config file</p>
 			</div>
 		</div>
 		<div class="span3">
 			<div class="rating-item">
-				<div class="circle circle-option-sml grey">
+				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_code_folder %> green<% else %> grey<% end_if %>">
 					<i class="icon-ok"></i>
 				</div>
-				<p>Not so supported item</p>
+				<p>Code folder</p>
+			</div>
+			<div class="rating-item">
+				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_tests_folder %> green<% else %> grey<% end_if %>">
+					<i class="icon-ok"></i>
+				</div>
+				<p>Tests</p>
+			</div>
+			<div class="rating-item">
+				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_docs_folder %> green<% else %> grey<% end_if %>">
+					<i class="icon-ok"></i>
+				</div>
+				<p>Documentation</p>
+			</div>
+			<div class="rating-item">
+				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_travis_file %> green<% else %> grey<% end_if %>">
+					<i class="icon-ok"></i>
+				</div>
+				<p>Travis file</p>
+			</div>
+			<div class="rating-item">
+				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_travis_setup %> green<% else %> grey<% end_if %>">
+					<i class="icon-ok"></i>
+				</div>
+				<p>Travis set up</p>
+			</div>
+			<div class="rating-item">
+				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_scrutinizer_file %> green<% else %> grey<% end_if %>">
+					<i class="icon-ok"></i>
+				</div>
+				<p>Scrutinizer file</p>
+			</div>
+			<div class="rating-item">
+				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_scrutinizer_setup %> green<% else %> grey<% end_if %>">
+					<i class="icon-ok"></i>
+				</div>
+				<p>Scrutinizer set up</p>
 			</div>
 		</div>
+		<% end_if %>
 	</div>
 
 	<h3>Versions</h3>
