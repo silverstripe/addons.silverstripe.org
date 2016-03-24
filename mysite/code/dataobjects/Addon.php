@@ -156,6 +156,8 @@ class Addon extends DataObject {
 	 */
 	public function HelpfulRobotData()
 	{
-		return json_decode($this->HelpfulRobotData, true);
+		$data = json_decode($this->HelpfulRobotData, true);
+
+		return new ArrayData($data["inspections"][0]);
 	}
 }

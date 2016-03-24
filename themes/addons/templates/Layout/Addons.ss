@@ -95,8 +95,9 @@
 						<i class="icon-picture"></i>
 					<% end_if %>
 					<a href="$Link">$Name</a>
+					<% include ModuleRatingVisual SmallCircle=true %>
 				</td>
-				<td>$Description.LimitCharacters(60) <% if $HelpfulRobotData %>[$HelpfulRobotScore]<% end_if %></td>
+				<td>$Description.LimitCharacters(60)</td>
 				<td>
 					<% include AddonDownloadStats %>
 				</td>
