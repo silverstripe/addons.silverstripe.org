@@ -5,8 +5,14 @@
 class SiteController extends Controller {
 
 	public function init() {
-	    RSSFeed::linkToFeed("add-ons/rss", "New modules on addons.silverstripe.org");    
-	    parent::init();
+		RSSFeed::linkToFeed("add-ons/rss", "New modules on addons.silverstripe.org");
+
+		Requirements::javascript("//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js");
+		Requirements::javascript("themes/".SSViewer::current_theme()."/bootstrap/js/bootstrap.min.js");
+		Requirements::javascript("themes/".SSViewer::current_theme()."/javascript/addons.js");
+		Requirements::javascript("//www.google.com/jsapi");
+		Requirements::javascript("themes/".SSViewer::current_theme()."/javascript/chart.js");
+		parent::init();
 	}
 
 	public function Menu() {
