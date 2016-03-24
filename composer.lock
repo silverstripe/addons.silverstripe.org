@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2264e49ed78a8171e43083c576608ede",
-    "content-hash": "dca9d65025557122f3742679c56281fc",
+    "hash": "6fc7a7627eceba4dcde3bc58b4cb5a34",
+    "content-hash": "f0cfad7d7792dc056f7522fe51e76562",
     "packages": [
         {
             "name": "chrisboulton/php-resque",
@@ -1015,16 +1015,16 @@
         },
         {
             "name": "silverstripe-australia/elastica",
-            "version": "2.2.1",
+            "version": "dev-remove-solr-reference",
             "source": {
                 "type": "git",
-                "url": "https://github.com/silverstripe-australia/silverstripe-elastica.git",
-                "reference": "8c098dfe3795930d8f2cc48225c6dbbdbfedcc64"
+                "url": "https://github.com/assertchris/silverstripe-elastica.git",
+                "reference": "996a883f62e723ece0d683369aeaa3e31fdbf585"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe-australia/silverstripe-elastica/zipball/8c098dfe3795930d8f2cc48225c6dbbdbfedcc64",
-                "reference": "8c098dfe3795930d8f2cc48225c6dbbdbfedcc64",
+                "url": "https://api.github.com/repos/assertchris/silverstripe-elastica/zipball/996a883f62e723ece0d683369aeaa3e31fdbf585",
+                "reference": "996a883f62e723ece0d683369aeaa3e31fdbf585",
                 "shasum": ""
             },
             "require": {
@@ -1046,18 +1046,17 @@
                     "SilverStripe\\Elastica": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
             "authors": [
                 {
-                    "name": "Marcus Nyeholt",
-                    "email": "marcus@silverstripe.com.au"
-                },
-                {
                     "name": "Andrew Short",
                     "email": "andrewjshort@gmail.com"
+                },
+                {
+                    "name": "Marcus Nyeholt",
+                    "email": "marcus@silverstripe.com.au"
                 }
             ],
             "description": "Provides Elastic Search integration for SilverStripe DataObjects using Elastica",
@@ -1068,7 +1067,11 @@
                 "search",
                 "silverstripe"
             ],
-            "time": "2016-03-21 02:44:22"
+            "support": {
+                "issues": "http://github.com/ajshort/silverstripe-elastica/issues",
+                "source": "https://github.com/assertchris/silverstripe-elastica/tree/remove-solr-reference"
+            },
+            "time": "2016-03-24 01:53:33"
         },
         {
             "name": "silverstripe/framework",
@@ -2610,7 +2613,8 @@
         "dflydev/markdown": 0,
         "ezyang/htmlpurifier": 0,
         "silverstripe/framework": 0,
-        "knplabs/packagist-api": 0
+        "knplabs/packagist-api": 0,
+        "silverstripe-australia/elastica": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

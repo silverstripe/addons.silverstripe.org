@@ -5,6 +5,10 @@
     {
       "type": "vcs",
       "url": "https://github.com/silverstripe/silverstripe-globaltoolbar.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/assertchris/silverstripe-elastica"
     }
   ],
   "require": {
@@ -19,7 +23,7 @@
     "knplabs/packagist-api": "1.*@stable",
     "stojg/silverstripe-resque": "*",
     "ruflin/elastica": "^3.1",
-    "silverstripe-australia/elastica": "^2.2",
+    "silverstripe-australia/elastica": "dev-remove-solr-reference",
     "symfony/event-dispatcher": "^2.8",
     "symfony/filesystem": "^2.8",
     "symfony/process": "^2.8",

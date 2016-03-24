@@ -48,4 +48,4 @@ Injector:
   SilverStripe\Elastica\ElasticaService:
     constructor:
       - %$Elastica\Client
-      - addons-dev
+      - sample-index
