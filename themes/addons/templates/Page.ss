@@ -5,11 +5,6 @@
 		<title>$Title &middot; SilverStripe Add-ons</title>
 		$MetaTags(false)
 		<% require themedCSS("addons") %>
-		<% require javascript("//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js") %>
-		<% require javascript("$ThemeDir/bootstrap/js/bootstrap.min.js") %>
-		<% require javascript("$ThemeDir/javascript/addons.js") %>
-		<% require javascript("//www.google.com/jsapi") %>
-		<% require javascript("$ThemeDir/javascript/chart.js") %>
 		<% include Favicons %>
 		<link rel="stylesheet" href="$ThemeDir/css/ionicons.min.css" />
 		<script type="text/javascript" src="//use.typekit.net/emt4dhq.js"></script>

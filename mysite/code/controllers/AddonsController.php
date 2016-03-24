@@ -108,7 +108,7 @@ class AddonsController extends SiteController {
 
 		// Proxy out a search to elastic if any parameters are set.
 		if ($search || $type || $compat || $tags) {
-			$filter = new BoolAnd();
+			$bool = new Query\BoolQuery();
 
 			$query = new Query();
 			$query->setSize(count($list));
@@ -121,19 +121,19 @@ class AddonsController extends SiteController {
 			}
 
 			if ($type) {
-				$filter->addFilter(new Term(array('type' => $type)));
+				$bool->addMust(new Query\Term(array('type' => $type)));
 			}
 
 			if ($compat) {
-				$filter->addFilter(new Terms('compatible', (array) $compat));
+				$bool->addMust(new Query\Terms('compatible', (array) $compat));
 			}
 
 			if ($tags) {
-				$filter->addFilter(new Terms('tag', (array) $tags));
+				$bool->addMust(new Query\Terms('tag', (array) $tags));
 			}
 
 			if ($type || $compat || $tags) {
-				$query->setFilter($filter);
+				$query->setQuery($bool);
 			}
 
 			$list = new ResultList($this->elastica->getIndex(), $query);
