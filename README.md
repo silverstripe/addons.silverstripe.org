@@ -85,14 +85,17 @@ new worker process can be spawned using the following command in the webroot:
 Tasks
 ============
 
- * `sake dev/tasks/UpdateAddonsTask`: Runs the add-on updater.
- * `sake dev/tasks/UpdateSilverStripeVersionsTask`: Updates the available SilverStripe versions.
- * `sake dev/tasks/SilverStripe-Elastica-ReindexTask`: Defines and refreshes the elastic search index.
- * `sake dev/tasks/BuildAddonsTask`: Manually build addons, downloading screenshots
+ * `framework/sake dev/tasks/UpdateAddonsTask`: Runs the add-on updater.
+ * `framework/sake dev/tasks/UpdateSilverStripeVersionsTask`: Updates the available SilverStripe versions.
+ * `framework/sake dev/tasks/SilverStripe-Elastica-ReindexTask`: Defines and refreshes the elastic search index.
+ * `framework/sake dev/tasks/BuildAddonsTask`: Manually build addons, downloading screenshots
    and a README for display through the website. There's no need to set up a cron job
    for this task if you're using the resque queue.
- * `sake dev/tasks/DeleteRedundantAddonsTask`: Deletes addons which haven't been updated 
+ * `framework/sake dev/tasks/DeleteRedundantAddonsTask`: Deletes addons which haven't been updated
    from packagist in a specified amount of time, which implies they're no longer available there.
+ * `framework/sake dev/tasks/CacheHelpfulRobotDataTask`: Caches Helpful Robot scores and data, so they can
+   be displayed on listing and detail pages, for each addon. This also removes modules that cannot be loaded
+   by requests to their repository URLs.
 
 LESS Compilation
 ===========
