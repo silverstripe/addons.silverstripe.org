@@ -8,7 +8,7 @@ Injector:
   AddonUpdater:
     constructor:
       - %$PackagistService
-      - %$SilverStripe\Elastica\ElasticaService
+      - %$ElasticaService
       - %$ResqueService
       - %$Composer\Package\Version\VersionParser
   RequestProcessor:
@@ -34,10 +34,11 @@ After:
   - '#elastica'
 ---
 Injector:
-  SilverStripe\Elastica\ElasticaService:
+  ElasticaService:
+    class: SilverStripe\Elastica\ElasticaService
     constructor:
-      - %$Elastica\Client
-      - addons
+      client: %$ElasticClient
+      index: addons
 ---
 Except:
   environment: 'live'
@@ -45,7 +46,8 @@ After:
   - '#elastica'
 ---
 Injector:
-  SilverStripe\Elastica\ElasticaService:
+  ElasticaService:
+    class: SilverStripe\Elastica\ElasticaService
     constructor:
-      - %$Elastica\Client
-      - addons-dev
+      client: %$ElasticClient
+      index: addons-dev

@@ -28,7 +28,7 @@ class AddonsController extends SiteController {
 	);
 
 	public static $dependencies = array(
-		'ElasticaService' => '%$SilverStripe\Elastica\ElasticaService'
+		'ElasticaService' => '%$ElasticaService'
 	);
 
 	/**
