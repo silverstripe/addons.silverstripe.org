@@ -1,11 +1,7 @@
 <?php
 
-use Elastica\Filter\BoolAnd;
-use Elastica\Filter\Term;
-use Elastica\Filter\Terms;
 use Elastica\Query;
 use Elastica\Query\Match;
-use Elastica\Search;
 use SilverStripe\Elastica\ElasticaService;
 use SilverStripe\Elastica\ResultList;
 
@@ -108,16 +104,19 @@ class AddonsController extends SiteController {
 
 		// Proxy out a search to elastic if any parameters are set.
 		if ($search || $type || $compat || $tags) {
+
 			$bool = new Query\BoolQuery();
 
 			$query = new Query();
+			$query->setQuery($bool);
 			$query->setSize(count($list));
+
 
 			if ($search) {
 				$match = new Match();
 				$match->setField('_all', $search);
 
-				$query->setQuery($match);
+				$bool->addMust($match);
 			}
 
 			if ($type) {
@@ -125,15 +124,11 @@ class AddonsController extends SiteController {
 			}
 
 			if ($compat) {
-				$bool->addMust(new Query\Terms('compatible', (array) $compat));
+				$bool->addMust(new Query\Terms('compatibility', (array) $compat));
 			}
 
 			if ($tags) {
 				$bool->addMust(new Query\Terms('tag', (array) $tags));
-			}
-
-			if ($type || $compat || $tags) {
-				$query->setQuery($bool);
 			}
 
 			$list = new ResultList($this->elastica->getIndex(), $query);
@@ -146,6 +141,8 @@ class AddonsController extends SiteController {
 				} else {
 					$list = new ArrayList();
 				}
+			} else {
+				$list = $list->toArrayList();
 			}
 		} else {
 			if (!$sort) $sort = 'downloads';
