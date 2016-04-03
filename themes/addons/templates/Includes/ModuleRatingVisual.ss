@@ -1,7 +1,7 @@
-<% if $HelpfulRobotScore >= 70 %>
+<% if $AdjustedHelpfulRobotScore >= 70 %>
 <div class="circle<% if $SmallCircle %> circle-sml<% end_if %> green"></div>
 <% else %>
-	<% if $HelpfulRobotScore >= 40 %>
+	<% if $AdjustedHelpfulRobotScore >= 40 %>
 	<div class="circle<% if $SmallCircle %> circle-sml<% end_if %> green">
 		<div class="circle-half"></div>
 	</div>

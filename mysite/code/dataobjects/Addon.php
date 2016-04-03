@@ -96,8 +96,19 @@ class Addon extends DataObject {
 		return sprintf('New module release: %s', $this->Name);
 	}
 
-	public function PackagistUrl() {
+	public function PackagistUrl()
+	{
 		return "https://packagist.org/packages/$this->Name";
+	}
+
+	/**
+	 * Remove the effect of code of conduct Helpful Robot measure that we currently don't include in the Supported module definition
+	 *
+	 * @return integer Adjusted Helpful Robot score
+	 */
+	public function getAdjustedHelpfulRobotScore()
+	{
+		return min(100, $this->HelpfulRobotScore / 92.9 * 100);
 	}
 
 	public function getElasticaMapping() {
@@ -131,7 +142,7 @@ class Addon extends DataObject {
 
 	public function onBeforeDelete() {
 		parent::onBeforeDelete();
-		
+
 		// Partially cascade delete. Leave author and keywords in place,
 		// since they might be related to other addons.
 		foreach($this->Screenshots() as $image) {

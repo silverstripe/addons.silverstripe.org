@@ -6,8 +6,8 @@
 
 		<div class="rating pull-right">
 			<% include ModuleRatingVisual %>
-			<% if $HelpfulRobotScore %>
-			<p>$HelpfulRobotScore<small>/100</small></p>
+			<% if $AdjustedHelpfulRobotScore %>
+			<p>$AdjustedHelpfulRobotScore<small>/100</small></p>
 			<% else %>
 			<p>N/A <small>&nbsp;</small></p>
 			<% end_if %>
@@ -121,8 +121,8 @@
 		<div class="span5">
 			<div class="rating rating-border">
 				<% include ModuleRatingVisual %>
-				<% if $HelpfulRobotScore %>
-				<p>$HelpfulRobotScore<small>/100</small></p>
+				<% if $AdjustedHelpfulRobotScore %>
+				<p>$AdjustedHelpfulRobotScore<small>/100</small></p>
 				<% else %>
 				<p>N/A <small>No data avaliable</small></p>
 				<% end_if %>
@@ -143,14 +143,14 @@
 				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_license_file %> green<% else %> grey<% end_if %>">
 					<i class="icon-ok"></i>
 				</div>
-				<p>License</p>
+				<p>FOSS License</p>
 			</div>
-			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_code_of_conduct_file %> green<% else %> grey<% end_if %>">
-					<i class="icon-ok"></i>
-				</div>
-				<p>Code of conduct</p>
-			</div>
+            <div class="rating-item">
+                <div class="circle circle-option-sml<% if $HelpfulRobotData.has_code_folder %> green<% else %> grey<% end_if %>">
+                    <i class="icon-ok"></i>
+                </div>
+                <p>Structured correctly</p>
+            </div>
 			<div class="rating-item">
 				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_contributing_file %> green<% else %> grey<% end_if %>">
 					<i class="icon-ok"></i>
@@ -177,12 +177,6 @@
 			</div>
 		</div>
 		<div class="span3">
-			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_code_folder %> green<% else %> grey<% end_if %>">
-					<i class="icon-ok"></i>
-				</div>
-				<p>Code folder</p>
-			</div>
 			<div class="rating-item">
 				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_tests_folder %> green<% else %> grey<% end_if %>">
 					<i class="icon-ok"></i>
