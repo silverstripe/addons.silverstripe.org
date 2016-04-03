@@ -108,7 +108,7 @@ class Addon extends DataObject {
 	 */
 	public function getAdjustedHelpfulRobotScore()
 	{
-		return min(100, $this->HelpfulRobotScore / 92.9 * 100);
+		return round(min(100, $this->HelpfulRobotScore / 92.9 * 100));
 	}
 
 	public function getElasticaMapping() {
