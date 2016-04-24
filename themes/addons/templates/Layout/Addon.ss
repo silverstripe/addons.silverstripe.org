@@ -133,45 +133,46 @@
 		</div>
 
 		<% if $HelpfulRobotData %>
+			<% with $HelpfulRobotData %>
 		<div class="span3 offset1">
 			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_readme_file %> green<% else %> grey<% end_if %>">
+				<div class="circle circle-option-sml<% if $has_readme_file %> green<% else %> grey<% end_if %>">
 					<i class="icon-ok"></i>
 				</div>
 				<p>Readme</p>
 			</div>
 			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_license_file %> green<% else %> grey<% end_if %>">
+				<div class="circle circle-option-sml<% if $has_license_file %> green<% else %> grey<% end_if %>">
 					<i class="icon-ok"></i>
 				</div>
 				<p>FOSS License</p>
 			</div>
             <div class="rating-item">
-                <div class="circle circle-option-sml<% if $HelpfulRobotData.has_code_folder %> green<% else %> grey<% end_if %>">
+                <div class="circle circle-option-sml<% if $has_code_folder %> green<% else %> grey<% end_if %>">
                     <i class="icon-ok"></i>
                 </div>
                 <p>Structured correctly</p>
             </div>
 			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_contributing_file %> green<% else %> grey<% end_if %>">
+				<div class="circle circle-option-sml<% if $has_contributing_file %> green<% else %> grey<% end_if %>">
 					<i class="icon-ok"></i>
 				</div>
 				<p>Contributing file</p>
 			</div>
 			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_change_log_file %> green<% else %> grey<% end_if %>">
+				<div class="circle circle-option-sml<% if $has_change_log_file %> green<% else %> grey<% end_if %>">
 					<i class="icon-ok"></i>
 				</div>
 				<p>Change log</p>
 			</div>
 			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_git_attributes_file %> green<% else %> grey<% end_if %>">
+				<div class="circle circle-option-sml<% if $has_git_attributes_file %> green<% else %> grey<% end_if %>">
 					<i class="icon-ok"></i>
 				</div>
 				<p>Git attributes file</p>
 			</div>
 			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_editor_config_file %> green<% else %> grey<% end_if %>">
+				<div class="circle circle-option-sml<% if $has_editor_config_file %> green<% else %> grey<% end_if %>">
 					<i class="icon-ok"></i>
 				</div>
 				<p>Editor config file</p>
@@ -179,42 +180,43 @@
 		</div>
 		<div class="span3">
 			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_tests_folder %> green<% else %> grey<% end_if %>">
+				<div class="circle circle-option-sml<% if $has_tests_folder %> green<% else %> grey<% end_if %>">
 					<i class="icon-ok"></i>
 				</div>
 				<p>Tests</p>
 			</div>
 			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_docs_folder %> green<% else %> grey<% end_if %>">
+				<div class="circle circle-option-sml<% if $has_docs_folder %> green<% else %> grey<% end_if %>">
 					<i class="icon-ok"></i>
 				</div>
 				<p>Documentation</p>
 			</div>
 			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_travis_file %> green<% else %> grey<% end_if %>">
+				<div class="circle circle-option-sml<% if $has_travis_file %> green<% else %> grey<% end_if %>">
 					<i class="icon-ok"></i>
 				</div>
 				<p>Travis file</p>
 			</div>
 			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_travis_setup %> green<% else %> grey<% end_if %>">
+				<div class="circle circle-option-sml<% if $has_travis_setup %> green<% else %> grey<% end_if %>">
 					<i class="icon-ok"></i>
 				</div>
 				<p>Travis set up</p>
 			</div>
 			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_scrutinizer_file %> green<% else %> grey<% end_if %>">
+				<div class="circle circle-option-sml<% if $has_scrutinizer_file %> green<% else %> grey<% end_if %>">
 					<i class="icon-ok"></i>
 				</div>
 				<p>Scrutinizer file</p>
 			</div>
 			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_scrutinizer_setup %> green<% else %> grey<% end_if %>">
+				<div class="circle circle-option-sml<% if $has_scrutinizer_setup %> green<% else %> grey<% end_if %>">
 					<i class="icon-ok"></i>
 				</div>
 				<p>Scrutinizer set up</p>
 			</div>
 		</div>
+			<% end_with %>
 		<% end_if %>
 	</div>
 
