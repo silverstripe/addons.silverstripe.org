@@ -230,7 +230,7 @@
 						$DisplayVersion
 					</a>
 				</div>
-				<div id="version-$ID" class="version accordion-body collapse<% if First %> in<% end_if %>">
+				<div id="version-$ID" class="version accordion-body collapse<% if $First %> in<% end_if %>">
 					<div class="accordion-inner">
 						<% include AddonVersionDetails %>
 					</div>
