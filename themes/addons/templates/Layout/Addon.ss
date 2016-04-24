@@ -47,7 +47,7 @@
 				<a href="$DisplayHomepage" rel="nofollow">$DisplayHomepage</a>
 				<% end_if %>
 			</dd>
-			
+
 		<% end_with %>
 
 		<dt>Packagist:</dt>
@@ -129,6 +129,7 @@
 			</div>
 			<p>Module rating system helping users find modules that are well supported. For more on how the rating system works visit <a href="http://www.silverstripe.org/software/addons/supported-modules-definition/">Module standards</a></p>
 			<p><small>Score not correct? <a href="mailto:community@silverstripe.com">Let us know there is a problem</a></small></p>
+            <p><small>Please be aware that the scoring is not updated realtime. It can take several days to update. Don't worry if it's not updated immediately, give us some time.</small></p>
 		</div>
 
 		<% if $HelpfulRobotData %>
@@ -238,7 +239,7 @@
 
 	<div id="disqus_thread"></div>
 	 <script type="text/javascript">
-		var disqus_shortname = 'silverstripe-addons'; 
+		var disqus_shortname = 'silverstripe-addons';
 		(function() {
 				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 				dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
@@ -246,9 +247,9 @@
 		})();
 	</script>
 	<noscript>
-		Please enable JavaScript to view the 
+		Please enable JavaScript to view the
 		<a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
 	</noscript>
 	<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-		
+
 <% end_with %>
