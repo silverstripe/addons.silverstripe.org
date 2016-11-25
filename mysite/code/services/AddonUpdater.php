@@ -2,7 +2,7 @@
 
 use Composer\Package\AliasPackage;
 use Composer\Package\CompletePackage;
-use Composer\Package\LinkConstraint\VersionConstraint;
+use Composer\Semver\Constraint\Constraint;
 use Guzzle\Http\Exception\ClientErrorResponseException;
 use SilverStripe\Elastica\ElasticaService;
 use Packagist\Api\Result\Package;
@@ -39,9 +39,9 @@ class AddonUpdater {
 	private $silverstripes = array();
 
 	public function __construct(
-		PackagistService $packagist, 
-		ElasticaService $elastica, 
-		ResqueService $resque, 
+		PackagistService $packagist,
+		ElasticaService $elastica,
+		ResqueService $resque,
 		VersionParser $versionParser
 	) {
 		$this->packagist = $packagist;
@@ -79,7 +79,6 @@ class AddonUpdater {
 			$packages = $this->packagist->getPackages();
 			$cache->save(serialize($packages), 'packagist');
 		}
-
 		$this->elastica->startBulkIndex();
 
 		foreach ($packages as $package) {
@@ -203,7 +202,7 @@ class AddonUpdater {
 		$version->SourceType = $package->getSource()->getType();
 		$version->SourceUrl = $package->getSource()->getUrl();
 		$version->SourceReference = $package->getSource()->getReference();
-		
+
 		if($package->getDist()) {
 			$version->DistType = $package->getDist()->getType();
 			$version->DistUrl = $package->getDist()->getUrl();
@@ -345,7 +344,7 @@ class AddonUpdater {
 			if($details->getName()) $author->Name = $details->getName();
 			if($details->getEmail()) $author->Email = $details->getEmail();
 			if($details->getHomepage()) $author->Homepage = $details->getHomepage();
-			
+
 			//to-do not supported by API
 			//if(isset($details['role'])) $author->Role = $details['role'];
 

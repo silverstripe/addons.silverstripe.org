@@ -1,7 +1,7 @@
 <?php
 
-use Composer\Package\LinkConstraint\MultiConstraint;
-use Composer\Package\LinkConstraint\VersionConstraint;
+use Composer\Semver\Constraint\MultiConstraint;
+use Composer\Semver\Constraint\Constraint;
 
 /**
  * A SilverStripe version which an add-on can be compatible with.
@@ -26,8 +26,8 @@ class SilverStripeVersion extends DataObject {
 		$next = $this->Major . '.' . ($this->Minor + 1);
 
 		return new MultiConstraint(array(
-			new VersionConstraint('>=', "$this->Major.$this->Minor.*"),
-			new VersionConstraint('<', "$next.*")
+			new Constraint('>=', "$this->Major.$this->Minor.*"),
+			new Constraint('<', "$next.*")
 		));
 	}
 
