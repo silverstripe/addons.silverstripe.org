@@ -13,3 +13,4 @@ node_modules/
 /silverstripe-resque/
 display_logic/
 error.log
+dump.rdb
