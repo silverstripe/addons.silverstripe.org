@@ -30,7 +30,7 @@ class HomeController extends SiteController {
 
 	public function PopularAddons($limit = 10) {
 		return Addon::get()
-			->sort('Downloads', 'DESC')
+			->sort('DownloadsMonthly', 'DESC')
 			->exclude('Name', $this->config()->popular_blacklist)
 			->limit($limit);
 	}
