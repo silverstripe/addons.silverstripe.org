@@ -46,14 +46,13 @@ class PackagistService {
 			'silverstripe-module',
 			'silverstripe-theme'
 		);
-
 		foreach ($addonTypes as $type) {
 			$repositoriesNames = $this->client->all(array('type' => $type));
 			foreach ($repositoriesNames as $name) {
 				$packages[] = $this->client->get($name);
+				echo $name . PHP_EOL; //output to give feedback when running
 			}
 		}
-
 		return $packages;
 	}
 
