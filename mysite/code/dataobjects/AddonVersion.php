@@ -44,6 +44,11 @@ class AddonVersion extends DataObject {
 		'ID' => 'DESC'
 	);
 
+	private static $summary_fields = array(
+		'PrettyVersion' => 'Version',
+		'Description' => 'Description'
+	);
+
 	public function DisplayVersion() {
 		return $this->PrettyVersion;
 	}
