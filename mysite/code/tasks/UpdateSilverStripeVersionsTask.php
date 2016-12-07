@@ -1,24 +1,42 @@
 <?php
 /**
  * Updates the available SilverStripe versions.
+ *
+ * @package mysite
  */
-class UpdateSilverStripeVersionsTask extends BuildTask {
+class UpdateSilverStripeVersionsTask extends BuildTask
+{
+    /**
+     * {@inheritDoc}
+     * @var string
+     */
+    protected $title = 'Update SilverStripe Versions';
 
-	protected $title = 'Update SilverStripe Versions';
+    /**
+     * {@inheritDoc}
+     * @var string
+     */
+    protected $description = 'Updates the available SilverStripe versions';
 
-	protected $description = 'Updates the available SilverStripe versions';
+    /**
+     * @var SilverStripeVersionUpdater
+     */
+    private $updater;
 
-	/**
-	 * @var SilverStripeVersionUpdater
-	 */
-	private $updater;
+    /**
+     * @param SilverStripeVersionUpdater $updater
+     */
+    public function __construct(SilverStripeVersionUpdater $updater)
+    {
+        $this->updater = $updater;
+    }
 
-	public function __construct(SilverStripeVersionUpdater $updater) {
-		$this->updater = $updater;
-	}
-
-	public function run($request) {
-		$this->updater->update();
-	}
-
+    /**
+     * {@inheritDoc}
+     * @param SS_HTTPRequest $request
+     */
+    public function run($request)
+    {
+        $this->updater->update();
+    }
 }

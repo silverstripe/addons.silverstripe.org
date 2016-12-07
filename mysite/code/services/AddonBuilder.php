@@ -2,7 +2,6 @@
 
 use Composer\Package\Package;
 use Composer\Package\PackageInterface;
-use dflydev\markdown\MarkdownParser;
 
 /**
  * Downloads an add-on and builds more details information about it.
@@ -42,8 +41,8 @@ class AddonBuilder {
 
 			// Convert PackagistAPI result into class compatible with Composer logic
 			$package = new Package(
-				$addon->Name, 
-				$packageVersion->getVersionNormalized(), 
+				$addon->Name,
+				$packageVersion->getVersionNormalized(),
 				$packageVersion->getVersion()
 			);
 			$package->setExtra($packageVersion->getExtra());
@@ -91,8 +90,8 @@ class AddonBuilder {
 					return;
 				}
 
-				$parser = new MarkdownParser();
-				$readme = $parser->transformMarkdown(file_get_contents($path));
+				$parser = GitHubMarkdownService::create();
+				$readme = $parser->toHtml(file_get_contents($path));
 
 				$purifier = new HTMLPurifier();
 				$readme = $purifier->purify($readme, array(

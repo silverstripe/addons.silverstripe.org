@@ -1,6 +1,6 @@
 {
-  "name": "extensions.silverstripe.org",
-  "description": "The SilverStripe extensions listing site",
+  "name": "silverstripe/addons.silverstripe.org",
+  "description": "The SilverStripe addons listing site",
   "repositories": [
     {
       "type": "vcs",
@@ -8,11 +8,10 @@
     }
   ],
   "require": {
-    "composer/installers": "*",
-    "composer/composer": "*",
-    "dflydev/markdown": "1.0.*@stable",
+    "composer/installers": "^1.2",
+    "composer/composer": "^1.2",
     "ezyang/htmlpurifier": "4.5.*@stable",
-    "guzzle/guzzle": "3.2.0",
+    "guzzlehttp/guzzle": "^6.2",
     "silverstripe/framework": "3.1.*@stable",
     "silverstripe/multivaluefield": "*",
     "silverstripe/toolbar": "^4.0",
@@ -25,6 +24,9 @@
     "symfony/finder": "^2.8",
     "symfony/console": "^2.8",
     "symfony/yaml": "^2.8"
+  },
+  "replace": {
+    "extensions.silverstripe.org": "*"
   },
   "require-dev": {
     "phpunit/phpunit": "^4.8",
