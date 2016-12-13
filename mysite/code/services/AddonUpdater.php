@@ -57,8 +57,9 @@ class AddonUpdater {
 	 * Will also clear their search index, and cascade the delete for associated data.
 	 * @param Array Limit to specific addons, using their name incl. vendor prefix.
 	 */
-	public function update($clear = false, $limitAddons = null) {
-		if($clear && !$limitAddons) {
+	public function update($clear = false, $limitAddons = null)
+	{
+		if ($clear && !$limitAddons) {
 			Addon::get()->removeAll();
 			AddonAuthor::get()->removeAll();
 			AddonKeyword::get()->removeAll();
@@ -73,7 +74,7 @@ class AddonUpdater {
 
 		// This call to packagist can be expensive. Requests are served from a cache if usePackagistCache() returns true
 		$cache = SS_Cache::factory('addons');
-		if($this->usePackagistCache() && $packages = $cache->load('packagist')) {
+		if ($this->usePackagistCache() && $packages = $cache->load('packagist')) {
 			$packages = unserialize($packages);
 		} else {
 			$packages = $this->packagist->getPackages();
@@ -81,18 +82,32 @@ class AddonUpdater {
 		}
 		$this->elastica->startBulkIndex();
 
-		foreach ($packages as $package) {
+		foreach ($packages as $package) { /** @var Packagist\Api\Result\Package $package */
+			$isAbandoned = (property_exists($package, 'abandoned') && $package->abandoned);
 			$name = $package->getName();
 			$versions = $package->getVersions();
 
-			if($limitAddons && !in_array($name, $limitAddons)) continue;
+			if ($limitAddons && !in_array($name, $limitAddons)) {
+				continue;
+			}
 
 			$addon = Addon::get()->filter('Name', $name)->first();
 
 			if (!$addon) {
+				if ($isAbandoned) {
+					echo ' - Skipping abandoned package: ' . $name, PHP_EOL;
+					continue;
+				}
+
 				$addon = new Addon();
 				$addon->Name = $name;
 				$addon->write();
+			}
+
+			if ($isAbandoned) {
+				echo ' - Removing abandoned package: ' . $name, PHP_EOL;
+				$addon->delete();
+				continue;
 			}
 
 			usort($versions, function ($a, $b) {
