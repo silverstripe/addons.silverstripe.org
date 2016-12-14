@@ -31,13 +31,15 @@ class DeleteRedundantAddonsTask extends BuildTask
 
         $addons = Addon::get()->filter('LastUpdated:LessThan', $dateOneWeekAgo);
 
-        foreach ($addons as $addon) { /** @var Addon $addon */
+        foreach ($addons as $addon) {
+            /** @var Addon $addon */
             try {
                 $addon->Keywords()->removeAll();
                 $addon->Screenshots()->removeAll();
                 $addon->CompatibleVersions()->removeAll();
 
-                foreach ($addon->Versions() as $version) { /** @var AddonVersion $version */
+                foreach ($addon->Versions() as $version) {
+                    /** @var AddonVersion $version */
                     $version->Authors()->removeAll();
                     $version->Keywords()->removeAll();
                     $version->CompatibleVersions()->removeAll();
