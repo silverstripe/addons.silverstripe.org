@@ -82,7 +82,9 @@ class AddonUpdater {
 		}
 		$this->elastica->startBulkIndex();
 
-		foreach ($packages as $package) { /** @var Packagist\Api\Result\Package $package */
+		foreach ($packages as $package) {
+			/** @var Packagist\Api\Result\Package $package */
+
 			$isAbandoned = (property_exists($package, 'abandoned') && $package->abandoned);
 			$name = $package->getName();
 			$versions = $package->getVersions();
