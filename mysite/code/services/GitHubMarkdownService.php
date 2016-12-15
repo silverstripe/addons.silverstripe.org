@@ -19,12 +19,19 @@ class GitHubMarkdownService extends Object
     protected $client;
 
     /**
+     * The GitHub repository context
+     *
+     * @var string
+     */
+    protected $context;
+
+    /**
      * GitHub API configuration
      * @var string
      */
     const API_BASE_URI        = 'https://api.github.com';
     const API_REQUEST_METHOD  = 'POST';
-    const API_RENDER_ENDPOINT = '/markdown/raw';
+    const API_RENDER_ENDPOINT = '/markdown';
 
     /**
      * Use GitHub's API to render markdown to HTML
@@ -42,7 +49,7 @@ class GitHubMarkdownService extends Object
                     $this->getEndpoint(),
                     array(
                         'headers' => $this->getHeaders(),
-                        'body' => $markdown
+                        'body' => $this->getPayload($markdown)
                     )
                 );
         } catch (ClientException $ex) {
@@ -50,6 +57,26 @@ class GitHubMarkdownService extends Object
         }
 
         return (string) $response->getBody();
+    }
+
+    /**
+     * Get the GitHub repository context
+     * @return string
+     */
+    public function getContext()
+    {
+        return $this->context;
+    }
+
+    /**
+     * Set the GitHub repository context
+     * @param  string $context
+     * @return $this
+     */
+    public function setContext($context)
+    {
+        $this->context = $context;
+        return $this;
     }
 
     /**
@@ -105,6 +132,24 @@ class GitHubMarkdownService extends Object
         return array(
             'User-Agent'   => 'silverstripe/addons-site',
             'Content-Type' => 'text/x-markdown'
+        );
+    }
+
+    /**
+     * Get the payload for GFM mode parsing in the markdown API
+     *
+     * @see https://developer.github.com/v3/markdown/
+     * @param  string $markdown
+     * @return string           JSON
+     */
+    public function getPayload($markdown)
+    {
+        return Convert::raw2json(
+            array(
+                'text'    => $markdown,
+                'mode'    => 'gfm',
+                'context' => $this->getContext()
+            )
         );
     }
 }

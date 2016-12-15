@@ -91,7 +91,9 @@ class AddonBuilder {
                 }
 
                 $parser = GitHubMarkdownService::create();
+                $parser->setContext($addon->Name);
                 $readme = $parser->toHtml(file_get_contents($path));
+
                 if (empty($readme)) {
                     return;
                 }
