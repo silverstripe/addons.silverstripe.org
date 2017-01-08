@@ -41,6 +41,7 @@ class GitHubMarkdownService extends Object
      */
     public function toHtml($markdown)
     {
+        $body = '';
         try {
             /** @var Psr\Http\Message\ResponseInterface $response */
             $response = $this->getClient()
@@ -52,11 +53,13 @@ class GitHubMarkdownService extends Object
                         'body' => $this->getPayload($markdown)
                     )
                 );
+
+            $body = (string) $response->getBody();
         } catch (ClientException $ex) {
             user_error($ex->getMessage());
         }
 
-        return (string) $response->getBody();
+        return $body;
     }
 
     /**
@@ -120,7 +123,11 @@ class GitHubMarkdownService extends Object
      */
     public function getEndpoint()
     {
-        return self::API_RENDER_ENDPOINT;
+        $endpoint = self::API_RENDER_ENDPOINT;
+        if (!$this->getContext()) {
+            $endpoint .= '/raw';
+        }
+        return $endpoint;
     }
 
     /**
@@ -136,20 +143,25 @@ class GitHubMarkdownService extends Object
     }
 
     /**
-     * Get the payload for GFM mode parsing in the markdown API
+     * Get the payload for for the GitHub Markdown API endpoint, either in "GFM" mode if there is a repository
+     * context, or in raw mode if not.
      *
      * @see https://developer.github.com/v3/markdown/
      * @param  string $markdown
-     * @return string           JSON
+     * @return string           JSON or markdown
      */
     public function getPayload($markdown)
     {
-        return Convert::raw2json(
-            array(
-                'text'    => $markdown,
-                'mode'    => 'gfm',
-                'context' => $this->getContext()
-            )
-        );
+        if ($this->getContext()) {
+            return Convert::raw2json(
+                array(
+                    'text'    => $markdown,
+                    'mode'    => 'gfm',
+                    'context' => $this->getContext()
+                )
+            );
+        }
+
+        return $markdown;
     }
 }

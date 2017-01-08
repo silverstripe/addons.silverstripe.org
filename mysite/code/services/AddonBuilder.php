@@ -91,7 +91,9 @@ class AddonBuilder {
                 }
 
                 $parser = GitHubMarkdownService::create();
-                $parser->setContext($addon->Name);
+                if ($context = $this->getGitHubContext($addon)) {
+                    $parser->setContext($context);
+                }
                 $readme = $parser->toHtml(file_get_contents($path));
 
                 if (empty($readme)) {
@@ -107,6 +109,28 @@ class AddonBuilder {
                 return;
             }
         }
+    }
+
+    /**
+     * Determine if the repository is from GitHub, and if so then return the "context" (vendor/module) from the path
+     *
+     * @param  Addon $addon
+     * @return string|false
+     */
+    public function getGitHubContext(Addon $addon)
+    {
+        $repository = $addon->Repository;
+        if (stripos($repository, '://github.com/') === false) {
+            return false;
+        }
+
+        preg_match('/^http(?:s?):\/\/github\.com\/(?<module>.*)(\.git)?$/U', $repository, $matches);
+
+        if (isset($matches['module'])) {
+            return $matches['module'];
+        }
+
+        return false;
     }
 
     private function buildScreenshots(Addon $addon, PackageInterface $package, $path) {
