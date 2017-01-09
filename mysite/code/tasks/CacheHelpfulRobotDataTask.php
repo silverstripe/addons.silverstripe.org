@@ -23,6 +23,10 @@ class CacheHelpfulRobotDataTask extends BuildTask
 
         $addons = Addon::get();
 
+        if ($request->getVar('addons')) {
+            $addons = $addons->filter('Name', explode(',', $request->getVar('addons')));
+        }
+
         foreach ($addons as $addon) {
             $this->log('fetching ' . $addon->Name);
 
