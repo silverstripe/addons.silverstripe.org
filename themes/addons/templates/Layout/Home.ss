@@ -22,7 +22,7 @@
 
 <div class="row">
     <div class="addons-box span6">
-        <h3><a href="/add-ons?sort=downloads" class="popular-addons-list">Popular Add-ons
+        <h3><a href="/add-ons?sort=relative" class="popular-addons-list">Popular Add-ons
         </a>
             <select id="popularsort" class="sort-popularity dropdown" name="popularity">
                 <option value="Relative" selected="selected">Average downloads per day</option>
