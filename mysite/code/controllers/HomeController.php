@@ -11,6 +11,8 @@ class HomeController extends SiteController
         'silverstripe/cms',
         'silverstripe/sqlite3',
         'silverstripe/postgresql',
+        'silverstripe/reports',
+        'silverstripe/siteconfig',
         'silverstripe-themes/simple'
     );
 
