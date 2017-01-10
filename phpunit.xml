@@ -3,6 +3,16 @@
         <directory>mysite/tests</directory>
     </testsuite>
 
+    <filter>
+        <whitelist addUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">mysite</directory>
+            <exclude>
+                <directory suffix=".php">mysite/tests/</directory>
+                <file>mysite/_config.php</file>
+            </exclude>
+        </whitelist>
+    </filter>
+
     <listeners>
         <listener class="SS_TestListener" file="framework/dev/TestListener.php" />
     </listeners>

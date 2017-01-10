@@ -57,6 +57,7 @@ class GitHubMarkdownService extends Object
             $body = (string) $response->getBody();
         } catch (ClientException $ex) {
             user_error($ex->getMessage());
+            return '';
         }
 
         return $body;

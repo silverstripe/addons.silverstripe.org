@@ -1,9 +1,30 @@
 <?php
 /**
  * Tests for the AddonBuilder
+ *
+ * @package mysite
  */
 class AddonBuilderTest extends SapphireTest
 {
+    /**
+     * @var AddonBuilder
+     */
+    protected $builder;
+
+    /**
+     * Get the test subject
+     */
+    public function setUp()
+    {
+        parent::setUp();
+
+        // Partially mocked as we don't care about the PackagistService at this point
+        $this->builder = $this->getMockBuilder('AddonBuilder')
+            ->setMethods(null)
+            ->disableOriginalConstructor()
+            ->getMock();
+    }
+
     /**
      * Test that a GitHub repository can be identified, and have its context returned if it matches
      *
@@ -27,5 +48,98 @@ class AddonBuilderTest extends SapphireTest
             array('https://github.com/silverstripe/sspak.git', 'silverstripe/sspak'),
             array('http://github.com/silverstripe/sspak.git', 'silverstripe/sspak')
         );
+    }
+
+    /**
+     * Test that the GitHub-ness of an addon's repository can be correctly established
+     *
+     * @param string $repository
+     * @param bool   $expected
+     * @covers ::hasGitHubRepository
+     * @dataProvider hasGitHubProvider
+     */
+    public function testHasGitHubRepository($repository, $expected)
+    {
+        $addon = Addon::create();
+        $addon->Repository = $repository;
+
+        $result = $this->builder->hasGitHubRepository($addon);
+        $this->assertSame($expected, $result);
+    }
+
+    /**
+     * @return array
+     */
+    public function hasGitHubProvider()
+    {
+        return array(
+            array(
+                'https://github.com/silverstripe/silverstripe-framework',
+                true
+            ),
+            array(
+                'https://bitbucket.org/some/otherrepo',
+                false
+            )
+        );
+    }
+
+    /**
+     * Test that we can determine the differece between a relative-ish URI and one that isn't, so we know
+     * when to insert the GitHub repository URL into the mix.
+     *
+     * @param string $uri
+     * @param bool   $expected
+     * @covers ::isRelativeUri
+     * @dataProvider uriProvider()
+     */
+    public function testIsRelativeUri($uri, $expected)
+    {
+        $this->assertSame($expected, $this->builder->isRelativeUri($uri));
+    }
+
+    /**
+     * @return array
+     */
+    public function uriProvider()
+    {
+        return array(
+            array('/add-ons/silverstripe/sapphire#-preview', false),
+            array('#installation-with-composer', false),
+            array('resources/example.png?raw=true', true),
+            array('add-ons/silverstripe/sapphire#usage', true),
+            array('//add-ons/silverstripe/sapphire#usage', false),
+            array('https://silverstripe.mit-license.org/', false),
+            array('http://silverstripe.mit-license.org/', false)
+        );
+    }
+
+    /**
+     * Ensure that a HTML readme can have its relative links rewritten according to the Addon is belongs to
+     *
+     * @covers ::replaceRelativeLinks
+     */
+    public function testRewriteRelativeLinksAndImages()
+    {
+        $addon = Addon::create();
+        $addon->Repository = 'https://github.com/silverstripe/silverstripe-framework';
+
+        $input = <<<HTML
+<h1>Heading</h1>
+
+<p><a href="relative">Relative</a> and <a href="//absolute.com">absolute</a>.</p>
+
+<p><img src="relative.png"><img src="https://www.whatever.com/image.png"></p>
+HTML;
+
+        $expected = <<<HTML
+<h1>Heading</h1>
+
+<p><a href="https://github.com/silverstripe/silverstripe-framework/blob/master/relative">Relative</a> and <a href="//absolute.com">absolute</a>.</p>
+
+<p><img src="https://github.com/silverstripe/silverstripe-framework/raw/master/relative.png"><img src="https://www.whatever.com/image.png"></p>
+HTML;
+
+        $this->assertSame($expected, $this->builder->replaceRelativeLinks($addon, $input));
     }
 }

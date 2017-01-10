@@ -73,7 +73,13 @@ class AddonBuilder {
             ->download($package, $path);
     }
 
-    private function buildReadme(Addon $addon, $path) {
+    /**
+     * Parses a readme file from markdown to HTML, then purifies it
+     * @param Addon  $addon
+     * @param string $path
+     */
+    protected function buildReadme(Addon $addon, $path)
+    {
         $candidates = array(
             'README.md',
             'README.markdown',
@@ -100,11 +106,14 @@ class AddonBuilder {
                     return;
                 }
 
+                $readme = $parser->toHtml(file_get_contents($path));
+
                 $purifier = new HTMLPurifier();
                 $readme = $purifier->purify($readme, array(
                     'Cache.SerializerPath' => TEMP_FOLDER
                 ));
 
+                $readme = $this->replaceRelativeLinks($addon, $readme);
                 $addon->Readme = $readme;
                 return;
             }
@@ -131,6 +140,74 @@ class AddonBuilder {
         }
 
         return false;
+    }
+
+    /**
+     * Given an addon and a parsed HTML readme string, find and replace relative links with absolute
+     * repository path links. This method applies to GitHub repositories only.
+     *
+     * @param  Addon  $addon
+     * @param  string $readme
+     * @return string
+     */
+    public function replaceRelativeLinks(Addon $addon, $readme)
+    {
+        if (!$this->hasGitHubRepository($addon)) {
+            return $this;
+        }
+
+        $dom = new DOMDocument;
+        // LibXML needs a wrapper element...
+        $dom->loadHTML('<div>' . $readme . '</div>', LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $xpath = new DOMXPath($dom);
+
+        // Select all anchors and images in the readme document
+        $query = $xpath->query('//*[self::a or self::img]');
+
+        foreach ($query as $element) { /** @var DOMElement $element */
+            $attribute = ($element->nodeName === 'a') ? 'href' : 'src';
+            $path = $element->getAttribute($attribute);
+            if (!$this->isRelativeUri($path)) {
+                continue;
+            }
+
+            // See GitHub readmes for example
+            $folder = ($attribute === 'href') ? 'blob' : 'raw';
+            $defaultBranch = 'master'; // Is this safe to assume?
+
+            $element->setAttribute(
+                $attribute,
+                implode('/', array($addon->Repository, $folder, $defaultBranch, $path))
+            );
+        }
+
+        // Return the inner HTML of the wrapper div... Reference: stackoverflow.com/a/39193507/2812842
+        $node = $dom->getElementsByTagName('div')->item(0);
+        return implode(array_map([$node->ownerDocument, 'saveHTML'], iterator_to_array($node->childNodes)));
+    }
+
+    /**
+     * Decide whether a URI path is relative or not. The regex pattern matches prefixes that start with
+     * a protocol, a slash or a hash. If they don't start with those things, then they are deemed to be
+     * relative paths.
+     *
+     * @param  string $path
+     * @return bool
+     */
+    public function isRelativeUri($path)
+    {
+        return !preg_match('/(^(?:https?:\/\/|\/|#).*$)/', $path);
+    }
+
+    /**
+     * Determine whether an addon is hosted on GitHub
+     *
+     * @param  Addon $addon
+     * @return bool
+     */
+    public function hasGitHubRepository(Addon $addon)
+    {
+        return (strpos($addon->Repository, 'github.com') !== false);
     }
 
     private function buildScreenshots(Addon $addon, PackageInterface $package, $path) {
@@ -203,5 +280,4 @@ class AddonBuilder {
             }
         }
     }
-
 }
