@@ -2,178 +2,206 @@
 
 use Composer\Package\Package;
 use Composer\Package\PackageInterface;
-use dflydev\markdown\MarkdownParser;
 
 /**
  * Downloads an add-on and builds more details information about it.
  */
 class AddonBuilder {
 
-	const ADDONS_DIR = 'add-ons';
+    const ADDONS_DIR = 'add-ons';
 
-	const SCREENSHOTS_DIR = 'screenshots';
+    const SCREENSHOTS_DIR = 'screenshots';
 
-	private $packagist;
+    private $packagist;
 
-	public function __construct(PackagistService $packagist) {
-		$this->packagist = $packagist;
-	}
+    public function __construct(PackagistService $packagist) {
+        $this->packagist = $packagist;
+    }
 
-	public function build(Addon $addon) {
-		$composer = $this->packagist->getComposer();
-		$downloader = $composer->getDownloadManager();
-		$packageVersions = $this->packagist->getPackageVersions($addon->Name);
-		$time = time();
+    public function build(Addon $addon) {
+        $composer = $this->packagist->getComposer();
+        $downloader = $composer->getDownloadManager();
+        $packageVersions = $this->packagist->getPackageVersions($addon->Name);
+        $time = time();
 
-		if (!$packageVersions) {
-			throw new Exception('Could not find corresponding Packagist versions');
-		}
+        if (!$packageVersions) {
+            throw new Exception('Could not find corresponding Packagist versions');
+        }
 
-		// Get the latest local and packagist version pair.
-		$version = $addon->Versions()->filter('Development', true)->first();
-		foreach ($packageVersions as $packageVersion) {
-			if ($packageVersion->getVersionNormalized() != $version->Version) {
-				continue;
-			}
+        // Get the latest local and packagist version pair.
+        $version = $addon->Versions()->filter('Development', true)->first();
+        foreach ($packageVersions as $packageVersion) {
+            if ($packageVersion->getVersionNormalized() != $version->Version) {
+                continue;
+            }
 
-			$path = implode('/', array(
-				TEMP_FOLDER, self::ADDONS_DIR, $addon->Name
-			));
+            $path = implode('/', array(
+                TEMP_FOLDER, self::ADDONS_DIR, $addon->Name
+            ));
 
-			// Convert PackagistAPI result into class compatible with Composer logic
-			$package = new Package(
-				$addon->Name, 
-				$packageVersion->getVersionNormalized(), 
-				$packageVersion->getVersion()
-			);
-			$package->setExtra($packageVersion->getExtra());
-			if($source = $packageVersion->getSource()) {
-				$package->setSourceUrl($source->getUrl());
-				$package->setSourceType($source->getType());
-				$package->setSourceReference($source->getReference());
-			}
-			if($dist = $packageVersion->getDist()) {
-				$package->setDistUrl($dist->getUrl());
-				$package->setDistType($dist->getType());
-				$package->setDistReference($dist->getReference());
-			}
+            // Convert PackagistAPI result into class compatible with Composer logic
+            $package = new Package(
+                $addon->Name,
+                $packageVersion->getVersionNormalized(),
+                $packageVersion->getVersion()
+            );
+            $package->setExtra($packageVersion->getExtra());
+            if($source = $packageVersion->getSource()) {
+                $package->setSourceUrl($source->getUrl());
+                $package->setSourceType($source->getType());
+                $package->setSourceReference($source->getReference());
+            }
+            if($dist = $packageVersion->getDist()) {
+                $package->setDistUrl($dist->getUrl());
+                $package->setDistType($dist->getType());
+                $package->setDistReference($dist->getReference());
+            }
 
-			$this->download($package, $path);
-			$this->buildReadme($addon, $path);
-			$this->buildScreenshots($addon, $package, $path);
-		}
+            $this->download($package, $path);
+            $this->buildReadme($addon, $path);
+            $this->buildScreenshots($addon, $package, $path);
+        }
 
-		$addon->LastBuilt = $time;
-		$addon->write();
-	}
+        $addon->LastBuilt = $time;
+        $addon->write();
+    }
 
-	protected function download(PackageInterface $package, $path) {
-		$this->packagist
-			->getComposer()
-			->getDownloadManager()
-			->download($package, $path);
-	}
+    protected function download(PackageInterface $package, $path) {
+        $this->packagist
+            ->getComposer()
+            ->getDownloadManager()
+            ->download($package, $path);
+    }
 
-	private function buildReadme(Addon $addon, $path) {
-		$candidates = array(
-			'README.md',
-			'README.markdown',
-			'README.mdown',
-			'docs/en/index.md'
-		);
+    private function buildReadme(Addon $addon, $path) {
+        $candidates = array(
+            'README.md',
+            'README.markdown',
+            'README.mdown',
+            'docs/en/index.md'
+        );
 
-		foreach ($candidates as $candidate) {
-			$lower = strtolower($candidate);
-			$paths = array("$path/$candidate", "$path/$lower");
+        foreach ($candidates as $candidate) {
+            $lower = strtolower($candidate);
+            $paths = array("$path/$candidate", "$path/$lower");
 
-			foreach ($paths as $path) {
-				if (!file_exists($path)) {
-					return;
-				}
+            foreach ($paths as $path) {
+                if (!file_exists($path)) {
+                    return;
+                }
 
-				$parser = new MarkdownParser();
-				$readme = $parser->transformMarkdown(file_get_contents($path));
+                $parser = GitHubMarkdownService::create();
+                if ($context = $this->getGitHubContext($addon)) {
+                    $parser->setContext($context);
+                }
+                $readme = $parser->toHtml(file_get_contents($path));
 
-				$purifier = new HTMLPurifier();
-				$readme = $purifier->purify($readme, array(
-					'Cache.SerializerPath' => TEMP_FOLDER
-				));
+                if (empty($readme)) {
+                    return;
+                }
 
-				$addon->Readme = $readme;
-				return;
-			}
-		}
-	}
+                $purifier = new HTMLPurifier();
+                $readme = $purifier->purify($readme, array(
+                    'Cache.SerializerPath' => TEMP_FOLDER
+                ));
 
-	private function buildScreenshots(Addon $addon, PackageInterface $package, $path) {
-		$extra = $package->getExtra();
-		$screenshots = array();
-		$target = self::SCREENSHOTS_DIR . '/' . $addon->Name;
+                $addon->Readme = $readme;
+                return;
+            }
+        }
+    }
 
-		if (isset($extra['screenshots'])) {
-			$screenshots = (array) $extra['screenshots'];
-		} elseif (isset($extra['screenshot'])) {
-			$screenshots = (array) $extra['screenshot'];
-		}
+    /**
+     * Determine if the repository is from GitHub, and if so then return the "context" (vendor/module) from the path
+     *
+     * @param  Addon $addon
+     * @return string|false
+     */
+    public function getGitHubContext(Addon $addon)
+    {
+        $repository = $addon->Repository;
+        if (stripos($repository, '://github.com/') === false) {
+            return false;
+        }
 
-		// Delete existing screenshots.
-		foreach ($addon->Screenshots() as $screenshot) {
-			$screenshot->delete();
-		}
+        preg_match('/^http(?:s?):\/\/github\.com\/(?<module>.*)(\.git)?$/U', $repository, $matches);
 
-		$addon->Screenshots()->removeAll();
+        if (isset($matches['module'])) {
+            return $matches['module'];
+        }
 
-		foreach ($screenshots as $screenshot) {
-			if (!is_string($screenshot)) {
-				continue;
-			}
+        return false;
+    }
 
-			$scheme = parse_url($screenshot, PHP_URL_SCHEME);
+    private function buildScreenshots(Addon $addon, PackageInterface $package, $path) {
+        $extra = $package->getExtra();
+        $screenshots = array();
+        $target = self::SCREENSHOTS_DIR . '/' . $addon->Name;
 
-			// Handle absolute image URLs.
-			if ($scheme == 'http' || $scheme == 'https') {
-				$temp = TEMP_FOLDER . '/' . md5($screenshot);
+        if (isset($extra['screenshots'])) {
+            $screenshots = (array) $extra['screenshots'];
+        } elseif (isset($extra['screenshot'])) {
+            $screenshots = (array) $extra['screenshot'];
+        }
 
-				if (!copy($screenshot, $temp)) {
-					continue;
-				}
+        // Delete existing screenshots.
+        foreach ($addon->Screenshots() as $screenshot) {
+            $screenshot->delete();
+        }
 
-				$data = array(
-					'name' => basename($screenshot),
-					'size' => filesize($temp),
-					'tmp_name' => $temp,
-					'error' => 0
-				);
-			}
-			// Handle images that are included in the repository.
-			else {
-				$source = $path . '/' . ltrim($screenshot, '/');
+        $addon->Screenshots()->removeAll();
 
-				// Prevent directory traversal.
-				if ($source != realpath($source)) {
-					continue;
-				}
+        foreach ($screenshots as $screenshot) {
+            if (!is_string($screenshot)) {
+                continue;
+            }
 
-				if (!file_exists($source)) {
-					continue;
-				}
+            $scheme = parse_url($screenshot, PHP_URL_SCHEME);
 
-				$data = array(
-					'name' => basename($source),
-					'size' => filesize($source),
-					'tmp_name' => $source,
-					'error' => 0
-				);
-			}
+            // Handle absolute image URLs.
+            if ($scheme == 'http' || $scheme == 'https') {
+                $temp = TEMP_FOLDER . '/' . md5($screenshot);
 
-			$upload = new Upload();
-			$upload->setValidator(new AddonBuilderScreenshotValidator());
-			$upload->load($data, $target);
+                if (!copy($screenshot, $temp)) {
+                    continue;
+                }
 
-			if($file = $upload->getFile()) {
-				$addon->Screenshots()->add($file);
-			}
-		}
-	}
+                $data = array(
+                    'name' => basename($screenshot),
+                    'size' => filesize($temp),
+                    'tmp_name' => $temp,
+                    'error' => 0
+                );
+            }
+            // Handle images that are included in the repository.
+            else {
+                $source = $path . '/' . ltrim($screenshot, '/');
+
+                // Prevent directory traversal.
+                if ($source != realpath($source)) {
+                    continue;
+                }
+
+                if (!file_exists($source)) {
+                    continue;
+                }
+
+                $data = array(
+                    'name' => basename($source),
+                    'size' => filesize($source),
+                    'tmp_name' => $source,
+                    'error' => 0
+                );
+            }
+
+            $upload = new Upload();
+            $upload->setValidator(new AddonBuilderScreenshotValidator());
+            $upload->load($data, $target);
+
+            if($file = $upload->getFile()) {
+                $addon->Screenshots()->add($file);
+            }
+        }
+    }
 
 }

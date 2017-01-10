@@ -1,18 +1,25 @@
 <?php
-
+/**
+ * Class for communicating with helpful robot
+ *
+ * @package mysite
+ */
 class CacheHelpfulRobotDataTask extends BuildTask
 {
     /**
+     * {@inheritDoc]
      * @var string
      */
     protected $title = 'Cache Helpful Robot Data';
 
     /**
+     * {@inheritDoc}
      * @var string
      */
     protected $description = 'Downloads and stores Helpful Robot module data';
 
     /**
+     * {@inheritDoc}
      * @param SS_HTTPRequest $request
      */
     public function run($request)
@@ -69,7 +76,7 @@ class CacheHelpfulRobotDataTask extends BuildTask
         if (Director::is_cli()) {
             print $message . PHP_EOL;
         } else {
-            print $message . "<br>";
+            print $message . '<br>';
         }
     }
 }
