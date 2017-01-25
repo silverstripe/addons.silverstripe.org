@@ -1,5 +1,7 @@
 # SilverStripe Addons
 
+[![Build Status](https://travis-ci.org/silverstripe/addons.silverstripe.org.svg?branch=master)](https://travis-ci.org/silverstripe/addons.silverstripe.org)
+
 This is the [SilverStripe](http://silverstripe.org) add-ons listing site project. It aggregates SilverStripe packages 
 from [Packagist](http://packagist.org).
 
