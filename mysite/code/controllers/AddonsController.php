@@ -108,13 +108,11 @@ class AddonsController extends SiteController
 
         // Proxy out a search to elastic if any parameters are set.
         if ($search || $type || $compat || $tags) {
-
             $bool = new Query\BoolQuery();
 
             $query = new Query();
             $query->setQuery($bool);
             $query->setSize(count($list));
-
 
             if ($search) {
                 $match = new Match();

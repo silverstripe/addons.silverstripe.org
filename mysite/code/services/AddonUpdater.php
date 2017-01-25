@@ -2,7 +2,6 @@
 
 use Composer\Package\AliasPackage;
 use Composer\Package\CompletePackage;
-use Composer\Semver\Constraint\Constraint;
 use Guzzle\Http\Exception\ClientErrorResponseException;
 use SilverStripe\Elastica\ElasticaService;
 use Packagist\Api\Result\Package;
@@ -29,25 +28,20 @@ class AddonUpdater {
 	private $resque;
 
 	/**
-	 * @var Composer\Package\Version\VersionParser
-	 */
-	private $versionParser;
-
-	/**
 	 * @var SilverStripeVersion[]
 	 */
-	private $silverstripes = array();
+	private $silverstripes;
 
 	public function __construct(
 		PackagistService $packagist,
 		ElasticaService $elastica,
-		ResqueService $resque,
-		VersionParser $versionParser
+		ResqueService $resque
 	) {
 		$this->packagist = $packagist;
 		$this->elastica = $elastica;
 		$this->resque = $resque;
-		$this->versionParser = $versionParser;
+
+        $this->setSilverStripeVersions(SilverStripeVersion::get());
 	}
 
 	/**
@@ -65,10 +59,6 @@ class AddonUpdater {
 			AddonLink::get()->removeAll();
 			AddonVendor::get()->removeAll();
 			AddonVersion::get()->removeAll();
-		}
-
-		foreach (SilverStripeVersion::get() as $version) {
-			$this->silverstripes[$version->ID] = $version->getConstraint();
 		}
 
 		// This call to packagist can be expensive. Requests are served from a cache if usePackagistCache() returns true
@@ -297,14 +287,14 @@ class AddonUpdater {
 		$addon->CompatibleVersions()->removeAll();
 		$version->CompatibleVersions()->removeAll();
 
-		foreach ($this->silverstripes as $id => $link) {
+		foreach ($this->getSilverStripeVersions() as $silverStripeVersion) {
+            /** @var SilverStripeVersion $silverStripeVersion */
 			try {
-				$constraint = $this->versionParser->parseConstraints($require);
-				if ($link->matches($constraint)) {
-					$addon->CompatibleVersions()->add($id);
-					$version->CompatibleVersions()->add($id);
+                if ($silverStripeVersion->getConstraintValidity($require)) {
+					$addon->CompatibleVersions()->add($silverStripeVersion);
+					$version->CompatibleVersions()->add($silverStripeVersion);
 				}
-			} catch(Exception $e) {
+			} catch (Exception $e) {
 				// An exception here shouldn't prevent further updates.
 				Debug::log($addon->Name . "\t" . $addon->ID . "\t" . $e->getMessage());
 			}
@@ -352,4 +342,25 @@ class AddonUpdater {
 		}
 	}
 
+    /**
+     * Get the list of SilverStripe versions
+     *
+     * @return DataList
+     */
+    public function getSilverStripeVersions()
+    {
+        return $this->silverstripes;
+    }
+
+    /**
+     * Set the list of SilverStripeVersions
+     *
+     * @param  DataList $versions
+     * @return $this
+     */
+    public function setSilverStripeVersions(DataList $versions)
+    {
+        $this->silverstripes = $versions;
+        return $this;
+    }
 }
