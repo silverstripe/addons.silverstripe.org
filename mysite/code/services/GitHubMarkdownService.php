@@ -1,7 +1,7 @@
 <?php
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\ClientException;
+use Guzzle\Http\Client;
+use Guzzle\Http\Exception\RequestException;
 
 /**
  * A GitHub service for communicating with the GitHub API to render Markdown. Uses Guzzle as the
@@ -14,7 +14,7 @@ class GitHubMarkdownService extends Object
     /**
      * The Guzzle client
      *
-     * @var GuzzleHttp\Client
+     * @var Guzzle\Http\Client
      */
     protected $client;
 
@@ -43,19 +43,18 @@ class GitHubMarkdownService extends Object
     {
         $body = '';
         try {
-            /** @var Psr\Http\Message\ResponseInterface $response */
-            $response = $this->getClient()
-                ->request(
+            /** @var Psr\Http\Message\RequestInterface $request */
+            $request = $this->getClient()
+                ->createRequest(
                     $this->getRequestMethod(),
                     $this->getEndpoint(),
-                    array(
-                        'headers' => $this->getHeaders(),
-                        'body' => $this->getPayload($markdown)
-                    )
+                    $this->getHeaders(),
+                    $this->getPayload($markdown)
                 );
+            $body = (string) $request->send();
 
-            $body = (string) $response->getBody();
-        } catch (ClientException $ex) {
+            echo PHP_EOL, PHP_EOL, $body, PHP_EOL, PHP_EOL;
+        } catch (RequestException $ex) {
             user_error($ex->getMessage());
             return '';
         }
@@ -85,16 +84,12 @@ class GitHubMarkdownService extends Object
 
     /**
      * Get an instance of a GuzzleHttp client
-     * @return GuzzleHttp\Client
+     * @return Guzzle\Http\Client
      */
     public function getClient()
     {
         if (is_null($this->client)) {
-            $this->client = new Client(
-                array(
-                    'base_uri' => $this->getBaseUri()
-                )
-            );
+            $this->client = new Client($this->getBaseUri());
         }
 
         return $this->client;
