@@ -22,7 +22,8 @@
     "symfony/process": "^2.8",
     "symfony/finder": "^2.8",
     "symfony/console": "^2.8",
-    "symfony/yaml": "^2.8"
+    "symfony/yaml": "^2.8",
+    "guzzle/guzzle": "~3.0"
   },
   "replace": {
     "extensions.silverstripe.org": "*"
