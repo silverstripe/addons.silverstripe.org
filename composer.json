@@ -11,7 +11,6 @@
     "composer/installers": "^1.2",
     "composer/composer": "^1.2",
     "ezyang/htmlpurifier": "4.5.*@stable",
-    "guzzlehttp/guzzle": "^6.2",
     "silverstripe/framework": "3.1.*@stable",
     "silverstripe/multivaluefield": "*",
     "silverstripe/toolbar": "^4.0",
@@ -23,7 +22,8 @@
     "symfony/process": "^2.8",
     "symfony/finder": "^2.8",
     "symfony/console": "^2.8",
-    "symfony/yaml": "^2.8"
+    "symfony/yaml": "^2.8",
+    "guzzle/guzzle": "~3.0"
   },
   "replace": {
     "extensions.silverstripe.org": "*"
