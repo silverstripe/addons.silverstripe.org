@@ -121,6 +121,9 @@ class GitHubMarkdownService extends Object
         if (!$this->getContext()) {
             $endpoint .= '/raw';
         }
+        if (defined('SS_GITHUB_CLIENT_ID') && defined('SS_GITHUB_CLIENT_SECRET')) {
+            $endpoint .= sprintf('?client_id=%s&client_secret=%s', SS_GITHUB_CLIENT_ID, SS_GITHUB_CLIENT_SECRET);
+        }
         return $endpoint;
     }
 
