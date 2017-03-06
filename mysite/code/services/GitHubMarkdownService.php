@@ -52,8 +52,6 @@ class GitHubMarkdownService extends Object
                     $this->getPayload($markdown)
                 );
             $body = (string) $request->send();
-
-            echo PHP_EOL, PHP_EOL, $body, PHP_EOL, PHP_EOL;
         } catch (RequestException $ex) {
             user_error($ex->getMessage());
             return '';
