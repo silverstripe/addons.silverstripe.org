@@ -153,7 +153,7 @@ class AddonBuilder {
     public function replaceRelativeLinks(Addon $addon, $readme)
     {
         if (!$this->hasGitHubRepository($addon)) {
-            return $this;
+            return $readme;
         }
 
         $dom = new DOMDocument;

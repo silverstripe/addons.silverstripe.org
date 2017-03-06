@@ -52,8 +52,6 @@ class GitHubMarkdownService extends Object
                     $this->getPayload($markdown)
                 );
             $body = (string) $request->send();
-
-            echo PHP_EOL, PHP_EOL, $body, PHP_EOL, PHP_EOL;
         } catch (RequestException $ex) {
             user_error($ex->getMessage());
             return '';
@@ -122,6 +120,9 @@ class GitHubMarkdownService extends Object
         $endpoint = self::API_RENDER_ENDPOINT;
         if (!$this->getContext()) {
             $endpoint .= '/raw';
+        }
+        if (defined('SS_GITHUB_CLIENT_ID') && defined('SS_GITHUB_CLIENT_SECRET')) {
+            $endpoint .= sprintf('?client_id=%s&client_secret=%s', SS_GITHUB_CLIENT_ID, SS_GITHUB_CLIENT_SECRET);
         }
         return $endpoint;
     }

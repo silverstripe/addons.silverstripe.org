@@ -142,4 +142,16 @@ HTML;
 
         $this->assertSame($expected, $this->builder->replaceRelativeLinks($addon, $input));
     }
+
+    /**
+     * For non GitHub repositories, the readme input should simply be returned as is from the "replaceRelativeLinks"
+     * method
+     */
+    public function testDoNotRewriteRelativeLinksForNonGitHubRepositories()
+    {
+        $addon = Addon::create();
+        $addon->Repository = 'https://gitlab.com/not-a/github-repo.git';
+        $readme = '<p>Please do not touch me.</p>';
+        $this->assertSame($readme, $this->builder->replaceRelativeLinks($addon, $readme));
+    }
 }
