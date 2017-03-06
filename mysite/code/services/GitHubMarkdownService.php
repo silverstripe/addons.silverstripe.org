@@ -51,7 +51,7 @@ class GitHubMarkdownService extends Object
                     $this->getHeaders(),
                     $this->getPayload($markdown)
                 );
-            $body = (string) $request->send();
+            $body = (string) $request->send()->getBody();
         } catch (RequestException $ex) {
             user_error($ex->getMessage());
             return '';
