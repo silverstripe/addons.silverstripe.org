@@ -130,7 +130,7 @@ class AddonsController extends SiteController
             }
 
             if ($tags) {
-                $bool->addMust(new Query\Terms('tag', (array)$tags));
+                $bool->addMust(new Query\Terms('tags', (array)$tags));
             }
 
             $list = new ResultList($this->elastica->getIndex(), $query);
