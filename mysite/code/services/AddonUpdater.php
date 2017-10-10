@@ -141,7 +141,7 @@ class AddonUpdater
             $addon->VendorID = $vendor->ID;
         }
 
-        $addon->Type = str_replace('silverstripe-', '', $package->getType());
+        $addon->Type = preg_replace('/^silverstripe-(vendor)?/', '', $package->getType());
         $addon->Description = $package->getDescription();
         $addon->Released = strtotime($package->getTime());
         $addon->Repository = $package->getRepository();
@@ -190,7 +190,7 @@ class AddonUpdater
         }
 
         $version->Name = $package->getName();
-        $version->Type = str_replace('silverstripe-', '', $package->getType());
+        $version->Type = preg_replace('/^silverstripe-(vendor)?/', '', $package->getType());
         $version->Description = $package->getDescription();
         $version->Released = strtotime($package->getTime());
         $keywords = $package->getKeywords();
