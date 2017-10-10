@@ -206,7 +206,7 @@ class Addon extends DataObject
      */
     public function getRelativePopularity()
     {
-        return (int)$this->Downloads / (int)$this->addonAge()->days;
+        return (int)$this->Downloads / max((int)$this->addonAge()->days, 1);
     }
 
     /**
