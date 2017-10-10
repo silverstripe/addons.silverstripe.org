@@ -302,6 +302,9 @@ class AddonUpdater {
 			return;
 		}
 
+        //  >= interpreted as ^, see https://github.com/silverstripe/addons.silverstripe.org/issues/160
+        $require = preg_replace('/^>=/', '^', $require);
+
 		$addon->CompatibleVersions()->removeAll();
 		$version->CompatibleVersions()->removeAll();
 
