@@ -6,6 +6,7 @@ use Guzzle\Http\Exception\ClientErrorResponseException;
 use SilverStripe\Elastica\ElasticaService;
 use Packagist\Api\Result\Package;
 use Composer\Package\Version\VersionParser;
+use Packagist\Api\Result\Package\Version;
 
 /**
  * Updates all add-ons from Packagist.
@@ -75,7 +76,7 @@ class AddonUpdater {
 		foreach ($packages as $package) {
 			/** @var Packagist\Api\Result\Package $package */
 
-			$isAbandoned = (property_exists($package, 'abandoned') && $package->abandoned);
+			$isAbandoned = (method_exists($package, 'isAbandoned') && $package->isAbandoned());
 			$name = $package->getName();
 			$versions = $package->getVersions();
 
@@ -229,7 +230,7 @@ class AddonUpdater {
 		$this->updateAuthors($version, $package);
 	}
 
-	private function updateLinks(AddonVersion $version, CompletePackage $package) {
+	private function updateLinks(AddonVersion $version, Version $package) {
 		$getLink = function ($name, $type) use ($version) {
 			$link = null;
 
@@ -281,7 +282,7 @@ class AddonUpdater {
 		}*/
 	}
 
-	private function updateCompatibility(Addon $addon, AddonVersion $version, CompletePackage $package) {
+	private function updateCompatibility(Addon $addon, AddonVersion $version, Version $package) {
 		$require = null;
 
 		if($package->getRequire()) foreach ($package->getRequire() as $name => $link) {
@@ -318,7 +319,7 @@ class AddonUpdater {
 		}
 	}
 
-	private function updateAuthors(AddonVersion $version, CompletePackage $package) {
+	private function updateAuthors(AddonVersion $version, Version $package) {
 		if ($package->getAuthors()) foreach ($package->getAuthors() as $details) {
 			$author = null;
 
