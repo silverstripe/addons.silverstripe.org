@@ -152,7 +152,6 @@ class Addon extends DataObject
             'released'      => $this->obj('Released')->Format('c'),
             'downloads'     => (int)$this->Downloads,
             'readme'        => strip_tags($this->Readme),
-            '_boost'        => sqrt($this->Downloads)
         ));
     }
 
