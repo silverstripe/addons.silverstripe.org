@@ -2,45 +2,51 @@
 /**
  * Handles listing package vendors.
  */
-class VendorsController extends SiteController {
+class VendorsController extends SiteController
+{
 
-	public static $allowed_actions = array(
-		'index'
-	);
+    public static $allowed_actions = array(
+        'index'
+    );
 
-	public function index() {
-		return $this->renderWith(array('Vendors', 'Page'));
-	}
+    public function index()
+    {
+        return $this->renderWith(array('Vendors', 'Page'));
+    }
 
-	public function Title() {
-		return 'Vendors';
-	}
+    public function Title()
+    {
+        return 'Vendors';
+    }
 
-	public function Link() {
-		return Controller::join_links(Director::baseURL(), 'vendors');
-	}
+    public function Link()
+    {
+        return Controller::join_links(Director::baseURL(), 'vendors');
+    }
 
-	public function Vendors() {
-		$query = new SQLQuery();
-		$result = new ArrayList();
+    public function Vendors()
+    {
+        $query = new SQLQuery();
+        $result = new ArrayList();
 
-		$query
-			->setSelect('"AddonVendor"."Name"')
-			->selectField('COUNT("Addon"."ID")'. 'Count')
-			->setFrom('"AddonVendor"')
-			->addLeftJoin('Addon', '"Addon"."VendorID" = "AddonVendor"."ID"')
-			->setGroupBy('"AddonVendor"."ID"')
-			->setOrderBy(array('"Count"' => 'DESC', '"Name"' => 'ASC'));
+        $query
+            ->setSelect('"AddonVendor"."Name"')
+            ->selectField('COUNT("Addon"."ID")'. 'Count')
+            ->setFrom('"AddonVendor"')
+            ->addLeftJoin('Addon', '"Addon"."VendorID" = "AddonVendor"."ID"')
+            ->setGroupBy('"AddonVendor"."ID"')
+            ->setOrderBy(array('"Count"' => 'DESC', '"Name"' => 'ASC'));
 
-		foreach ($query->execute() as $row) {
-			$link = Controller::join_links(
-				Director::baseURL(), 'add-ons', $row['Name']
-			);
+        foreach ($query->execute() as $row) {
+            $link = Controller::join_links(
+                Director::baseURL(),
+                'add-ons',
+                $row['Name']
+            );
 
-			$result->push(new ArrayData($row + array('Link' => $link)));
-		}
+            $result->push(new ArrayData($row + array('Link' => $link)));
+        }
 
-		return $result;
-	}
-
+        return $result;
+    }
 }

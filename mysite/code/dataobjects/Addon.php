@@ -80,7 +80,9 @@ class Addon extends DataObject
     public function VendorLink()
     {
         return Controller::join_links(
-            Director::baseURL(), 'add-ons', $this->VendorName()
+            Director::baseURL(),
+            'add-ons',
+            $this->VendorName()
         );
     }
 
@@ -92,7 +94,9 @@ class Addon extends DataObject
     public function Link()
     {
         return Controller::join_links(
-            Director::baseURL(), 'add-ons', $this->Name
+            Director::baseURL(),
+            'add-ons',
+            $this->Name
         );
     }
 
