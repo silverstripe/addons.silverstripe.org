@@ -6,7 +6,8 @@ use Composer\Package\PackageInterface;
 /**
  * Downloads an add-on and builds more details information about it.
  */
-class AddonBuilder {
+class AddonBuilder
+{
 
     const ADDONS_DIR = 'add-ons';
 
@@ -14,11 +15,13 @@ class AddonBuilder {
 
     private $packagist;
 
-    public function __construct(PackagistService $packagist) {
+    public function __construct(PackagistService $packagist)
+    {
         $this->packagist = $packagist;
     }
 
-    public function build(Addon $addon) {
+    public function build(Addon $addon)
+    {
         $composer = $this->packagist->getComposer();
         $downloader = $composer->getDownloadManager();
         $packageVersions = $this->packagist->getPackageVersions($addon->Name);
@@ -46,12 +49,12 @@ class AddonBuilder {
                 $packageVersion->getVersion()
             );
             $package->setExtra($packageVersion->getExtra());
-            if($source = $packageVersion->getSource()) {
+            if ($source = $packageVersion->getSource()) {
                 $package->setSourceUrl($source->getUrl());
                 $package->setSourceType($source->getType());
                 $package->setSourceReference($source->getReference());
             }
-            if($dist = $packageVersion->getDist()) {
+            if ($dist = $packageVersion->getDist()) {
                 $package->setDistUrl($dist->getUrl());
                 $package->setDistType($dist->getType());
                 $package->setDistReference($dist->getReference());
@@ -66,7 +69,8 @@ class AddonBuilder {
         $addon->write();
     }
 
-    protected function download(PackageInterface $package, $path) {
+    protected function download(PackageInterface $package, $path)
+    {
         $this->packagist
             ->getComposer()
             ->getDownloadManager()
@@ -210,7 +214,8 @@ class AddonBuilder {
         return (strpos($addon->Repository, 'github.com') !== false);
     }
 
-    private function buildScreenshots(Addon $addon, PackageInterface $package, $path) {
+    private function buildScreenshots(Addon $addon, PackageInterface $package, $path)
+    {
         $extra = $package->getExtra();
         $screenshots = array();
         $target = self::SCREENSHOTS_DIR . '/' . $addon->Name;
@@ -249,8 +254,7 @@ class AddonBuilder {
                     'tmp_name' => $temp,
                     'error' => 0
                 );
-            }
-            // Handle images that are included in the repository.
+            } // Handle images that are included in the repository.
             else {
                 $source = $path . '/' . ltrim($screenshot, '/');
 
@@ -275,7 +279,7 @@ class AddonBuilder {
             $upload->setValidator(new AddonBuilderScreenshotValidator());
             $upload->load($data, $target);
 
-            if($file = $upload->getFile()) {
+            if ($file = $upload->getFile()) {
                 $addon->Screenshots()->add($file);
             }
         }

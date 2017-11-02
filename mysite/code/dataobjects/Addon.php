@@ -80,7 +80,9 @@ class Addon extends DataObject
     public function VendorLink()
     {
         return Controller::join_links(
-            Director::baseURL(), 'add-ons', $this->VendorName()
+            Director::baseURL(),
+            'add-ons',
+            $this->VendorName()
         );
     }
 
@@ -92,7 +94,9 @@ class Addon extends DataObject
     public function Link()
     {
         return Controller::join_links(
-            Director::baseURL(), 'add-ons', $this->Name
+            Director::baseURL(),
+            'add-ons',
+            $this->Name
         );
     }
 
@@ -148,7 +152,6 @@ class Addon extends DataObject
             'released'      => $this->obj('Released')->Format('c'),
             'downloads'     => (int)$this->Downloads,
             'readme'        => strip_tags($this->Readme),
-            '_boost'        => sqrt($this->Downloads)
         ));
     }
 
@@ -206,7 +209,7 @@ class Addon extends DataObject
      */
     public function getRelativePopularity()
     {
-        return (int)$this->Downloads / (int)$this->addonAge()->days;
+        return (int)$this->Downloads / max((int)$this->addonAge()->days, 1);
     }
 
     /**

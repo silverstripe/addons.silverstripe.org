@@ -2,34 +2,35 @@
 /**
  * A keyword which is attached to add-ons and versions.
  */
-class AddonKeyword extends DataObject {
+class AddonKeyword extends DataObject
+{
 
-	public static $db = array(
-		'Name' => 'Varchar(255)'
-	);
+    public static $db = array(
+        'Name' => 'Varchar(255)'
+    );
 
-	public static $belongs_many_many = array(
-		'Addons' => 'Addon',
-		'Versions' => 'AddonVersion'
-	);
+    public static $belongs_many_many = array(
+        'Addons' => 'Addon',
+        'Versions' => 'AddonVersion'
+    );
 
-	/**
-	 * Gets a keyword object by name, creating one if it does not exist.
-	 *
-	 * @param string $name
-	 * @return AddonKeyword
-	 */
-	public static function get_by_name($name) {
-		$name = strtolower($name);
-		$kw = AddonKeyword::get()->filter('Name', $name)->first();
+    /**
+     * Gets a keyword object by name, creating one if it does not exist.
+     *
+     * @param string $name
+     * @return AddonKeyword
+     */
+    public static function get_by_name($name)
+    {
+        $name = strtolower($name);
+        $kw = AddonKeyword::get()->filter('Name', $name)->first();
 
-		if (!$kw) {
-			$kw = new AddonKeyword();
-			$kw->Name = $name;
-			$kw->write();
-		}
+        if (!$kw) {
+            $kw = new AddonKeyword();
+            $kw->Name = $name;
+            $kw->write();
+        }
 
-		return $kw;
-	}
-
+        return $kw;
+    }
 }

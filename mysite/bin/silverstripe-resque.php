@@ -5,7 +5,7 @@
  */
 
 if (php_sapi_name() != 'cli') {
-	die(1);
+    die(1);
 }
 
 $base = dirname(dirname(__DIR__));

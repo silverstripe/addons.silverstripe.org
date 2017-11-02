@@ -240,5 +240,4 @@ class AddonsController extends SiteController
 
         return $rss->outputToBrowser();
     }
-
 }

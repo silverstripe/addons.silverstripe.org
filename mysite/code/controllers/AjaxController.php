@@ -25,5 +25,4 @@ class AjaxController extends Controller
         $response->setBody(Convert::array2json(array('success' => true, 'body' => $body->getValue())));
         return $response;
     }
-
 }
