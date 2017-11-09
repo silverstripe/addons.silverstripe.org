@@ -15,6 +15,8 @@
     "symbiote/silverstripe-multivaluefield": "^3",
     "silverstripe/toolbar": "^4.0",
     "knplabs/packagist-api": "1.*@stable",
+    "doctrine/inflector": "~1.1.0",
+    "doctrine/instantiator": "~1.0.0",
     "stojg/silverstripe-resque": "*",
     "symbiote-library/silverstripe-elastica": "^2",
     "symfony/event-dispatcher": "^2.8",
@@ -32,6 +34,7 @@
   },
   "require-dev": {
     "phpunit/phpunit": "^4.8",
+    "phpdocumentor/reflection-docblock": "~3.1.1",
     "silverstripe/sqlite3": "*"
   },
   "minimum-stability": "dev",
