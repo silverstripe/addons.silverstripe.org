@@ -25,7 +25,9 @@
     "symfony/finder": "^2.8",
     "symfony/yaml": "^2.8",
     "guzzlehttp/guzzle": "^6",
-    "symbiote/silverstripe-queuedjobs": "^3"
+    "symbiote/silverstripe-queuedjobs": "^3",
+    "silverstripe/crontask": "^1.2",
+    "silverstripe/environmentcheck": "^1.3"
   },
   "replace": {
     "extensions.silverstripe.org": "*"

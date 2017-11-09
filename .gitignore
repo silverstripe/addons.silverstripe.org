@@ -5,6 +5,10 @@
 /framework/
 /multivaluefield/
 /sqlite3/
+/queuedjobs/
+/crontask/
+/silverstripe-cache/
+/environmentcheck/
 /vendor/
 .vagrant
 .vagrant*
