@@ -15,10 +15,8 @@ from [Packagist](http://packagist.org).
 2. `cd` into the directory
 3. `composer install`
 4. Install elasticsearch `brew install elasticsearch` and configure if required
-5. Install redis `brew install redis`
-6. Start `elasticsearch` and `redis-server`
-7. Start a Resque worker by running `./framework/sake dev/resque/run queue=first_build,update`
-8. Run all tasks to populate database (see below, first run may take some time to populate)
+5. Start `elasticsearch`
+6. Run all tasks to populate database (see below, first run may take some time to populate)
 
 ## Dependencies
 
@@ -34,30 +32,12 @@ whether the site is on the production server (live) or on UAT or local developme
 
 You should run the elastic search reindex task to create the mappings after installation.
 
-### Redis
-
-Redis is an in-memory data structure store which is used by the Resque module when processing and updating new modules 
-from Packagist.org.
-
-* Install with `brew install redis`
-* Start the redis instance with `redis-server`
-
 Once running you can run the `UpdateAddonsTask` to pull all SilverStripe modules from Packagist into the addons site.
 
-### Resque
+### Queued Jobs
 
-A [PHP implementation of resque](https://github.com/chrisboulton/php-resque) is used to provide background building 
-of add-ons details. As such an installation of [redis](http://redis.io/) must be present. If you wish to use a 
-remote server, you can configure the `ResqueService` constructor parameters to specify the backend using the 
-injector in `mysite/_config/injector.yml`.
-
-To run the background tasks you need to spawn worker processes. On a production server this should be set up using a 
-process monitor such as [god](http://godrb.com/). A new worker process can be spawned using the following command in 
-the webroot:
-
-```
-./framework/sake dev/resque/run queue=first_build,update
-```
+For extended add-on information such as parsed Readme content, a Queued Job is created during the `UpdateAddonsTask`.
+Queued Jobs requires a cronjob to run - for more information [visit the module's wiki](https://github.com/symbiote/silverstripe-queuedjobs/wiki/Installing-and-configuring).
 
 ## Tasks
 
@@ -65,7 +45,7 @@ Run each of the following tasks in order the first time you set up the site to e
 of modules to work with.
 
 1. `framework/sake dev/tasks/UpdateSilverStripeVersionsTask`: Updates the available SilverStripe versions.
-2. `framework/sake dev/tasks/UpdateAddonsTask`: Runs the add-on updater.
+2. `framework/sake dev/tasks/UpdateAddonsTask`: Runs the add-on updater, and queues extended add-on builds.
 3. `framework/sake dev/tasks/DeleteRedundantAddonsTask`: Deletes addons which haven't been updated
    from packagist in a specified amount of time, which implies they're no longer available there.
 4. `framework/sake dev/tasks/BuildAddonsTask`: Manually build addons, downloading screenshots
