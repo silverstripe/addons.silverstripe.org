@@ -66,7 +66,14 @@ class AddonUpdater
             $packages = $this->packagist->getPackages();
             $cache->save(serialize($packages), 'packagist');
         }
-        $this->elastica->startBulkIndex();
+
+        // TODO: AWS elasticsearch doesn't have this setting enabled
+        // https://www.elastic.co/guide/en/elasticsearch/reference/5.2/url-access-control.html
+        // and bulk index operations by elastica currently require it
+        // Switching to https://github.com/heyday/silverstripe-elastica and SS4 might help
+
+        // $this->elastica->startBulkIndex();
+
         foreach ($packages as $package) {
             /** @var Packagist\Api\Result\Package $package */
 
@@ -104,7 +111,7 @@ class AddonUpdater
             $this->updateAddon($addon, $package, $versions);
         }
 
-        $this->elastica->endBulkIndex();
+        // $this->elastica->endBulkIndex();
     }
 
 
