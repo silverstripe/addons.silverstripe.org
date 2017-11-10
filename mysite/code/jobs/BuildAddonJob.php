@@ -2,26 +2,61 @@
 /**
  * A background job which builds a single add-on.
  */
-class BuildAddonJob
+class BuildAddonJob extends AbstractQueuedJob
 {
+    private $packageID;
 
-    public function setUp()
+    /**
+     * @var array params
+     * @throws Exception
+     */
+    public function __construct($params = array())
     {
-        global $databaseConfig;
-
-        if (!DB::isActive()) {
-            DB::connect($databaseConfig);
+        if (!empty($params['package'])) {
+            $this->PackageID = $params['package'];
         }
+
+        $this->currentStep = 0;
+        $this->totalSteps = 1;
     }
 
-    public function perform()
+    protected function getPackage()
     {
-        $package = Addon::get()->byID($this->args['id']);
+        return Addon::get()->byID($this->PackageID);
+    }
+
+    public function process()
+    {
+        $package = $this->getPackage();
+        if (!$package->ID) {
+            throw new Exception('Package not specified');
+        }
+
         $builder = Injector::inst()->get('AddonBuilder');
 
         $builder->build($package);
 
         $package->BuildQueued = false;
         $package->write();
+
+        $this->isComplete = true;
+        $this->currentStep = 1;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return 'Build Addon: ' . $this->getPackage()->Name;
+    }
+    /**
+     * Return a signature for this queued job
+     *
+     * @return string
+     */
+    public function getSignature()
+    {
+        return md5(get_class($this) . $this->PackageID);
     }
 }
