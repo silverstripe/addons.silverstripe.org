@@ -4,3 +4,7 @@ php_settings:
 php_settings:
   cli:
     memory_limit: "1024M"
+crons:
+  queuedjobs_task:
+    time: '* * * * *'
+    command: 'test -f /var/www/mysite/www/host.txt && /usr/local/bin/sera 1 php /var/www/mysite/www/framework/cli-script.php dev/tasks/ProcessJobQueueTask'
