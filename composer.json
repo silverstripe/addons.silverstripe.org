@@ -5,6 +5,10 @@
     {
       "type": "vcs",
       "url": "https://github.com/silverstripe/silverstripe-globaltoolbar.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/sminnee/silverstripe-queuedjobs.git"
     }
   ],
   "require": {
@@ -25,7 +29,7 @@
     "symfony/finder": "^2.8",
     "symfony/yaml": "^2.8",
     "guzzlehttp/guzzle": "^6",
-    "symbiote/silverstripe-queuedjobs": "^3",
+    "symbiote/silverstripe-queuedjobs": "dev-queue-buildtask as 3.x-dev",
     "silverstripe/crontask": "^1.2",
     "silverstripe/environmentcheck": "^1.3"
   },

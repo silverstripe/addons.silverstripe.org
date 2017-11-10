@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7a1fbf8746d3d9d611ba095ea4c4c2ab",
+    "content-hash": "6378efecfeb403df973e0ff1d315a320",
     "packages": [
         {
             "name": "asyncphp/doorman",
@@ -1841,16 +1841,16 @@
         },
         {
             "name": "symbiote/silverstripe-queuedjobs",
-            "version": "3.0.0",
+            "version": "dev-queue-buildtask",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symbiote/silverstripe-queuedjobs.git",
-                "reference": "0f5928c925db4174fdd3743deaf3a1a55962b6b8"
+                "url": "https://github.com/sminnee/silverstripe-queuedjobs.git",
+                "reference": "4b0eae153180f975e89cc0ad8bb858a6f99a9a84"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symbiote/silverstripe-queuedjobs/zipball/0f5928c925db4174fdd3743deaf3a1a55962b6b8",
-                "reference": "0f5928c925db4174fdd3743deaf3a1a55962b6b8",
+                "url": "https://api.github.com/repos/sminnee/silverstripe-queuedjobs/zipball/4b0eae153180f975e89cc0ad8bb858a6f99a9a84",
+                "reference": "4b0eae153180f975e89cc0ad8bb858a6f99a9a84",
                 "shasum": ""
             },
             "require": {
@@ -1868,18 +1868,17 @@
                     "3.x-dev": "3.0.x-dev"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
             "authors": [
                 {
-                    "name": "Damian Mooyman",
-                    "email": "damian@silverstripe.com"
-                },
-                {
                     "name": "Marcus Nyeholt",
                     "email": "marcus@symbiote.com.au"
+                },
+                {
+                    "name": "Damian Mooyman",
+                    "email": "damian@silverstripe.com"
                 }
             ],
             "description": "A framework for defining and running background jobs in a queued manner",
@@ -1887,7 +1886,10 @@
                 "jobs",
                 "silverstripe"
             ],
-            "time": "2017-08-28T03:02:54+00:00"
+            "support": {
+                "source": "https://github.com/sminnee/silverstripe-queuedjobs/tree/queue-buildtask"
+            },
+            "time": "2017-11-10 01:06:24"
         },
         {
             "name": "symfony/console",
@@ -3424,11 +3426,19 @@
             "time": "2016-11-23T20:04:58+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "alias": "3.x-dev",
+            "alias_normalized": "3.9999999.9999999.9999999-dev",
+            "version": "dev-queue-buildtask",
+            "package": "symbiote/silverstripe-queuedjobs"
+        }
+    ],
     "minimum-stability": "dev",
     "stability-flags": {
         "ezyang/htmlpurifier": 0,
-        "knplabs/packagist-api": 0
+        "knplabs/packagist-api": 0,
+        "symbiote/silverstripe-queuedjobs": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
