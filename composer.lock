@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "6378efecfeb403df973e0ff1d315a320",
+    "content-hash": "16bd79ddd35c8884c837bd6b61912a19",
     "packages": [
         {
             "name": "asyncphp/doorman",
@@ -40,102 +40,6 @@
             ],
             "description": "Child process management",
             "time": "2015-07-28T00:39:41+00:00"
-        },
-        {
-            "name": "chrisboulton/php-resque",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/chrisboulton/php-resque.git",
-                "reference": "968b7e6a307a2079051dfc571d2fc2be0546209f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/chrisboulton/php-resque/zipball/968b7e6a307a2079051dfc571d2fc2be0546209f",
-                "reference": "968b7e6a307a2079051dfc571d2fc2be0546209f",
-                "shasum": ""
-            },
-            "require": {
-                "colinmollenhour/credis": "~1.7",
-                "ext-pcntl": "*",
-                "php": ">=5.3.0",
-                "psr/log": "~1.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "3.7.*"
-            },
-            "suggest": {
-                "ext-proctitle": "Allows php-resque to rename the title of UNIX processes to show the status of a worker.",
-                "ext-redis": "Native PHP extension for Redis connectivity. Credis will automatically utilize when available."
-            },
-            "bin": [
-                "bin/resque"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Resque": "lib"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Chris Boulton",
-                    "email": "chris@bigcommerce.com"
-                }
-            ],
-            "description": "Redis backed library for creating background jobs and processing them later. Based on resque for Ruby.",
-            "homepage": "http://www.github.com/chrisboulton/php-resque/",
-            "keywords": [
-                "background",
-                "job",
-                "redis",
-                "resque"
-            ],
-            "time": "2017-04-12T21:58:19+00:00"
-        },
-        {
-            "name": "colinmollenhour/credis",
-            "version": "1.9.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/colinmollenhour/credis.git",
-                "reference": "049ccfb2c680e4dfa6adcfa97f2f29d086919abd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/colinmollenhour/credis/zipball/049ccfb2c680e4dfa6adcfa97f2f29d086919abd",
-                "reference": "049ccfb2c680e4dfa6adcfa97f2f29d086919abd",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "Client.php",
-                    "Cluster.php",
-                    "Sentinel.php",
-                    "Module.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Colin Mollenhour",
-                    "email": "colin@mollenhour.com"
-                }
-            ],
-            "description": "Credis is a lightweight interface to the Redis key-value store which wraps the phpredis library when available for better performance.",
-            "homepage": "https://github.com/colinmollenhour/credis",
-            "time": "2017-10-05T20:28:58+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -1699,43 +1603,6 @@
                 "issues": "https://github.com/silverstripe/silverstripe-globaltoolbar/issues"
             },
             "time": "2016-10-14T02:05:33+00:00"
-        },
-        {
-            "name": "stojg/silverstripe-resque",
-            "version": "1.2.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/stojg/silverstripe-resque.git",
-                "reference": "5c85350faa01cba3c84d7a03cb2bc50354a73e72"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/stojg/silverstripe-resque/zipball/5c85350faa01cba3c84d7a03cb2bc50354a73e72",
-                "reference": "5c85350faa01cba3c84d7a03cb2bc50354a73e72",
-                "shasum": ""
-            },
-            "require": {
-                "chrisboulton/php-resque": "dev-master#b0843f4dba7e914728539c4001b8325b68c44354"
-            },
-            "type": "silverstripe-module",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD"
-            ],
-            "authors": [
-                {
-                    "name": "Stig Lindqvist",
-                    "email": "stojg.lindqvist@gmail.com",
-                    "homepage": "https://stojg.se/"
-                }
-            ],
-            "description": "Wraps around the resque code for background jobs",
-            "homepage": "http://github.com/stojg/silverstripe-resque",
-            "keywords": [
-                "redis",
-                "silverstripe"
-            ],
-            "time": "2016-09-29T01:16:29+00:00"
         },
         {
             "name": "symbiote-library/silverstripe-elastica",

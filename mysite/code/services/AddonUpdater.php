@@ -25,23 +25,16 @@ class AddonUpdater
     private $elastica;
 
     /**
-     * @var ResqueService
-     */
-    private $resque;
-
-    /**
      * @var SilverStripeVersion[]
      */
     private $silverstripes;
 
     public function __construct(
         PackagistService $packagist,
-        ElasticaService $elastica,
-        ResqueService $resque
+        ElasticaService $elastica
     ) {
         $this->packagist = $packagist;
         $this->elastica = $elastica;
-        $this->resque = $resque;
 
         $this->setSilverStripeVersions(SilverStripeVersion::get());
     }
