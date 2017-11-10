@@ -66,6 +66,7 @@ class AddonUpdater
 
         // This call to packagist can be expensive. Requests are served from a cache if usePackagistCache() returns true
         $cache = SS_Cache::factory('addons');
+
         if ($this->usePackagistCache() && $packages = $cache->load('packagist')) {
             $packages = unserialize($packages);
         } else {
@@ -73,7 +74,6 @@ class AddonUpdater
             $cache->save(serialize($packages), 'packagist');
         }
         $this->elastica->startBulkIndex();
-
         foreach ($packages as $package) {
             /** @var Packagist\Api\Result\Package $package */
 
@@ -129,6 +129,8 @@ class AddonUpdater
 
     private function updateAddon(Addon $addon, Package $package, array $versions)
     {
+        echo "Updating addon {$addon->Name}:\n";
+
         if (!$addon->VendorID) {
             $vendor = AddonVendor::get()->filter('Name', $addon->VendorName())->first();
 
@@ -137,6 +139,8 @@ class AddonUpdater
                 $vendor->Name = $addon->VendorName();
                 $vendor->write();
             }
+
+            echo " - Set vendor name to {$vendor->Name}\n";
 
             $addon->VendorID = $vendor->ID;
         }
@@ -156,22 +160,27 @@ class AddonUpdater
         // If there is no build, then queue one up if the add-on requires
         // one.
         if (!$addon->BuildQueued) {
+            echo " - Will queue a rebuild\n";
             if (!$addon->BuiltAt) {
-                $this->resque->queue('first_build', 'BuildAddonJob', array('id' => $addon->ID));
+                $buildJob = new BuildAddonJob(['package' => $addon->ID]);
+                singleton('QueuedJobService')->queueJob($buildJob);
+                echo " - Queued {$addon->Name} for build\n";
                 $addon->BuildQueued = true;
             } else {
                 $built = (int) $addon->obj('BuiltAt')->format('U');
 
                 foreach ($versions as $version) {
                     if (strtotime($version->getTime()) > $built) {
-                        $this->resque->queue('update', 'BuildAddonJob', array('id' => $addon->ID));
+                        $buildJob = new BuildAddonJob(['package' => $addon->ID]);
+                        singleton('QueuedJobService')->queueJob($buildJob);
+                        echo " - Queued {$addon->Name} version {$version->Name} for build\n";
                         $addon->BuildQueued = true;
 
                         break;
                     }
                 }
             }
-        }
+        } else { echo " - Will not queue a rebuild\n"; }
 
         $addon->LastUpdated = time();
         $addon->write();
@@ -226,6 +235,8 @@ class AddonUpdater
         $version->Homepage = $package->getHomepage();
         $version->License = $package->getLicense();
         // $version->Support = $package->getSupport();
+
+        echo " - Processed version {$version->Version}\n";
 
         $addon->Versions()->add($version);
 

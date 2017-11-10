@@ -1,7 +1,7 @@
 <?php
 
-use Guzzle\Http\Client;
-use Guzzle\Http\Exception\RequestException;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 /**
  * A GitHub service for communicating with the GitHub API to render Markdown. Uses Guzzle as the
@@ -14,7 +14,7 @@ class GitHubMarkdownService extends Object
     /**
      * The Guzzle client
      *
-     * @var Guzzle\Http\Client
+     * @var GuzzleHttp\Client
      */
     protected $client;
 
@@ -45,13 +45,15 @@ class GitHubMarkdownService extends Object
         try {
             /** @var Psr\Http\Message\RequestInterface $request */
             $request = $this->getClient()
-                ->createRequest(
+                ->request(
                     $this->getRequestMethod(),
                     $this->getEndpoint(),
-                    $this->getHeaders(),
-                    $this->getPayload($markdown)
+                    [
+                        'headers' => $this->getHeaders(),
+                        'body' => $this->getPayload($markdown)
+                    ]
                 );
-            $body = (string) $request->send()->getBody();
+            $body = (string) $request->getBody();
         } catch (RequestException $ex) {
             user_error($ex->getMessage());
             return '';
@@ -82,12 +84,12 @@ class GitHubMarkdownService extends Object
 
     /**
      * Get an instance of a GuzzleHttp client
-     * @return Guzzle\Http\Client
+     * @return GuzzleHttp\Client
      */
     public function getClient()
     {
         if (is_null($this->client)) {
-            $this->client = new Client($this->getBaseUri());
+            $this->client = new Client(['base_uri' => $this->getBaseUri()]);
         }
 
         return $this->client;
