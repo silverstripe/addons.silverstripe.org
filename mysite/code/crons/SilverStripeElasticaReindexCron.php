@@ -1,5 +1,7 @@
 <?php
 
+use SilverStripe\Elastica\ReindexTask;
+
 class SilverStripeElasticaReindexCron implements CronTask
 {
 
@@ -19,7 +21,7 @@ class SilverStripeElasticaReindexCron implements CronTask
      */
     public function process()
     {
-        $taskClass = 'SilverStripeElasticaReindexTask';
+        $taskClass = ReindexTask::class;
         $job = new RunBuildTaskJob($taskClass);
         $jobID = Injector::inst()->get(QueuedJobService::class)->queueJob($job);
         echo 'Added ' . $taskClass . ' to job queue';

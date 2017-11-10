@@ -20,7 +20,7 @@ class UpdateSilverStripeVersionsCron implements CronTask
      */
     public function process()
     {
-        $taskClass = 'UpdateSilverStripeVersionsTask';
+        $taskClass = UpdateSilverStripeVersionsTask::class;
         $job = new RunBuildTaskJob($taskClass);
         $jobID = Injector::inst()->get(QueuedJobService::class)->queueJob($job);
         echo 'Added ' . $taskClass . ' to job queue';
