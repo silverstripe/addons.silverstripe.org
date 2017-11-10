@@ -173,7 +173,9 @@ class AddonUpdater
                     }
                 }
             }
-        } else { echo " - Will not queue a rebuild\n"; }
+        } else {
+            echo " - Will not queue a rebuild\n";
+        }
 
         $addon->LastUpdated = time();
         $addon->write();

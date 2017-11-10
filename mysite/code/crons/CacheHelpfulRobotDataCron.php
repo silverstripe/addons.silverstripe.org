@@ -17,7 +17,8 @@ class CacheHelpfulRobotDataCron implements CronTask
      * Run the build task CacheHelpfulRobotDataTask
      * @return void
      */
-    public function process() {
+    public function process()
+    {
         $task = Injector::inst()->get('CacheHelpfulRobotDataTask');
         $task->run(new SS_HTTPRequest('GET', '/'));
     }

@@ -17,7 +17,8 @@ class BuildAddonsCron implements CronTask
      * Run the build task BuildAddonsTask
      * @return void
      */
-    public function process() {
+    public function process()
+    {
         $task = Injector::inst()->get('BuildAddonsTask');
         $task->run(new SS_HTTPRequest('GET', '/'));
     }

@@ -18,7 +18,8 @@ class UpdateAddonsCron implements CronTask
      * Run the build task UpdateAddonsTask
      * @return void
      */
-    public function process() {
+    public function process()
+    {
         $task = Injector::inst()->get('UpdateAddonsTask');
         $task->run(new SS_HTTPRequest('GET', '/'));
     }

@@ -10,7 +10,8 @@ class BuildAddonJob extends AbstractQueuedJob implements QueuedJob
      * @var array params
      * @throws Exception
      */
-    public function __construct($params = array()) {
+    public function __construct($params = array())
+    {
         if (!empty($params['package'])) {
             $this->setObject(Addon::get()->byID($params['package']));
         }
@@ -28,7 +29,9 @@ class BuildAddonJob extends AbstractQueuedJob implements QueuedJob
     public function perform()
     {
         $package = $this->getObject();
-        if (!$package->ID) throw new Exception('Package not specified');
+        if (!$package->ID) {
+            throw new Exception('Package not specified');
+        }
 
         $builder = Injector::inst()->get('AddonBuilder');
 
@@ -52,14 +55,16 @@ class BuildAddonJob extends AbstractQueuedJob implements QueuedJob
      *
      * @return string
      */
-    public function getSignature() {
+    public function getSignature()
+    {
         return md5(get_class($this) . serialize($this->jobData) . $this->packageID);
     }
 
     /**
      * @return stdClass
      */
-    public function getJobData() {
+    public function getJobData()
+    {
         $data = new stdClass();
         $data->totalSteps = $this->totalSteps;
         $data->currentStep = $this->currentStep;

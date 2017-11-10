@@ -18,7 +18,8 @@ class UpdateSilverStripeVersionsCron implements CronTask
      * Run the build task UpdateSilverStripeVersionsTask
      * @return void
      */
-    public function process() {
+    public function process()
+    {
         $task = Injector::inst()->get('UpdateSilverStripeVersionsTask');
         $task->run(new SS_HTTPRequest('GET', '/'));
     }

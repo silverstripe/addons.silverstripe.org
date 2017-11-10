@@ -17,7 +17,8 @@ class SilverStripeElasticaReindexCron implements CronTask
      * Run the build task SilverStripeElasticaReindexTask
      * @return void
      */
-    public function process() {
+    public function process()
+    {
         $task = Injector::inst()->get('SilverStripeElasticaReindexTask');
         $task->run(new SS_HTTPRequest('GET', '/'));
     }
