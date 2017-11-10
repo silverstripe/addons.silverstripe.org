@@ -20,7 +20,9 @@ class UpdateSilverStripeVersionsCron implements CronTask
      */
     public function process()
     {
-        $task = Injector::inst()->get('UpdateSilverStripeVersionsTask');
-        $task->run(new SS_HTTPRequest('GET', '/'));
+        $taskClass = 'UpdateSilverStripeVersionsTask';
+        $job = new RunBuildTaskJob($taskClass);
+        $jobID = Injector::inst()->get(QueuedJobService::class)->queueJob($job);
+        echo 'Added ' . $taskClass . ' to job queue';
     }
 }

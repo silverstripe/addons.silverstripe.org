@@ -19,7 +19,9 @@ class SilverStripeElasticaReindexCron implements CronTask
      */
     public function process()
     {
-        $task = Injector::inst()->get('SilverStripeElasticaReindexTask');
-        $task->run(new SS_HTTPRequest('GET', '/'));
+        $taskClass = 'SilverStripeElasticaReindexTask';
+        $job = new RunBuildTaskJob($taskClass);
+        $jobID = Injector::inst()->get(QueuedJobService::class)->queueJob($job);
+        echo 'Added ' . $taskClass . ' to job queue';
     }
 }

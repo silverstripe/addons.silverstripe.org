@@ -20,7 +20,9 @@ class UpdateAddonsCron implements CronTask
      */
     public function process()
     {
-        $task = Injector::inst()->get('UpdateAddonsTask');
-        $task->run(new SS_HTTPRequest('GET', '/'));
+        $taskClass = 'UpdateAddonsTask';
+        $job = new RunBuildTaskJob($taskClass);
+        $jobID = Injector::inst()->get(QueuedJobService::class)->queueJob($job);
+        echo 'Added ' . $taskClass . ' to job queue';
     }
 }

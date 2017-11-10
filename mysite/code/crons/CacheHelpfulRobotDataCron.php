@@ -19,7 +19,9 @@ class CacheHelpfulRobotDataCron implements CronTask
      */
     public function process()
     {
-        $task = Injector::inst()->get('CacheHelpfulRobotDataTask');
-        $task->run(new SS_HTTPRequest('GET', '/'));
+        $taskClass = 'CacheHelpfulRobotDataTask';
+        $job = new RunBuildTaskJob($taskClass);
+        $jobID = Injector::inst()->get(QueuedJobService::class)->queueJob($job);
+        echo 'Added ' . $taskClass . ' to job queue';
     }
 }
