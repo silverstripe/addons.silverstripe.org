@@ -2,7 +2,7 @@
 /**
  * A background job which builds a single add-on.
  */
-class BuildAddonJob extends AbstractQueuedJob implements QueuedJob
+class BuildAddonJob extends AbstractQueuedJob
 {
     private $packageID;
 
@@ -13,22 +13,21 @@ class BuildAddonJob extends AbstractQueuedJob implements QueuedJob
     public function __construct($params = array())
     {
         if (!empty($params['package'])) {
-            $this->setObject(Addon::get()->byID($params['package']));
+            $this->PackageID = $params['package'];
         }
+
+        $this->currentStep = 0;
+        $this->totalSteps = 1;
     }
 
-    public function setUp()
+    protected function getPackage()
     {
-        global $databaseConfig;
-
-        if (!DB::isActive()) {
-            DB::connect($databaseConfig);
-        }
+        return Addon::get()->byID($this->PackageID);
     }
 
-    public function perform()
+    public function process(context)
     {
-        $package = $this->getObject();
+        $package = $this->getPackage();
         if (!$package->ID) {
             throw new Exception('Package not specified');
         }
@@ -41,6 +40,7 @@ class BuildAddonJob extends AbstractQueuedJob implements QueuedJob
         $package->write();
 
         $this->isComplete = true;
+        $this->currentStep = 1;
     }
 
     /**
@@ -48,7 +48,7 @@ class BuildAddonJob extends AbstractQueuedJob implements QueuedJob
      */
     public function getTitle()
     {
-        return 'Build Extended Addon Information';
+        return 'Build Addon: ' . $this->getPackge()->Name;
     }
     /**
      * Return a signature for this queued job
@@ -57,31 +57,7 @@ class BuildAddonJob extends AbstractQueuedJob implements QueuedJob
      */
     public function getSignature()
     {
-        return md5(get_class($this) . serialize($this->jobData) . $this->packageID);
+        return md5(get_class($this) . $this->PackageID);
     }
 
-    /**
-     * @return stdClass
-     */
-    public function getJobData()
-    {
-        $data = new stdClass();
-        $data->totalSteps = $this->totalSteps;
-        $data->currentStep = $this->currentStep;
-        $data->isComplete = $this->isComplete;
-        $data->jobData = $this->jobData;
-        $data->messages = $this->messages;
-        $data->packageID = $this->packageID;
-
-        return $data;
-    }
-
-    /**
-     * Do some processing yourself!
-     */
-    public function process()
-    {
-        $this->setUp();
-        $this->perform();
-    }
 }
