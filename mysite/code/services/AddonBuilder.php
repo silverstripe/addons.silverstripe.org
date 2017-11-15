@@ -48,7 +48,7 @@ class AddonBuilder
                 $packageVersion->getVersionNormalized(),
                 $packageVersion->getVersion()
             );
-            $package->setExtra($packageVersion->getExtra());
+            $package->setExtra((array)$packageVersion->getExtra());
             if ($source = $packageVersion->getSource()) {
                 $package->setSourceUrl($source->getUrl());
                 $package->setSourceType($source->getType());
