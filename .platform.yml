@@ -7,4 +7,4 @@ php_settings:
 crons:
   queuedjobs_task:
     time: '* * * * *'
-    command: 'test -f /var/www/mysite/www/host.txt && /usr/local/bin/sera 1 php /var/www/mysite/www/framework/cli-script.php dev/tasks/ProcessJobQueueTask'
+    command: 'test -f /var/www/mysite/www/host.txt && /usr/local/bin/sera 1 php /var/www/mysite/www/framework/cli-script.php dev/tasks/ProcessJobQueueTask | logger -t SilverStripe_cron'
