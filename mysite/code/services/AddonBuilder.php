@@ -22,6 +22,8 @@ class AddonBuilder
 
     public function build(Addon $addon)
     {
+        putenv("GIT_SSH_COMMAND=\"ssh -o StrictHostKeyChecking=no\"");
+
         $composer = $this->packagist->getComposer();
         $downloader = $composer->getDownloadManager();
         $packageVersions = $this->packagist->getPackageVersions($addon->Name);

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f4e9c8bd0129e7a31fb420419065faeb",
+    "content-hash": "f3d12d0bc3def5dc7859535edbf44b9c",
     "packages": [
         {
             "name": "asyncphp/doorman",
@@ -3440,7 +3440,8 @@
     "stability-flags": {
         "ezyang/htmlpurifier": 0,
         "knplabs/packagist-api": 0,
-        "symbiote/silverstripe-queuedjobs": 20
+        "symbiote/silverstripe-queuedjobs": 20,
+        "silverstripe/crontask": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
