@@ -9,7 +9,7 @@ use Composer\Package\PackageInterface;
 class AddonBuilder
 {
 
-    const ADDONS_DIR = 'add-ons';
+    const ADDONS_DIR = 'addon-downloads';
 
     const SCREENSHOTS_DIR = 'screenshots';
 
@@ -46,9 +46,13 @@ class AddonBuilder
                 continue;
             }
 
-            $path = implode('/', array(
-                TEMP_FOLDER, self::ADDONS_DIR, $addon->Name
-            ));
+            if (defined('SS_ADDONS_DOWNLOAD_PATH')) {
+                $path = SS_ADDONS_DOWNLOAD_PATH . '/' . $addon->Name;
+            } else {
+                $path = implode('/', array(
+                    TEMP_FOLDER, self::ADDONS_DIR, $addon->Name
+                ));
+            }
 
             // Convert PackagistAPI result into class compatible with Composer logic
             $package = new Package(

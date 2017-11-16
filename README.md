@@ -20,6 +20,11 @@ from [Packagist](http://packagist.org).
 
 ## Dependencies
 
+### Environment variables
+
+ * `SS_ADDONS_DOWNLOAD_PATH`: Set this to the full path of the folder to download into. Otherwise, a subfolder of the
+   SilverStripe temp path will be used.
+
 ### ElasticSearch
 
 [ElasticSearch](http://www.elasticsearch.org) is used to provide add-on package indexing and searching.
