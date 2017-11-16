@@ -2,17 +2,21 @@
 
 use SilverStripe\Elastica\ReindexTask;
 
+/**
+ * These regular updates run as often as is practical.
+ * They seem to take 2-3 hours at the moment, so we run them 4 times per day.
+ */
 class SilverStripeElasticaReindexCron implements CronTask
 {
 
     /**
-     * Run hourly, on the hour
+     * Run every 6 hours
      *
      * @return string
      */
     public function getSchedule()
     {
-        return "0 * * * *";
+        return "0 */6 * * *";
     }
 
     /**
