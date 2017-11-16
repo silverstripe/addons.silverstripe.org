@@ -35,6 +35,12 @@ class AddonBuilder
 
         // Get the latest local and packagist version pair.
         $version = $addon->Versions()->filter('Development', true)->first();
+        if (!$version) {
+            echo "No versions found for " . $addon->Name . "; deleting orphan record.\n";
+            $addon->delete();
+            return;
+        }
+
         foreach ($packageVersions as $packageVersion) {
             if ($packageVersion->getVersionNormalized() != $version->Version) {
                 continue;
@@ -62,7 +68,17 @@ class AddonBuilder
                 $package->setDistReference($dist->getReference());
             }
 
-            $this->download($package, $path);
+            try {
+                $this->download($package, $path);
+
+            // If there's an error, mark this version as bad
+            } catch (RuntimeException $e) {
+                echo "Add-on " . $addon->Name . " couldn't be downloaded; deleting from database.\n";
+                echo "Error message: " . $e->getMessage() . "\n";
+                $addon->delete();
+                return;
+            }
+
             $this->buildReadme($addon, $path);
             $this->buildScreenshots($addon, $package, $path);
         }

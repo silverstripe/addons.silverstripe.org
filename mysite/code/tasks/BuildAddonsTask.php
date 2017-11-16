@@ -42,18 +42,19 @@ class BuildAddonsTask extends BuildTask
         if ($request->getVar('addons')) {
             $addons = $addons->filter('Name', explode(',', $request->getVar('addons')));
         }
-
         foreach ($addons as $addon) {
             /** @var Addon $addon */
-            $this->log(sprintf('Building "%s"', $addon->Name));
+            $this->log(sprintf('Building "%s" (#%d)', $addon->Name, $addon->ID));
             try {
                 $this->builder->build($addon);
             } catch (RuntimeException $e) {
                 $this->log('Error: ' . $e->getMessage());
             }
 
-            $addon->BuildQueued = false;
-            $addon->write();
+            if ($addon->ID) {
+                $addon->BuildQueued = false;
+                $addon->write();
+            }
         }
     }
 
