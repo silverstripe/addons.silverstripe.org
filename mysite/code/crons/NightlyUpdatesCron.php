@@ -17,14 +17,13 @@ class NightlyUpdatesCron implements CronTask
     }
 
     /**
-     * Run the build task CacheHelpfulRobotDataTask
+     * Run the build task to update addons
      * @return void
      */
     public function process()
     {
         $taskClasses = [
             [BuildAddonsTask::class, null], // rebuild all addons
-            [CacheHelpfulRobotDataTask::class, null], // fetch helpful robot data
         ];
 
         foreach ($taskClasses as $taskInfo) {

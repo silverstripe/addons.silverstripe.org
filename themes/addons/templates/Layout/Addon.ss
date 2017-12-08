@@ -6,8 +6,8 @@
 
 		<div class="rating pull-right">
 			<% include ModuleRatingVisual %>
-			<% if $AdjustedHelpfulRobotScore %>
-			<p>$AdjustedHelpfulRobotScore<small>/100</small></p>
+			<% if $Rating %>
+			<p>$Rating<small>/100</small></p>
 			<% else %>
 			<p>N/A <small>&nbsp;</small></p>
 			<% end_if %>
@@ -47,7 +47,7 @@
 				<a href="$DisplayHomepage" rel="nofollow">$DisplayHomepage</a>
 				<% end_if %>
 			</dd>
-			
+
 		<% end_with %>
 
 		<dt>Packagist:</dt>
@@ -121,8 +121,8 @@
 		<div class="span5">
 			<div class="rating rating-border">
 				<% include ModuleRatingVisual %>
-				<% if $AdjustedHelpfulRobotScore %>
-				<p>$AdjustedHelpfulRobotScore<small>/100</small></p>
+				<% if $Rating %>
+				<p>$Rating<small>/100</small></p>
 				<% else %>
 				<p>N/A <small>No data avaliable</small></p>
 				<% end_if %>
@@ -131,88 +131,24 @@
 			<p><small>Score not correct? <a href="mailto:community@silverstripe.com">Let us know there is a problem</a></small></p>
 		</div>
 
-		<% if $HelpfulRobotData %>
+		<% if $RatingData %>
 		<div class="span3 offset1">
-			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_readme_file %> green<% else %> grey<% end_if %>">
-					<i class="icon-ok"></i>
-				</div>
-				<p>Readme</p>
-			</div>
-			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_license_file %> green<% else %> grey<% end_if %>">
-					<i class="icon-ok"></i>
-				</div>
-				<p>FOSS License</p>
-			</div>
-            <div class="rating-item">
-                <div class="circle circle-option-sml<% if $HelpfulRobotData.has_code_folder %> green<% else %> grey<% end_if %>">
-                    <i class="icon-ok"></i>
-                </div>
-                <p>Structured correctly</p>
-            </div>
-			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_contributing_file %> green<% else %> grey<% end_if %>">
-					<i class="icon-ok"></i>
-				</div>
-				<p>Contributing file</p>
-			</div>
-			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_change_log_file %> green<% else %> grey<% end_if %>">
-					<i class="icon-ok"></i>
-				</div>
-				<p>Change log</p>
-			</div>
-			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_git_attributes_file %> green<% else %> grey<% end_if %>">
-					<i class="icon-ok"></i>
-				</div>
-				<p>Git attributes file</p>
-			</div>
-			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_editor_config_file %> green<% else %> grey<% end_if %>">
-					<i class="icon-ok"></i>
-				</div>
-				<p>Editor config file</p>
-			</div>
+            <% include ModuleRatingEntry Metric=$RatingData.has_readme, Description="Readme" %>
+            <% include ModuleRatingEntry Metric=$RatingData.has_license, Description="FOSS License" %>
+            <% include ModuleRatingEntry Metric=$RatingData.has_code_or_src_folder, Description="Structured correctly" %>
+            <% include ModuleRatingEntry Metric=$RatingData.has_contributing_file, Description="Contributing file" %>
+            <%-- Changelog check not supported in moduleratings yet --%>
+            <%--<% include ModuleRatingEntry Metric=$RatingData.has_change_log_file, Description="Change log" %>--%>
+            <% include ModuleRatingEntry Metric=$RatingData.has_gitattributes_file, Description="Git attributes file" %>
+            <% include ModuleRatingEntry Metric=$RatingData.has_editorconfig_file, Description="Editor config file" %>
 		</div>
 		<div class="span3">
-			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_tests_folder %> green<% else %> grey<% end_if %>">
-					<i class="icon-ok"></i>
-				</div>
-				<p>Tests</p>
-			</div>
-			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_docs_folder %> green<% else %> grey<% end_if %>">
-					<i class="icon-ok"></i>
-				</div>
-				<p>Documentation</p>
-			</div>
-			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_travis_file %> green<% else %> grey<% end_if %>">
-					<i class="icon-ok"></i>
-				</div>
-				<p>Travis file</p>
-			</div>
-			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_travis_setup %> green<% else %> grey<% end_if %>">
-					<i class="icon-ok"></i>
-				</div>
-				<p>Travis set up</p>
-			</div>
-			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_scrutinizer_file %> green<% else %> grey<% end_if %>">
-					<i class="icon-ok"></i>
-				</div>
-				<p>Scrutinizer file</p>
-			</div>
-			<div class="rating-item">
-				<div class="circle circle-option-sml<% if $HelpfulRobotData.has_scrutinizer_setup %> green<% else %> grey<% end_if %>">
-					<i class="icon-ok"></i>
-				</div>
-				<p>Scrutinizer set up</p>
-			</div>
+            <% include ModuleRatingEntry Metric=$RatingData.good_code_coverage, Description="Good code coverage (>40%)" %>
+            <% include ModuleRatingEntry Metric=$RatingData.great_code_coverage, Description="Great code coverage (>60%)" %>
+            <% include ModuleRatingEntry Metric=$RatingData.has_documentation, Description="Documentation" %>
+            <% include ModuleRatingEntry Metric=$RatingData.travis_passing, Description="Travis passing >6.5" %>
+            <% include ModuleRatingEntry Metric=$RatingData.good_scrutinizer_score, Description="Scrutinizer >6.5" %>
+            <% include ModuleRatingEntry Metric=$RatingData.coding_standards, Description="PSR-2 standards" %>
 		</div>
 		<% end_if %>
 	</div>
@@ -238,7 +174,7 @@
 
 	<div id="disqus_thread"></div>
 	 <script type="text/javascript">
-		var disqus_shortname = 'silverstripe-addons'; 
+		var disqus_shortname = 'silverstripe-addons';
 		(function() {
 				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 				dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
@@ -246,9 +182,9 @@
 		})();
 	</script>
 	<noscript>
-		Please enable JavaScript to view the 
+		Please enable JavaScript to view the
 		<a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
 	</noscript>
 	<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-		
+
 <% end_with %>

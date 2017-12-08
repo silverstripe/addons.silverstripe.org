@@ -2,6 +2,7 @@
 
 use Composer\Package\Package;
 use Composer\Package\PackageInterface;
+use SilverStripe\ModuleRatings\CheckSuite;
 
 /**
  * Downloads an add-on and builds more details information about it.
@@ -60,7 +61,10 @@ class AddonBuilder
                 $packageVersion->getVersionNormalized(),
                 $packageVersion->getVersion()
             );
-            $package->setExtra((array)$packageVersion->getExtra());
+
+            if ($extra = $packageVersion->getExtra()) {
+                $package->setExtra((array) $extra);
+            }
             if ($source = $packageVersion->getSource()) {
                 $package->setSourceUrl($source->getUrl());
                 $package->setSourceType($source->getType());
@@ -85,6 +89,7 @@ class AddonBuilder
 
             $this->buildReadme($addon, $path);
             $this->buildScreenshots($addon, $package, $path);
+            $this->rateModule($addon, $path);
         }
 
         $addon->LastBuilt = $time;
@@ -305,5 +310,41 @@ class AddonBuilder
                 $addon->Screenshots()->add($file);
             }
         }
+    }
+
+    /**
+     * Use the Rating check runner to generate an automated rating for this module
+     *
+     * @param Addon $addon
+     * @param string $modulePath
+     */
+    protected function rateModule(Addon $addon, $modulePath)
+    {
+        $suite = new CheckSuite();
+        $suite->setModuleRoot($modulePath);
+        $repositoryUrl = $addon->Repository;
+        // Get repository slug from URL
+        preg_match('~.*\/(.+\/.+)(?:\.git)?$~', $repositoryUrl, $matches);
+        $suite->setRepositorySlug(!empty($matches[1]) ? $matches[1] : '');
+
+        try {
+            $suite->run();
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+            return;
+        }
+        /** @var array $checkDetails */
+        $checkDetails = $suite->getCheckDetails();
+
+        // Pull part of the check details out that we want (code and points)
+        $details = array();
+        foreach ($checkDetails as $checkCode => $metrics) {
+            $details[$checkCode] = $metrics['points'];
+        }
+
+        // Total score for the check suite
+        $addon->Rating = $suite->getScore();
+        // Individual checks and scores for each
+        $addon->RatingDetails = Convert::raw2json($details);
     }
 }

@@ -54,12 +54,9 @@ of modules to work with.
 3. `framework/sake dev/tasks/DeleteRedundantAddonsTask`: Deletes addons which haven't been updated
    from packagist in a specified amount of time, which implies they're no longer available there.
 4. `framework/sake dev/tasks/BuildAddonsTask`: Manually build addons, downloading screenshots
-   and a README for display through the website. There's no need to set up a cron job
+   and a README for display through the website and run moduel ratings. There's no need to set up a cron job
    for this task if you're using the resque queue.
 5. `framework/sake dev/tasks/SilverStripe-Elastica-ReindexTask`: Defines and refreshes the elastic search index.
-6. `framework/sake dev/tasks/CacheHelpfulRobotDataTask`: Caches Helpful Robot scores and data, so they can
-   be displayed on listing and detail pages, for each addon. This also removes modules that cannot be loaded
-   by requests to their repository URLs.
 
 ## Front-end build tooling
 

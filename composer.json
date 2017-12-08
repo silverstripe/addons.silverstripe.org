@@ -5,6 +5,14 @@
     {
       "type": "vcs",
       "url": "https://github.com/silverstripe/silverstripe-globaltoolbar.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/creative-commoners/moduleratings.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/creative-commoners/moduleratings-plugin.git"
     }
   ],
   "require": {
@@ -22,12 +30,14 @@
     "symfony/filesystem": "^2.8",
     "symfony/process": "^2.8",
     "symfony/finder": "^2.8",
-    "symfony/yaml": "^2.8",
+    "symfony/yaml": "^2.8 | ^3.0",
     "guzzlehttp/guzzle": "^6",
     "symbiote/silverstripe-queuedjobs": ">=3.1.0@dev",
     "silverstripe/crontask": "1.x-dev",
     "silverstripe/environmentcheck": "^1.3",
-    "aws/aws-sdk-php": "^3.38"
+    "aws/aws-sdk-php": "^3.38",
+    "silverstripe/moduleratings-plugin": "^0.1",
+    "squizlabs/php_codesniffer": "^3"
   },
   "replace": {
     "extensions.silverstripe.org": "*"
