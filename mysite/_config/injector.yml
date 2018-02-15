@@ -9,7 +9,6 @@ Injector:
     constructor:
       - %$PackagistService
       - %$ElasticaService
-      - %$ResqueService
       - %$Composer\Package\Version\VersionParser
   RequestProcessor:
     properties:

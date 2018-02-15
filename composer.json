@@ -12,29 +12,29 @@
     "composer/composer": "^1.2",
     "ezyang/htmlpurifier": "4.5.*@stable",
     "silverstripe/framework": "^3",
-    "symbiote/silverstripe-multivaluefield": "^2",
+    "symbiote/silverstripe-multivaluefield": "^3",
     "silverstripe/toolbar": "^4.0",
     "knplabs/packagist-api": "1.*@stable",
     "doctrine/inflector": "~1.1.0",
     "doctrine/instantiator": "~1.0.0",
-    "stojg/silverstripe-resque": "*",
     "symbiote-library/silverstripe-elastica": "^2",
     "symfony/event-dispatcher": "^2.8",
     "symfony/filesystem": "^2.8",
     "symfony/process": "^2.8",
     "symfony/finder": "^2.8",
-    "symfony/console": "^2.8",
     "symfony/yaml": "^2.8",
-    "guzzlehttp/guzzle": "~3.0",
-    "symfony/console": "^2.7",
-    "symfony/debug": "^2.7"
+    "guzzlehttp/guzzle": "^6",
+    "symbiote/silverstripe-queuedjobs": ">=3.1.0@dev",
+    "silverstripe/crontask": "1.x-dev",
+    "silverstripe/environmentcheck": "^1.3",
+    "aws/aws-sdk-php": "^3.38"
   },
   "replace": {
     "extensions.silverstripe.org": "*"
   },
   "require-dev": {
     "phpunit/phpunit": "^4.8",
-    "phpdocumentor/reflection-docblock": "^2",
+    "phpdocumentor/reflection-docblock": "~3.1.1",
     "silverstripe/sqlite3": "*"
   },
   "minimum-stability": "dev",

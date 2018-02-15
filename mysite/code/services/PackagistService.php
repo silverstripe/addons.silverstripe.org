@@ -4,7 +4,6 @@ use Composer\Factory;
 use Composer\IO\NullIO;
 use Composer\Package\Loader\ArrayLoader;
 use Composer\Repository\ComposerRepository;
-use Guzzle\Http\Client;
 
 /**
  * Interacts with Packagist to retrieve package listings and details.

@@ -9,7 +9,7 @@ use Composer\Package\PackageInterface;
 class AddonBuilder
 {
 
-    const ADDONS_DIR = 'add-ons';
+    const ADDONS_DIR = 'addon-downloads';
 
     const SCREENSHOTS_DIR = 'screenshots';
 
@@ -22,6 +22,8 @@ class AddonBuilder
 
     public function build(Addon $addon)
     {
+        putenv("GIT_SSH_COMMAND=\"ssh -o StrictHostKeyChecking=no\"");
+
         $composer = $this->packagist->getComposer();
         $downloader = $composer->getDownloadManager();
         $packageVersions = $this->packagist->getPackageVersions($addon->Name);
@@ -33,14 +35,24 @@ class AddonBuilder
 
         // Get the latest local and packagist version pair.
         $version = $addon->Versions()->filter('Development', true)->first();
+        if (!$version) {
+            echo "No versions found for " . $addon->Name . "; deleting orphan record.\n";
+            $addon->delete();
+            return;
+        }
+
         foreach ($packageVersions as $packageVersion) {
             if ($packageVersion->getVersionNormalized() != $version->Version) {
                 continue;
             }
 
-            $path = implode('/', array(
-                TEMP_FOLDER, self::ADDONS_DIR, $addon->Name
-            ));
+            if (defined('SS_ADDONS_DOWNLOAD_PATH')) {
+                $path = SS_ADDONS_DOWNLOAD_PATH . '/' . $addon->Name;
+            } else {
+                $path = implode('/', array(
+                    TEMP_FOLDER, self::ADDONS_DIR, $addon->Name
+                ));
+            }
 
             // Convert PackagistAPI result into class compatible with Composer logic
             $package = new Package(
@@ -48,7 +60,7 @@ class AddonBuilder
                 $packageVersion->getVersionNormalized(),
                 $packageVersion->getVersion()
             );
-            $package->setExtra($packageVersion->getExtra());
+            $package->setExtra((array)$packageVersion->getExtra());
             if ($source = $packageVersion->getSource()) {
                 $package->setSourceUrl($source->getUrl());
                 $package->setSourceType($source->getType());
@@ -60,7 +72,17 @@ class AddonBuilder
                 $package->setDistReference($dist->getReference());
             }
 
-            $this->download($package, $path);
+            try {
+                $this->download($package, $path);
+
+            // If there's an error, mark this version as bad
+            } catch (RuntimeException $e) {
+                echo "Add-on " . $addon->Name . " couldn't be downloaded; deleting from database.\n";
+                echo "Error message: " . $e->getMessage() . "\n";
+                $addon->delete();
+                return;
+            }
+
             $this->buildReadme($addon, $path);
             $this->buildScreenshots($addon, $package, $path);
         }

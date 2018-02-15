@@ -1,0 +1,16 @@
+infrastructure: ^3
+php_settings:
+  version: 7.1
+php_settings:
+  cli:
+    memory_limit: "1024M"
+crons:
+  queuedjobs_task:
+    time: '* * * * *'
+    command: 'test -f /var/www/mysite/www/host.txt && /usr/local/bin/sera 1 php /var/www/mysite/www/framework/cli-script.php dev/tasks/ProcessJobQueueTask 2>&1 | logger -t SilverStripe_cron'
+shared_dirs:
+  mysite:
+    "addon-downloads": {}
+  url_rules:
+    mysite:
+      '^/addon-downloads/': 'deny'
