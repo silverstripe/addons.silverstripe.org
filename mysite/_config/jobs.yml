@@ -1,0 +1,8 @@
+---
+Name: addonsjobs
+---
+CleanupJob:
+  # clean up jobs that are older than 3 days
+  is_enabled: true
+  cleanup_method: age
+  cleanup_value: 3
