@@ -13,4 +13,4 @@ shared_dirs:
     "addon-downloads": {}
   url_rules:
     mysite:
-      '^/addon-downloads/': 'deny'
+      - '^/addon-downloads/': 'deny'
