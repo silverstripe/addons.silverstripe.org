@@ -1731,12 +1731,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/creative-commoners/moduleratings.git",
-                "reference": "2cf6e44304b44034287d4a2542cb397146bc39b4"
+                "reference": "648fcf561a6487ea891dd529bc5043465458a4f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/creative-commoners/moduleratings/zipball/2cf6e44304b44034287d4a2542cb397146bc39b4",
-                "reference": "2cf6e44304b44034287d4a2542cb397146bc39b4",
+                "url": "https://api.github.com/repos/creative-commoners/moduleratings/zipball/648fcf561a6487ea891dd529bc5043465458a4f3",
+                "reference": "648fcf561a6487ea891dd529bc5043465458a4f3",
                 "shasum": ""
             },
             "require": {
@@ -1773,7 +1773,7 @@
                 "source": "https://github.com/creative-commoners/moduleratings/tree/master",
                 "issues": "https://github.com/creative-commoners/moduleratings/issues"
             },
-            "time": "2018-01-08 04:21:12"
+            "time": "2018-02-16 03:23:57"
         },
         {
             "name": "silverstripe/moduleratings-plugin",
