@@ -35,7 +35,7 @@ class AddonBuilderTest extends SapphireTest
     public function testGetGitHubContext($input, $expected)
     {
         $addon = new Addon(array('Repository' => $input));
-        $builder = new AddonBuilder(new PackagistService);
+        $builder = Injector::inst()->create('AddonBuilder');
         $result = $builder->getGitHubContext($addon);
         $this->assertSame($expected, $result);
     }
