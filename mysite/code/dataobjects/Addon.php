@@ -185,6 +185,33 @@ class Addon extends DataObject
         }
     }
 
+    /**
+     * Returns a list of whether rating metrics have passed for this addon, and a description of the metric
+     *
+     * @return ArrayList
+     */
+    public function RatingDescriptions()
+    {
+        $metrics = $this->RatingData();
+
+        return ArrayList::create([
+            ['Metric' => $metrics->has_readme, 'Description' => 'Readme'],
+            ['Metric' => $metrics->has_license, 'Description' => 'FOSS License'],
+            ['Metric' => $metrics->has_code_or_src_folder, 'Description' => 'Structured correctly'],
+            ['Metric' => $metrics->has_contributing_file, 'Description' => 'Contributing file'],
+            // Changelog check not supported in moduleratings yet
+            // ['Metric' => $metrics->has_change_log_file, 'Description' => 'Change log'],
+            ['Metric' => $metrics->has_gitattributes_file, 'Description' => 'Git attributes file'],
+            ['Metric' => $metrics->has_editorconfig_file, 'Description' => 'Editor config file'],
+            ['Metric' => $metrics->good_code_coverage, 'Description' => 'Good code coverage (>40%)'],
+            ['Metric' => $metrics->great_code_coverage, 'Description' => 'Great code coverage (>60%)'],
+            ['Metric' => $metrics->has_documentation, 'Description' => 'Documentation'],
+            ['Metric' => $metrics->travis_passing, 'Description' => 'Travis passing'],
+            ['Metric' => $metrics->good_scrutinizer_score, 'Description' => 'Scrutinizer >6.5'],
+            ['Metric' => $metrics->coding_standards, 'Description' => 'PSR-2 standards'],
+        ]);
+    }
+
 
 
     /**

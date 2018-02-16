@@ -132,25 +132,24 @@
 		</div>
 
 		<% if $RatingData %>
-		<div class="span3 offset1">
-            <% include ModuleRatingEntry Metric=$RatingData.has_readme, Description="Readme" %>
-            <% include ModuleRatingEntry Metric=$RatingData.has_license, Description="FOSS License" %>
-            <% include ModuleRatingEntry Metric=$RatingData.has_code_or_src_folder, Description="Structured correctly" %>
-            <% include ModuleRatingEntry Metric=$RatingData.has_contributing_file, Description="Contributing file" %>
-            <%-- Changelog check not supported in moduleratings yet --%>
-            <%--<% include ModuleRatingEntry Metric=$RatingData.has_change_log_file, Description="Change log" %>--%>
-            <% include ModuleRatingEntry Metric=$RatingData.has_gitattributes_file, Description="Git attributes file" %>
-            <% include ModuleRatingEntry Metric=$RatingData.has_editorconfig_file, Description="Editor config file" %>
-		</div>
-		<div class="span3">
-            <% include ModuleRatingEntry Metric=$RatingData.good_code_coverage, Description="Good code coverage (>40%)" %>
-            <% include ModuleRatingEntry Metric=$RatingData.great_code_coverage, Description="Great code coverage (>60%)" %>
-            <% include ModuleRatingEntry Metric=$RatingData.has_documentation, Description="Documentation" %>
-            <% include ModuleRatingEntry Metric=$RatingData.travis_passing, Description="Travis passing >6.5" %>
-            <% include ModuleRatingEntry Metric=$RatingData.good_scrutinizer_score, Description="Scrutinizer >6.5" %>
-            <% include ModuleRatingEntry Metric=$RatingData.coding_standards, Description="PSR-2 standards" %>
-		</div>
-		<% end_if %>
+            <% loop $RatingDescriptions %>
+                <% if $Pos == 7 %>
+                    </div>
+                <% end_if %>
+                <% if $First || $Pos == 7 %>
+                    <div class="span3<% if $First %> offset1<% end_if %>">
+                <% end_if %>
+                <div class="rating-item">
+                    <div class="circle circle-option-sml<% if $Metric %> green<% else %> grey<% end_if %>">
+                        <i class="icon-ok"></i>
+                    </div>
+                    <p>$Description</p>
+                </div>
+                <% if $Last %>
+                    </div>
+                <% end_if %>
+            <% end_loop %>
+        <% end_if %>
 	</div>
 
 	<h3>Versions</h3>
