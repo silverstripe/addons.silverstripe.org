@@ -16,9 +16,15 @@ class AddonBuilder
 
     private $packagist;
 
-    public function __construct(PackagistService $packagist)
+    /**
+     * @var CheckSuite
+     */
+    protected $checkSuite;
+
+    public function __construct(PackagistService $packagist, CheckSuite $checkSuite)
     {
         $this->packagist = $packagist;
+        $this->setCheckSuite($checkSuite);
     }
 
     public function build(Addon $addon)
@@ -320,7 +326,7 @@ class AddonBuilder
      */
     protected function rateModule(Addon $addon, $modulePath)
     {
-        $suite = new CheckSuite();
+        $suite = $this->getCheckSuite();
         $suite->setModuleRoot($modulePath);
         $repositoryUrl = $addon->Repository;
         // Get repository slug from URL
@@ -346,5 +352,23 @@ class AddonBuilder
         $addon->Rating = $suite->getScore();
         // Individual checks and scores for each
         $addon->RatingDetails = Convert::raw2json($details);
+    }
+
+    /**
+     * @return CheckSuite
+     */
+    public function getCheckSuite()
+    {
+        return $this->checkSuite;
+    }
+
+    /**
+     * @param CheckSuite $checkSuite
+     * @return $this
+     */
+    public function setCheckSuite($checkSuite)
+    {
+        $this->checkSuite = $checkSuite;
+        return $this;
     }
 }

@@ -5,6 +5,7 @@ Injector:
   AddonBuilder:
     constructor:
       - %$PackagistService
+      - %$SilverStripe\ModuleRatings\CheckSuite
   AddonUpdater:
     constructor:
       - %$PackagistService
