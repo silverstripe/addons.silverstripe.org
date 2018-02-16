@@ -179,8 +179,10 @@ class Addon extends DataObject
      */
     public function RatingData()
     {
-        $data = json_decode($this->RatingDetails, true);
-        return ArrayData::create($data);
+        if ($this->RatingDetails) {
+            $data = (array)json_decode($this->RatingDetails, true);
+            return ArrayData::create($data);
+        }
     }
 
 
