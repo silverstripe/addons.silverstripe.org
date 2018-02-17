@@ -6,6 +6,8 @@ Injector:
     constructor:
       - %$PackagistService
       - %$SilverStripe\ModuleRatings\CheckSuite
+  SilverStripe\ModuleRatings\CheckSuite:
+    type: prototype
   AddonUpdater:
     constructor:
       - %$PackagistService
