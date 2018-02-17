@@ -43,16 +43,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.52.10",
+            "version": "3.52.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "2b0a537e6b772f090138a7c0ddbb384f08f8b4a5"
+                "reference": "4baba19877e363b971a4600a4bc3b3fa94fdfbba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/2b0a537e6b772f090138a7c0ddbb384f08f8b4a5",
-                "reference": "2b0a537e6b772f090138a7c0ddbb384f08f8b4a5",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/4baba19877e363b971a4600a4bc3b3fa94fdfbba",
+                "reference": "4baba19877e363b971a4600a4bc3b3fa94fdfbba",
                 "shasum": ""
             },
             "require": {
@@ -119,7 +119,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2018-02-15T20:17:27+00:00"
+            "time": "2018-02-16T20:40:39+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -1731,12 +1731,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/creative-commoners/moduleratings.git",
-                "reference": "648fcf561a6487ea891dd529bc5043465458a4f3"
+                "reference": "41e115406da83a067e04a2e44c5abf5cfbd74e58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/creative-commoners/moduleratings/zipball/648fcf561a6487ea891dd529bc5043465458a4f3",
-                "reference": "648fcf561a6487ea891dd529bc5043465458a4f3",
+                "url": "https://api.github.com/repos/creative-commoners/moduleratings/zipball/41e115406da83a067e04a2e44c5abf5cfbd74e58",
+                "reference": "41e115406da83a067e04a2e44c5abf5cfbd74e58",
                 "shasum": ""
             },
             "require": {
@@ -1770,10 +1770,10 @@
             ],
             "description": "A library to provide module code quality ratings",
             "support": {
-                "source": "https://github.com/creative-commoners/moduleratings/tree/master",
+                "source": "https://github.com/creative-commoners/moduleratings/tree/0.4.1",
                 "issues": "https://github.com/creative-commoners/moduleratings/issues"
             },
-            "time": "2018-02-16 03:23:57"
+            "time": "2018-02-17 08:08:29"
         },
         {
             "name": "silverstripe/moduleratings-plugin",
