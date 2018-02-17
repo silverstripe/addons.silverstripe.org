@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1d40c8bd2376397b98e8630c06b6b542",
+    "content-hash": "0dfe54919f82dbe7fd8d7710ca914280",
     "packages": [
         {
             "name": "asyncphp/doorman",
@@ -1975,6 +1975,57 @@
                 "silverstripe"
             ],
             "time": "2017-06-15T00:43:55+00:00"
+        },
+        {
+            "name": "symbiote/silverstripe-gridfieldextensions",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symbiote/silverstripe-gridfieldextensions.git",
+                "reference": "a36c96e692cfa9313751fb507535064e18a09690"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symbiote/silverstripe-gridfieldextensions/zipball/a36c96e692cfa9313751fb507535064e18a09690",
+                "reference": "a36c96e692cfa9313751fb507535064e18a09690",
+                "shasum": ""
+            },
+            "require": {
+                "silverstripe/framework": "~3.1"
+            },
+            "replace": {
+                "ajshort/silverstripe-gridfieldextensions": "self.version",
+                "silverstripe-australia/gridfieldextensions": "self.version"
+            },
+            "type": "silverstripe-module",
+            "extra": {
+                "installer-name": "gridfieldextensions",
+                "screenshots": [
+                    "docs/en/_images/editable-rows.png",
+                    "docs/en/_images/add-existing-search.png"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Marcus Nyeholt",
+                    "email": "marcus@silverstripe.com.au"
+                },
+                {
+                    "name": "Andrew Short",
+                    "email": "andrewjshort@gmail.com"
+                }
+            ],
+            "description": "A collection of useful grid field components",
+            "homepage": "http://github.com/silverstripe-australia/silverstripe-gridfieldextensions",
+            "keywords": [
+                "gridfield",
+                "silverstripe"
+            ],
+            "time": "2017-08-31T02:44:40+00:00"
         },
         {
             "name": "symbiote/silverstripe-multivaluefield",
