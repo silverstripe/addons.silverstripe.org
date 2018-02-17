@@ -21,10 +21,10 @@ class AddonBuilder
      */
     protected $checkSuite;
 
-    public function __construct(PackagistService $packagist, CheckSuite $checkSuite)
+    public function __construct(PackagistService $packagist)
     {
         $this->packagist = $packagist;
-        $this->setCheckSuite($checkSuite);
+        $this->setCheckSuite(new CheckSuite());
     }
 
     public function build(Addon $addon)
