@@ -24,12 +24,12 @@ class AddonBuilder
     public function __construct(PackagistService $packagist)
     {
         $this->packagist = $packagist;
-        $this->setCheckSuite(new CheckSuite());
     }
 
     public function build(Addon $addon)
     {
         putenv("GIT_SSH_COMMAND=\"ssh -o StrictHostKeyChecking=no\"");
+        $this->setCheckSuite(new CheckSuite());
 
         $composer = $this->packagist->getComposer();
         $downloader = $composer->getDownloadManager();
