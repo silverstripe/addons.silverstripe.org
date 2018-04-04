@@ -1589,7 +1589,7 @@
                 "cron",
                 "silverstripe"
             ],
-            "time": "2017-11-13 22:56:10"
+            "time": "2017-11-13T22:56:10+00:00"
         },
         {
             "name": "silverstripe/environmentcheck",
@@ -1731,12 +1731,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/creative-commoners/moduleratings.git",
-                "reference": "41e115406da83a067e04a2e44c5abf5cfbd74e58"
+                "reference": "a2441c4c4dd13b290a74e648744a0bedb428553d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/creative-commoners/moduleratings/zipball/41e115406da83a067e04a2e44c5abf5cfbd74e58",
-                "reference": "41e115406da83a067e04a2e44c5abf5cfbd74e58",
+                "url": "https://api.github.com/repos/creative-commoners/moduleratings/zipball/a2441c4c4dd13b290a74e648744a0bedb428553d",
+                "reference": "a2441c4c4dd13b290a74e648744a0bedb428553d",
                 "shasum": ""
             },
             "require": {
@@ -1770,10 +1770,10 @@
             ],
             "description": "A library to provide module code quality ratings",
             "support": {
-                "source": "https://github.com/creative-commoners/moduleratings/tree/0.4.1",
+                "source": "https://github.com/creative-commoners/moduleratings/tree/0.4.2",
                 "issues": "https://github.com/creative-commoners/moduleratings/issues"
             },
-            "time": "2018-02-17 08:08:29"
+            "time": "2018-04-04T01:15:12+00:00"
         },
         {
             "name": "silverstripe/moduleratings-plugin",
@@ -2117,7 +2117,7 @@
                 "jobs",
                 "silverstripe"
             ],
-            "time": "2018-02-15 20:45:41"
+            "time": "2018-02-15T20:45:41+00:00"
         },
         {
             "name": "symfony/console",
