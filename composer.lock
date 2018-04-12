@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0dfe54919f82dbe7fd8d7710ca914280",
+    "content-hash": "660e7552a3bbc2d6e2cdbc065b5d0410",
     "packages": [
         {
             "name": "asyncphp/doorman",
@@ -1730,12 +1730,12 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/creative-commoners/moduleratings.git",
+                "url": "https://github.com/silverstripe/moduleratings.git",
                 "reference": "a2441c4c4dd13b290a74e648744a0bedb428553d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/creative-commoners/moduleratings/zipball/a2441c4c4dd13b290a74e648744a0bedb428553d",
+                "url": "https://api.github.com/repos/silverstripe/moduleratings/zipball/a2441c4c4dd13b290a74e648744a0bedb428553d",
                 "reference": "a2441c4c4dd13b290a74e648744a0bedb428553d",
                 "shasum": ""
             },
@@ -1780,12 +1780,12 @@
             "version": "0.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/creative-commoners/moduleratings-plugin.git",
+                "url": "https://github.com/silverstripe/moduleratings-plugin.git",
                 "reference": "668d8262bf836b336cf745c286537431b89a6ba7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/creative-commoners/moduleratings-plugin/zipball/668d8262bf836b336cf745c286537431b89a6ba7",
+                "url": "https://api.github.com/repos/silverstripe/moduleratings-plugin/zipball/668d8262bf836b336cf745c286537431b89a6ba7",
                 "reference": "668d8262bf836b336cf745c286537431b89a6ba7",
                 "shasum": ""
             },
