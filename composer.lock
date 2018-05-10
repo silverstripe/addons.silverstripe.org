@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "660e7552a3bbc2d6e2cdbc065b5d0410",
+    "content-hash": "ad35dbdf70edf11287c59b61ff347f46",
     "packages": [
         {
             "name": "asyncphp/doorman",
@@ -664,16 +664,16 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "6.3.0",
+            "version": "6.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "f4db5a78a5ea468d4831de7f0bf9d9415e348699"
+                "reference": "68d0ea14d5a3f42a20e87632a5f84931e2709c90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/f4db5a78a5ea468d4831de7f0bf9d9415e348699",
-                "reference": "f4db5a78a5ea468d4831de7f0bf9d9415e348699",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/68d0ea14d5a3f42a20e87632a5f84931e2709c90",
+                "reference": "68d0ea14d5a3f42a20e87632a5f84931e2709c90",
                 "shasum": ""
             },
             "require": {
@@ -683,7 +683,7 @@
             },
             "require-dev": {
                 "ext-curl": "*",
-                "phpunit/phpunit": "^4.0 || ^5.0",
+                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.4",
                 "psr/log": "^1.0"
             },
             "suggest": {
@@ -692,7 +692,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "6.2-dev"
+                    "dev-master": "6.3-dev"
                 }
             },
             "autoload": {
@@ -725,7 +725,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2017-06-22T18:50:49+00:00"
+            "time": "2018-03-26T16:33:04+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -1727,20 +1727,22 @@
         },
         {
             "name": "silverstripe/moduleratings",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/silverstripe/moduleratings.git",
-                "reference": "a2441c4c4dd13b290a74e648744a0bedb428553d"
+                "reference": "7847da4536045c0c62db85ed82bd3815c6525357"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/moduleratings/zipball/a2441c4c4dd13b290a74e648744a0bedb428553d",
-                "reference": "a2441c4c4dd13b290a74e648744a0bedb428553d",
+                "url": "https://api.github.com/repos/silverstripe/moduleratings/zipball/7847da4536045c0c62db85ed82bd3815c6525357",
+                "reference": "7847da4536045c0c62db85ed82bd3815c6525357",
                 "shasum": ""
             },
             "require": {
+                "guzzlehttp/guzzle": "^6",
                 "symfony/console": "~3.0|~4.0",
+                "symfony/finder": "~3.0|~4.0",
                 "symfony/yaml": "~3.0|~4.0"
             },
             "require-dev": {
@@ -1759,6 +1761,7 @@
                     "SilverStripe\\ModuleRatings\\Tests\\": "tests/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1769,24 +1772,20 @@
                 }
             ],
             "description": "A library to provide module code quality ratings",
-            "support": {
-                "source": "https://github.com/creative-commoners/moduleratings/tree/0.4.2",
-                "issues": "https://github.com/creative-commoners/moduleratings/issues"
-            },
-            "time": "2018-04-04T01:15:12+00:00"
+            "time": "2018-05-10T21:49:11+00:00"
         },
         {
             "name": "silverstripe/moduleratings-plugin",
-            "version": "0.1.0",
+            "version": "0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/silverstripe/moduleratings-plugin.git",
-                "reference": "668d8262bf836b336cf745c286537431b89a6ba7"
+                "reference": "ce07651e0658fd2fcaf2571f060b79c9bccc8950"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/moduleratings-plugin/zipball/668d8262bf836b336cf745c286537431b89a6ba7",
-                "reference": "668d8262bf836b336cf745c286537431b89a6ba7",
+                "url": "https://api.github.com/repos/silverstripe/moduleratings-plugin/zipball/ce07651e0658fd2fcaf2571f060b79c9bccc8950",
+                "reference": "ce07651e0658fd2fcaf2571f060b79c9bccc8950",
                 "shasum": ""
             },
             "require": {
@@ -1808,6 +1807,7 @@
                     "SilverStripe\\ModuleRatingsPlugin\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1818,11 +1818,7 @@
                 }
             ],
             "description": "A Composer plugin to provide ability to rate your local modules",
-            "support": {
-                "source": "https://github.com/creative-commoners/moduleratings-plugin/tree/master",
-                "issues": "https://github.com/creative-commoners/moduleratings-plugin/issues"
-            },
-            "time": "2018-01-08T04:20:53+00:00"
+            "time": "2018-05-10T21:59:05+00:00"
         },
         {
             "name": "silverstripe/toolbar",
@@ -2305,25 +2301,25 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v2.8.34",
+            "version": "v3.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "1f4e8351e0196562f5e8ec584baeceeb8e2e92f6"
+                "reference": "253a4490b528597aa14d2bf5aeded6f5e5e4a541"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/1f4e8351e0196562f5e8ec584baeceeb8e2e92f6",
-                "reference": "1f4e8351e0196562f5e8ec584baeceeb8e2e92f6",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/253a4490b528597aa14d2bf5aeded6f5e5e4a541",
+                "reference": "253a4490b528597aa14d2bf5aeded6f5e5e4a541",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.9"
+                "php": "^5.5.9|>=7.0.8"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.8-dev"
+                    "dev-master": "3.4-dev"
                 }
             },
             "autoload": {
@@ -2350,29 +2346,29 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-03T07:36:31+00:00"
+            "time": "2018-02-22T10:48:49+00:00"
         },
         {
             "name": "symfony/finder",
-            "version": "v2.8.34",
+            "version": "v3.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "9786ccb6a1f94a89ae18fc6a1b68de1f070823ed"
+                "reference": "bd14efe8b1fabc4de82bf50dce62f05f9a102433"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/9786ccb6a1f94a89ae18fc6a1b68de1f070823ed",
-                "reference": "9786ccb6a1f94a89ae18fc6a1b68de1f070823ed",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/bd14efe8b1fabc4de82bf50dce62f05f9a102433",
+                "reference": "bd14efe8b1fabc4de82bf50dce62f05f9a102433",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.9"
+                "php": "^5.5.9|>=7.0.8"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.8-dev"
+                    "dev-master": "3.4-dev"
                 }
             },
             "autoload": {
@@ -2399,7 +2395,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-29T08:54:45+00:00"
+            "time": "2018-04-04T05:07:11+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
