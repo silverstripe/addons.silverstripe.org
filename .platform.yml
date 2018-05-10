@@ -11,6 +11,6 @@ crons:
 shared_dirs:
   mysite:
     "addon-downloads": {}
-  url_rules:
-    mysite:
-      '^/addon-downloads/': 'deny'
+url_rules:
+  mysite:
+    - '^/addon-downloads/': 'deny'

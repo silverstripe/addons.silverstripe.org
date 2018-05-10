@@ -22,12 +22,13 @@ class Addon extends DataObject
         'LastUpdated'       => 'SS_Datetime',
         'LastBuilt'         => 'SS_Datetime',
         'BuildQueued'       => 'Boolean',
-        'HelpfulRobotData'  => 'Text',
-        'HelpfulRobotScore' => 'Int',
+        // Module rating information
+        'Rating'            => 'Int',
+        'RatingDetails'     => 'Text',
     );
 
     public static $has_one = array(
-        'Vendor' => 'AddonVendor'
+        'Vendor' => 'AddonVendor',
     );
 
     public static $has_many = array(
@@ -115,16 +116,6 @@ class Addon extends DataObject
         return "https://packagist.org/packages/$this->Name";
     }
 
-    /**
-     * Remove the effect of code of conduct Helpful Robot measure that we currently don't include in the Supported module definition
-     *
-     * @return integer Adjusted Helpful Robot score
-     */
-    public function getAdjustedHelpfulRobotScore()
-    {
-        return round(min(100, $this->HelpfulRobotScore / 92.9 * 100));
-    }
-
     public function getElasticaMapping()
     {
         return new Mapping(null, array(
@@ -180,14 +171,46 @@ class Addon extends DataObject
     }
 
     /**
+     * Returns unserialised result data from the ratings check suite
+     *
+     * {@see \SilverStripe\ModuleRatings\CheckSuite}
+     *
      * @return ArrayData
      */
-    public function HelpfulRobotData()
+    public function RatingData()
     {
-        $data = json_decode($this->HelpfulRobotData, true);
-
-        return new ArrayData($data["inspections"][0]);
+        if ($this->RatingDetails) {
+            $data = (array)json_decode($this->RatingDetails, true);
+            return ArrayData::create($data);
+        }
     }
+
+    /**
+     * Returns a list of whether rating metrics have passed for this addon, and a description of the metric
+     *
+     * @return ArrayList
+     */
+    public function RatingDescriptions()
+    {
+        $metrics = $this->RatingData();
+
+        return ArrayList::create([
+            ['Metric' => $metrics->has_readme, 'Description' => 'Readme'],
+            ['Metric' => $metrics->has_license, 'Description' => 'FOSS License'],
+            ['Metric' => $metrics->has_code_or_src_folder, 'Description' => 'Structured correctly'],
+            ['Metric' => $metrics->has_contributing_file, 'Description' => 'Contributing file'],
+            ['Metric' => $metrics->has_gitattributes_file, 'Description' => 'Git attributes file'],
+            ['Metric' => $metrics->has_editorconfig_file, 'Description' => 'Editor config file'],
+            ['Metric' => $metrics->good_code_coverage, 'Description' => 'Good code coverage (>40%)'],
+            ['Metric' => $metrics->great_code_coverage, 'Description' => 'Great code coverage (>75%)'],
+            ['Metric' => $metrics->has_documentation, 'Description' => 'Documentation'],
+            ['Metric' => $metrics->travis_passing, 'Description' => 'Travis passing'],
+            ['Metric' => $metrics->good_scrutinizer_score, 'Description' => 'Scrutinizer >6.5'],
+            ['Metric' => $metrics->coding_standards, 'Description' => 'PSR-2 standards'],
+        ]);
+    }
+
+
 
     /**
      *

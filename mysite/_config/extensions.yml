@@ -1,0 +1,6 @@
+---
+Name: addonsextensions
+---
+QueuedJobsAdmin:
+  extensions:
+    - QueuedJobsAdminExtension
