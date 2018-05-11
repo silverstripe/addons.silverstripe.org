@@ -5,15 +5,29 @@
  */
 class HomeController extends SiteController
 {
-
+    /**
+     * These modules will be excluded from the "popular addons" widgets on the home page. Included by default
+     * are all of the SilverStripe core modules which are installed by default, or in CI all builds (stats skewed).
+     *
+     * @config
+     * @var array
+     */
     private static $popular_blacklist = array(
-        'silverstripe/framework',
+        'silverstripe/admin',
+        'silverstripe/assets',
+        'silverstripe/asset-admin',
+        'silverstripe/campaign-admin',
         'silverstripe/cms',
-        'silverstripe/sqlite3',
+        'silverstripe/errorpage',
+        'silverstripe/framework',
+        'silverstripe/graphql',
         'silverstripe/postgresql',
         'silverstripe/reports',
         'silverstripe/siteconfig',
-        'silverstripe-themes/simple'
+        'silverstripe/sqlite3',
+        'silverstripe/versioned',
+        'silverstripe/versioned-admin',
+        'silverstripe-themes/simple',
     );
 
     public static $allowed_actions = array(
