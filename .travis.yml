@@ -19,6 +19,5 @@ before_script:
       $_FILE_TO_URL_MAPPING[realpath(__DIR__)] = 'http://localhost';
       // EOF;
 script:
-  - vendor/bin/phpunit mysite/tests
-  - vendor/bin/phpcs mysite
-
+  - vendor/bin/phpunit app/tests
+  - vendor/bin/phpcs app

@@ -1,0 +1,39 @@
+---
+name: 'addonsinjector'
+---
+SilverStripe\Core\Injector\Injector:
+  AddonBuilder:
+    constructor:
+      - '%$PackagistService'
+  AddonUpdater:
+    constructor:
+      - '%$PackagistService'
+      - '%$Heyday\Elastica\ElasticaService'
+      - '%$Composer\Package\Version\VersionParser'
+  SilverStripe\Control\RequestProcessor:
+    properties:
+      filters:
+        - '%$SiteErrorPageFilter'
+  SilverStripeVersionUpdater:
+    constructor:
+      - '%$PackagistService'
+  UpdateAddonsTask:
+    constructor:
+      - '%$AddonUpdater'
+  UpdateSilverStripeVersionsTask:
+    constructor:
+      - '%$SilverStripeVersionUpdater'
+  BuildAddonsTask:
+    constructor:
+      - '%$AddonBuilder'
+
+  Psr\SimpleCache\CacheInterface.addons:
+    factory: SilverStripe\Core\Cache\CacheFactory
+    constructor:
+      namespace: "addons"
+      defaultLifetime: 21600
+# Stub replaced in _config.php, this is needed for tests to work
+  Heyday\Elastica\ElasticaService:
+    constructor:
+      client: '%$Elastica\Client'
+      index: 'addons'
