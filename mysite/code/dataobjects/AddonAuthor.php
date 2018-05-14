@@ -21,7 +21,7 @@ class AddonAuthor extends DataObject
     public function GravatarUrl($size, $default = 'mm')
     {
         return sprintf(
-            'http://www.gravatar.com/avatar/%s?s=%d&d=%s',
+            'https://www.gravatar.com/avatar/%s?s=%d&d=%s',
             md5(strtolower(trim($this->Email))),
             $size,
             $default
