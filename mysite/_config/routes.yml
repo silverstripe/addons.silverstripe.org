@@ -10,3 +10,4 @@ Director:
     "tags": TagsController
     "submit": SubmitAddonController
     "addonSort": AjaxController
+    'api/rating': RatingApiController

@@ -81,3 +81,38 @@ To watch for file changes, run:
 ```
 grunt watch
 ```
+
+## Ratings API
+
+If required, you can access the JSON ratings data for a module:
+
+```
+$ curl http://addons.localhost/api/rating/yourvendor/yourmodule
+{
+    "success": true,
+    "rating": 79
+}
+```
+
+Add `?detailed` to return the details of the metric results:
+
+```
+$ curl http://addons.localhost/api/rating/yourvendor/yourmodule?detailed
+{
+    "success": true,
+    "rating": 79,
+    "metrics": {
+        "good_code_coverage": 0,
+        "great_code_coverage": 0,
+        "has_code_of_conduct_file": 0,
+        "has_code_or_src_folder": 5,
+        "coding_standards": 10,
+        "has_contributing_file": 2,
+        "has_editorconfig_file": 5,
+        "has_gitattributes_file": 2,
+        "has_license": 5,
+        "has_readme": 5,
+        "travis_passing": 10
+    }
+}
+```
