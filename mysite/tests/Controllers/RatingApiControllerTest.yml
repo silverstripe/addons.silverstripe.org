@@ -1,0 +1,5 @@
+Addon:
+  addon_a:
+    Name: foo/bar
+    Rating: 53
+    RatingDetails: '{"coverage":3,"tests":5}'
