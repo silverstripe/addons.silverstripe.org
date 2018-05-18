@@ -294,12 +294,12 @@ class AddonUpdater
         //to-do api have no method to get this.
         /*$suggested = $package->getSuggests();
 
-		if ($suggested) foreach ($suggested as $package => $description) {
-			$link = $getLink($package, 'suggest');
-			$link->Description = $description;
+        if ($suggested) foreach ($suggested as $package => $description) {
+            $link = $getLink($package, 'suggest');
+            $link->Description = $description;
 
-			$version->Links()->add($link);
-		}*/
+            $version->Links()->add($link);
+        }*/
     }
 
     private function updateCompatibility(Addon $addon, AddonVersion $version, Version $package)

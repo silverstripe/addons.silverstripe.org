@@ -1,7 +1,7 @@
 <?php
 
-class AuthorsControllerTest extends SapphireTest {
-
+class AuthorsControllerTest extends SapphireTest
+{
     protected static $fixture_file = 'AuthorsControllerTest.yml';
 
     public function testGithubContributorsAreExcludedInAuthorsIndex()
@@ -25,5 +25,4 @@ class AuthorsControllerTest extends SapphireTest {
         $this->assertNotContains('Github Contributors', $names);
         $this->assertNotContains('GitHub Contributors', $names);
     }
-
 }

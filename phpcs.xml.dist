@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<ruleset name="Addons">
+    <description>Coding standard for SilverStripe</description>
+
+    <!-- Use PSR-2 as a base standard -->
+    <rule ref="PSR2">
+        <!-- Allow classes to not declare a namespace -->
+        <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
+
+        <!-- Allow underscores in class names -->
+        <exclude name="Squiz.Classes.ValidClassName.NotCamelCaps"/>
+
+        <!-- Allow non camel cased method names -->
+        <exclude name="PSR1.Methods.CamelCapsMethodName.NotCamelCaps"/>
+    </rule>
+</ruleset>
