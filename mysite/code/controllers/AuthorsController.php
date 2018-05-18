@@ -5,18 +5,18 @@
 class AuthorsController extends SiteController
 {
 
-    public static $url_handlers = array(
+    public static $url_handlers = [
         '$AuthorID!' => 'author'
-    );
+    ];
 
-    public static $allowed_actions = array(
+    public static $allowed_actions = [
         'index',
         'author'
-    );
+    ];
 
     public function index()
     {
-        return $this->renderWith(array('Authors', 'Page'));
+        return $this->renderWith(['Authors', 'Page']);
     }
 
     public function author($request)
@@ -43,6 +43,8 @@ class AuthorsController extends SiteController
 
     public function Authors()
     {
-        return AddonAuthor::get();
+        $authors = AddonAuthor::get();
+        $authors = $authors->exclude('Name', 'GitHub contributors');
+        return $authors;
     }
 }
