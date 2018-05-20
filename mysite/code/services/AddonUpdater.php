@@ -42,9 +42,9 @@ class AddonUpdater
     /**
      * Updates all add-ons.
      *
-     * @param Boolean Clear existing addons before updating them.
+     * @param boolean Clear existing addons before updating them.
      * Will also clear their search index, and cascade the delete for associated data.
-     * @param Array Limit to specific addons, using their name incl. vendor prefix.
+     * @param array Limit to specific addons, using their name incl. vendor prefix.
      */
     public function update($clear = false, $limitAddons = null)
     {
@@ -294,12 +294,12 @@ class AddonUpdater
         //to-do api have no method to get this.
         /*$suggested = $package->getSuggests();
 
-		if ($suggested) foreach ($suggested as $package => $description) {
-			$link = $getLink($package, 'suggest');
-			$link->Description = $description;
+        if ($suggested) foreach ($suggested as $package => $description) {
+            $link = $getLink($package, 'suggest');
+            $link->Description = $description;
 
-			$version->Links()->add($link);
-		}*/
+            $version->Links()->add($link);
+        }*/
     }
 
     private function updateCompatibility(Addon $addon, AddonVersion $version, Version $package)

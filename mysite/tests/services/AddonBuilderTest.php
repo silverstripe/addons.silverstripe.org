@@ -123,7 +123,7 @@ class AddonBuilderTest extends SapphireTest
     {
         $addon = Addon::create();
         $addon->Repository = 'https://github.com/silverstripe/silverstripe-framework';
-
+// phpcs:disable
         $input = <<<HTML
 <h1>Heading</h1>
 
@@ -139,6 +139,7 @@ HTML;
 
 <p><img src="https://github.com/silverstripe/silverstripe-framework/raw/master/relative.png"><img src="https://www.whatever.com/image.png"></p>
 HTML;
+// phpcs:enable
 
         $this->assertSame($expected, $this->builder->replaceRelativeLinks($addon, $input));
     }

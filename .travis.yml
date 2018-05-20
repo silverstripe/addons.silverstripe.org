@@ -21,3 +21,5 @@ before_script:
       // EOF;
 script:
   - vendor/bin/phpunit mysite/tests
+  - vendor/bin/phpcs mysite
+
