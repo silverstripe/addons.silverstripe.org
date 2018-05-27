@@ -1,0 +1,7 @@
+Addon:
+  addon_supported:
+    Name: foo/supported-bar
+    Supported: true
+  addon_unsupported:
+    Name: foo/unsupported-bar
+    Supported: false

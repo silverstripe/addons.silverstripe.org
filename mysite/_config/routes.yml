@@ -11,3 +11,4 @@ Director:
     "submit": SubmitAddonController
     "addonSort": AjaxController
     'api/rating': RatingApiController
+    'api/supported-addons': SupportedAddonsApiController
