@@ -25,6 +25,8 @@ class Addon extends DataObject
         // Module rating information
         'Rating'            => 'Int',
         'RatingDetails'     => 'Text',
+        // Commercially supported by SilverStripe Ltd.
+        'Supported'         => 'Boolean',
     );
 
     public static $has_one = array(
