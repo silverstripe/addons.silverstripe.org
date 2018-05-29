@@ -2,21 +2,32 @@
 
 [![Build Status](https://travis-ci.org/silverstripe/addons.silverstripe.org.svg?branch=master)](https://travis-ci.org/silverstripe/addons.silverstripe.org)
 
-This is the [SilverStripe](http://silverstripe.org) add-ons listing site project. It aggregates SilverStripe packages 
+This is the codebase for [addons.silverstripe.org](https://addons.silverstripe.org). It aggregates SilverStripe packages 
 from [Packagist](http://packagist.org).
 
-* [SilverStripe Add-ons](http://addons.silverstripe.org)
 * [GitHub Project](https://github.com/silverstripe/addons.silverstripe.org)
 * [Issue Tracker](https://github.com/silverstripe/addons.silverstripe.org/issues)
 
-## Getting started
+## Setting up a development environment
+
+The development environment is managed with Vagrant. It will provide both a SilverStripe LAMP stack and an ElasticSearch server. Here's how to set it up.
 
 1. `git clone https://github.com/silverstripe/addons.silverstripe.org.git`
-2. `cd` into the directory
-3. `composer install`
-4. Install elasticsearch `brew install elasticsearch` and configure if required
-5. Start `elasticsearch`
-6. Run all tasks to populate database (see below, first run may take some time to populate)
+2. `cd` into the directory to run some initialisation commands:
+   a. `composer install`
+   b. `cp _ss_environment.php.default _ss_envrionment.php`
+   c. `touch host.txt`
+3. Install vagrant:
+   a. Install [Vagrant](https://vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+   b. `vagrant plugin install vagrant-hostsupdater vagrant-bindfs vagrant-cachier vagrant-vbguest`
+   c. `vagrant box add silverstripeltd/dev-ssp`
+4. Run `vagrant up --provision` to start the box
+5. Visit (http://ssaddons.vagrant/)[http://ssaddons.vagrant/] to see your development environemtn.
+6. Initialise the database:
+   a. Visit [dev/build](http://ssaddons.vagrant/dev/build)
+   b. Visit [dev/tasks/queue/UpdateSilverStripeVersionsTask](http://ssaddons.vagrant/dev/tasks/queue/UpdateSilverStripeVersionsTask)
+   c. Visit [dev/tasks/queue/UpdateAddonsTask](http://ssaddons.vagrant/dev/tasks/queue/UpdateAddonsTask)
+7. Open [queued jobs admin](http://ssaddons.vagrant/admin/queuedjobs/) and verify that the tasks have started.
 
 ## Dependencies
 
