@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * Abstract controller for actions that provide an API endpoint.
+ */
 abstract class ApiController extends Controller
 {
     /**
@@ -22,5 +26,24 @@ abstract class ApiController extends Controller
         }
 
         return $response;
+    }
+
+    /**
+     * Overrides this method only to prepend capturing any provided framework version header
+     *
+     * @inheritDoc
+     */
+    protected function handleAction($request, $action)
+    {
+        $frameworkVersionHeader = $request->getHeader('Silverstripe-Framework-Version');
+
+        if ($frameworkVersionHeader) {
+            ApiCallerVersions::create([
+                'Endpoint' => $request->getURL(),
+                'Version' => $frameworkVersionHeader,
+            ])->write();
+        }
+
+        return parent::handleAction($request, $action);
     }
 }
