@@ -3,3 +3,6 @@ Addon:
     Name: foo/bar
     Rating: 53
     RatingDetails: '{"coverage":3,"tests":5}'
+  addon_b:
+    Name: far/baz
+    Rating: 83
