@@ -6,6 +6,14 @@
 abstract class ApiController extends Controller
 {
     /**
+     * Set the default cache lifetime in seconds. Only used outside of "dev" environments.
+     *
+     * @config
+     * @var int
+     */
+    private static $cache_age = 10800;
+
+    /**
      * Given a result payload, format as a JSON response and return
      *
      * @param array $data
