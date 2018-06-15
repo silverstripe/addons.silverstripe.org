@@ -1,12 +1,10 @@
 <?php
 
-use Composer\Package\AliasPackage;
-use Composer\Package\CompletePackage;
-use Guzzle\Http\Exception\ClientErrorResponseException;
-use SilverStripe\Elastica\ElasticaService;
-use Packagist\Api\Result\Package;
 use Composer\Package\Version\VersionParser;
+use Guzzle\Http\Exception\ClientErrorResponseException;
+use Packagist\Api\Result\Package;
 use Packagist\Api\Result\Package\Version;
+use SilverStripe\Elastica\ElasticaService;
 
 /**
  * Updates all add-ons from Packagist.
@@ -88,20 +86,9 @@ class AddonUpdater
             $addon = Addon::get()->filter('Name', $name)->first();
 
             if (!$addon) {
-                if ($isAbandoned) {
-                    echo ' - Skipping abandoned package: ' . $name, PHP_EOL;
-                    continue;
-                }
-
                 $addon = new Addon();
                 $addon->Name = $name;
                 $addon->write();
-            }
-
-            if ($isAbandoned) {
-                echo ' - Removing abandoned package: ' . $name, PHP_EOL;
-                $addon->delete();
-                continue;
             }
 
             usort($versions, function ($a, $b) {
@@ -146,6 +133,7 @@ class AddonUpdater
         }
 
         $addon->Type = preg_replace('/^silverstripe-(vendor)?/', '', $package->getType());
+        $addon->Abandoned = $package->getAbandoned();
         $addon->Description = $package->getDescription();
         $addon->Released = strtotime($package->getTime());
         $addon->Repository = $package->getRepository();
