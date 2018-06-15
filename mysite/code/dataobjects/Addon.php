@@ -22,6 +22,7 @@ class Addon extends DataObject
         'LastUpdated'       => 'SS_Datetime',
         'LastBuilt'         => 'SS_Datetime',
         'BuildQueued'       => 'Boolean',
+        'Abandoned'         => 'Boolean',
         // Module rating information
         'Rating'            => 'Int',
         'RatingDetails'     => 'Text',
