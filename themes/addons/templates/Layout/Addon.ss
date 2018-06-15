@@ -41,7 +41,7 @@
 
     <% if $Abandoned %>
         <p class="alert alert-warning">
-            This package is abandoned and no longer maintained.
+            This package is abandoned and no longer maintained. It is suggested to use <a href="https://addons.silverstripe.org/add-ons/$Abandoned.ATT">$Abandoned.XML</a> instead.
         </p>
     <% end_if %>
 

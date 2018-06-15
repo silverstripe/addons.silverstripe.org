@@ -86,10 +86,8 @@ class AddonUpdater
             $addon = Addon::get()->filter('Name', $name)->first();
 
             if (!$addon) {
-
                 $addon = new Addon();
                 $addon->Name = $name;
-                $addon->Abandoned = $isAbandoned;
                 $addon->write();
             }
 
@@ -135,6 +133,7 @@ class AddonUpdater
         }
 
         $addon->Type = preg_replace('/^silverstripe-(vendor)?/', '', $package->getType());
+        $addon->Abandoned = $package->getAbandoned();
         $addon->Description = $package->getDescription();
         $addon->Released = strtotime($package->getTime());
         $addon->Repository = $package->getRepository();
