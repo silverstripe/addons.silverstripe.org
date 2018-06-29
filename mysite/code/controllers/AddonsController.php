@@ -102,6 +102,8 @@ class AddonsController extends SiteController
         $tags = $this->request->getVar('tags');
         $sort = $this->request->getVar('sort');
 
+        $useElasticOrderAsDefault = false;
+
         if (!in_array($sort, array('name', 'downloads', 'newest', 'relative'))) {
             $sort = null;
         }
@@ -115,10 +117,17 @@ class AddonsController extends SiteController
             $query->setSize(count($list));
 
             if ($search) {
-                $match = new Match();
-                $match->setField('_all', $search);
+                $match = new Query\MultiMatch();
+                $match->setQuery($search);
+                $match->setFields([
+                    'name^12',
+                    'description^3',
+                    'readme',
+                ]);
+                $match->setType('phrase_prefix');
 
                 $bool->addMust($match);
+                $useElasticOrderAsDefault = true;
             }
 
             if ($type) {
@@ -175,7 +184,9 @@ class AddonsController extends SiteController
                 $list = $unsorted->sort('relativePopularity DESC');
                 break;
             default:
-                $list = $list->sort('Downloads', 'DESC');
+                if (!$useElasticOrderAsDefault) {
+                    $list = $list->sort('Downloads', 'DESC');
+                }
         }
 
         $list = new PaginatedList($list, $this->request);
