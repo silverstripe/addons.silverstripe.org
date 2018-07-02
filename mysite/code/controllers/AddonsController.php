@@ -33,6 +33,11 @@ class AddonsController extends SiteController
      */
     private $elastica;
 
+    /**
+     * @var PaginatedList|Addon[]
+     */
+    protected $addons;
+
     public function index()
     {
         return $this->renderWith(array('Addons', 'Page'));
@@ -96,6 +101,10 @@ class AddonsController extends SiteController
     {
         $list = Addon::get();
 
+        if ($this->addons !== null) {
+            return $this->addons;
+        }
+
         $search = $this->request->getVar('search');
         $type = $this->request->getVar('type');
         $compat = $this->request->getVar('compatibility');
@@ -125,8 +134,22 @@ class AddonsController extends SiteController
                     'readme',
                 ]);
                 $match->setType('phrase_prefix');
+                $match->setUseDisMax(false);
 
-                $bool->addMust($match);
+                $query->setSort([
+                    '_score',
+                    'downloads',
+                ]);
+
+                $scorer = new Query\FunctionScore();
+                $scorer->setQuery($match);
+                $scorer->addFieldValueFactorFunction(
+                    'downloads',
+                    0.01,
+                    Query\FunctionScore::FIELD_VALUE_FACTOR_MODIFIER_LN2P
+                );
+
+                $bool->addMust($scorer);
                 $useElasticOrderAsDefault = true;
             }
 
@@ -189,7 +212,7 @@ class AddonsController extends SiteController
                 }
         }
 
-        $list = new PaginatedList($list, $this->request);
+        $list = $this->addons = new PaginatedList($list, $this->request);
         $list->setPageLength(16);
 
         return $list;
