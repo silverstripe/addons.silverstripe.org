@@ -1,0 +1,65 @@
+SilverStripeVersion:
+  v42:
+    Name: 4.2
+    Major: 4
+    Minor: 2
+  v41:
+    Name: 4.1
+    Major: 4
+    Minor: 1
+  v36:
+    Name: 3.6
+    Major: 3
+    Minor: 6
+Addon:
+  addon_a:
+    Name: sminnee/test-package
+    Description: Test Description
+    Type: module
+    Readme: "<p>Test Readme</p>"
+    Released: 2018-07-06
+    Repository: https://github.com/sminnee/test-package
+    Downloads: 25
+    Downloads: 10
+    Favers: 5
+    LastUpdated: 2018-07-05 16:06
+    LastBuilt: 2018-07-04 15:05
+    Rating: 15
+    RatingDetails: '{"good_code_coverage":0,"great_code_coverage":0,"has_code_of_conduct_file":0,"has_code_or_src_folder":5,"coding_standards":0,"has_contributing_file":0,"has_documentation":0,"has_editorconfig_file":0,"has_gitattributes_file":0,"has_license":0,"has_readme":5,"good_scrutinizer_score":0,"travis_passing":0}'
+AddonVersion:
+  master:
+    Addon: =>Addon.addon_a
+    Name: sminnee/test-package
+    Description: Test Description
+    Type: module
+    Version: 9999999-dev
+    PrettyVersion: dev-master
+    Development: 1
+    SourceType: git
+    SourceUrl: "https://github.com/sminnee/test-package.git"
+    SourceReference: 3f6d634dfa11838d1be08b6b67870ecbb155dc8e
+    DistType: zip
+    DistUrl: "https://api.github.com/repos/sminnee/test-package/zipball/3f6d634dfa11838d1be08b6b67870ecbb155dc8e"
+    DistReference: 3f6d634dfa11838d1be08b6b67870ecbb155dc8e
+    CompatibleVersions: =>SilverStripeVersion.v42, =>SilverStripeVersion.v41
+  v142:
+    Addon: =>Addon.addon_a
+    Name: sminnee/test-package
+    Description: Test Description
+    Type: module
+    Version: 1.4.2.0
+    PrettyVersion: 1.4.2
+    Development: 0
+    SourceType: git
+    SourceUrl: "https://github.com/sminnee/test-package.git"
+    SourceReference: 59ba02048904044ba90d6163e5973e3384e65a0b
+    DistType: zip
+    DistUrl: "https://api.github.com/repos/sminnee/test-package/zipball/59ba02048904044ba90d6163e5973e3384e65a0b"
+    DistReference: 59ba02048904044ba90d6163e5973e3384e65a0b
+    CompatibleVersions: =>SilverStripeVersion.v36
+AddonAuthor:
+  cheese:
+    Name: Uncle Cheese
+    Email: unclecheese@leftandmain.com
+    Homepage: http://leftandmain.com
+    Versions: =>AddonVersion.master,=>AddonVersion.v142

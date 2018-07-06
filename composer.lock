@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2e1ecb3692c2e069f2a20f4d8f723f30",
-    "content-hash": "91ac73fff8f1950046c636fe049b0ac4",
+    "content-hash": "6eb4b47789802df86061269ef17cdb3b",
     "packages": [
         {
             "name": "asyncphp/doorman",
@@ -40,7 +39,7 @@
                 "MIT"
             ],
             "description": "Child process management",
-            "time": "2015-07-28 00:39:41"
+            "time": "2015-07-28T00:39:41+00:00"
         },
         {
             "name": "aws/aws-sdk-php",
@@ -120,7 +119,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2018-02-16 20:40:39"
+            "time": "2018-02-16T20:40:39+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -176,7 +175,7 @@
                 "ssl",
                 "tls"
             ],
-            "time": "2017-11-29 09:37:33"
+            "time": "2017-11-29T09:37:33+00:00"
         },
         {
             "name": "composer/composer",
@@ -253,7 +252,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2018-01-31 15:28:18"
+            "time": "2018-01-31T15:28:18+00:00"
         },
         {
             "name": "composer/installers",
@@ -373,7 +372,7 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2017-12-29 09:13:20"
+            "time": "2017-12-29T09:13:20+00:00"
         },
         {
             "name": "composer/semver",
@@ -435,7 +434,7 @@
                 "validation",
                 "versioning"
             ],
-            "time": "2016-08-30 16:08:34"
+            "time": "2016-08-30T16:08:34+00:00"
         },
         {
             "name": "composer/spdx-licenses",
@@ -496,7 +495,7 @@
                 "spdx",
                 "validator"
             ],
-            "time": "2018-01-31 13:17:27"
+            "time": "2018-01-31T13:17:27+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -563,7 +562,7 @@
                 "singularize",
                 "string"
             ],
-            "time": "2015-11-06 14:35:42"
+            "time": "2015-11-06T14:35:42+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -617,7 +616,7 @@
                 "constructor",
                 "instantiate"
             ],
-            "time": "2015-06-14 21:17:01"
+            "time": "2015-06-14T21:17:01+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -661,7 +660,7 @@
             "keywords": [
                 "html"
             ],
-            "time": "2013-02-18 00:04:08"
+            "time": "2013-02-18T00:04:08+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -726,7 +725,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2018-03-26 16:33:04"
+            "time": "2018-03-26T16:33:04+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -777,7 +776,7 @@
             "keywords": [
                 "promise"
             ],
-            "time": "2016-12-20 10:07:11"
+            "time": "2016-12-20T10:07:11+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -842,7 +841,53 @@
                 "uri",
                 "url"
             ],
-            "time": "2017-03-20 17:10:46"
+            "time": "2017-03-20T17:10:46+00:00"
+        },
+        {
+            "name": "honzabrecka/transit-php",
+            "version": "0.8.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/honzabrecka/transit-php.git",
+                "reference": "3e474988d85395bf76adf1177fc6be43711496f1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/honzabrecka/transit-php/zipball/3e474988d85395bf76adf1177fc6be43711496f1",
+                "reference": "3e474988d85395bf76adf1177fc6be43711496f1",
+                "shasum": ""
+            },
+            "require": {
+                "nette/utils": "2.5.*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "nette/tester": "2.0.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "transit\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jan Břečka",
+                    "email": "jan.brecka@gmail.com",
+                    "homepage": "http://honzabrecka.com"
+                }
+            ],
+            "description": "Transit for PHP.",
+            "keywords": [
+                "data",
+                "format",
+                "transit"
+            ],
+            "time": "2018-06-27T07:30:20+00:00"
         },
         {
             "name": "jeremeamia/SuperClosure",
@@ -890,7 +935,7 @@
                 "serialize",
                 "tokenizer"
             ],
-            "time": "2015-01-10 01:09:28"
+            "time": "2015-01-10T01:09:28+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -956,7 +1001,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2018-02-14 22:26:30"
+            "time": "2018-02-14T22:26:30+00:00"
         },
         {
             "name": "knplabs/packagist-api",
@@ -1008,7 +1053,7 @@
                 "composer",
                 "packagist"
             ],
-            "time": "2018-01-19 08:15:53"
+            "time": "2018-01-19T08:15:53+00:00"
         },
         {
             "name": "mindscape/raygun4php",
@@ -1058,7 +1103,7 @@
                 "logging",
                 "raygun"
             ],
-            "time": "2018-02-25 21:50:11"
+            "time": "2018-02-25T21:50:11+00:00"
         },
         {
             "name": "mtdowling/cron-expression",
@@ -1102,7 +1147,7 @@
                 "cron",
                 "schedule"
             ],
-            "time": "2017-01-23 04:29:33"
+            "time": "2017-01-23T04:29:33+00:00"
         },
         {
             "name": "mtdowling/jmespath.php",
@@ -1157,7 +1202,7 @@
                 "json",
                 "jsonpath"
             ],
-            "time": "2016-12-03 22:08:25"
+            "time": "2016-12-03T22:08:25+00:00"
         },
         {
             "name": "mustangostang/spyc",
@@ -1207,7 +1252,89 @@
                 "yaml",
                 "yml"
             ],
-            "time": "2017-02-24 16:06:33"
+            "time": "2017-02-24T16:06:33+00:00"
+        },
+        {
+            "name": "nette/utils",
+            "version": "v2.5.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nette/utils.git",
+                "reference": "183069866dc477fcfbac393ed486aaa6d93d19a5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nette/utils/zipball/183069866dc477fcfbac393ed486aaa6d93d19a5",
+                "reference": "183069866dc477fcfbac393ed486aaa6d93d19a5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "conflict": {
+                "nette/nette": "<2.2"
+            },
+            "require-dev": {
+                "nette/tester": "~2.0",
+                "tracy/tracy": "^2.3"
+            },
+            "suggest": {
+                "ext-gd": "to use Image",
+                "ext-iconv": "to use Strings::webalize() and toAscii()",
+                "ext-intl": "for script transliteration in Strings::webalize() and toAscii()",
+                "ext-json": "to use Nette\\Utils\\Json",
+                "ext-mbstring": "to use Strings::lower() etc...",
+                "ext-xml": "to use Strings::length() etc. when mbstring is not available"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.5-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ],
+                "files": [
+                    "src/loader.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause",
+                "GPL-2.0",
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "David Grudl",
+                    "homepage": "https://davidgrudl.com"
+                },
+                {
+                    "name": "Nette Community",
+                    "homepage": "https://nette.org/contributors"
+                }
+            ],
+            "description": "🛠 Nette Utils: lightweight utilities for string & array manipulation, image handling, safe JSON encoding/decoding, validation, slug or strong password generating etc.",
+            "homepage": "https://nette.org",
+            "keywords": [
+                "array",
+                "core",
+                "datetime",
+                "images",
+                "json",
+                "nette",
+                "paginator",
+                "password",
+                "slugify",
+                "string",
+                "unicode",
+                "utf-8",
+                "utility",
+                "validation"
+            ],
+            "time": "2018-05-02T17:16:08+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -1252,7 +1379,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2014-07-23 18:24:17"
+            "time": "2014-07-23T18:24:17+00:00"
         },
         {
             "name": "psr/http-message",
@@ -1302,7 +1429,7 @@
                 "request",
                 "response"
             ],
-            "time": "2016-08-06 14:39:51"
+            "time": "2016-08-06T14:39:51+00:00"
         },
         {
             "name": "psr/log",
@@ -1349,7 +1476,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-10-10 12:19:37"
+            "time": "2016-10-10T12:19:37+00:00"
         },
         {
             "name": "ramsey/array_column",
@@ -1394,7 +1521,7 @@
                 "array_column",
                 "column"
             ],
-            "time": "2015-03-20 22:07:39"
+            "time": "2015-03-20T22:07:39+00:00"
         },
         {
             "name": "ruflin/elastica",
@@ -1451,7 +1578,7 @@
                 "client",
                 "search"
             ],
-            "time": "2016-09-23 10:24:25"
+            "time": "2016-09-23T10:24:25+00:00"
         },
         {
             "name": "seld/cli-prompt",
@@ -1499,7 +1626,7 @@
                 "input",
                 "prompt"
             ],
-            "time": "2017-03-18 11:32:45"
+            "time": "2017-03-18T11:32:45+00:00"
         },
         {
             "name": "seld/jsonlint",
@@ -1548,7 +1675,7 @@
                 "parser",
                 "validator"
             ],
-            "time": "2018-01-24 12:46:19"
+            "time": "2018-01-24T12:46:19+00:00"
         },
         {
             "name": "seld/phar-utils",
@@ -1592,7 +1719,7 @@
             "keywords": [
                 "phra"
             ],
-            "time": "2015-10-13 18:44:15"
+            "time": "2015-10-13T18:44:15+00:00"
         },
         {
             "name": "silverstripe/crontask",
@@ -1635,7 +1762,7 @@
                 "cron",
                 "silverstripe"
             ],
-            "time": "2018-04-05 10:19:02"
+            "time": "2018-04-05T10:19:02+00:00"
         },
         {
             "name": "silverstripe/environmentcheck",
@@ -1684,7 +1811,7 @@
                 "silverstripe",
                 "testing"
             ],
-            "time": "2016-07-12 02:23:16"
+            "time": "2016-07-12T02:23:16+00:00"
         },
         {
             "name": "silverstripe/framework",
@@ -1769,7 +1896,7 @@
                 "framework",
                 "silverstripe"
             ],
-            "time": "2018-05-13 22:59:58"
+            "time": "2018-05-13T22:59:58+00:00"
         },
         {
             "name": "silverstripe/moduleratings",
@@ -1818,7 +1945,7 @@
                 }
             ],
             "description": "A library to provide module code quality ratings",
-            "time": "2018-05-10 21:49:11"
+            "time": "2018-05-10T21:49:11+00:00"
         },
         {
             "name": "silverstripe/moduleratings-plugin",
@@ -1864,7 +1991,7 @@
                 }
             ],
             "description": "A Composer plugin to provide ability to rate your local modules",
-            "time": "2018-05-10 21:59:05"
+            "time": "2018-05-10T21:59:05+00:00"
         },
         {
             "name": "silverstripe/raygun",
@@ -1902,7 +2029,7 @@
                 "raygun",
                 "silverstripe"
             ],
-            "time": "2017-04-04 01:26:23"
+            "time": "2017-04-04T01:26:23+00:00"
         },
         {
             "name": "silverstripe/toolbar",
@@ -1946,7 +2073,44 @@
                 "source": "https://github.com/silverstripe/silverstripe-globaltoolbar/tree/4.2.1",
                 "issues": "https://github.com/silverstripe/silverstripe-globaltoolbar/issues"
             },
-            "time": "2018-07-17 02:52:19"
+            "time": "2018-07-17T02:52:19+00:00"
+        },
+        {
+            "name": "sminnee/stitchdata-php",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sminnee/stitchdata-php.git",
+                "reference": "06b4200c2f12af5b35eeccdb978149d040462aa5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sminnee/stitchdata-php/zipball/06b4200c2f12af5b35eeccdb978149d040462aa5",
+                "reference": "06b4200c2f12af5b35eeccdb978149d040462aa5",
+                "shasum": ""
+            },
+            "require": {
+                "honzabrecka/transit-php": "^0.8.3",
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sminnee\\StitchData\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sam Minnee",
+                    "email": "sam@silverstripe.com"
+                }
+            ],
+            "description": "PHP SDK for StitchData.com's Import API",
+            "time": "2018-06-27T05:21:14+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -1997,7 +2161,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2017-12-19 21:44:46"
+            "time": "2017-12-19T21:44:46+00:00"
         },
         {
             "name": "symbiote-library/silverstripe-elastica",
@@ -2054,7 +2218,7 @@
                 "search",
                 "silverstripe"
             ],
-            "time": "2017-06-15 00:43:55"
+            "time": "2017-06-15T00:43:55+00:00"
         },
         {
             "name": "symbiote/silverstripe-gridfieldextensions",
@@ -2105,7 +2269,7 @@
                 "gridfield",
                 "silverstripe"
             ],
-            "time": "2017-08-31 02:44:40"
+            "time": "2017-08-31T02:44:40+00:00"
         },
         {
             "name": "symbiote/silverstripe-multivaluefield",
@@ -2147,7 +2311,7 @@
                 "formfield",
                 "silverstripe"
             ],
-            "time": "2018-01-09 02:56:18"
+            "time": "2018-01-09T02:56:18+00:00"
         },
         {
             "name": "symbiote/silverstripe-queuedjobs",
@@ -2194,7 +2358,7 @@
                 "jobs",
                 "silverstripe"
             ],
-            "time": "2018-02-21 20:28:36"
+            "time": "2018-02-21T20:28:36+00:00"
         },
         {
             "name": "symfony/console",
@@ -2262,7 +2426,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-29 09:02:23"
+            "time": "2018-01-29T09:02:23+00:00"
         },
         {
             "name": "symfony/debug",
@@ -2318,7 +2482,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-18 22:16:57"
+            "time": "2018-01-18T22:16:57+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -2378,7 +2542,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-03 07:36:31"
+            "time": "2018-01-03T07:36:31+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -2427,7 +2591,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-22 10:48:49"
+            "time": "2018-02-22T10:48:49+00:00"
         },
         {
             "name": "symfony/finder",
@@ -2476,7 +2640,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2018-04-04 05:07:11"
+            "time": "2018-04-04T05:07:11+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -2535,7 +2699,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2018-01-30 19:27:44"
+            "time": "2018-01-30T19:27:44+00:00"
         },
         {
             "name": "symfony/process",
@@ -2584,7 +2748,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-29 08:54:45"
+            "time": "2018-01-29T08:54:45+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -2639,7 +2803,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-20 15:04:53"
+            "time": "2018-01-20T15:04:53+00:00"
         },
         {
             "name": "unclecheese/display-logic",
@@ -2683,7 +2847,7 @@
                 "logic",
                 "silverstripe"
             ],
-            "time": "2016-06-21 00:24:32"
+            "time": "2016-06-21T00:24:32+00:00"
         }
     ],
     "packages-dev": [
@@ -2739,7 +2903,7 @@
                 "reflection",
                 "static analysis"
             ],
-            "time": "2017-09-11 18:02:19"
+            "time": "2017-09-11T18:02:19+00:00"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -2784,7 +2948,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2016-09-30 07:12:33"
+            "time": "2016-09-30T07:12:33+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -2831,7 +2995,7 @@
                     "email": "me@mikevanriel.com"
                 }
             ],
-            "time": "2016-11-25 06:54:22"
+            "time": "2016-11-25T06:54:22+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -2894,7 +3058,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2018-02-11 18:49:29"
+            "time": "2018-02-11T18:49:29+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -2956,7 +3120,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-10-06 15:47:00"
+            "time": "2015-10-06T15:47:00+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -3003,7 +3167,7 @@
                 "filesystem",
                 "iterator"
             ],
-            "time": "2017-11-27 13:52:08"
+            "time": "2017-11-27T13:52:08+00:00"
         },
         {
             "name": "phpunit/php-text-template",
@@ -3044,7 +3208,7 @@
             "keywords": [
                 "template"
             ],
-            "time": "2015-06-21 13:50:34"
+            "time": "2015-06-21T13:50:34+00:00"
         },
         {
             "name": "phpunit/php-timer",
@@ -3093,7 +3257,7 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2017-02-26 11:10:40"
+            "time": "2017-02-26T11:10:40+00:00"
         },
         {
             "name": "phpunit/php-token-stream",
@@ -3142,7 +3306,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2017-12-04 08:55:13"
+            "time": "2017-12-04T08:55:13+00:00"
         },
         {
             "name": "phpunit/phpunit",
@@ -3214,7 +3378,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-06-21 08:07:12"
+            "time": "2017-06-21T08:07:12+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3270,7 +3434,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2015-10-02 06:51:40"
+            "time": "2015-10-02T06:51:40+00:00"
         },
         {
             "name": "sebastian/comparator",
@@ -3334,7 +3498,7 @@
                 "compare",
                 "equality"
             ],
-            "time": "2017-01-29 09:50:25"
+            "time": "2017-01-29T09:50:25+00:00"
         },
         {
             "name": "sebastian/diff",
@@ -3386,7 +3550,7 @@
             "keywords": [
                 "diff"
             ],
-            "time": "2017-05-22 07:24:03"
+            "time": "2017-05-22T07:24:03+00:00"
         },
         {
             "name": "sebastian/environment",
@@ -3436,7 +3600,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2016-08-18 05:49:44"
+            "time": "2016-08-18T05:49:44+00:00"
         },
         {
             "name": "sebastian/exporter",
@@ -3503,7 +3667,7 @@
                 "export",
                 "exporter"
             ],
-            "time": "2016-06-17 09:04:28"
+            "time": "2016-06-17T09:04:28+00:00"
         },
         {
             "name": "sebastian/global-state",
@@ -3554,7 +3718,7 @@
             "keywords": [
                 "global state"
             ],
-            "time": "2015-10-12 03:26:01"
+            "time": "2015-10-12T03:26:01+00:00"
         },
         {
             "name": "sebastian/recursion-context",
@@ -3607,7 +3771,7 @@
             ],
             "description": "Provides functionality to recursively process PHP variables",
             "homepage": "http://www.github.com/sebastianbergmann/recursion-context",
-            "time": "2016-10-03 07:41:43"
+            "time": "2016-10-03T07:41:43+00:00"
         },
         {
             "name": "sebastian/version",
@@ -3642,7 +3806,7 @@
             ],
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
-            "time": "2015-06-21 13:59:46"
+            "time": "2015-06-21T13:59:46+00:00"
         },
         {
             "name": "silverstripe/sqlite3",
@@ -3684,7 +3848,7 @@
                 "silverstripe",
                 "sqlite3"
             ],
-            "time": "2015-10-15 22:16:30"
+            "time": "2015-10-15T22:16:30+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -3734,7 +3898,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2018-01-29 19:49:41"
+            "time": "2018-01-29T19:49:41+00:00"
         }
     ],
     "aliases": [],

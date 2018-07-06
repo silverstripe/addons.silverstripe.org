@@ -26,6 +26,9 @@ Injector:
   BuildAddonsTask:
     constructor:
       - %$AddonBuilder
+  StitchDataSender:
+    properties:
+      TableName: packages
 ---
 Only:
   environment: 'live'
