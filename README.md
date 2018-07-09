@@ -82,7 +82,11 @@ To watch for file changes, run:
 grunt watch
 ```
 
-## Ratings API
+## API Endpoints
+
+Addons has 3 endpoints that can be used to gather statistics about SilverStripe addons.
+
+### Single Addon Ratings Endpoint
 
 If required, you can access the JSON ratings data for a module:
 
@@ -116,3 +120,37 @@ $ curl http://addons.localhost/api/rating/yourvendor/yourmodule?detailed
     }
 }
 ```
+
+### Multiple Addon Ratings Endpoint
+
+If fetching ratings for multiple addons is required, it is recommended that you use fetch them in a single request:
+
+```
+$ curl http://addons.localhost/api/ratings?addons=vendorA/moduleA,vendorB/moduleB
+{
+    "success": true,
+    "ratings": {
+        "vendorA/moduleA": 79,
+        "vendorB/moduleB": 77
+    }
+}
+```
+
+Note that the order of returned modules is not related to the order in the request.
+
+### Supported Addons Endpoint
+
+For a list of addons that are marked as supported you can use this endpoint:
+
+```
+$ curl http://addons.localhost/api/supported-addons
+{
+    "success": true,
+    "addons": [
+        "vendorA/moduleA",
+        "vendorB/moduleB"
+    ]
+}
+```
+
+Whether an addon is supported or not is controlled by a boolean field on the `Addon` DataObject.
