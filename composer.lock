@@ -1772,16 +1772,16 @@
         },
         {
             "name": "silverstripe/moduleratings",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/silverstripe/moduleratings.git",
-                "reference": "7847da4536045c0c62db85ed82bd3815c6525357"
+                "reference": "67b8c128283e44c9c0503e8a41759d6272294baa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/moduleratings/zipball/7847da4536045c0c62db85ed82bd3815c6525357",
-                "reference": "7847da4536045c0c62db85ed82bd3815c6525357",
+                "url": "https://api.github.com/repos/silverstripe/moduleratings/zipball/67b8c128283e44c9c0503e8a41759d6272294baa",
+                "reference": "67b8c128283e44c9c0503e8a41759d6272294baa",
                 "shasum": ""
             },
             "require": {
@@ -1817,7 +1817,7 @@
                 }
             ],
             "description": "A library to provide module code quality ratings",
-            "time": "2018-05-10T21:49:11+00:00"
+            "time": "2018-07-13T05:09:00+00:00"
         },
         {
             "name": "silverstripe/moduleratings-plugin",
