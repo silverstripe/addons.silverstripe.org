@@ -5,6 +5,8 @@ use SilverStripe\Elastica\Searchable;
 
 /**
  * Tests for StitchDataSender
+ *
+ * @mixin PHPUnit_Framework_TestCase
  */
 class StitchDataSenderTest extends SapphireTest
 {
@@ -20,7 +22,9 @@ class StitchDataSenderTest extends SapphireTest
     public function testAddonToJson()
     {
         $s = new StitchDataSender();
-        $result = ($s->addonToJson($this->objFromFixture('Addon', 'addon_a')));
+        /** @var Addon $addon */
+        $addon = $this->objFromFixture('Addon', 'addon_a');
+        $result = $s->addonToJson($addon);
 
 
         $this->assertEquals('sminnee/test-package', $result['Name']);

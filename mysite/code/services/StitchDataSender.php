@@ -7,10 +7,25 @@ use Sminnee\StitchData\StitchApi;
  */
 class StitchDataSender
 {
-
+    /**
+     * @var string
+     */
     private $accessToken = null;
+
+    /**
+     * @var string
+     */
     private $clientID = null;
+
+    /**
+     * @var string
+     */
     private $tableName = null;
+
+    /**
+     * @var StitchApi
+     */
+    private $client = null;
 
     public function __construct()
     {
@@ -81,19 +96,44 @@ class StitchDataSender
     }
 
     /**
+     * Set the StitchApi client instance
+     *
+     * @param StitchApi $client
+     * @return $this
+     */
+    public function setClient(StitchApi $client)
+    {
+        $this->client = $client;
+        return $this;
+    }
+
+    /**
+     * Get (and/or create and set) the StitchApi client instance, allowing for lazy loading in case API arguments
+     * want to be changed after construction.
+     *
+     * @return StitchApi
+     */
+    public function getClient()
+    {
+        // Allow lazy loading
+        if (!$this->client) {
+            $this->setClient(new StitchApi($this->getClient(), $this->getAccessToken()));
+        }
+        return $this->client;
+    }
+
+    /**
      * Send the given package to the StitchData API
      */
     public function sendAddon(Addon $package)
     {
         // If unconfigured, silently no-op
-        if (!$this->clientID || !$this->accessToken || !$this->tableName) {
+        if (!$this->getClientID() || !$this->getAccessToken() || !$this->getTableName()) {
             return;
         }
 
-        $stitch = new StitchApi($this->clientID, $this->accessToken);
-
-        $stitch->pushRecords(
-            $this->tableName,
+        $this->getClient()->pushRecords(
+            $this->getTableName(),
             [ 'Name' ],
             [
                 $this->addonToJson($package)
