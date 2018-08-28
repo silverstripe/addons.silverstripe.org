@@ -32,7 +32,8 @@
     "silverstripe/moduleratings-plugin": "^0.1",
     "squizlabs/php_codesniffer": "^3",
     "symbiote/silverstripe-gridfieldextensions": "^2",
-    "silverstripe/raygun": "^1"
+    "silverstripe/raygun": "^1",
+    "sminnee/stitchdata-php": "^0.1"
   },
   "replace": {
     "extensions.silverstripe.org": "*"

@@ -287,8 +287,8 @@ class AddonBuilder
                     'tmp_name' => $temp,
                     'error' => 0
                 );
-            } // Handle images that are included in the repository.
-            else {
+            // Handle images that are included in the repository.
+            } else {
                 $source = $path . '/' . ltrim($screenshot, '/');
 
                 // Prevent directory traversal.
