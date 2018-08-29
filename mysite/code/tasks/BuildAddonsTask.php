@@ -43,6 +43,11 @@ class BuildAddonsTask extends BuildTask
             $addons = $addons->filter('Name', explode(',', $request->getVar('addons')));
         }
         foreach ($addons as $addon) {
+            if (!$addon->Name) {
+                $this->log(sprintf('Addon #%d as no name, skipping', $addon->ID));
+                continue;
+            }
+
             /** @var Addon $addon */
             $this->log(sprintf('Building "%s" (#%d)', $addon->Name, $addon->ID));
             try {
