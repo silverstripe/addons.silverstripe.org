@@ -133,7 +133,7 @@ class AddonUpdater
         }
 
         $addon->Type = preg_replace('/^silverstripe-(vendor)?/', '', $package->getType());
-        $addon->Abandoned = $package->getAbandoned();
+        $addon->Abandoned = $package->isAbandoned();
         $addon->Description = $package->getDescription();
         $addon->Released = strtotime($package->getTime());
         $addon->Repository = $package->getRepository();
