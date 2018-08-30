@@ -158,7 +158,8 @@ class StitchDataSender
             }
         }
 
-        // Ensure consistent typing, otherwise StitchData splits into Rating__bi (big int) and Rating__do (double precision)
+        // Ensure consistent typing, otherwise StitchData splits into Rating__bi (big int) and
+        // Rating__do (double precision)
         $data['Rating'] = (int)$data['Rating'];
 
         if ($package->RatingDetails) {
