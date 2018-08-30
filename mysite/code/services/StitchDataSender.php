@@ -117,7 +117,7 @@ class StitchDataSender
     {
         // Allow lazy loading
         if (!$this->client) {
-            $this->setClient(new StitchApi($this->getClient(), $this->getAccessToken()));
+            $this->setClient(new StitchApi($this->getClientID(), $this->getAccessToken()));
         }
         return $this->client;
     }
