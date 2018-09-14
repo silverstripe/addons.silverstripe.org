@@ -2,6 +2,7 @@
 
 use Composer\Package\Package;
 use Composer\Package\PackageInterface;
+use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\SyslogHandler;
 use SilverStripe\ModuleRatings\CheckSuite;
 
@@ -37,6 +38,8 @@ class AddonBuilder
         $logger = new Monolog\Logger('module_ratings_logs', [
             new SyslogHandler('SilverStripe_log'),
         ]);
+        $formatter = new LineFormatter("%level_name%: %message% %context% %extra%");
+        $logger->setFormatter($formatter);
         $checkSuite->setLogger($logger);
 
         $composer = $this->packagist->getComposer();
