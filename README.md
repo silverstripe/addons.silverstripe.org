@@ -15,7 +15,7 @@ The development environment is managed with Vagrant. It will provide both a Silv
 1. `git clone https://github.com/silverstripe/addons.silverstripe.org.git`
 2. `cd` into the directory to run some initialisation commands:
    a. `composer install`
-   b. `cp _ss_environment.php.default _ss_envrionment.php`
+   b. `cp _ss_environment.php.default _ss_environment.php`
    c. `touch host.txt`
 3. Install vagrant:
    a. Install [Vagrant](https://vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
