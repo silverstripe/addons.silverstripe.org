@@ -13,3 +13,4 @@ Director:
     'api/rating': RatingApiController
     'api/ratings': RatingsApiController
     'api/supported-addons': SupportedAddonsApiController
+    'api/addons': AddonsApiController

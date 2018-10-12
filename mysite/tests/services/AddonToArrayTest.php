@@ -4,11 +4,11 @@
 use SilverStripe\Elastica\Searchable;
 
 /**
- * Tests for StitchDataSender
+ * Tests for AddonToArray
  *
  * @mixin PHPUnit_Framework_TestCase
  */
-class StitchDataSenderTest extends SapphireTest
+class AddonToArrayTest extends SapphireTest
 {
 
     protected static $fixture_file = 'mysite/tests/services/testAddon.yml';
@@ -21,10 +21,10 @@ class StitchDataSenderTest extends SapphireTest
 
     public function testAddonToJson()
     {
-        $s = new StitchDataSender();
+        $addonToArray = new AddonToArray();
         /** @var Addon $addon */
         $addon = $this->objFromFixture('Addon', 'addon_a');
-        $result = $s->addonToJson($addon);
+        $result = $addonToArray->convert($addon);
 
 
         $this->assertEquals('sminnee/test-package', $result['Name']);

@@ -1,7 +1,0 @@
----
-Name: stitchdataconfig
----
-Injector:
-  StitchDataSender:
-    properties:
-      TableName: packages

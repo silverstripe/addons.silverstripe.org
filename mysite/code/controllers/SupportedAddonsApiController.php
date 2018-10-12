@@ -14,7 +14,7 @@ class SupportedAddonsApiController extends ApiController
      * @config
      * @var int
      */
-    private static $cache_age = 604800;
+    private static $cache_age = 86400;
 
     public function index()
     {
