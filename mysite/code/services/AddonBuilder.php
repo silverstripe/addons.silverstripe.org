@@ -2,6 +2,8 @@
 
 use Composer\Package\Package;
 use Composer\Package\PackageInterface;
+use Monolog\Formatter\LineFormatter;
+use Monolog\Handler\SyslogHandler;
 use SilverStripe\ModuleRatings\CheckSuite;
 
 /**
@@ -29,7 +31,16 @@ class AddonBuilder
     public function build(Addon $addon)
     {
         putenv("GIT_SSH_COMMAND=\"ssh -o StrictHostKeyChecking=no\"");
-        $this->setCheckSuite(new CheckSuite());
+
+        $checkSuite = new CheckSuite();
+        $this->setCheckSuite($checkSuite);
+        // Provide the checksuite with a logger in case API calls fail
+        $logger = new Monolog\Logger('module_ratings_logs', [
+            new SyslogHandler('SilverStripe_log'),
+        ]);
+        $formatter = new LineFormatter("%level_name%: %message% %context% %extra%");
+        $logger->setFormatter($formatter);
+        $checkSuite->setLogger($logger);
 
         $composer = $this->packagist->getComposer();
         $downloader = $composer->getDownloadManager();
