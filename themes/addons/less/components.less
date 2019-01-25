@@ -220,7 +220,7 @@
   background: none;
   border-color: #EEE;
   border-width: 0 0 1px 0;
-  line-height: 40px;
+  line-height: 30px;
 
   & > * {
     float: left;
@@ -228,14 +228,37 @@
     vertical-align: middle;
   }
 
-  pre {
-    color: #888;
-    background: none;
-    border: none;
+  .install-box-label {
+    font-weight: bold;
+    line-height: 30px;
+    margin: 0 5px 0 0;
   }
 
-  .install-box-label {
-    margin-right: 5px;
+  .install-box-field {
+    margin-left: 10px;
+  }
+}
+
+.copy-field {
+  &__input {
+    font-family: @monoFontFamily;
+  }
+
+  /* The icon on the Copy button shouldn't handle events itself */
+  &__button > i {
+    pointer-events: none;
+  }
+
+  &__confirmation {
+    color: #1d8c30;
+    font-size: 12px;
+    margin-left: 10px;
+    opacity: 0;
+    transition: opacity .2s;
+
+    .copy-field__button--triggered ~ & {
+      opacity: 1;
+    }
   }
 }
 

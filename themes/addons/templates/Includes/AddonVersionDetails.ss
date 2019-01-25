@@ -1,31 +1,28 @@
 <div class="row-fluid install-box">
-	<strong class="install-box-label">Install</strong>
+	<label for="install-string-{$ID}" class="install-box-label">Install</label>
+
 	<a href="http://doc.silverstripe.org/framework/en/topics/modules#installation">
 		<i class="icon-question-sign"></i>
 	</a>
-	<pre>composer require $Name $DisplayRequireVersion</pre>
-	<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
-		width="110"
-		height="14"
-		class="clippy">
-	<param name="movie" value="$ThemeDir/thirdparty/clippy/clippy.swf"/>
-	<param name="allowScriptAccess" value="always" />
-	<param name="quality" value="high" />
-	<param name="scale" value="noscale" />
-	<param NAME="FlashVars" value="text=composer require $Name $DisplayRequireVersion">
-	<param name="bgcolor" value="#fff">
-	<embed src="$ThemeDir/thirdparty/clippy/clippy.swf"
-		width="110"
-		height="14"
-		name="clippy"
-		quality="high"
-		allowScriptAccess="always"
-		type="application/x-shockwave-flash"
-		pluginspage="http://www.macromedia.com/go/getflashplayer"
-		FlashVars="text=composer require $Name $DisplayRequireVersion"
-		bgcolor="#fff"
-	/>
-	</object>
+
+    <div class="install-box-field copy-field input-append">
+        <input
+            id="install-string-{$ID}"
+            class="input-xxlarge copy-field__input"
+            data-copiable-field="install-string-{$ID}"
+            type="text"
+            value="composer require $Name $DisplayRequireVersion"
+            readonly="readonly"
+        />
+
+        <button
+            class="btn copy-field__button"
+            data-copies-field="install-string-{$ID}"
+        >
+            <i class="icon-paste" title="Copy install command"></i>
+        </button>
+        <span class="copy-field__confirmation">Copied!</span>
+    </div>
 </div>
 
 <div class="row-fluid">

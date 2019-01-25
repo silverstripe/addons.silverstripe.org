@@ -53,38 +53,13 @@
 				<a href="$DisplayHomepage" rel="nofollow">$DisplayHomepage</a>
 				<% end_if %>
 			</dd>
-
 		<% end_with %>
 
 		<dt>Packagist:</dt>
 		<dd><a href="$PackagistUrl" rel="nofollow">$PackagistUrl</a></dd>
 
 		<dt>Repository:</dt>
-		<dd>
-			$Repository
-			<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
-				width="110"
-				height="14"
-				class="clippy">
-			<param name="movie" value="$ThemeDir/thirdparty/clippy/clippy.swf"/>
-			<param name="allowScriptAccess" value="always" />
-			<param name="quality" value="high" />
-			<param name="scale" value="noscale" />
-			<param NAME="FlashVars" value="text=$Repository">
-			<param name="bgcolor" value="#fff">
-			<embed src="$ThemeDir/thirdparty/clippy/clippy.swf"
-				width="110"
-				height="14"
-				name="clippy"
-				quality="high"
-				allowScriptAccess="always"
-				type="application/x-shockwave-flash"
-				pluginspage="http://www.macromedia.com/go/getflashplayer"
-				FlashVars="text=$Repository"
-				bgcolor="#fff"
-			/>
-			</object>
-		</dd>
+		<dd><a href="$Repository" rel="nofollow">$Repository</a></dd>
 
 		<% if $Authors %>
 			<dt>Authors:</dt>
