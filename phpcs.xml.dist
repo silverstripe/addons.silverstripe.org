@@ -12,5 +12,8 @@
 
         <!-- Allow non camel cased method names -->
         <exclude name="PSR1.Methods.CamelCapsMethodName.NotCamelCaps"/>
+
+        <!-- Avoid applying these rules to JS files -->
+        <exclude-pattern>*.js</exclude-pattern>
     </rule>
 </ruleset>

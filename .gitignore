@@ -20,3 +20,5 @@ error.log
 dump.rdb
 /gridfieldextensions
 /raygun
+_ss_environment.php
+host.txt
