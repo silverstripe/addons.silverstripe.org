@@ -22,7 +22,7 @@
         >
             <i class="icon-paste" title="Copy install command"></i>
         </button>
-        <span class="copy-field__confirmation" aria-live="assertive"></span>
+        <span class="copy-field__confirmation" aria-hidden="true" aria-live="assertive"></span>
     </div>
 </div>
 

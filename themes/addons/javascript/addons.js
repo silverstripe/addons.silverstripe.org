@@ -29,9 +29,11 @@ jQuery(function($) {
 
             // Notify the user visually / audibly that the copy succeeded
             button.addClass('copy-field__button--triggered');
+            message.attr('aria-hidden', 'false');
             message.text('Copied!');
             setTimeout(function() {
                 this.removeClass('copy-field__button--triggered');
+                message.attr('aria-hidden', 'true');
             }.bind(button), 1000);
         }
     });

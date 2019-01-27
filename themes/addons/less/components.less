@@ -240,6 +240,8 @@
 }
 
 .copy-field {
+  display: flex;
+
   &__input {
     font-family: @monoFontFamily;
   }
@@ -251,14 +253,12 @@
 
   &__confirmation {
     color: #1d8c30;
-    display: none;
     font-size: 12px;
     margin-left: 10px;
     opacity: 0;
     transition: opacity .2s;
 
     .copy-field__button--triggered ~ & {
-      display: block;
       opacity: 1;
     }
   }
