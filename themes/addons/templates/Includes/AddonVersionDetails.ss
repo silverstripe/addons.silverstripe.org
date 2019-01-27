@@ -18,10 +18,11 @@
         <button
             class="btn copy-field__button"
             data-copies-field="install-string-{$ID}"
+            title="Copy install command"
         >
             <i class="icon-paste" title="Copy install command"></i>
         </button>
-        <span class="copy-field__confirmation">Copied!</span>
+        <span class="copy-field__confirmation" aria-live="assertive"></span>
     </div>
 </div>
 

@@ -20,14 +20,16 @@ jQuery(function($) {
 
 	$('[data-copies-field]').on('click', function(e) {
 	    var button = $(e.target);
+	    var message = button.siblings('.copy-field__confirmation');
 	    var fields = $('[data-copiable-field=' + button.data('copies-field') + ']');
 
 	    if (fields.length === 1) {
             fields[0].select();
             document.execCommand('copy');
 
-            // Notify the user that the copy succeeded
+            // Notify the user visually / audibly that the copy succeeded
             button.addClass('copy-field__button--triggered');
+            message.text('Copied!');
             setTimeout(function() {
                 this.removeClass('copy-field__button--triggered');
             }.bind(button), 1000);
