@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "c02395154e43a8064b2054a8fd077fe9",
@@ -1599,6 +1599,7 @@
                 "array_column",
                 "column"
             ],
+            "abandoned": true,
             "time": "2015-03-20T22:07:39+00:00"
         },
         {
@@ -1978,16 +1979,16 @@
         },
         {
             "name": "silverstripe/moduleratings",
-            "version": "1.0.2",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/silverstripe/moduleratings.git",
-                "reference": "6c1f6c5d040efae43b090c8ee324eb7fe22d84a0"
+                "reference": "a6c31fd4d3e5c1bccccf59c1a53c51502a498737"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/moduleratings/zipball/6c1f6c5d040efae43b090c8ee324eb7fe22d84a0",
-                "reference": "6c1f6c5d040efae43b090c8ee324eb7fe22d84a0",
+                "url": "https://api.github.com/repos/silverstripe/moduleratings/zipball/a6c31fd4d3e5c1bccccf59c1a53c51502a498737",
+                "reference": "a6c31fd4d3e5c1bccccf59c1a53c51502a498737",
                 "shasum": ""
             },
             "require": {
@@ -2024,7 +2025,7 @@
                 }
             ],
             "description": "A library to provide module code quality ratings",
-            "time": "2018-09-14T14:18:33+00:00"
+            "time": "2019-02-01T11:56:21+00:00"
         },
         {
             "name": "silverstripe/moduleratings-plugin",

@@ -207,7 +207,7 @@ class Addon extends DataObject
             ['Metric' => $metrics->good_code_coverage, 'Description' => 'Good code coverage (>40%)'],
             ['Metric' => $metrics->great_code_coverage, 'Description' => 'Great code coverage (>75%)'],
             ['Metric' => $metrics->has_documentation, 'Description' => 'Documentation'],
-            ['Metric' => $metrics->travis_passing, 'Description' => 'Travis passing'],
+            ['Metric' => $metrics->ci_passing, 'Description' => 'CI builds passing'],
             ['Metric' => $metrics->good_scrutinizer_score, 'Description' => 'Scrutinizer >6.5'],
             ['Metric' => $metrics->coding_standards, 'Description' => 'PSR-2 standards'],
         ]);
