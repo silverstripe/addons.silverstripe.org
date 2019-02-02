@@ -35,11 +35,11 @@ class AddonBuilder
         $checkSuite = new CheckSuite();
         $this->setCheckSuite($checkSuite);
         // Provide the checksuite with a logger in case API calls fail
-        $logger = new Monolog\Logger('module_ratings_logs', [
-            new SyslogHandler('SilverStripe_log'),
+        $logger = new \Monolog\Logger('module_ratings_logs', [
+            $handler = new SyslogHandler('SilverStripe_log'),
         ]);
         $formatter = new LineFormatter("%level_name%: %message% %context% %extra%");
-        $logger->setFormatter($formatter);
+        $handler->setFormatter($formatter);
         $checkSuite->setLogger($logger);
 
         $composer = $this->packagist->getComposer();
