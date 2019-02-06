@@ -13,7 +13,7 @@ use SilverStripe\Dev\SapphireTest;
 class StitchDataSenderTest extends SapphireTest
 {
 
-    protected static $fixture_file = 'mysite/tests/services/testAddon.yml';
+    protected static $fixture_file = 'app/tests/services/testAddon.yml';
 
     protected $illegalExtensions = [
         'Addon' => [
