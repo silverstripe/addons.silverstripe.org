@@ -1,5 +1,7 @@
 <?php
 
+use SilverStripe\Control\HTTPRequest;
+
 /**
  * The ratings API controller provides access to bulk ratings information for a list of addons provided
  * via the `addons` query string argument, comma delimited.
@@ -12,7 +14,7 @@ class RatingsApiController extends ApiController
         'index',
     ];
 
-    public function index(SS_HTTPRequest $request)
+    public function index(HTTPRequest $request)
     {
         if (!$request->getVar('addons')) {
             return $this->formatResponse([

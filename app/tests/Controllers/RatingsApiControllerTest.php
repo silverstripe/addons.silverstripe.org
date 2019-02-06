@@ -1,5 +1,7 @@
 <?php
 
+use SilverStripe\Dev\FunctionalTest;
+
 /**
  * @mixin PHPUnit_Framework_TestCase
  */

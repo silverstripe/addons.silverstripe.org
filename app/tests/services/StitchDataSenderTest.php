@@ -2,6 +2,8 @@
 
 
 use SilverStripe\Elastica\Searchable;
+use SilverStripe\Dev\SapphireTest;
+
 
 /**
  * Tests for StitchDataSender
