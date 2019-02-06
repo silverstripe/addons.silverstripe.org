@@ -6,7 +6,6 @@ use SilverStripe\Core\Convert;
 use SilverStripe\Control\Director;
 use SilverStripe\Core\Config\Config;
 
-
 /**
  * Abstract controller for actions that provide an API endpoint.
  */
