@@ -34,7 +34,8 @@
     "symbiote/silverstripe-gridfieldextensions": "^2",
     "silverstripe/raygun": "^1",
     "sminnee/stitchdata-php": "^0.1",
-    "monolog/monolog": "^1.23"
+    "monolog/monolog": "^1.23",
+    "silverstripe/ssp-core": "^1@dev"
   },
   "replace": {
     "extensions.silverstripe.org": "*"
