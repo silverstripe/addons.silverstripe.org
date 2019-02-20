@@ -1999,7 +1999,7 @@
             ],
             "authors": [
                 {
-                    "name": "Sam Minnée",
+                    "name": "Sam Minnee",
                     "email": "sam@silverstripe.com"
                 },
                 {
@@ -2018,32 +2018,27 @@
         },
         {
             "name": "silverstripe/framework",
-            "version": "3.6.6",
+            "version": "3.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/silverstripe/silverstripe-framework.git",
-                "reference": "91327ab63e8c0361ce9e3af007b4a047314cd4c2"
+                "reference": "bb5701b73d40909caf99d71bac02e0329d301335"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/silverstripe-framework/zipball/91327ab63e8c0361ce9e3af007b4a047314cd4c2",
-                "reference": "91327ab63e8c0361ce9e3af007b4a047314cd4c2",
+                "url": "https://api.github.com/repos/silverstripe/silverstripe-framework/zipball/bb5701b73d40909caf99d71bac02e0329d301335",
+                "reference": "bb5701b73d40909caf99d71bac02e0329d301335",
                 "shasum": ""
             },
             "require": {
                 "composer/installers": "~1.0",
                 "mustangostang/spyc": "^0.6.2",
-                "php": ">= 5.3.3, <7.2"
+                "php": "^5.3.3 || ^7"
             },
             "require-dev": {
                 "phpunit/phpunit": "^3 || ^4 || ^5"
             },
             "type": "silverstripe-module",
-            "extra": {
-                "branch-alias": {
-                    "3.x-dev": "3.6.x-dev"
-                }
-            },
             "autoload": {
                 "psr-0": {
                     "SilverStripe\\": "src/",
@@ -2076,7 +2071,8 @@
                 "exclude-from-classmap": [
                     "view/SSTemplateParser.php.inc",
                     "dev/phpunit/PhpUnitWrapper.php",
-                    "model/fieldtypes/compat"
+                    "model/fieldtypes/compat",
+                    "core/compat"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2099,7 +2095,7 @@
                 "framework",
                 "silverstripe"
             ],
-            "time": "2018-05-13T22:59:58+00:00"
+            "time": "2019-02-12T08:44:41+00:00"
         },
         {
             "name": "silverstripe/moduleratings",
