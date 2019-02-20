@@ -42,13 +42,13 @@ class AddonBuilder
         $handler->setFormatter($formatter);
         $checkSuite->setLogger($logger);
 
-        $composer = $this->packagist->getComposer();
-        $downloader = $composer->getDownloadManager();
         $packageVersions = $this->packagist->getPackageVersions($addon->Name);
         $time = time();
 
         if (!$packageVersions) {
-            throw new Exception('Could not find corresponding Packagist versions');
+            echo "No versions found on Packagist for " . $addon->Name . "; deleting orphan record.\n";
+            $addon->delete();
+            return;
         }
 
         // Get the latest local and packagist version pair.
