@@ -30,7 +30,9 @@ abstract class ApiController extends Controller
         if (Director::get_environment_type() !== 'dev') {
             // Only cache failure messages for one minute, otherwise use the configured cache age
             $cacheAge = empty($data['success']) ? 60 : Config::inst()->get(static::class, 'cache_age');
-            $response->addHeader('Cache-Control', 'max-age=' . $cacheAge);
+            HTTPCacheControl::singleton()
+                ->enableCache()
+                ->setMaxAge($cacheAge);
         }
 
         return $response;
