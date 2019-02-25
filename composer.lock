@@ -2506,16 +2506,16 @@
         },
         {
             "name": "symbiote/silverstripe-multivaluefield",
-            "version": "3.0.2",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symbiote/silverstripe-multivaluefield.git",
-                "reference": "420486788bc213e80e59e2c7d54b5e17a600e590"
+                "reference": "d201504ada5b9d87fd9e13578ff0a70f5b22e532"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symbiote/silverstripe-multivaluefield/zipball/420486788bc213e80e59e2c7d54b5e17a600e590",
-                "reference": "420486788bc213e80e59e2c7d54b5e17a600e590",
+                "url": "https://api.github.com/repos/symbiote/silverstripe-multivaluefield/zipball/d201504ada5b9d87fd9e13578ff0a70f5b22e532",
+                "reference": "d201504ada5b9d87fd9e13578ff0a70f5b22e532",
                 "shasum": ""
             },
             "require": {
@@ -2544,7 +2544,7 @@
                 "formfield",
                 "silverstripe"
             ],
-            "time": "2018-01-09T02:56:18+00:00"
+            "time": "2019-02-18T05:24:26+00:00"
         },
         {
             "name": "symbiote/silverstripe-queuedjobs",
