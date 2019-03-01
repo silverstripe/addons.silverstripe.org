@@ -2,6 +2,7 @@
 
 use Heyday\Elastica\ReindexTask;
 use SilverStripe\Core\Injector\Injector;
+use Symbiote\QueuedJobs\Jobs\RunBuildTaskJob;
 use Symbiote\QueuedJobs\Services\QueuedJobService;
 use SilverStripe\CronTask\Interfaces\CronTask;
 
