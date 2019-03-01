@@ -64,12 +64,13 @@ class AddonUpdater
         }
 
         // This call to packagist can be expensive. Requests are served from a cache if usePackagistCache() returns true
+        /** @var CacheInterface $cache */
         $cache = Injector::inst()->get(CacheInterface::class . '.addons');
 
         if ($this->usePackagistCache() && $packages = $cache->get('AddonUpdater-packagist')) {
             $packages = unserialize($packages);
         } else {
-            $packages = $this->packagist->getPackages();
+            $packages = $this->packagist->getPackages($limitAddons);
             $cache->set('AddonUpdater-packagist', serialize($packages));
         }
 
@@ -82,8 +83,6 @@ class AddonUpdater
 
         foreach ($packages as $package) {
             /** @var Packagist\Api\Result\Package $package */
-
-            $isAbandoned = (method_exists($package, 'isAbandoned') && $package->isAbandoned());
             $name = $package->getName();
             $versions = $package->getVersions();
 

@@ -1,5 +1,6 @@
 <?php
 
+use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Dev\BuildTask;
 
 /**
@@ -36,13 +37,14 @@ class UpdateAddonsTask extends BuildTask
 
     /**
      * {@inheritDoc}
-     * @param SS_HTTPRequest $request
+     * @param HTTPRequest $request
      */
     public function run($request)
     {
+        $addons = $request->getVar('addons');
         $this->updater->update(
             (bool)$request->getVar('clear'),
-            $request->getVar('addons') ? explode(',', $request->getVar('addons')) : null
+            $addons ? explode(',', $addons) : null
         );
     }
 }
