@@ -124,7 +124,7 @@ class HomeController extends SiteController
 
         $result = $sqlQuery->execute();
 
-        if (count($result)) {
+        if ($result && count($result)) {
             foreach ($result as $row) {
                 $date = date('j M Y', strtotime($row['Created']));
                 if (!isset($chartData[$date])) {
