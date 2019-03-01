@@ -27,3 +27,4 @@ host.txt
 /raygun/
 /resources/
 /silverstripe-elastica/
+.env
