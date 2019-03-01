@@ -1,51 +1,69 @@
 {
-  "name": "silverstripe/addons.silverstripe.org",
-  "description": "The SilverStripe addons listing site",
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/silverstripe/silverstripe-globaltoolbar.git"
+    "name": "silverstripe/addons.silverstripe.org",
+    "description": "The SilverStripe addons listing site",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/silverstripe/silverstripe-globaltoolbar.git"
+        }
+    ],
+    "require": {
+        "composer/installers": "^1.5",
+        "composer/composer": "^1.6",
+        "ezyang/htmlpurifier": "^4.10",
+        "symbiote/silverstripe-multivaluefield": "^5.0",
+        "knplabs/packagist-api": "^1.5",
+        "doctrine/inflector": "^1.3",
+        "doctrine/instantiator": "^1.1",
+        "symfony/event-dispatcher": "^4.0",
+        "symfony/filesystem": "^4.0",
+        "symfony/process": "^4.0",
+        "symfony/finder": "~3.0",
+        "symfony/yaml": "^2.8 | ^3.0",
+        "guzzlehttp/guzzle": "^6.3",
+        "symbiote/silverstripe-queuedjobs": "^4.2",
+        "silverstripe/crontask": "^2.0",
+        "silverstripe/environmentcheck": "^2.0",
+        "aws/aws-sdk-php": "^3.55",
+        "silverstripe/moduleratings": "^1.0",
+        "silverstripe/moduleratings-plugin": "^0.1.1",
+        "squizlabs/php_codesniffer": "^3.2",
+        "symbiote/silverstripe-gridfieldextensions": "^3.1",
+        "php": ">=5.6",
+        "silverstripe/raygun": "^2",
+        "silverstripe/toolbar": "^5@dev",
+        "silverstripe/framework": "^4.1",
+        "heyday/silverstripe-elastica": "^2",
+        "sminnee/stitchdata-php": "^0.1",
+        "monolog/monolog": "^1.23",
+        "silverstripe/ssp-core": "^2@dev"
+    },
+    "replace": {
+        "extensions.silverstripe.org": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7",
+        "phpdocumentor/reflection-docblock": "~3.1.1",
+        "silverstripe/sqlite3": "*",
+        "squizlabs/php_codesniffer": "^3"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "project-files-installed": [
+            "app/.htaccess",
+            "app/_config.php",
+            "app/_config/mysite.yml",
+            "mysite/.htaccess",
+            "mysite/_config.php",
+            "mysite/_config/mysite.yml"
+        ],
+        "public-files-installed": [
+            ".htaccess",
+            "index.php",
+            "install-frameworkmissing.html",
+            "install.php",
+            "web.config"
+        ]
     }
-  ],
-  "require": {
-    "composer/installers": "^1.2",
-    "composer/composer": "^1.2",
-    "ezyang/htmlpurifier": "4.5.*@stable",
-    "silverstripe/framework": "^3",
-    "symbiote/silverstripe-multivaluefield": "^3",
-    "silverstripe/toolbar": "^4.0",
-    "knplabs/packagist-api": "1.*@stable",
-    "doctrine/inflector": "~1.1.0",
-    "doctrine/instantiator": "~1.0.0",
-    "symbiote-library/silverstripe-elastica": "^2",
-    "symfony/event-dispatcher": "^2.8",
-    "symfony/filesystem": "~3.0",
-    "symfony/process": "^2.8",
-    "symfony/finder": "~3.0",
-    "symfony/yaml": "^2.8 | ^3.0",
-    "guzzlehttp/guzzle": "^6.3",
-    "symbiote/silverstripe-queuedjobs": "^3.1",
-    "silverstripe/crontask": "^1.2",
-    "silverstripe/environmentcheck": "^1.3",
-    "aws/aws-sdk-php": "^3.38",
-    "silverstripe/moduleratings": "^1",
-    "silverstripe/moduleratings-plugin": "^0.1",
-    "squizlabs/php_codesniffer": "^3",
-    "symbiote/silverstripe-gridfieldextensions": "^2",
-    "silverstripe/raygun": "^1",
-    "sminnee/stitchdata-php": "^0.1",
-    "monolog/monolog": "^1.23",
-    "silverstripe/ssp-core": "^1@dev"
-  },
-  "replace": {
-    "extensions.silverstripe.org": "*"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "^4.8",
-    "phpdocumentor/reflection-docblock": "~3.1.1",
-    "silverstripe/sqlite3": "*",
-    "squizlabs/php_codesniffer": "^3"
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true
 }

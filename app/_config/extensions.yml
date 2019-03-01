@@ -1,0 +1,6 @@
+---
+Name: addonsextensions
+---
+Symbiote\QueuedJobs\Controllers\QueuedJobsAdmin:
+  extensions:
+    - QueuedJobsAdminExtension

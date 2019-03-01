@@ -22,6 +22,9 @@ debug.log
 error.log
 dump.rdb
 /gridfieldextensions
-/raygun
 _ss_environment.php
 host.txt
+/raygun/
+/resources/
+/silverstripe-elastica/
+.env

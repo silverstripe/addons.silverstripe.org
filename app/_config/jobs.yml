@@ -1,0 +1,12 @@
+---
+Name: addonsjobs
+---
+Symbiote\QueuedJobs\Jobs\CleanupJob:
+  is_enabled: true
+  cleanup_method: age
+  cleanup_value: 3
+  cleanup_statuses:
+    - Complete
+    - Broken
+    - Paused
+    - Cancelled

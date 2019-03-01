@@ -40,7 +40,7 @@ The development environment is managed with Vagrant. It will provide both a Silv
 
 [ElasticSearch](http://www.elasticsearch.org) is used to provide add-on package indexing and searching.
 
-The configuration is already set up in `mysite/_config/injector.yml` and will use a different index depending on 
+The configuration is already set up in `app/_config/injector.yml` and will use a different index depending on 
 whether the site is on the production server (live) or on UAT or local development environment (test or dev).
 
  - Install with `brew install elasticsearch`

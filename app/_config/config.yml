@@ -1,0 +1,35 @@
+---
+After: 'toolbar/*'
+---
+SilverStripe\View\SSViewer:
+  theme: addons
+SilverStripe\Toolbar\TemplateProvider:
+  connection_timeout: 2000
+  transfer_timeout: 6000
+---
+Only:
+  environment: dev
+---
+SilverStripe\Toolbar\TemplateProvider:
+  css_file: '/themes/ssv3/css/toolbar.min.css'
+GlobalNav:
+  hostname: '//www.silverstripe.org/'
+  use_localhost: false
+---
+Only:
+  environment: test
+---
+SilverStripe\Toolbar\TemplateProvider:
+  css_file: '/themes/ssv3/css/toolbar.min.css'
+GlobalNav:
+  hostname: '//www.silverstripe.org/'
+  use_localhost: false
+---
+Only:
+  environment: live
+---
+SilverStripe\Toolbar\TemplateProvider:
+  css_file: '/themes/ssv3/css/toolbar.min.css'
+GlobalNav:
+  hostname: '//www.silverstripe.org/'
+  use_localhost: false
