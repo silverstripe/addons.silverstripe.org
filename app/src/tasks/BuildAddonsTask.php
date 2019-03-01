@@ -1,5 +1,6 @@
 <?php
 
+use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Dev\BuildTask;
 
 /**
@@ -37,7 +38,7 @@ class BuildAddonsTask extends BuildTask
 
     /**
      * {@inheritDoc}
-     * @param SS_HTTPRequest $request
+     * @param HTTPRequest $request
      */
     public function run($request)
     {
