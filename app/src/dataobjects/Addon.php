@@ -207,18 +207,66 @@ class Addon extends DataObject
         $metrics = $this->RatingData();
 
         return ArrayList::create([
-            ['Metric' => $metrics->has_readme, 'Description' => 'Readme'],
-            ['Metric' => $metrics->has_license, 'Description' => 'FOSS License'],
-            ['Metric' => $metrics->has_code_or_src_folder, 'Description' => 'Structured correctly'],
-            ['Metric' => $metrics->has_contributing_file, 'Description' => 'Contributing file'],
-            ['Metric' => $metrics->has_gitattributes_file, 'Description' => 'Git attributes file'],
-            ['Metric' => $metrics->has_editorconfig_file, 'Description' => 'Editor config file'],
-            ['Metric' => $metrics->good_code_coverage, 'Description' => 'Good code coverage (>40%)'],
-            ['Metric' => $metrics->great_code_coverage, 'Description' => 'Great code coverage (>75%)'],
-            ['Metric' => $metrics->has_documentation, 'Description' => 'Documentation'],
-            ['Metric' => $metrics->ci_passing, 'Description' => 'CI builds passing'],
-            ['Metric' => $metrics->good_scrutinizer_score, 'Description' => 'Scrutinizer >6.5'],
-            ['Metric' => $metrics->coding_standards, 'Description' => 'PSR-2 standards'],
+            [
+                'Metric' => $metrics->has_readme,
+                'Description' => 'Readme',
+                'Title' => 'Module has a readme file',
+            ],
+            [
+                'Metric' => $metrics->has_license,
+                'Description' => 'FOSS License',
+                'Title' => 'Module has a "free open source software" license',
+            ],
+            [
+                'Metric' => $metrics->has_code_or_src_folder,
+                'Description' => 'Structured correctly',
+                'Title' => 'PHP code is in a folder called "code" or "src"',
+            ],
+            [
+                'Metric' => $metrics->has_contributing_file,
+                'Description' => 'Contributing file',
+                'Title' => 'A guide for open source contributors exists',
+            ],
+            [
+                'Metric' => $metrics->has_gitattributes_file,
+                'Description' => 'Git attributes file',
+                'Title' => 'A .gitattributes file exists to ignore files from distributable packages',
+            ],
+            [
+                'Metric' => $metrics->has_editorconfig_file,
+                'Description' => 'Editor config file',
+                'Title' => 'An EditorConfig ruleset file exists for IDE formatting',
+            ],
+            [
+                'Metric' => $metrics->good_code_coverage,
+                'Description' => 'Good code coverage (>40%)',
+                'Title' => '40% or more of code is covered by automated tests (in codecov.io or ScrutinizerCI)',
+            ],
+            [
+                'Metric' => $metrics->great_code_coverage,
+                'Description' => 'Great code coverage (>75%)',
+                'Title' => '75% or more of code is covered by automated tests (in codecov.io or ScrutinizerCI)',
+            ],
+            [
+                'Metric' => $metrics->has_documentation,
+                'Description' => 'Documentation',
+                'Title' => 'A "docs" folder exists containing documentation',
+            ],
+            [
+                'Metric' => $metrics->ci_passing,
+                'Description' => 'CI builds passing',
+                'Title' => 'Automated tests via TravisCI or CircleCI are passing',
+            ],
+            [
+                'Metric' => $metrics->good_scrutinizer_score,
+                'Description' => 'Scrutinizer >6.5',
+                'Title' => 'ScrutinizerCI score for this module is at least 6.5/10',
+            ],
+            [
+                'Metric' => $metrics->coding_standards,
+                'Description' => 'PSR-2 standards',
+                'Title' => 'PHP code conforms to SilverStripe\'s implementation of PSR-2 formatting rules'
+            ],
         ]);
     }
 
