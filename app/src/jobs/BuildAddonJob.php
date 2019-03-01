@@ -8,8 +8,6 @@ use Symbiote\QueuedJobs\Services\AbstractQueuedJob;
  */
 class BuildAddonJob extends AbstractQueuedJob
 {
-    private $packageID;
-
     /**
      * @var array params
      * @throws Exception
@@ -17,6 +15,7 @@ class BuildAddonJob extends AbstractQueuedJob
     public function __construct($params = array())
     {
         if (!empty($params['package'])) {
+            // NB: this uses parent::__set() to set as $this->jobData->PackageID
             $this->PackageID = $params['package'];
         }
 
@@ -36,8 +35,8 @@ class BuildAddonJob extends AbstractQueuedJob
             throw new Exception('Package not specified');
         }
 
+        /** @var AddonBuilder $builder */
         $builder = Injector::inst()->get('AddonBuilder');
-
         $builder->build($package);
 
         $package->BuildQueued = false;
