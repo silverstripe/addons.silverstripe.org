@@ -1,10 +1,11 @@
 <?php
 
 use SilverStripe\Control\Controller;
-use SilverStripe\Control\HTTPResponse;
-use SilverStripe\Core\Convert;
 use SilverStripe\Control\Director;
+use SilverStripe\Control\HTTPResponse;
+use SilverStripe\Control\Middleware\HTTPCacheControlMiddleware;
 use SilverStripe\Core\Config\Config;
+use SilverStripe\Core\Convert;
 
 /**
  * Abstract controller for actions that provide an API endpoint.
@@ -23,7 +24,7 @@ abstract class ApiController extends Controller
      * Given a result payload, format as a JSON response and return
      *
      * @param array $data
-     * @return SS_HTTPResponse
+     * @return HTTPResponse
      */
     protected function formatResponse(array $data)
     {
@@ -36,7 +37,7 @@ abstract class ApiController extends Controller
         if (Director::get_environment_type() !== 'dev') {
             // Only cache failure messages for one minute, otherwise use the configured cache age
             $cacheAge = empty($data['success']) ? 60 : Config::inst()->get(static::class, 'cache_age');
-            HTTPCacheControl::singleton()
+            HTTPCacheControlMiddleware::singleton()
                 ->enableCache()
                 ->setMaxAge($cacheAge);
         }
