@@ -2,7 +2,9 @@
 
 use SilverStripe\Control\Director;
 use SilverStripe\Control\Controller;
+use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\DataObject;
+use SilverStripe\ORM\ManyManyList;
 
 /**
  * An author who can be linked to several add-ons.
@@ -40,6 +42,11 @@ class AddonAuthor extends DataObject
 
     public function Addons()
     {
-        return Addon::get()->filter('ID', $this->Versions()->column('AddonID'));
+        /** @var ManyManyList $versions */
+        $versions = $this->Versions();
+        if (!$versions || !$versions->count()) {
+            return ArrayList::create();
+        }
+        return Addon::get()->filter('ID', $versions->column('AddonID'));
     }
 }
