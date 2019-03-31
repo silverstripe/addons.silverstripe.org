@@ -70,7 +70,7 @@ class AddonUpdater
         if ($this->usePackagistCache() && $packages = $cache->get('AddonUpdater-packagist')) {
             $packages = unserialize($packages);
         } else {
-            $packages = $this->packagist->getPackages($limitAddons);
+            $packages = $this->packagist->getPackages($limitAddons ? $limitAddons : []);
             $cache->set('AddonUpdater-packagist', serialize($packages));
         }
 
