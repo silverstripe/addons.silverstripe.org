@@ -15,14 +15,14 @@ The development environment is managed with Vagrant. It will provide both a Silv
 1. `git clone https://github.com/silverstripe/addons.silverstripe.org.git`
 2. `cd` into the directory to run some initialisation commands:
    a. `composer install`
-   b. `cp _ss_environment.php.default _ss_environment.php`
+   b. `cp .env.default .env`
    c. `touch host.txt`
 3. Install vagrant:
    a. Install [Vagrant](https://vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
    b. `vagrant plugin install vagrant-hostsupdater vagrant-bindfs vagrant-cachier vagrant-vbguest`
    c. `vagrant box add silverstripeltd/dev-ssp`
 4. Run `vagrant up --provision` to start the box
-5. Visit (http://ssaddons.vagrant/)[http://ssaddons.vagrant/] to see your development environemtn.
+5. Visit (http://ssaddons.vagrant/)[http://ssaddons.vagrant/] to see your development environment.
 6. Initialise the database:
    a. Visit [dev/build](http://ssaddons.vagrant/dev/build)
    b. Visit [dev/tasks/queue/UpdateSilverStripeVersionsTask](http://ssaddons.vagrant/dev/tasks/queue/UpdateSilverStripeVersionsTask)
@@ -38,17 +38,21 @@ The development environment is managed with Vagrant. It will provide both a Silv
 
 ### ElasticSearch
 
-[ElasticSearch](http://www.elasticsearch.org) is used to provide add-on package indexing and searching.
+[ElasticSearch](http://www.elasticsearch.org) is used to provide add-on package indexing and searching. The addons
+site runs **ElasticSearch 5.6** on SilverStripe Platform.
 
 The configuration is already set up in `app/_config/injector.yml` and will use a different index depending on 
 whether the site is on the production server (live) or on UAT or local development environment (test or dev).
 
- - Install with `brew install elasticsearch`
+ - Install with `brew install elasticsearch@5.6`
  - Start the server with `elasticsearch` in your terminal
 
 You should run the elastic search reindex task to create the mappings after installation.
 
 Once running you can run the `UpdateAddonsTask` to pull all SilverStripe modules from Packagist into the addons site.
+
+**Note:** if you are having trouble installing this with Homebrew (or not using MacOS), you can also [install
+ElasticSearch with Docker](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/docker.html).
 
 ### Queued Jobs
 
@@ -60,14 +64,14 @@ Queued Jobs requires a cronjob to run - for more information [visit the module's
 Run each of the following tasks in order the first time you set up the site to ensure you have a full database 
 of modules to work with.
 
-1. `framework/sake dev/tasks/UpdateSilverStripeVersionsTask`: Updates the available SilverStripe versions.
-2. `framework/sake dev/tasks/UpdateAddonsTask`: Runs the add-on updater, and queues extended add-on builds.
-3. `framework/sake dev/tasks/DeleteRedundantAddonsTask`: Deletes addons which haven't been updated
+1. `vendor/bin/sake dev/tasks/UpdateSilverStripeVersionsTask`: Updates the available SilverStripe versions.
+2. `vendor/bin/sake dev/tasks/UpdateAddonsTask`: Runs the add-on updater, and queues extended add-on builds.
+3. `vendor/bin/sake dev/tasks/DeleteRedundantAddonsTask`: Deletes addons which haven't been updated
    from packagist in a specified amount of time, which implies they're no longer available there.
-4. `framework/sake dev/tasks/BuildAddonsTask`: Manually build addons, downloading screenshots
+4. `vendor/bin/sake dev/tasks/BuildAddonsTask`: Manually build addons, downloading screenshots
    and a README for display through the website and run module ratings. There's no need to set up a cron job
    for this task if you're using the resque queue.
-5. `framework/sake dev/tasks/SilverStripe-Elastica-ReindexTask`: Defines and refreshes the elastic search index.
+5. `vendor/bin/sake dev/tasks/Heyday-Elastica-ReindexTask`: Defines and refreshes the ElasticSearch index.
 
 ## Front-end build tooling
 

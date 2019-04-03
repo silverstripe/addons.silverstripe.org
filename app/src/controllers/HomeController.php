@@ -2,7 +2,9 @@
 
 use SilverStripe\Control\Director;
 use SilverStripe\ORM\ArrayList;
+use SilverStripe\ORM\DataList;
 use SilverStripe\ORM\DB;
+use SilverStripe\ORM\Limitable;
 use SilverStripe\View\ArrayData;
 use SilverStripe\Control\Controller;
 use SilverStripe\ORM\Queries\SQLSelect;
@@ -58,7 +60,7 @@ class HomeController extends SiteController
 
     /**
      * @param int $limit
-     * @return DataList|SS_Limitable default to Relative addons
+     * @return DataList|Limitable default to Relative addons
      */
     public function PopularAddons($limit = 10)
     {
@@ -67,7 +69,7 @@ class HomeController extends SiteController
 
     /**
      * @param int $limit
-     * @return DataList|SS_Limitable List sorted by absolute downloads
+     * @return DataList|Limitable List sorted by absolute downloads
      */
     public static function AbsolutePopularAddons($limit = 10)
     {
