@@ -137,7 +137,7 @@ class Addon extends DataObject
             'vendor'        => array('type' => 'string'),
             'tags'          => array('type' => 'string'),
             'released'      => array('type' => 'date'),
-            'downloads'     => array('type' => 'string'),
+            'downloads'     => array('type' => 'long'),
             'readme'        => array('type' => 'string')
         ));
     }
@@ -152,7 +152,7 @@ class Addon extends DataObject
             'vendor'        => $this->VendorName(),
             'tags'          => $this->Keywords()->column('Name'),
             'released'      => $this->obj('Released')->Format('c'),
-            'downloads'     => (string)$this->Downloads,
+            'downloads'     => (int)$this->Downloads,
             'readme'        => strip_tags($this->Readme),
             'SS_Published'  => true,
         ));
