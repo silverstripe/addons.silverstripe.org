@@ -52,7 +52,7 @@ You should run the elastic search reindex task to create the mappings after inst
 Once running you can run the `UpdateAddonsTask` to pull all SilverStripe modules from Packagist into the addons site.
 
 **Note:** if you are having trouble installing this with Homebrew (or not using MacOS), you can also [install
-ElasticSearch with Docker](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/docker.html).
+ElasticSearch manually](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/zip-targz.html).
 
 ### Queued Jobs
 
