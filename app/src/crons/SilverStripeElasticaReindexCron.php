@@ -32,7 +32,7 @@ class SilverStripeElasticaReindexCron implements CronTask
         $taskClasses = [
             [UpdateSilverStripeVersionsTask::class, null],
             [UpdateAddonsTask::class, null],
-            [ReindexTask::class, 'reindex=1'],
+            [ReindexTask::class, 'recreate=1'],
         ];
 
         foreach ($taskClasses as $taskInfo) {

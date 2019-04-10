@@ -71,7 +71,8 @@ of modules to work with.
 4. `vendor/bin/sake dev/tasks/BuildAddonsTask`: Manually build addons, downloading screenshots
    and a README for display through the website and run module ratings. There's no need to set up a cron job
    for this task if you're using the resque queue.
-5. `vendor/bin/sake dev/tasks/Heyday-Elastica-ReindexTask`: Defines and refreshes the ElasticSearch index.
+5. `vendor/bin/sake dev/tasks/Heyday-Elastica-ReindexTask`: Defines and refreshes the ElasticSearch index (add
+  `?recreate=1` to delete and recreate the index from scratch).
 
 ## Front-end build tooling
 
