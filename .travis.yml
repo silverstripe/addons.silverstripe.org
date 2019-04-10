@@ -6,18 +6,7 @@ php:
 before_script:
   - composer self-update || true
   - composer install
-  - |
-      cat << 'EOF' > _ss_environment.php
-      <?php
-      define('SS_ENVIRONMENT_TYPE', 'dev');
-      define('SS_DATABASE_CLASS', 'MySQLDatabase');
-      define('SS_DATABASE_SERVER', '127.0.0.1');
-      define('SS_DATABASE_USERNAME', 'root');
-      define('SS_DATABASE_PASSWORD', '');
-      define('SS_DATABASE_CHOOSE_NAME', true);
-      global $_FILE_TO_URL_MAPPING;
-      $_FILE_TO_URL_MAPPING[realpath(__DIR__)] = 'http://localhost';
-      // EOF;
+
 script:
   - vendor/bin/phpunit app/tests
   - vendor/bin/phpcs app

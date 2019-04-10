@@ -1,5 +1,6 @@
 <?php
 
+use Heyday\Elastica\Searchable;
 use SilverStripe\Dev\FunctionalTest;
 
 /**
@@ -8,6 +9,12 @@ use SilverStripe\Dev\FunctionalTest;
 class RatingApiControllerTest extends FunctionalTest
 {
     protected static $fixture_file = 'RatingApiControllerTest.yml';
+
+    protected static $illegal_extensions = [
+        Addon::class => [
+            Searchable::class,
+        ],
+    ];
 
     public function testErrorWhenMissingParams()
     {
@@ -39,7 +46,7 @@ class RatingApiControllerTest extends FunctionalTest
 
         $result = json_decode($response->getBody());
         $this->assertTrue($result->success);
-        $this->assertSame(53, $result->rating);
+        $this->assertEquals(53, $result->rating);
     }
 
     public function testDetailedResponse()
