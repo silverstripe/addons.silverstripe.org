@@ -43,6 +43,6 @@ if (Environment::getEnv('ELASTICSEARCH_HOST') && Environment::getEnv('ELASTICSEA
         $esIndex = 'addons';
     }
 
-    $esService = new SSElasticaService($esClient, $esIndex, Injector::inst()->get(LoggerInterface::class));
+    $esService = new ElasticaService($esClient, $esIndex, Injector::inst()->get(LoggerInterface::class));
     Injector::inst()->registerService($esService, ElasticaService::class);
 }

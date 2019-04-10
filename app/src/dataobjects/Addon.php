@@ -2,6 +2,7 @@
 
 use Elastica\Document;
 use Elastica\Type\Mapping;
+use Heyday\Elastica\Searchable;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\ORM\FieldType\DBBoolean;
 use SilverStripe\Assets\Image;
@@ -54,9 +55,9 @@ class Addon extends DataObject
 
     private static $default_sort = 'Name';
 
-    private static $extensions = array(
-        'Heyday\\Elastica\\Searchable'
-    );
+    private static $extensions = [
+        Searchable::class,
+    ];
 
     /**
      * Gets the addon's versions sorted from newest to oldest.

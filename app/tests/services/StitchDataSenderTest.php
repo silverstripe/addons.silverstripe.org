@@ -1,7 +1,6 @@
 <?php
 
-
-use SilverStripe\Elastica\Searchable;
+use Heyday\Elastica\Searchable;
 use SilverStripe\Dev\SapphireTest;
 
 /**
@@ -14,10 +13,10 @@ class StitchDataSenderTest extends SapphireTest
 
     protected static $fixture_file = 'app/tests/services/testAddon.yml';
 
-    protected $illegalExtensions = [
-        'Addon' => [
+    protected static $illegal_extensions = [
+        Addon::class => [
             Searchable::class,
-        ]
+        ],
     ];
 
     public function testAddonToJson()
