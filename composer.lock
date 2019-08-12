@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "70cd3833b04d005d37581a880f183df5",
+    "content-hash": "f05330b5ce55141d138e9539c8b44f37",
     "packages": [
         {
             "name": "asyncphp/doorman",
@@ -3357,16 +3357,16 @@
         },
         {
             "name": "silverstripe/toolbar",
-            "version": "dev-feature/55276-ss4-swiftype-search",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/lexakami/silverstripe-globaltoolbar.git",
-                "reference": "6bc9b90b7208799d32b5b273da36fe499ec654c3"
+                "url": "https://github.com/silverstripe/silverstripe-globaltoolbar.git",
+                "reference": "bc7bce7492da6a654c17199b76ed12ae2fce7746"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lexakami/silverstripe-globaltoolbar/zipball/6bc9b90b7208799d32b5b273da36fe499ec654c3",
-                "reference": "6bc9b90b7208799d32b5b273da36fe499ec654c3",
+                "url": "https://api.github.com/repos/silverstripe/silverstripe-globaltoolbar/zipball/bc7bce7492da6a654c17199b76ed12ae2fce7746",
+                "reference": "bc7bce7492da6a654c17199b76ed12ae2fce7746",
                 "shasum": ""
             },
             "require": {
@@ -3404,9 +3404,10 @@
                 "silverstripe"
             ],
             "support": {
-                "source": "https://github.com/lexakami/silverstripe-globaltoolbar/tree/feature/55276-ss4-swiftype-search"
+                "source": "https://github.com/silverstripe/silverstripe-globaltoolbar/tree/master",
+                "issues": "https://github.com/silverstripe/silverstripe-globaltoolbar/issues"
             },
-            "time": "2019-08-12T05:13:46+00:00"
+            "time": "2019-08-12T23:21:39+00:00"
         },
         {
             "name": "silverstripe/vendor-plugin",
