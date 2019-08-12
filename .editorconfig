@@ -15,7 +15,7 @@ trim_trailing_whitespace = true
 [*.md]
 trim_trailing_whitespace = false
 
-[{*.less,*.yml}]
+[{*.less,*.yml,*.js,*.css,Gruntfile.js}]
 indent_size = 2
 indent_style = space
 
