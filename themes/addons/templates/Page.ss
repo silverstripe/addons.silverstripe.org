@@ -16,10 +16,10 @@
 			<div class="global-nav header-mask">
 				<div id="navWrapper">
 					$GlobalNav('addons')
-					<!-- to do: include SearchBox once toolbar is upgraded -->
 				</div>
 			</div>
 		</header>
+		<% include SearchModal %>
 		<div id="header" class="navbar navbar-static-top">
 			<div class="navbar-inner">
 				<div class="container">

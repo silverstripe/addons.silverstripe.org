@@ -4,7 +4,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/silverstripe/silverstripe-globaltoolbar.git"
+            "url": "https://github.com/lexakami/silverstripe-globaltoolbar"
         }
     ],
     "require": {
@@ -31,7 +31,7 @@
         "symbiote/silverstripe-gridfieldextensions": "^3.1",
         "php": ">=5.6",
         "silverstripe/raygun": "^2",
-        "silverstripe/toolbar": "^5@dev",
+        "silverstripe/toolbar": "dev-feature/55276-ss4-swiftype-search",
         "silverstripe/framework": "^4.1",
         "heyday/silverstripe-elastica": "^3.0@rc",
         "sminnee/stitchdata-php": "^0.1",

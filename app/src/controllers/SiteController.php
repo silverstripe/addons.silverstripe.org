@@ -17,7 +17,6 @@ class SiteController extends Controller
     {
         RSSFeed::linkToFeed("add-ons/rss", "New modules on addons.silverstripe.org");
 
-        Requirements::javascript("//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js");
         Requirements::javascript("themes/addons/bootstrap/js/bootstrap.min.js");
         Requirements::javascript("themes/addons/javascript/addons.js");
         Requirements::javascript("//www.google.com/jsapi");
