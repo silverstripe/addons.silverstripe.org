@@ -3361,12 +3361,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silverstripe/silverstripe-globaltoolbar.git",
-                "reference": "61a3a4a6e29b1e88c2f67f12d17ede3fc83e7450"
+                "reference": "bc7bce7492da6a654c17199b76ed12ae2fce7746"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/silverstripe-globaltoolbar/zipball/61a3a4a6e29b1e88c2f67f12d17ede3fc83e7450",
-                "reference": "61a3a4a6e29b1e88c2f67f12d17ede3fc83e7450",
+                "url": "https://api.github.com/repos/silverstripe/silverstripe-globaltoolbar/zipball/bc7bce7492da6a654c17199b76ed12ae2fce7746",
+                "reference": "bc7bce7492da6a654c17199b76ed12ae2fce7746",
                 "shasum": ""
             },
             "require": {
@@ -3407,7 +3407,7 @@
                 "source": "https://github.com/silverstripe/silverstripe-globaltoolbar/tree/master",
                 "issues": "https://github.com/silverstripe/silverstripe-globaltoolbar/issues"
             },
-            "time": "2018-07-17T02:53:25+00:00"
+            "time": "2019-08-12T23:21:39+00:00"
         },
         {
             "name": "silverstripe/vendor-plugin",
