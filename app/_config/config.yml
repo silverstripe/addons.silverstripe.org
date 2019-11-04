@@ -22,7 +22,7 @@ Only:
 SilverStripe\Toolbar\TemplateProvider:
   css_file: '/themes/ssv3/css/toolbar.min.css'
 GlobalNav:
-  hostname: '//www.silverstripe.org/'
+  hostname: '//uat.silverstripe.org/'
   use_localhost: false
 ---
 Only:
