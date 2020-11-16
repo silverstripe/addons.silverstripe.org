@@ -38,9 +38,6 @@
         "monolog/monolog": "^1.23",
         "silverstripe/ssp-core": "^2@dev"
     },
-    "replace": {
-        "extensions.silverstripe.org": "*"
-    },
     "require-dev": {
         "phpunit/phpunit": "^5.7",
         "phpdocumentor/reflection-docblock": "~3.1.1",
