@@ -98,6 +98,8 @@ class AddonUpdater
             $addon = Addon::get()->filter('Name', $name)->first();
 
             if (!$addon) {
+                echo sprintf("Creating addon: %s", $name) . PHP_EOL;
+
                 $addon = new Addon();
                 $addon->Name = $name;
                 $addon->write();
