@@ -86,6 +86,11 @@ class AddonUpdater
             $name = $package->getName();
             $versions = $package->getVersions();
 
+            // Unclear when this happens, but we've observed a few NULL records per month
+            if (!$name) {
+                continue;
+            }
+
             if ($limitAddons && !in_array($name, $limitAddons)) {
                 continue;
             }
