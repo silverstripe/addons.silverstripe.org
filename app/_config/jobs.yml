@@ -10,3 +10,6 @@ Symbiote\QueuedJobs\Jobs\CleanupJob:
     - Broken
     - Paused
     - Cancelled
+
+Symbiote\QueuedJobs\Services\QueuedJobService:
+  worker_ttl: 'PT120M'
