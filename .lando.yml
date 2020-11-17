@@ -1,0 +1,47 @@
+name: addons
+recipe: lamp
+config:
+  webroot: .
+  php: "7.3"
+  xdebug: true
+
+services:
+  appserver:
+    overrides:
+      environment:
+        PHP_IDE_CONFIG: "serverName=appserver"
+  database:
+    portforward: true
+  elasticsearch:
+    type: elasticsearch:5.6.16
+    portforward: true
+
+proxy:
+  appserver:
+    - addons.lndo.site
+
+tooling:
+  sake:
+    service: appserver
+    cmd: ./vendor/bin/sake
+  npm:
+    service: node
+  sspak:
+    service: appserver
+    cmd: ./vendor/bin/sspak
+  phpunit:
+    service: appserver
+    cmd: ./vendor/bin/phpunit
+  build:
+    service: appserver
+    cmd: composer install && composer vendor-expose && ./vendor/bin/sake dev/build
+  xdebug-on:
+    service: appserver
+    description: Enable xdebug for apache.
+    cmd: "docker-php-ext-enable xdebug && /etc/init.d/apache2 reload"
+    user: root
+  xdebug-off:
+    service: appserver
+    description: Disable xdebug for apache.
+    cmd: "rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && /etc/init.d/apache2 reload"
+    user: root

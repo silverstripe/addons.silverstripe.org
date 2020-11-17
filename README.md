@@ -10,24 +10,24 @@ from [Packagist](http://packagist.org).
 
 ## Setting up a development environment
 
-The development environment is managed with Vagrant. It will provide both a SilverStripe LAMP stack and an ElasticSearch server. Here's how to set it up.
+The development environment is managed with Lando.
+It will provide both a SilverStripe LAMP stack and an ElasticSearch server.
 
-1. `git clone https://github.com/silverstripe/addons.silverstripe.org.git`
-2. `cd` into the directory to run some initialisation commands:
-   a. `composer install`
-   b. `cp .env.default .env`
-   c. `touch host.txt`
-3. Install vagrant:
-   a. Install [Vagrant](https://vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-   b. `vagrant plugin install vagrant-hostsupdater vagrant-bindfs vagrant-cachier vagrant-vbguest`
-   c. `vagrant box add silverstripeltd/dev-ssp`
-4. Run `vagrant up --provision` to start the box
-5. Visit (http://ssaddons.vagrant/)[http://ssaddons.vagrant/] to see your development environment.
-6. Initialise the database:
-   a. Visit [dev/build](http://ssaddons.vagrant/dev/build)
-   b. Visit [dev/tasks/queue/UpdateSilverStripeVersionsTask](http://ssaddons.vagrant/dev/tasks/queue/UpdateSilverStripeVersionsTask)
-   c. Visit [dev/tasks/queue/UpdateAddonsTask](http://ssaddons.vagrant/dev/tasks/queue/UpdateAddonsTask)
-7. Open [queued jobs admin](http://ssaddons.vagrant/admin/queuedjobs/) and verify that the tasks have started.
+```
+composer install
+cp .env.default .env
+lando start
+lando build
+```
+
+Now you can run the required tasks:
+
+```
+lando sake dev/tasks/queue/UpdateSilverStripeVersionsTask
+lando sake dev/tasks/queue/UpdateAddonsTask
+```
+
+Open [queued jobs admin](http://ssaddons.vagrant/admin/queuedjobs/) and verify that the tasks have started.
 
 ## Dependencies
 
@@ -43,9 +43,6 @@ site runs **ElasticSearch 5.6** on SilverStripe Platform.
 
 The configuration is already set up in `app/_config/injector.yml` and will use a different index depending on 
 whether the site is on the production server (live) or on UAT or local development environment (test or dev).
-
- - Install with `brew install elasticsearch@5.6`
- - Start the server with `elasticsearch` in your terminal
 
 You should run the elastic search reindex task to create the mappings after installation.
 
@@ -64,14 +61,14 @@ Queued Jobs requires a cronjob to run - for more information [visit the module's
 Run each of the following tasks in order the first time you set up the site to ensure you have a full database 
 of modules to work with.
 
-1. `vendor/bin/sake dev/tasks/UpdateSilverStripeVersionsTask`: Updates the available SilverStripe versions.
-2. `vendor/bin/sake dev/tasks/UpdateAddonsTask`: Runs the add-on updater, and queues extended add-on builds.
-3. `vendor/bin/sake dev/tasks/DeleteRedundantAddonsTask`: Deletes addons which haven't been updated
+1. `dev/tasks/UpdateSilverStripeVersionsTask`: Updates the available SilverStripe versions.
+2. `dev/tasks/UpdateAddonsTask`: Runs the add-on updater, and queues extended add-on builds.
+3. `dev/tasks/DeleteRedundantAddonsTask`: Deletes addons which haven't been updated
    from packagist in a specified amount of time, which implies they're no longer available there.
-4. `vendor/bin/sake dev/tasks/BuildAddonsTask`: Manually build addons, downloading screenshots
+4. `dev/tasks/BuildAddonsTask`: Manually build addons, downloading screenshots
    and a README for display through the website and run module ratings. There's no need to set up a cron job
    for this task if you're using the resque queue.
-5. `vendor/bin/sake dev/tasks/Heyday-Elastica-ReindexTask`: Defines and refreshes the ElasticSearch index (add
+5. `dev/tasks/Heyday-Elastica-ReindexTask`: Defines and refreshes the ElasticSearch index (add
   `?recreate=1` to delete and recreate the index from scratch).
 
 ## Front-end build tooling
