@@ -10,7 +10,6 @@ use Symbiote\QueuedJobs\Services\QueuedJobService;
 use SilverStripe\Dev\Debug;
 use SilverStripe\Control\Email\Email;
 use SilverStripe\ORM\DataList;
-use Psr\SimpleCache\CacheInterface;
 use SilverStripe\Core\Injector\Injector;
 use Psr\Log\LoggerInterface;
 
@@ -63,16 +62,8 @@ class AddonUpdater
             AddonVersion::get()->removeAll();
         }
 
-        // This call to packagist can be expensive. Requests are served from a cache if usePackagistCache() returns true
-        /** @var CacheInterface $cache */
-        $cache = Injector::inst()->get(CacheInterface::class . '.addons');
-
-        if ($this->usePackagistCache() && $packages = $cache->get('AddonUpdater-packagist')) {
-            $packages = unserialize($packages);
-        } else {
-            $packages = $this->packagist->getPackages($limitAddons ? $limitAddons : []);
-            $cache->set('AddonUpdater-packagist', serialize($packages));
-        }
+        // Uses a generator to save memory
+        $packages = $this->packagist->getPackages($limitAddons ? $limitAddons : []);
 
         // TODO: AWS elasticsearch doesn't have this setting enabled
         // https://www.elastic.co/guide/en/elasticsearch/reference/5.2/url-access-control.html
@@ -114,20 +105,7 @@ class AddonUpdater
 
         // $this->elastica->endBulkIndex();
     }
-
-
-
-    /**
-     * Check whether or not we should contact packagist or use a cached version. This allows to speed up the task
-     * during development.
-     *
-     * @return bool
-     */
-    protected function usePackagistCache()
-    {
-        return Director::isDev();
-    }
-
+    
     private function updateAddon(Addon $addon, Package $package, array $versions)
     {
         echo "Updating addon {$addon->Name}:\n";

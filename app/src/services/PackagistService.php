@@ -39,7 +39,7 @@ class PackagistService
      * Gets all SilverStripe packages.
      *
      * @param string[] $limitAddons If specified, can be a list of addons to restrict the return to
-     * @return Packagist\Api\Result\Package[]
+     * @return \Generator Returning Packagist\Api\Result\Package[]
      */
     public function getPackages(array $limitAddons = [])
     {
@@ -54,12 +54,11 @@ class PackagistService
         foreach ($addonTypes as $type) {
             $repositoriesNames = $limitAddons ?: $this->client->all(['type' => $type]);
             foreach ($repositoriesNames as $name) {
-                $packages[] = $this->client->get($name);
                 // output to give feedback when running
                 echo sprintf("PackagistService: Retrieved %s", $name) . PHP_EOL;
+                yield $this->client->get($name);
             }
         }
-        return $packages;
     }
 
     /**
