@@ -55,7 +55,8 @@ class PackagistService
             $repositoriesNames = $limitAddons ?: $this->client->all(['type' => $type]);
             foreach ($repositoriesNames as $name) {
                 $packages[] = $this->client->get($name);
-                echo $name . PHP_EOL; //output to give feedback when running
+                // output to give feedback when running
+                echo sprintf("PackagistService: Retrieved %s", $name) . PHP_EOL;
             }
         }
         return $packages;
