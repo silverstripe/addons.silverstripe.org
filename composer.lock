@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "44eed93335e79061091ffb14c55ddd47",
+    "content-hash": "781e640ea27623bf5f4caaab016e7dbd",
     "packages": [
         {
             "name": "asyncphp/doorman",
@@ -3755,57 +3755,6 @@
                 "source": "https://github.com/silverstripe/moduleratings/tree/1.0.4"
             },
             "time": "2019-02-01T11:56:21+00:00"
-        },
-        {
-            "name": "silverstripe/moduleratings-plugin",
-            "version": "0.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/silverstripe/moduleratings-plugin.git",
-                "reference": "e792e0731ac5e322cacbe9dbbd927e7853a31415"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/moduleratings-plugin/zipball/e792e0731ac5e322cacbe9dbbd927e7853a31415",
-                "reference": "e792e0731ac5e322cacbe9dbbd927e7853a31415",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^2.0",
-                "silverstripe/moduleratings": "^1@dev"
-            },
-            "require-dev": {
-                "composer/composer": "^2",
-                "phpunit/phpunit": "^5.7"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "SilverStripe\\ModuleRatingsPlugin\\RatingsPlugin",
-                "branch-alias": {
-                    "dev-master": "1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "SilverStripe\\ModuleRatingsPlugin\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Robbie Averill",
-                    "email": "robbie@silverstripe.com"
-                }
-            ],
-            "description": "A Composer plugin to provide ability to rate your local modules",
-            "support": {
-                "issues": "https://github.com/silverstripe/moduleratings-plugin/issues",
-                "source": "https://github.com/silverstripe/moduleratings-plugin/tree/0.2.0"
-            },
-            "time": "2020-11-18T04:14:29+00:00"
         },
         {
             "name": "silverstripe/raygun",
