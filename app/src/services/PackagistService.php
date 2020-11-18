@@ -3,6 +3,7 @@
 use Composer\Factory;
 use Composer\IO\NullIO;
 use Composer\Package\Loader\ArrayLoader;
+use GuzzleHttp\Client;
 
 /**
  * Interacts with Packagist to retrieve package listings and details.
@@ -24,7 +25,14 @@ class PackagistService
     {
         chdir(BASE_PATH);
         $this->composer = Factory::create(new NullIO());
-        $this->client = new Packagist\Api\Client();
+
+        $this->client = new Packagist\Api\Client(
+            new Client([
+                'headers' => [
+                    'user-agent' => 'addons.silverstripe.org'
+                ]
+            ])
+        );
     }
 
     /**
