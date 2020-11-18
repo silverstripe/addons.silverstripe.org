@@ -8,19 +8,15 @@ use SilverStripe\CronTask\Interfaces\CronTask;
 
 /**
  * These regular updates run as often as is practical.
- * They seem to take 2-3 hours at the moment, so we run them 4 times per day.
+ * They seem to take 2-3 hours at the moment.
+ * The Packagist data is cached for 12 hours, so there's not much point running it more often (https://packagist.org/apidoc).
  */
 class FrequentUpdatesCron implements CronTask
 {
 
-    /**
-     * Run every 6 hours
-     *
-     * @return string
-     */
     public function getSchedule()
     {
-        return "0 */6 * * *";
+        return "0 */12 * * *";
     }
 
     public function process()
