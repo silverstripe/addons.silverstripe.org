@@ -101,6 +101,11 @@ class AddonUpdater
             });
 
             $this->updateAddon($addon, $package, $versions);
+
+            // Enforce garbage collection
+            unset($addon);
+            unset($package);
+            unset($versions);
         }
 
         // $this->elastica->endBulkIndex();
