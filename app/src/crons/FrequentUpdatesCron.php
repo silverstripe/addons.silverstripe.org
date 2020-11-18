@@ -9,7 +9,8 @@ use SilverStripe\CronTask\Interfaces\CronTask;
 /**
  * These regular updates run as often as is practical.
  * They seem to take 2-3 hours at the moment.
- * The Packagist data is cached for 12 hours, so there's not much point running it more often (https://packagist.org/apidoc).
+ * The Packagist data is cached for 12 hours, so there's not much point running it more often,
+ * see https://packagist.org/apidoc.
  */
 class FrequentUpdatesCron implements CronTask
 {
