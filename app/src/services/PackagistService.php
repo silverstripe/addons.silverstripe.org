@@ -51,12 +51,21 @@ class PackagistService
             'silverstripe-vendormodule',
             'silverstripe-theme'
         ];
-        foreach ($addonTypes as $type) {
-            $repositoriesNames = $limitAddons ?: $this->client->all(['type' => $type]);
-            foreach ($repositoriesNames as $name) {
+
+        if ($limitAddons) {
+            foreach ($limitAddons as $name) {
                 // output to give feedback when running
                 echo sprintf("PackagistService: Retrieved %s", $name) . PHP_EOL;
                 yield $this->client->get($name);
+            }
+        } else {
+            foreach ($addonTypes as $type) {
+                $repositoriesNames = $this->client->all(['type' => $type]);
+                foreach ($repositoriesNames as $name) {
+                    // output to give feedback when running
+                    echo sprintf("PackagistService: Retrieved %s", $name) . PHP_EOL;
+                    yield $this->client->get($name);
+                }
             }
         }
     }
