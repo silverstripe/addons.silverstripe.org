@@ -74,6 +74,11 @@ class AddonBuilder
                 ));
             }
 
+            // Create if it doesn't exist
+            if (!is_dir($path)) {
+                mkdir($path, 0777, true);
+            }
+
             // Convert PackagistAPI result into class compatible with Composer logic
             $package = new Package(
                 $addon->Name,
