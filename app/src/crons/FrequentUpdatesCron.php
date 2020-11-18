@@ -10,7 +10,7 @@ use SilverStripe\CronTask\Interfaces\CronTask;
  * These regular updates run as often as is practical.
  * They seem to take 2-3 hours at the moment, so we run them 4 times per day.
  */
-class SilverStripeElasticaReindexCron implements CronTask
+class FrequentUpdatesCron implements CronTask
 {
 
     /**
@@ -23,10 +23,6 @@ class SilverStripeElasticaReindexCron implements CronTask
         return "0 */6 * * *";
     }
 
-    /**
-     * Run the build task SilverStripeElasticaReindexTask
-     * @return void
-     */
     public function process()
     {
         $taskClasses = [
