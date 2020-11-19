@@ -110,7 +110,7 @@ class AddonUpdater
 
         // $this->elastica->endBulkIndex();
     }
-    
+
     private function updateAddon(Addon $addon, Package $package, array $versions)
     {
         echo "Updating addon {$addon->Name}:\n";
@@ -144,29 +144,21 @@ class AddonUpdater
             $this->updateVersion($addon, $version);
         }
 
-        // If there is no build, then queue one up if the add-on requires
-        // one.
-        if (!$addon->BuildQueued) {
-            echo " - Will queue a rebuild\n";
-            if (!$addon->BuiltAt) {
-                $buildJob = new BuildAddonJob(['package' => $addon->ID]);
-                singleton(QueuedJobService::class)->queueJob($buildJob);
-                echo " - Queued {$addon->Name} for build\n";
-                $addon->BuildQueued = true;
-            } else {
-                $built = (int) $addon->obj('BuiltAt')->format('U');
+        $built = (int) $addon->obj('LastBuilt')->getTimestamp();
+        $hasBuild = (bool)$addon->LastBuilt;
+        $hasBuildQueued = (bool)$addon->BuildQueued;
+        $hasNewerVersions = (bool)array_filter($versions, function ($version) use($built) {
+            return strtotime($version->getTime()) > $built;
+        });
 
-                foreach ($versions as $version) {
-                    if (strtotime($version->getTime()) > $built) {
-                        $buildJob = new BuildAddonJob(['package' => $addon->ID]);
-                        singleton(QueuedJobService::class)->queueJob($buildJob);
-                        echo " - Queued {$addon->Name} version {$version->Name} for build\n";
-                        $addon->BuildQueued = true;
-
-                        break;
-                    }
-                }
-            }
+        if (
+            (!$hasBuildQueued && !$hasBuild)
+            || (!$hasBuildQueued && $hasNewerVersions)
+        ) {
+            $buildJob = new BuildAddonJob(['package' => $addon->ID]);
+            singleton(QueuedJobService::class)->queueJob($buildJob);
+            $addon->BuildQueued = true;
+            echo " - Queued {$addon->Name} for build\n";
         } else {
             echo " - Will not queue a rebuild\n";
         }
