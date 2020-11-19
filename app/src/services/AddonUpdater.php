@@ -153,6 +153,7 @@ class AddonUpdater
 
         if (
             (!$hasBuildQueued && !$hasBuild)
+            // TODO Technically we only need to build if the DefaultVersion has changed
             || (!$hasBuildQueued && $hasNewerVersions)
         ) {
             $buildJob = new BuildAddonJob(['package' => $addon->ID]);
