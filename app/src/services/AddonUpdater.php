@@ -147,15 +147,12 @@ class AddonUpdater
         $built = (int) $addon->obj('LastBuilt')->getTimestamp();
         $hasBuild = (bool)$addon->LastBuilt;
         $hasBuildQueued = (bool)$addon->BuildQueued;
-        $hasNewerVersions = (bool)array_filter($versions, function ($version) use($built) {
+        $hasNewerVersions = (bool)array_filter($versions, function ($version) use ($built) {
             return strtotime($version->getTime()) > $built;
         });
 
-        if (
-            (!$hasBuildQueued && !$hasBuild)
-            // TODO Technically we only need to build if the DefaultVersion has changed
-            || (!$hasBuildQueued && $hasNewerVersions)
-        ) {
+        // TODO Technically we only need to build if the DefaultVersion has changed
+        if ((!$hasBuildQueued && !$hasBuild) || (!$hasBuildQueued && $hasNewerVersions)) {
             $buildJob = new BuildAddonJob(['package' => $addon->ID]);
             singleton(QueuedJobService::class)->queueJob($buildJob);
             $addon->BuildQueued = true;
