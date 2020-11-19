@@ -75,6 +75,23 @@ class Addon extends DataObject
         return new ArrayList($versions);
     }
 
+    /**
+     * @return AddonVersion|null
+     */
+    public function DefaultVersion()
+    {
+        $versions = $this->Versions()->column('Version');
+        if (!$versions) {
+            return null;
+        }
+
+        usort($versions, function ($a, $b) {
+            return version_compare($b, $a);
+        });
+
+        return $this->Versions()->filter('Version', $versions[0])->First();
+    }
+
     public function MasterVersion()
     {
         return $this->Versions()->filter('PrettyVersion', array('dev-master', 'trunk'))->First();

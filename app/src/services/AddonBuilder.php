@@ -54,13 +54,14 @@ class AddonBuilder
         }
 
         // Get the latest local and packagist version pair.
-        $version = $addon->Versions()->filter('Development', true)->first();
+        $version = $addon->DefaultVersion();
         if (!$version) {
             echo "No versions found for " . $addon->Name . "; deleting orphan record.\n";
             $addon->delete();
             return;
         }
 
+        // Loops through versions, but only builds for the latest version
         foreach ($packageVersions as $packageVersion) {
             if ($packageVersion->getVersionNormalized() != $version->Version) {
                 continue;
