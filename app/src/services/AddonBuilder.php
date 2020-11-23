@@ -44,7 +44,8 @@ class AddonBuilder
         $handler->setFormatter($formatter);
         $checkSuite->setLogger($logger);
 
-        $packageVersions = $this->packagist->getPackageVersions($addon->Name);
+        $package = $this->packagist->getPackageDetails($addon->Name);
+        $packageVersions = $package->getVersions();
         $time = time();
 
         if (!$packageVersions) {
@@ -54,16 +55,33 @@ class AddonBuilder
         }
 
         // Get the latest local and packagist version pair.
-        $version = $addon->DefaultVersion();
-        if (!$version) {
+        $defaultVersion = $addon->DefaultVersion();
+        if (!$defaultVersion) {
             echo "No versions found for " . $addon->Name . "; deleting orphan record.\n";
             $addon->delete();
             return;
         }
 
+        // Update general metadata
+        $addon->Type = preg_replace('/^silverstripe-(vendor)?/', '', $package->getType());
+        $addon->Abandoned = $package->isAbandoned();
+        $addon->Description = $package->getDescription();
+        $addon->Released = strtotime($package->getTime());
+        $addon->Repository = $package->getRepository();
+        if ($downloads = $package->getDownloads()) {
+            $addon->Downloads = $downloads->getTotal();
+            $addon->DownloadsMonthly = $downloads->getMonthly();
+        }
+        $addon->Favers = $package->getFavers();
+
         // Loops through versions, but only builds for the latest version
         foreach ($packageVersions as $packageVersion) {
-            if ($packageVersion->getVersionNormalized() != $version->Version) {
+            // Packagist API responses are inconsistent, so we need to check both.
+            // p/<package>json normalises "dev-master" as "9999999-dev"
+            // packages/<package>json normalises "dev-master" as "dev-master"
+            $matchesNormalisedVersion = $packageVersion->getVersionNormalized() === $defaultVersion->Version;
+            $matchesVersion = $packageVersion->getVersion() === $defaultVersion->PrettyVersion;
+            if (!$matchesNormalisedVersion && !$matchesVersion) {
                 continue;
             }
 

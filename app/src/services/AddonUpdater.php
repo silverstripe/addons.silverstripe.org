@@ -15,6 +15,8 @@ use Psr\Log\LoggerInterface;
 
 /**
  * Updates all add-ons from Packagist.
+ * Creates partially populated add-ons for performance reasons.
+ * Relies on {@link AddonBuilder} to finish the job.
  */
 class AddonUpdater
 {
@@ -74,8 +76,17 @@ class AddonUpdater
 
         foreach ($packages as $package) {
             /** @var Packagist\Api\Result\Package $package */
-            $name = $package->getName();
+
             $versions = $package->getVersions();
+            usort($versions, function ($a, $b) {
+                return version_compare($a->getVersionNormalized(), $b->getVersionNormalized());
+            });
+
+            // Get name from the highest version,
+            // since the (performant) composer metadata retrieval
+            // doesn't contain a toplevel "name" key
+            $highestVersion = $versions[count($versions)-1];
+            $name = $highestVersion->getName();
 
             // Unclear when this happens, but we've observed a few NULL records per month
             if (!$name) {
@@ -95,10 +106,6 @@ class AddonUpdater
                 $addon->Name = $name;
                 $addon->write();
             }
-
-            usort($versions, function ($a, $b) {
-                return version_compare($a->getVersionNormalized(), $b->getVersionNormalized());
-            });
 
             $this->updateAddon($addon, $package, $versions);
 
@@ -128,17 +135,6 @@ class AddonUpdater
 
             $addon->VendorID = $vendor->ID;
         }
-
-        $addon->Type = preg_replace('/^silverstripe-(vendor)?/', '', $package->getType());
-        $addon->Abandoned = $package->isAbandoned();
-        $addon->Description = $package->getDescription();
-        $addon->Released = strtotime($package->getTime());
-        $addon->Repository = $package->getRepository();
-        if ($downloads = $package->getDownloads()) {
-            $addon->Downloads = $downloads->getTotal();
-            $addon->DownloadsMonthly = $downloads->getMonthly();
-        }
-        $addon->Favers = $package->getFavers();
 
         foreach ($versions as $version) {
             $this->updateVersion($addon, $version);

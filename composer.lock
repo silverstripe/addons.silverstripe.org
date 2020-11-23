@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "781e640ea27623bf5f4caaab016e7dbd",
+    "content-hash": "8000206e80609038f75f5d2ec1171cb4",
     "packages": [
         {
             "name": "asyncphp/doorman",
@@ -46,16 +46,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.162.0",
+            "version": "3.163.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "64b0468417c4a84ff5cc51a69cf2ff9d899c2e8e"
+                "reference": "f6cd8fe1334b19e1dc0d841fa1b2da7cd30a1e8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/64b0468417c4a84ff5cc51a69cf2ff9d899c2e8e",
-                "reference": "64b0468417c4a84ff5cc51a69cf2ff9d899c2e8e",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/f6cd8fe1334b19e1dc0d841fa1b2da7cd30a1e8a",
+                "reference": "f6cd8fe1334b19e1dc0d841fa1b2da7cd30a1e8a",
                 "shasum": ""
             },
             "require": {
@@ -130,9 +130,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.162.0"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.163.3"
             },
-            "time": "2020-11-17T19:12:26+00:00"
+            "time": "2020-11-23T20:34:30+00:00"
         },
         {
             "name": "bramus/ansi-php",
@@ -1905,16 +1905,16 @@
         },
         {
             "name": "knplabs/packagist-api",
-            "version": "v1.6.1",
+            "version": "dev-pulls/static-get",
             "source": {
                 "type": "git",
-                "url": "https://github.com/KnpLabs/packagist-api.git",
-                "reference": "6194b1a62f16e053bfe7e82c2ad1506235f0325d"
+                "url": "https://github.com/open-sausages/packagist-api.git",
+                "reference": "4f62d9cca6b01aa4efc3d830bb1346d0da87a5f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/packagist-api/zipball/6194b1a62f16e053bfe7e82c2ad1506235f0325d",
-                "reference": "6194b1a62f16e053bfe7e82c2ad1506235f0325d",
+                "url": "https://api.github.com/repos/open-sausages/packagist-api/zipball/4f62d9cca6b01aa4efc3d830bb1346d0da87a5f2",
+                "reference": "4f62d9cca6b01aa4efc3d830bb1346d0da87a5f2",
                 "shasum": ""
             },
             "require": {
@@ -1937,7 +1937,6 @@
                     "Packagist\\Api\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1955,10 +1954,9 @@
                 "packagist"
             ],
             "support": {
-                "issues": "https://github.com/KnpLabs/packagist-api/issues",
-                "source": "https://github.com/KnpLabs/packagist-api/tree/master"
+                "source": "https://github.com/open-sausages/packagist-api/tree/pulls/static-get"
             },
-            "time": "2020-09-08T15:49:40+00:00"
+            "time": "2020-11-23T21:28:05+00:00"
         },
         {
             "name": "league/csv",
@@ -4349,16 +4347,16 @@
         },
         {
             "name": "symbiote/silverstripe-queuedjobs",
-            "version": "4.6.1",
+            "version": "4.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symbiote/silverstripe-queuedjobs.git",
-                "reference": "a9763da7dafa57e12612efbc0a1fb660c9106b3b"
+                "reference": "9ca4b4a7581c29afb799a053c14ac6cca0c4e838"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symbiote/silverstripe-queuedjobs/zipball/a9763da7dafa57e12612efbc0a1fb660c9106b3b",
-                "reference": "a9763da7dafa57e12612efbc0a1fb660c9106b3b",
+                "url": "https://api.github.com/repos/symbiote/silverstripe-queuedjobs/zipball/9ca4b4a7581c29afb799a053c14ac6cca0c4e838",
+                "reference": "9ca4b4a7581c29afb799a053c14ac6cca0c4e838",
                 "shasum": ""
             },
             "require": {
@@ -4407,9 +4405,9 @@
             ],
             "support": {
                 "issues": "https://github.com/symbiote/silverstripe-queuedjobs/issues",
-                "source": "https://github.com/symbiote/silverstripe-queuedjobs/tree/4.6.1"
+                "source": "https://github.com/symbiote/silverstripe-queuedjobs/tree/4.6.2"
             },
-            "time": "2020-11-05T20:55:01+00:00"
+            "time": "2020-11-19T20:49:38+00:00"
         },
         {
             "name": "symfony/cache",
@@ -7488,9 +7486,17 @@
             "time": "2020-07-08T17:02:28+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "package": "knplabs/packagist-api",
+            "version": "dev-pulls/static-get",
+            "alias": "1.5.0",
+            "alias_normalized": "1.5.0.0"
+        }
+    ],
     "minimum-stability": "dev",
     "stability-flags": {
+        "knplabs/packagist-api": 20,
         "silverstripe/toolbar": 20,
         "heyday/silverstripe-elastica": 5,
         "silverstripe/ssp-core": 20

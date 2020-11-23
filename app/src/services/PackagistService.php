@@ -44,7 +44,8 @@ class PackagistService
     }
 
     /**
-     * Gets all SilverStripe packages.
+     * Gets all SilverStripe packages. Only contains versions, not other metadata, for performance reasons.
+     * See https://packagist.org/apidoc for rationale.
      *
      * @param string[] $limitAddons If specified, can be a list of addons to restrict the return to
      * @return \Generator Returning Packagist\Api\Result\Package[]
@@ -64,7 +65,8 @@ class PackagistService
             foreach ($limitAddons as $name) {
                 // output to give feedback when running
                 echo sprintf("PackagistService: Retrieved %s", $name) . PHP_EOL;
-                yield $this->client->get($name);
+                $packages = $this->client->getComposer($name);
+                yield $packages[$name];
             }
         } else {
             foreach ($addonTypes as $type) {
@@ -72,7 +74,8 @@ class PackagistService
                 foreach ($repositoriesNames as $name) {
                     // output to give feedback when running
                     echo sprintf("PackagistService: Retrieved %s", $name) . PHP_EOL;
-                    yield $this->client->get($name);
+                    $packages = $this->client->getComposer($name);
+                    yield $packages[$name];
                 }
             }
         }
@@ -119,15 +122,13 @@ class PackagistService
      */
     public function getPackageVersions($name)
     {
-        $packages = array();
-        $loader = new ArrayLoader();
-
+        $versions = array();
         $package = $this->client->get($name);
 
         foreach ($package->getVersions() as $repo) {
-            $packages[] = $repo;
+            $versions[] = $repo;
         }
 
-        return $packages;
+        return $versions;
     }
 }
