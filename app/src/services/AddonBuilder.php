@@ -171,7 +171,7 @@ class AddonBuilder
 
             foreach ($paths as $path) {
                 if (!file_exists($path)) {
-                    return;
+                    continue;
                 }
 
                 $parser = GitHubMarkdownService::create();
@@ -181,7 +181,7 @@ class AddonBuilder
                 $readme = $parser->toHtml(file_get_contents($path));
 
                 if (empty($readme)) {
-                    return;
+                    continue;
                 }
 
                 $readme = $parser->toHtml(file_get_contents($path));
@@ -193,6 +193,7 @@ class AddonBuilder
 
                 $readme = $this->replaceRelativeLinks($addon, $readme);
                 $addon->Readme = $readme;
+
                 return;
             }
         }
