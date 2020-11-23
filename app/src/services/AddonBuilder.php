@@ -141,10 +141,14 @@ class AddonBuilder
 
     protected function download(PackageInterface $package, $path)
     {
-        $this->packagist
+        $manager = $this->packagist
             ->getComposer()
-            ->getDownloadManager()
-            ->download($package, $path);
+            ->getDownloadManager();
+
+        // With composer v2, Git no longer downloads into the target directory,
+        // but rather uses a shared composer cache - so we need to install.
+        $manager->download($package, $path);
+        $manager->install($package, $path);
     }
 
     /**
