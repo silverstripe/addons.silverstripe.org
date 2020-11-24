@@ -75,7 +75,6 @@ class AddonUpdater
         // $this->elastica->startBulkIndex();
 
         foreach ($packages as $package) {
-            /** @var Packagist\Api\Result\Package $package */
 
             $versions = $package->getVersions();
             usort($versions, function ($a, $b) {
