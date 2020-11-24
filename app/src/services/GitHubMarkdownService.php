@@ -3,6 +3,7 @@
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use SilverStripe\Core\Convert;
+use SilverStripe\Core\Environment;
 use SilverStripe\Core\Injector\Injectable;
 
 /**
@@ -129,9 +130,7 @@ class GitHubMarkdownService
         if (!$this->getContext()) {
             $endpoint .= '/raw';
         }
-        if (defined('SS_GITHUB_CLIENT_ID') && defined('SS_GITHUB_CLIENT_SECRET')) {
-            $endpoint .= sprintf('?client_id=%s&client_secret=%s', SS_GITHUB_CLIENT_ID, SS_GITHUB_CLIENT_SECRET);
-        }
+
         return $endpoint;
     }
 
@@ -141,10 +140,17 @@ class GitHubMarkdownService
      */
     public function getHeaders()
     {
-        return array(
+        $headers = array(
             'User-Agent'   => 'silverstripe/addons-site',
-            'Content-Type' => 'text/x-markdown'
+            'Content-Type' => 'text/x-markdown',
         );
+
+        $token  = Environment::getEnv('SS_GITHUB_OAUTH_TOKEN');
+        if ($token) {
+            $headers['Authorization'] = sprintf('token %s',  $token);
+        }
+
+        return $headers;
     }
 
     /**
