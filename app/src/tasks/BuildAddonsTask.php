@@ -45,7 +45,11 @@ class BuildAddonsTask extends BuildTask
         $addons = Addon::get();
         if ($request->getVar('addons')) {
             $addons = $addons->filter('Name', explode(',', $request->getVar('addons')));
+        } else {
+            // Don't bother updating abandoned packages
+            $addons = $addons->exclude('Abandoned', '1');
         }
+
         foreach ($addons as $addon) {
             if (!$addon->Name) {
                 $this->log(sprintf('Addon #%d as no name, skipping', $addon->ID));
