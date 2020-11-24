@@ -92,10 +92,10 @@ class AddonUpdater
             if (!$name) {
                 continue;
             }
-
             if ($limitAddons && !in_array($name, $limitAddons)) {
                 continue;
             }
+
 
             $addon = Addon::get()->filter('Name', $name)->first();
 
@@ -208,7 +208,8 @@ class AddonUpdater
 
         $version->Extra = $package->getExtra();
         $version->Homepage = $package->getHomepage();
-        $version->License = $package->getLicense();
+        $licenses = $package->getLicenses();
+        $version->License = $licenses ? $licenses[0] : null;
         // $version->Support = $package->getSupport();
 
         echo " - Processed version {$version->Version}\n";
