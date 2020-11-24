@@ -4,6 +4,8 @@ use Composer\Factory;
 use Composer\IO\NullIO;
 use Composer\Package\Loader\ArrayLoader;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Exception\ClientException;
 
 /**
  * Interacts with Packagist to retrieve package listings and details.
@@ -52,8 +54,6 @@ class PackagistService
      */
     public function getPackages(array $limitAddons = [])
     {
-        $packages = [];
-
         // Look up by package type
         $addonTypes = [
             'silverstripe-module',
@@ -61,12 +61,16 @@ class PackagistService
             'silverstripe-theme'
         ];
 
+        // Gracefully handles API errors and rate limiting.
         if ($limitAddons) {
             foreach ($limitAddons as $name) {
                 // output to give feedback when running
                 echo sprintf("PackagistService: Retrieved %s", $name) . PHP_EOL;
-                $packages = $this->client->getComposer($name);
-                yield $packages[$name];
+                $package = $this->getComposerPackage($name);
+                if (!$package) {
+                    continue;
+                }
+                yield $package;
             }
         } else {
             foreach ($addonTypes as $type) {
@@ -74,11 +78,31 @@ class PackagistService
                 foreach ($repositoriesNames as $name) {
                     // output to give feedback when running
                     echo sprintf("PackagistService: Retrieved %s", $name) . PHP_EOL;
-                    $packages = $this->client->getComposer($name);
-                    yield $packages[$name];
+                    $package = $this->getComposerPackage($name);
+                    if (!$package) {
+                        continue;
+                    }
+                    yield $package;
                 }
             }
         }
+
+    }
+
+    protected function getComposerPackage($name)
+    {
+        $packages = null;
+
+        try {
+            $packages = $this->client->getComposer($name);
+        } catch (BadResponseException $e) {
+            // Abandoned packages cause 404s, and we occasionally get rate limited.
+            // Neither of those should cause a hard abort.
+            echo sprintf('PackagistService: Failed to retrieve (%s)', $e->getMessage()) . PHP_EOL;
+            return null;
+        }
+
+        return $packages[$name];
     }
 
     /**
