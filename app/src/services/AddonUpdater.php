@@ -95,8 +95,18 @@ class AddonUpdater
                 continue;
             }
 
-
             $addon = Addon::get()->filter('Name', $name)->first();
+
+            if ($addon && $highestVersion->isAbandoned()) {
+                echo sprintf("Deleting abandoned addon: %s", $name) . PHP_EOL;
+                $addon->delete();
+                continue;
+            }
+
+            if (!$addon && $highestVersion->isAbandoned()) {
+                echo sprintf("Skipping abandoned addon: %s", $name) . PHP_EOL;
+                continue;
+            }
 
             if (!$addon) {
                 echo sprintf("Creating addon: %s", $name) . PHP_EOL;
