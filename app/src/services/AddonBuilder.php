@@ -124,8 +124,8 @@ class AddonBuilder
                 $this->download($package, $path);
             } catch (RuntimeException $e) {
                 // If there's an error, mark this version as bad.
-                // If the module still exists in Packagist, it'll be re-created
-                // on the next AddonUpdater run.
+                // If the module still exists in Packagist, it'll be re-created on the next AddonUpdater run.
+                // TODO Avoid recreating modules which have continuous issues with downloads
                 echo "Add-on " . $addon->Name . " couldn't be downloaded; deleting from database.\n";
                 echo "Error message: " . $e->getMessage() . "\n";
                 $addon->delete();
