@@ -30,7 +30,7 @@
         "silverstripe/moduleratings": "^1.0",
         "squizlabs/php_codesniffer": "^3.2",
         "symbiote/silverstripe-gridfieldextensions": "^3.1",
-        "php": ">=7.3",
+        "php": ">=7.4",
         "silverstripe/raygun": "^2",
         "silverstripe/toolbar": "^5@dev",
         "silverstripe/framework": "^4.7",
