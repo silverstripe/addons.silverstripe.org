@@ -4,6 +4,7 @@ use Composer\Package\Package;
 use Composer\Package\PackageInterface;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\SyslogHandler;
+use SilverStripe\Assets\Filesystem;
 use SilverStripe\ModuleRatings\CheckSuite;
 use SilverStripe\Assets\Upload;
 use SilverStripe\Core\Convert;
@@ -85,7 +86,7 @@ class AddonBuilder
                 continue;
             }
 
-            if (defined('SS_ADDONS_DOWNLOAD_PATH')) {
+            if (defined('SS_ADDONS_DOWNLOAD_PATH') && !empty(SS_ADDONS_DOWNLOAD_PATH)) {
                 $path = SS_ADDONS_DOWNLOAD_PATH . '/' . $addon->Name;
             } else {
                 $path = implode('/', array(
@@ -121,9 +122,10 @@ class AddonBuilder
 
             try {
                 $this->download($package, $path);
-
-            // If there's an error, mark this version as bad
             } catch (RuntimeException $e) {
+                // If there's an error, mark this version as bad.
+                // If the module still exists in Packagist, it'll be re-created
+                // on the next AddonUpdater run.
                 echo "Add-on " . $addon->Name . " couldn't be downloaded; deleting from database.\n";
                 echo "Error message: " . $e->getMessage() . "\n";
                 $addon->delete();
@@ -144,6 +146,11 @@ class AddonBuilder
         $manager = $this->packagist
             ->getComposer()
             ->getDownloadManager();
+
+        // Git clone doesn't like installing into existing dirs.
+        if (is_dir($path)) {
+            Filesystem::removeFolder($path);
+        }
 
         // With composer v2, Git no longer downloads into the target directory,
         // but rather uses a shared composer cache - so we need to install.
