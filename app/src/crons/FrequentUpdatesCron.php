@@ -24,7 +24,7 @@ class FrequentUpdatesCron implements CronTask
     {
         $taskClasses = [
             [UpdateSilverStripeVersionsTask::class, null],
-            [UpdateAddonsTask::class, null],
+            [UpdateAddonsTask::class, null], // triggers BuildAddonsJob for modules requiring a rebuild
             [ReindexTask::class, 'recreate=1'],
         ];
 

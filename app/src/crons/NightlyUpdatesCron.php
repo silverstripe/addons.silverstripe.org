@@ -28,7 +28,9 @@ class NightlyUpdatesCron implements CronTask
     public function process()
     {
         $taskClasses = [
-            [BuildAddonsTask::class, null], // rebuild all addons
+            // Don't rebuild *all* addons nightly, since it's too expensive.
+            // Instead, rely on UpdateAddonsTask to detect which modules actually require a build.
+            // [BuildAddonsTask::class, null], // rebuild all addons
         ];
 
         foreach ($taskClasses as $taskInfo) {
