@@ -50,6 +50,11 @@ class BuildAddonsTask extends BuildTask
             $addons = $addons->exclude('Abandoned', '1');
         }
 
+        if (!$addons->Count()) {
+            $this->log('No addons found');
+            return;
+        }
+
         foreach ($addons as $addon) {
             if (!$addon->Name) {
                 $this->log(sprintf('Addon #%d as no name, skipping', $addon->ID));
