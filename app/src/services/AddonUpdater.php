@@ -75,7 +75,6 @@ class AddonUpdater
         // $this->elastica->startBulkIndex();
 
         foreach ($packages as $package) {
-
             $versions = $package->getVersions();
             usort($versions, function ($a, $b) {
                 return version_compare($a->getVersionNormalized(), $b->getVersionNormalized());
