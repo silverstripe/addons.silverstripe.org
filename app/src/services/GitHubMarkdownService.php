@@ -147,7 +147,7 @@ class GitHubMarkdownService
 
         $token  = Environment::getEnv('SS_GITHUB_OAUTH_TOKEN');
         if ($token) {
-            $headers['Authorization'] = sprintf('token %s',  $token);
+            $headers['Authorization'] = sprintf('token %s', $token);
         }
 
         return $headers;

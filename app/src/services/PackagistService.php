@@ -86,7 +86,6 @@ class PackagistService
                 }
             }
         }
-
     }
 
     protected function getComposerPackage($name)

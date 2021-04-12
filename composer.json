@@ -47,6 +47,11 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
+    "config": {
+        "platform": {
+            "php": "7.4"
+        }
+    },
     "extra": {
         "project-files-installed": [
             "app/.htaccess",
