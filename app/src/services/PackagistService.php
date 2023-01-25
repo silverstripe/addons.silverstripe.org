@@ -58,7 +58,8 @@ class PackagistService
         $addonTypes = [
             'silverstripe-module',
             'silverstripe-vendormodule',
-            'silverstripe-theme'
+            'silverstripe-theme',
+            'silverstripe-recipe'
         ];
 
         // Gracefully handles API errors and rate limiting.
