@@ -1,0 +1,35 @@
+default:
+  suites: []
+  extensions:
+    SilverStripe\BehatExtension\MinkExtension:
+      default_session: facebook_web_driver
+      javascript_session: facebook_web_driver
+      facebook_web_driver:
+        browser: chrome
+        # run behat inside the docker container
+        # 9515 is the port that chromedriver runs on
+        wd_host: "http://127.0.0.1:9515"
+        capabilities:
+          extra_capabilities:
+            chromeOptions:
+              args:
+                # no sandbox is required to run chromium inside a container https://stackoverflow.com/a/59154049
+                - "--no-sandbox"
+                # run headless within container - removes the need for xvfb
+                - "--headless"
+                # disable gpu is often mentioned as fix after headless chrome suddenly breaks after an update
+                # leaving it in just in case to prevent hard to diagnose errors later
+                - "--disable-gpu"
+                # possibly needed to get chrome to work with cylance - not sure if this is required within a container
+                # leaving it in just in case to prevent hard to diagnose errors later
+                - "--disable-seccomp-filter-sandbox"
+                # Added the below after getting "Cannot activate web view" error. See https://stackoverflow.com/questions/54297559/getting-cannot-activate-web-view
+                - "--disable-infobars" #https://stackoverflow.com/a/43840128/1689770
+                - "--disable-dev-shm-usage" #https://stackoverflow.com/a/50725918/1689770
+                - "--disable-browser-side-navigation" #https://stackoverflow.com/a/49123152/1689770
+                - "--disable-features=VizDisplayCompositor" #https://stackoverflow.com/a/55371396/491553
+      browser_name: chrome
+    SilverStripe\BehatExtension\Extension:
+      screenshot_path: '%paths.base%/artifacts'
+      # this doesn't appear to be needed
+      # bootstrap_file: vendor/silverstripe/cms/tests/behat/serve-bootstrap.php

@@ -37,7 +37,7 @@
     <div class="addons-box span6">
         <h3>
             <a href="/add-ons?sort=newest">Newest Add-ons</a>
-            <a class="pull-right" href="/add-ons/rss"><img src="themes/addons/images/feed-icon-14x14.png"
+            <a class="pull-right" href="/add-ons/rss"><img src="$themedResourceURL('images/feed-icon-14x14.png')"
                                                            alt="RSS Feed"/></a>
         </h3>
         <ol>
@@ -46,7 +46,6 @@
                     <a href="$Link">
                         <span class="meta">$Released.Date</span>
                         <span class="name">$Name</span>
-                        <% include ModuleRatingVisual SmallCircle=true %>
                         <span class="description">$Description</span>
                     </a>
                 </li>
@@ -64,7 +63,6 @@
                     <a href="$Addon.Link">
                         <span class="meta">$Released.Date</span>
                         <span class="name">$Name</span>
-                        <% include ModuleRatingVisual SmallCircle=true %>
                         <span class="description">$Description</span>
                     </a>
                 </li>
@@ -79,7 +77,6 @@
                 <li>
                     <a href="$Link">
                         <span class="name">$Name</span>
-                        <% include ModuleRatingVisual SmallCircle=true %>
                         <span class="description">$Description</span>
                     </a>
                 </li>
@@ -88,7 +85,7 @@
     </div>
 </div>
 
-<% cached List(Addon).Max(Created) %>
+<% cached List(Addon).Max(Released) %>
     <div class="row">
         <div class="addons-box span12">
             <h3>Statistics</h3>

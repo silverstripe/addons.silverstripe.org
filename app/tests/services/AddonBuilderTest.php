@@ -18,7 +18,7 @@ class AddonBuilderTest extends SapphireTest
     /**
      * Get the test subject
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -110,7 +110,7 @@ class AddonBuilderTest extends SapphireTest
         return array(
             array('/add-ons/silverstripe/sapphire#-preview', false),
             array('#installation-with-composer', false),
-            array('resources/example.png?raw=true', true),
+            array('_resources/example.png?raw=true', true),
             array('add-ons/silverstripe/sapphire#usage', true),
             array('//add-ons/silverstripe/sapphire#usage', false),
             array('https://silverstripe.mit-license.org/', false),

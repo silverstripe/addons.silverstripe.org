@@ -114,33 +114,31 @@ class HomeController extends SiteController
 
     public function ChartData()
     {
-        $chartData = array();
-        $list = ArrayList::create(array());
+        $chartData = [];
+        $list = ArrayList::create();
 
         $sqlQuery = new SQLSelect();
         $sqlQuery->setFrom('Addon');
-        $sqlQuery->setSelect('DATE(Created) as Created');
+        $sqlQuery->setSelect('DATE(Released) as Released');
         $sqlQuery->selectField('COUNT(*)', 'CountInOneDay');
-        $sqlQuery->addWhere('"Created" >= DATE_SUB(NOW(), INTERVAL 30 DAY)');
-        $sqlQuery->addGroupBy('DATE(Created)');
+        $sqlQuery->addWhere('"Released" >= DATE_SUB(NOW(), INTERVAL 30 DAY)');
+        $sqlQuery->addGroupBy('DATE(Released)');
 
         $result = $sqlQuery->execute();
 
-        if ($result && $result->first()) {
-            foreach ($result as $row) {
-                $date = date('j M Y', strtotime($row['Created']));
-                if (!isset($chartData[$date])) {
-                    $chartData[$date] = $row['CountInOneDay'];
-                }
+        foreach ($result as $row) {
+            $date = date('j M Y', strtotime($row['Released']));
+            if (!isset($chartData[$date])) {
+                $chartData[$date] = $row['CountInOneDay'];
             }
         }
 
         if (count($chartData)) {
             foreach ($chartData as $x => $y) {
-                $list->push(ArrayData::create(array(
+                $list->push(ArrayData::create([
                     'XValue' => $x,
                     'YValue' => $y
-                )));
+                ]));
             }
         }
 

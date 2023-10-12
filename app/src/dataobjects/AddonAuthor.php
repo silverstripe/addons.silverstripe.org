@@ -11,7 +11,6 @@ use SilverStripe\ORM\ManyManyList;
  */
 class AddonAuthor extends DataObject
 {
-
     private static $db = array(
         'Name' => 'Varchar(255)',
         'Email' => 'Varchar(255)',
@@ -29,7 +28,7 @@ class AddonAuthor extends DataObject
     {
         return sprintf(
             'https://www.gravatar.com/avatar/%s?s=%d&d=%s',
-            md5(strtolower(trim($this->Email))),
+            md5(strtolower(trim($this->Email ?? ''))),
             $size,
             $default
         );

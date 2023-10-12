@@ -5,14 +5,6 @@ use SilverStripe\Core\Environment;
 use Heyday\Elastica\ElasticaService;
 use Psr\Log\LoggerInterface;
 
-global $project;
-$project = 'app';
-
-global $database;
-if (!Environment::getEnv('SS_DATABASE_NAME')) {
-    $database = 'addons';
-}
-
 // Note: This is SilverStripe 3.0 compatible code, so we cannot use CONSTANTS in the yaml config
 //       so this mean that we unfortunately need to set up ElasticSearch (ES) configuration in
 //       runtime.

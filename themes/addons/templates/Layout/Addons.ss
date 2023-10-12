@@ -1,5 +1,5 @@
 <div class="page-header">
-	<h1>Modules and Themes <a class="pull-right" href="$Link('rss')"><img src="themes/addons/images/feed-icon-28x28.png" width="20" alt="RSS Feed" /></a></h1>
+	<h1>Modules and Themes <a class="pull-right" href="$Link('rss')"><img src="$themedResourceURL('images/feed-icon-28x28.png')" width="20" alt="RSS Feed" /></a></h1>
 </div>
 
 <div class="add-ons">
@@ -90,7 +90,6 @@
 						<i class="icon-picture"></i>
 					<% end_if %>
 					<a href="$Link">$Name</a>
-					<% include ModuleRatingVisual SmallCircle=true %>
 				</td>
 				<td>$Description.LimitCharacters(60)</td>
 				<td>
@@ -107,4 +106,4 @@
 <% end_if %>
 </div>
 
-	
+

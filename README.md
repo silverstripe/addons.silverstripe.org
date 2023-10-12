@@ -69,7 +69,7 @@ of modules to work with.
 3. `vendor/bin/sake dev/tasks/DeleteRedundantAddonsTask`: Deletes addons which haven't been updated
    from packagist in a specified amount of time, which implies they're no longer available there.
 4. `vendor/bin/sake dev/tasks/BuildAddonsTask`: Manually build addons, downloading screenshots
-   and a README for display through the website and run module ratings. There's no need to set up a cron job
+   and a README for display through the website. There's no need to set up a cron job
    for this task if you're using the resque queue.
 5. `vendor/bin/sake dev/tasks/Heyday-Elastica-ReindexTask`: Defines and refreshes the ElasticSearch index (add
   `?recreate=1` to delete and recreate the index from scratch).
@@ -101,58 +101,6 @@ grunt watch
 ## API Endpoints
 
 Addons has 3 endpoints that can be used to gather statistics about SilverStripe addons.
-
-### Single Addon Ratings Endpoint
-
-If required, you can access the JSON ratings data for a module:
-
-```
-$ curl http://addons.localhost/api/rating/yourvendor/yourmodule
-{
-    "success": true,
-    "rating": 79
-}
-```
-
-Add `?detailed` to return the details of the metric results:
-
-```
-$ curl http://addons.localhost/api/rating/yourvendor/yourmodule?detailed
-{
-    "success": true,
-    "rating": 79,
-    "metrics": {
-        "good_code_coverage": 0,
-        "great_code_coverage": 0,
-        "has_code_of_conduct_file": 0,
-        "has_code_or_src_folder": 5,
-        "coding_standards": 10,
-        "has_contributing_file": 2,
-        "has_editorconfig_file": 5,
-        "has_gitattributes_file": 2,
-        "has_license": 5,
-        "has_readme": 5,
-        "travis_passing": 10
-    }
-}
-```
-
-### Multiple Addon Ratings Endpoint
-
-If fetching ratings for multiple addons is required, it is recommended that you use fetch them in a single request:
-
-```
-$ curl http://addons.localhost/api/ratings?addons=vendorA/moduleA,vendorB/moduleB
-{
-    "success": true,
-    "ratings": {
-        "vendorA/moduleA": 79,
-        "vendorB/moduleB": 77
-    }
-}
-```
-
-Note that the order of returned modules is not related to the order in the request.
 
 ### Supported Addons Endpoint
 

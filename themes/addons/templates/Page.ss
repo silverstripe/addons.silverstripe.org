@@ -6,7 +6,7 @@
 		$MetaTags(false)
 		<% require themedCSS("addons") %>
 		<% include Favicons %>
-		<link rel="stylesheet" href="$ThemeDir/css/ionicons.min.css" />
+		<link rel="stylesheet" href="$themedResourceURL('css/ionicons.min.css')" />
 		<script type="text/javascript" src="//use.typekit.net/emt4dhq.js"></script>
 		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 	</head>

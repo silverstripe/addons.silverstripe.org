@@ -10,7 +10,7 @@ class AuthorsControllerTest extends SapphireTest
     {
         $controller = new AuthorsController();
 
-        $this->assertDOSContains(
+        $this->assertListContains(
             [
                 ['Name' => 'Anna Green'],
                 ['Name' => 'Stephen McKenna'],

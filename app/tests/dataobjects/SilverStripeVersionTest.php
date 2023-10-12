@@ -19,7 +19,7 @@ class SilverStripeVersionTest extends SapphireTest
      *
      * {@inheritDoc}
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->version = new SilverStripeVersion(

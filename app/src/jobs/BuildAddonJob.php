@@ -42,9 +42,6 @@ class BuildAddonJob extends AbstractQueuedJob
         $package->BuildQueued = false;
         $package->write();
 
-        // Send the package to stitch-data for data warehousing
-        Injector::inst()->get('StitchDataSender')->sendAddon($package);
-
         $this->isComplete = true;
         $this->currentStep = 1;
     }

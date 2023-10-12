@@ -2,12 +2,8 @@
 
 use Composer\Package\Package;
 use Composer\Package\PackageInterface;
-use Monolog\Formatter\LineFormatter;
-use Monolog\Handler\SyslogHandler;
 use SilverStripe\Assets\Filesystem;
-use SilverStripe\ModuleRatings\CheckSuite;
 use SilverStripe\Assets\Upload;
-use SilverStripe\Core\Convert;
 
 /**
  * Downloads an add-on and builds more details information about it.
@@ -21,11 +17,6 @@ class AddonBuilder
 
     private $packagist;
 
-    /**
-     * @var CheckSuite
-     */
-    protected $checkSuite;
-
     public function __construct(PackagistService $packagist)
     {
         $this->packagist = $packagist;
@@ -34,16 +25,6 @@ class AddonBuilder
     public function build(Addon $addon)
     {
         putenv("GIT_SSH_COMMAND=\"ssh -o StrictHostKeyChecking=no\"");
-
-        $checkSuite = new CheckSuite();
-        $this->setCheckSuite($checkSuite);
-        // Provide the checksuite with a logger in case API calls fail
-        $logger = new \Monolog\Logger('module_ratings_logs', [
-            $handler = new SyslogHandler('SilverStripe_log'),
-        ]);
-        $formatter = new LineFormatter("%level_name%: %message% %context% %extra%");
-        $handler->setFormatter($formatter);
-        $checkSuite->setLogger($logger);
 
         $package = $this->packagist->getPackageDetails($addon->Name);
         $packageVersions = $package->getVersions();
@@ -134,7 +115,6 @@ class AddonBuilder
 
             $this->buildReadme($addon, $path);
             $this->buildScreenshots($addon, $package, $path);
-            $this->rateModule($addon, $path);
         }
 
         $addon->LastBuilt = $time;
@@ -365,59 +345,5 @@ class AddonBuilder
                 $addon->Screenshots()->add($file);
             }
         }
-    }
-
-    /**
-     * Use the Rating check runner to generate an automated rating for this module
-     *
-     * @param Addon $addon
-     * @param string $modulePath
-     */
-    protected function rateModule(Addon $addon, $modulePath)
-    {
-        $suite = $this->getCheckSuite();
-        $suite->setModuleRoot($modulePath);
-        $repositoryUrl = $addon->Repository;
-        // Get repository slug from URL
-        preg_match('~.*\/(.+\/.+)(?:\.git)?$~', $repositoryUrl, $matches);
-        $suite->setRepositorySlug(!empty($matches[1]) ? $matches[1] : '');
-
-        try {
-            $suite->run();
-        } catch (\Exception $e) {
-            echo $e->getMessage();
-            return;
-        }
-        /** @var array $checkDetails */
-        $checkDetails = $suite->getCheckDetails();
-
-        // Pull part of the check details out that we want (code and points)
-        $details = array();
-        foreach ($checkDetails as $checkCode => $metrics) {
-            $details[$checkCode] = $metrics['points'];
-        }
-
-        // Total score for the check suite
-        $addon->Rating = $suite->getScore();
-        // Individual checks and scores for each
-        $addon->RatingDetails = Convert::raw2json($details);
-    }
-
-    /**
-     * @return CheckSuite
-     */
-    public function getCheckSuite()
-    {
-        return $this->checkSuite;
-    }
-
-    /**
-     * @param CheckSuite $checkSuite
-     * @return $this
-     */
-    public function setCheckSuite($checkSuite)
-    {
-        $this->checkSuite = $checkSuite;
-        return $this;
     }
 }
