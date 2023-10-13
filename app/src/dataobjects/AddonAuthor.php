@@ -36,7 +36,7 @@ class AddonAuthor extends DataObject
 
     public function Link()
     {
-        return Controller::join_links(Director::baseURL(), 'authors', $this->ID);
+        return Controller::join_links(Director::baseURL(), 'author', $this->ID);
     }
 
     public function Addons()

@@ -1,7 +1,7 @@
 <div class="row-fluid install-box">
 	<label for="install-string-{$ID}" class="install-box-label">Install</label>
 
-	<a href="http://doc.silverstripe.org/framework/en/topics/modules#installation">
+	<a href="https://docs.silverstripe.org/en/developer_guides/extending/modules/#installation">
 		<i class="icon-question-sign"></i>
 	</a>
 

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<% base_tag %>
-		<title>$Title &middot; SilverStripe Add-ons</title>
+		<title>$Title &middot; Silverstripe CMS Add-ons</title>
 		$MetaTags(false)
 		<% require themedCSS("addons") %>
 		<% include Favicons %>

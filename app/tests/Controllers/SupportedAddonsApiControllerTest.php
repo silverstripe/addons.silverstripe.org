@@ -1,6 +1,5 @@
 <?php
 
-use Heyday\Elastica\Searchable;
 use SilverStripe\Dev\FunctionalTest;
 
 /**
@@ -9,12 +8,6 @@ use SilverStripe\Dev\FunctionalTest;
 class SupportedAddonsApiControllerTest extends FunctionalTest
 {
     protected static $fixture_file = 'SupportedAddonsApiControllerTest.yml';
-
-    protected static $illegal_extensions = [
-        Addon::class => [
-            Searchable::class,
-        ],
-    ];
 
     public function testOnlySupportedAddonsAreReturned()
     {

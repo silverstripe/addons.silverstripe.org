@@ -1,17 +1,10 @@
 <?php
 
-use Heyday\Elastica\Searchable;
 use SilverStripe\Dev\SapphireTest;
 
 class AddonTest extends SapphireTest
 {
     protected $usesDatabase = true;
-
-    protected static $illegal_extensions = [
-        Addon::class => [
-            Searchable::class,
-        ],
-    ];
 
     /**
      * @dataProvider provideVersions

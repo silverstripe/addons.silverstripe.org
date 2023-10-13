@@ -13,7 +13,6 @@
         "silverstripe/environmentcheck": "^2.0",
         "aws/aws-sdk-php": "^3.55",
         "symbiote/silverstripe-gridfieldextensions": "^3.1",
-        "heyday/silverstripe-elastica": "~4.1.6",
         "symbiote/silverstripe-multivaluefield": "^5.0",
         "ezyang/htmlpurifier": "^4.10",
         "silverstripe/toolbar": "^5@dev"

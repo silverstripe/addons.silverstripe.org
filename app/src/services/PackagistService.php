@@ -101,7 +101,6 @@ class PackagistService
 
         if (!isset($packages[$name])) {
             echo sprintf('PackagistService: Not in packages array!', $name) . PHP_EOL;
-            Debug::dump($packages);
             return null;
         }
 

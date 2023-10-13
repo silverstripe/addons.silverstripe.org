@@ -5,8 +5,7 @@ SilverStripe\Control\Director:
   rules:
     '': HomeController
     add-ons: AddonsController
-    vendors: VendorsController
-    authors: AuthorsController
+    author: AuthorController
     tags: TagsController
     submit: SubmitAddonController
     addonSort: AjaxController

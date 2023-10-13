@@ -1,9 +1,5 @@
 <?php
 
-use Elastica\Document;
-use Elastica\Type\Mapping;
-use Heyday\Elastica\Searchable;
-use SilverStripe\Assets\Image;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\Control\Director;
 use SilverStripe\Control\Controller;
@@ -42,11 +38,16 @@ class Addon extends DataObject
 
     private static $many_many = array(
         'Keywords'           => AddonKeyword::class,
-        'Screenshots'        => Image::class,
         'CompatibleVersions' => SilverStripeVersion::class,
     );
 
     private static $default_sort = 'Name';
+
+    private static $searchable_fields = [
+        'Name',
+        'Description',
+        'Keywords.Name',
+    ];
 
     private static $extensions = [
         Searchable::class,
@@ -128,55 +129,14 @@ class Addon extends DataObject
         return $this->Description;
     }
 
-    public function RSSTitle()
-    {
-        return sprintf('New module release: %s', $this->Name);
-    }
-
     public function PackagistUrl()
     {
         return "https://packagist.org/packages/$this->Name";
     }
 
-    public function getElasticaMapping()
-    {
-        return new Mapping(null, array(
-            'name'          => array('type' => 'string'),
-            'description'   => array('type' => 'string'),
-            'type'          => array('type' => 'string'),
-            'compatibility' => array('type' => 'string'),
-            'vendor'        => array('type' => 'string'),
-            'tags'          => array('type' => 'string'),
-            'released'      => array('type' => 'date'),
-            'downloads'     => array('type' => 'long')
-        ));
-    }
-
-    public function getElasticaDocument()
-    {
-        return new Document($this->ID, array(
-            'name'          => $this->Name,
-            'description'   => $this->Description,
-            'type'          => $this->Type,
-            'compatibility' => $this->CompatibleVersions()->column('Name'),
-            'vendor'        => $this->VendorName(),
-            'tags'          => $this->Keywords()->column('Name'),
-            'released'      => $this->obj('Released')->Format('c'),
-            'downloads'     => (int)$this->Downloads,
-            'SS_Published'  => true,
-        ));
-    }
-
     public function onBeforeDelete()
     {
         parent::onBeforeDelete();
-
-        // Partially cascade delete. Leave author and keywords in place,
-        // since they might be related to other addons.
-        foreach ($this->Screenshots() as $image) {
-            $image->delete();
-        }
-        $this->Screenshots()->removeAll();
 
         foreach ($this->Versions() as $version) {
             $version->delete();

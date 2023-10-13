@@ -1,8 +1,8 @@
 <div class="row">
     <div class="span12">
-        Welcome to the <a href="http://silverstripe.org">SilverStripe</a> add-on repository, based on the <a
+        Welcome to the <a href="http://silverstripe.org">Silverstripe CMS</a> add-on repository, based on the <a
             href="http://getcomposer.org">Composer</a> packaging system for PHP. Use this site to find modules and
-        themes to add to your SilverStripe website. For best results, we recommend <a
+        themes to add to your Silverstripe CMS website. For best results, we recommend <a
             href="http://docs.silverstripe.org/en/getting_started/composer">managing your project with Composer</a>.
     </div>
 </div>
@@ -37,8 +37,6 @@
     <div class="addons-box span6">
         <h3>
             <a href="/add-ons?sort=newest">Newest Add-ons</a>
-            <a class="pull-right" href="/add-ons/rss"><img src="$themedResourceURL('images/feed-icon-14x14.png')"
-                                                           alt="RSS Feed"/></a>
         </h3>
         <ol>
             <% loop $NewestAddons(5) %>
@@ -84,19 +82,3 @@
         </ul>
     </div>
 </div>
-
-<% cached List(Addon).Max(Released) %>
-    <div class="row">
-        <div class="addons-box span12">
-            <h3>Statistics</h3>
-            <ul>
-                <li>
-                    <% loop ChartData %>
-                        <div class="chart-data" data-x="$XValue" data-y="$YValue"></div>
-                    <% end_loop %>
-                    <div id="chart-canvas"></div>
-                </li>
-            </ul>
-        </div>
-    </div>
-<% end_cached %>

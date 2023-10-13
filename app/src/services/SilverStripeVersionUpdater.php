@@ -13,11 +13,7 @@ class SilverStripeVersionUpdater
      */
     private $packagist;
 
-    /**
-     * @config
-     * @var array
-     */
-    protected $versionBlacklist = array('2.5.x-dev');
+    private const FINAL_SUPPORTED_LAST_MAJOR = '4.13.x-dev';
 
     public function __construct(PackagistService $packagist)
     {
@@ -26,6 +22,7 @@ class SilverStripeVersionUpdater
 
     public function update()
     {
+        SilverStripeVersion::get()->removeAll();
         $versions = $this->packagist->getPackageVersions('silverstripe/framework');
 
         foreach ($versions as $package) {
@@ -39,13 +36,13 @@ class SilverStripeVersionUpdater
             $stability = VersionParser::parseStability($version);
 
             $isDev = $stability === 'dev';
-            
-            if (!$isDev || in_array($version, $this->versionBlacklist)) {
+
+            if (!$isDev || version_compare($version, self::FINAL_SUPPORTED_LAST_MAJOR) < 0) {
                 continue;
             }
 
             $match = preg_match(
-                '/^([0-9]+)\.([0-9]+)\.x-dev$/',
+                '/^([4-9]+)\.([0-9]+)\.x-dev$/',
                 $version,
                 $matches
             );
@@ -70,15 +67,5 @@ class SilverStripeVersionUpdater
                 $record->write();
             }
         }
-    }
-
-    public function setVersionBlacklist($list)
-    {
-        $this->versionBlacklist = $list;
-    }
-
-    public function getVersionBlacklist()
-    {
-        return $this->versionBlacklist;
     }
 }

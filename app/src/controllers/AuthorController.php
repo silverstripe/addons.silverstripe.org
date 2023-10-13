@@ -1,6 +1,8 @@
 <?php
 
 use SilverStripe\Control\Controller;
+use SilverStripe\Control\Director;
+use SilverStripe\Control\HTTPRequest;
 
 /**
  * Displays an individual author and lists their add-ons.
@@ -8,38 +10,41 @@ use SilverStripe\Control\Controller;
 class AuthorController extends SiteController
 {
 
+    private static $url_handlers = [
+        '$AuthorID!' => 'author'
+    ];
+
     private static $allowed_actions = array(
-        'index'
+        'author'
     );
-
-    protected $parent;
-    protected $author;
-
-    public function __construct(Controller $parent, AddonAuthor $author)
-    {
-        $this->parent = $parent;
-        $this->author = $author;
-
-        parent::__construct();
-    }
 
     public function index()
     {
-        return $this->renderWith(array('Author', 'Page'));
+        $this->httpError(404);
     }
 
-    public function Title()
+    public function author(HTTPRequest $request)
     {
-        return $this->author->Name;
+        $id = $request->param('AuthorID');
+        $author = AddonAuthor::get()->byID($id);
+
+        if (!$author) {
+            $this->httpError(404);
+        }
+
+        return $this->renderWith(array('Author', 'Page'), $this->getTemplateVars($author));
+    }
+
+    private function getTemplateVars(AddonAuthor $author)
+    {
+        return [
+            'Author' => $author,
+            'Title' => $author->Name,
+        ];
     }
 
     public function Link($action = null)
     {
-        return Controller::join_links($this->parent->Link($action), $this->author->ID);
-    }
-
-    public function Author()
-    {
-        return $this->author;
+        return Controller::join_links(Director::baseURL(), 'author', $action);
     }
 }

@@ -1,14 +1,9 @@
 <?php
 
 use Composer\Package\Version\VersionParser;
-use Guzzle\Http\Exception\ClientErrorResponseException;
-use Heyday\Elastica\ElasticaService;
 use Packagist\Api\Result\Package;
 use Packagist\Api\Result\Package\Version;
-use SilverStripe\Control\Director;
 use Symbiote\QueuedJobs\Services\QueuedJobService;
-use SilverStripe\Dev\Debug;
-use SilverStripe\Control\Email\Email;
 use SilverStripe\ORM\DataList;
 use SilverStripe\Core\Injector\Injector;
 use Psr\Log\LoggerInterface;
@@ -27,22 +22,13 @@ class AddonUpdater
     private $packagist;
 
     /**
-     * @var Heyday\Elastica\ElasticaService
-     */
-    private $elastica;
-
-    /**
      * @var SilverStripeVersion[]
      */
     private $silverstripes;
 
-    public function __construct(
-        PackagistService $packagist,
-        ElasticaService $elastica
-    ) {
+    public function __construct(PackagistService $packagist)
+    {
         $this->packagist = $packagist;
-        $this->elastica = $elastica;
-
         $this->setSilverStripeVersions(SilverStripeVersion::get());
     }
 
@@ -66,13 +52,6 @@ class AddonUpdater
 
         // Uses a generator to save memory
         $packages = $this->packagist->getPackages($limitAddons ? $limitAddons : []);
-
-        // TODO: AWS elasticsearch doesn't have this setting enabled
-        // https://www.elastic.co/guide/en/elasticsearch/reference/5.2/url-access-control.html
-        // and bulk index operations by elastica currently require it
-        // Switching to https://github.com/heyday/silverstripe-elastica and SS4 might help
-
-        // $this->elastica->startBulkIndex();
 
         foreach ($packages as $package) {
             $versions = $package->getVersions();
@@ -122,8 +101,6 @@ class AddonUpdater
             unset($package);
             unset($versions);
         }
-
-        // $this->elastica->endBulkIndex();
     }
 
     private function updateAddon(Addon $addon, Package $package, array $versions)
@@ -146,6 +123,12 @@ class AddonUpdater
 
         foreach ($versions as $version) {
             $this->updateVersion($addon, $version);
+        }
+
+        if (!$addon->Versions()->exists()) {
+            $addon->delete();
+            echo " - Addon has no relevant versions, deleting it\n";
+            return;
         }
 
         $built = (int) $addon->obj('LastBuilt')->getTimestamp();
@@ -224,8 +207,15 @@ class AddonUpdater
 
         $addon->Versions()->add($version);
 
-        $this->updateLinks($version, $package);
         $this->updateCompatibility($addon, $version, $package);
+
+        if (!$version->CompatibleVersions()->exists()) {
+            $version->delete();
+            echo " - Version has no compatibility, deleting it\n";
+            return;
+        }
+
+        $this->updateLinks($version, $package);
         $this->updateAuthors($version, $package);
     }
 
@@ -272,16 +262,6 @@ class AddonUpdater
                 }
             }
         }
-
-        //to-do api have no method to get this.
-        /*$suggested = $package->getSuggests();
-
-        if ($suggested) foreach ($suggested as $package => $description) {
-            $link = $getLink($package, 'suggest');
-            $link->Description = $description;
-
-            $version->Links()->add($link);
-        }*/
     }
 
     private function updateCompatibility(Addon $addon, AddonVersion $version, Version $package)
@@ -294,13 +274,20 @@ class AddonUpdater
                     continue;
                 }
 
-                if ($name == 'silverstripe/framework') {
-                    $require = $link;
-                    break;
-                }
+                $versionLocked = [
+                    'silverstripe/recipe-core',
+                    'silverstripe/recipe-cms',
+                    'silverstripe/framework',
+                    'silverstripe/cms',
+                ];
 
-                if ($name == 'silverstripe/cms') {
+                if (in_array($name, $versionLocked)) {
                     $require = $link;
+                    // If they're depending on silverstripe/cms,
+                    // let one of the others override the constraint if present.
+                    if ($name !== 'silverstripe/cms') {
+                        break;
+                    }
                 }
             }
         }

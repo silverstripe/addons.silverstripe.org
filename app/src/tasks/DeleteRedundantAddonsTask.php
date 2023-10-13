@@ -1,6 +1,5 @@
 <?php
 
-use Elastica\Exception\NotFoundException;
 use SilverStripe\Dev\BuildTask;
 
 /**
@@ -20,7 +19,7 @@ class DeleteRedundantAddonsTask extends BuildTask
      * {@inheritDoc}
      * @var string
      */
-    protected $description = 'Deletes packages removed from Packagist';
+    protected $description = 'Deletes packages which havent been updated in the last week';
 
     /**
      * {@inheritDoc}
@@ -32,25 +31,20 @@ class DeleteRedundantAddonsTask extends BuildTask
 
         $addons = Addon::get()->filter('LastUpdated:LessThan', $dateOneWeekAgo);
 
+        /** @var Addon $addon */
         foreach ($addons as $addon) {
-            /** @var Addon $addon */
-            try {
-                $addon->Keywords()->removeAll();
-                $addon->Screenshots()->removeAll();
-                $addon->CompatibleVersions()->removeAll();
+            $addon->Keywords()->removeAll();
+            $addon->CompatibleVersions()->removeAll();
 
-                foreach ($addon->Versions() as $version) {
-                    /** @var AddonVersion $version */
-                    $version->Authors()->removeAll();
-                    $version->Keywords()->removeAll();
-                    $version->CompatibleVersions()->removeAll();
-                    $version->delete();
-                }
-
-                $addon->delete();
-            } catch (NotFoundException $e) {
-                // no-op
+            foreach ($addon->Versions() as $version) {
+                /** @var AddonVersion $version */
+                $version->Authors()->removeAll();
+                $version->Keywords()->removeAll();
+                $version->CompatibleVersions()->removeAll();
+                $version->delete();
             }
+
+            $addon->delete();
         }
     }
 }

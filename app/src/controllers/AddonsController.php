@@ -1,19 +1,13 @@
 <?php
 
-use Elastica\Query;
-use Elastica\Query\Match;
-use Heyday\Elastica\ElasticaService;
-use Heyday\Elastica\ResultList;
 use SilverStripe\Control\Director;
 use SilverStripe\Control\Controller;
-use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\PaginatedList;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\CheckboxSetField;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\Form;
-use SilverStripe\Control\RSS\RSSFeed;
 
 /**
  * Lists and searches add-ons.
@@ -22,7 +16,6 @@ class AddonsController extends SiteController
 {
 
     private static $url_handlers = array(
-        'rss'             => 'rss',
         '$Vendor!/$Name!' => 'addon',
         '$Vendor!'        => 'vendor',
     );
@@ -31,26 +24,11 @@ class AddonsController extends SiteController
         'index',
         'addon',
         'vendor',
-        'rss',
     );
-
-    private static $dependencies = array(
-        'ElasticaService' => '%$Heyday\Elastica\ElasticaService'
-    );
-
-    /**
-     * @var \Heyday\Elastica\ElasticaService
-     */
-    private $elastica;
 
     public function index()
     {
         return $this->renderWith(array('Addons', 'Page'));
-    }
-
-    public function setElasticaService(ElasticaService $elastica)
-    {
-        $this->elastica = $elastica;
     }
 
     public function addon($request)
@@ -104,98 +82,55 @@ class AddonsController extends SiteController
 
     public function Addons()
     {
-        $list = Addon::get();
-
         $search = $this->request->getVar('search');
         $type = $this->request->getVar('type');
         $compat = $this->request->getVar('compatibility');
         $tags = $this->request->getVar('tags');
         $sort = $this->request->getVar('sort');
 
-        $useElasticOrderAsDefault = false;
-
-        if (!in_array($sort, array('name', 'downloads', 'newest', 'relative'))) {
+        if (!in_array($sort, array('name', 'downloads', 'newest'))) {
             $sort = null;
-        }
-
-        // Proxy out a search to elastic if any parameters are set.
-        if ($search || $type || $compat || $tags) {
-            $bool = new Query\BoolQuery();
-
-            $query = new Query();
-            $query->setQuery($bool);
-            $query->setSize(count($list));
-
-            if ($search) {
-                $match = new Query\MultiMatch();
-                $match->setQuery($search);
-                $match->setFields([
-                    'name^12',
-                    'description^3',
-                ]);
-                $match->setType('phrase_prefix');
-
-                $bool->addMust($match);
-                $useElasticOrderAsDefault = true;
-            }
-
-            if ($type) {
-                $bool->addMust(new Query\Term(array('type' => $type)));
-            }
-
-            if ($compat) {
-                $bool->addMust(new Query\Terms('compatibility', (array)$compat));
-            }
-
-            if ($tags) {
-                $bool->addMust(new Query\Terms('tags', (array)$tags));
-            }
-
-            $list = new ResultList($this->elastica->getIndex(), $query);
-
-            if ($sort) {
-                $ids = $list->column('ID');
-
-                if ($ids) {
-                    $list = Addon::get()->byIDs($ids);
-                } else {
-                    $list = new ArrayList();
-                }
-            } else {
-                $list = $list->toArrayList();
-            }
-        } else {
-            if (!$sort) {
-                $sort = 'relative';
-            }
         }
 
         switch ($sort) {
             case 'name':
-                $list = $list->sort('Name');
+                $sort = 'Name';
                 break;
             case 'newest':
-                $list = $list->sort('Released', 'DESC');
+                $sort = ['Released' => 'DESC'];
                 break;
             case 'downloads':
-                $list = $list->sort('Downloads', 'DESC');
-                break;
-            case 'relative':
-                if (!$list instanceof ArrayList) {
-                    /** @var ArrayList|Addon[] $unsorted */
-                    $unsorted = ArrayList::create($list->toArray());
-                } else {
-                    $unsorted = $list;
-                }
-                foreach ($unsorted as $item) {
-                    $item->Score = $item->relativePopularityFormatted() . ' per day';
-                }
-                $list = $unsorted->sort('relativePopularity DESC');
+                $sort = ['Downloads' => 'DESC'];
                 break;
             default:
-                if (!$useElasticOrderAsDefault) {
-                    $list = $list->sort('Downloads', 'DESC');
-                }
+                $sort = ['Downloads' => 'DESC'];
+        }
+
+        if ($search || $tags) {
+            $singleton = Addon::singleton();
+            $context = $singleton->getDefaultSearchContext();
+            $query = [];
+            if ($search) {
+                $query[$singleton->getGeneralSearchFieldName()] = $search;
+            }
+            if ($compat) {
+
+            }
+            if ($tags) {
+                $query['Keywords.Name'] = $tags;
+            }
+            $list = $context->getQuery($query, $sort);
+
+        } else {
+            $list = Addon::get()->sort($sort);
+        }
+
+        if ($type) {
+            $list = $list->filter('Type', $type);
+        }
+
+        if ($compat) {
+            $list = $list->filter('Versions.CompatibleVersions.Name', $compat);
         }
 
         $list = new PaginatedList($list, $this->request);
@@ -220,7 +155,6 @@ class AddonsController extends SiteController
                         'relative'  => 'Average downloads per day',
                         'newest'    => 'Newest'
                     ))
-                    ->setEmptyString('Best match')
                     ->setValue($this->request->getVar('sort'))
                     ->addExtraClass('input-block-level'),
                 DropdownField::create('type', 'Add-on type')
@@ -231,7 +165,7 @@ class AddonsController extends SiteController
                     ->setEmptyString('Modules and themes')
                     ->setValue($this->request->getVar('type'))
                     ->addExtraClass('input-block-level'),
-                CheckboxSetField::create('compatibility', 'Compatible SilverStripe versions')
+                CheckboxSetField::create('compatibility', 'Compatible Silverstripe CMS versions')
                     ->setSource(SilverStripeVersion::get()->map('Name', 'Name'))
                     ->setValue($this->request->getVar('compatibility'))
                     ->setTemplate('AddonsSearchCheckboxSetField')
@@ -242,22 +176,5 @@ class AddonsController extends SiteController
         return $form
             ->setFormMethod('GET')
             ->setFormAction($this->Link());
-    }
-
-    public function rss($request, $limit = 10)
-    {
-        $addons = Addon::get()
-            ->sort('Released', 'DESC')
-            ->limit($limit);
-
-        $rss = new RSSFeed(
-            $addons,
-            $this->Link(),
-            "Newest addons on addons.silverstripe.org",
-            null,
-            'RSSTitle'
-        );
-
-        return $rss->outputToBrowser();
     }
 }

@@ -1,8 +1,6 @@
 <?php
 
-use SilverStripe\Control\RSS\RSSFeed;
 use SilverStripe\View\Requirements;
-use SilverStripe\View\SSViewer;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\Control\Controller;
 use SilverStripe\View\ArrayData;
@@ -15,13 +13,9 @@ class SiteController extends Controller
 
     public function init()
     {
-        RSSFeed::linkToFeed("add-ons/rss", "New modules on addons.silverstripe.org");
-
         Requirements::javascript("//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js");
         Requirements::javascript("themes/addons/bootstrap/js/bootstrap.min.js");
         Requirements::javascript("themes/addons/javascript/addons.js");
-        Requirements::javascript("//www.google.com/jsapi");
-        Requirements::javascript("themes/addons/javascript/chart.js");
         parent::init();
     }
 
@@ -35,12 +29,10 @@ class SiteController extends Controller
             array(
                 'link' => Controller::join_links(
                     singleton('AddonsController')->Link(),
-                    '?type=theme&view=expanded'
+                    '?type=theme'
                 ),
                 'title' => 'Themes',
             ),
-            array('controller' => 'VendorsController'),
-            array('controller' => 'AuthorsController'),
             array('controller' => 'TagsController'),
             array('controller' => 'SubmitAddonController'),
         );

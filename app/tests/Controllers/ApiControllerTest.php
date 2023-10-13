@@ -1,6 +1,5 @@
 <?php
 
-use Heyday\Elastica\Searchable;
 use SilverStripe\Dev\FunctionalTest;
 
 /**
@@ -9,12 +8,6 @@ use SilverStripe\Dev\FunctionalTest;
 class ApiControllerTest extends FunctionalTest
 {
     protected $usesDatabase = true;
-
-    protected static $illegal_extensions = [
-        Addon::class => [
-            Searchable::class,
-        ],
-    ];
 
     public function testFrameworkVersionSentInHeadersIsCollected()
     {
