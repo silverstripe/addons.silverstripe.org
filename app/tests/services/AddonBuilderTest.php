@@ -117,46 +117,4 @@ class AddonBuilderTest extends SapphireTest
             array('http://silverstripe.mit-license.org/', false)
         );
     }
-
-    /**
-     * Ensure that a HTML readme can have its relative links rewritten according to the Addon is belongs to
-     *
-     * @covers ::replaceRelativeLinks
-     */
-    public function testRewriteRelativeLinksAndImages()
-    {
-        $addon = Addon::create();
-        $addon->Repository = 'https://github.com/silverstripe/silverstripe-framework';
-// phpcs:disable
-        $input = <<<HTML
-<h1>Heading</h1>
-
-<p><a href="relative">Relative</a> and <a href="//absolute.com">absolute</a>.</p>
-
-<p><img src="relative.png"><img src="https://www.whatever.com/image.png"></p>
-HTML;
-
-        $expected = <<<HTML
-<h1>Heading</h1>
-
-<p><a href="https://github.com/silverstripe/silverstripe-framework/blob/master/relative">Relative</a> and <a href="//absolute.com">absolute</a>.</p>
-
-<p><img src="https://github.com/silverstripe/silverstripe-framework/raw/master/relative.png"><img src="https://www.whatever.com/image.png"></p>
-HTML;
-// phpcs:enable
-
-        $this->assertSame($expected, $this->builder->replaceRelativeLinks($addon, $input));
-    }
-
-    /**
-     * For non GitHub repositories, the readme input should simply be returned as is from the "replaceRelativeLinks"
-     * method
-     */
-    public function testDoNotRewriteRelativeLinksForNonGitHubRepositories()
-    {
-        $addon = Addon::create();
-        $addon->Repository = 'https://gitlab.com/not-a/github-repo.git';
-        $readme = '<p>Please do not touch me.</p>';
-        $this->assertSame($readme, $this->builder->replaceRelativeLinks($addon, $readme));
-    }
 }

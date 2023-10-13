@@ -132,7 +132,6 @@ class AddonsController extends SiteController
                 $match->setFields([
                     'name^12',
                     'description^3',
-                    'readme',
                 ]);
                 $match->setType('phrase_prefix');
 

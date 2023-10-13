@@ -40,16 +40,24 @@
 			<dt>Homepage:</dt>
 			<dd>
 				<% if $DisplayHomepage %>
-				<a href="$DisplayHomepage" rel="nofollow">$DisplayHomepage</a>
-				<% end_if %>
+				    <a id="homepage-url" href="$DisplayHomepage" rel="nofollow">$DisplayHomepage</a>
+                <% else %>N/A<% end_if %>
 			</dd>
 		<% end_with %>
 
 		<dt>Packagist:</dt>
-		<dd><a href="$PackagistUrl" rel="nofollow">$PackagistUrl</a></dd>
+		<dd>
+            <% if $Repository %>
+                <a href="$PackagistUrl" rel="nofollow">$PackagistUrl</a>
+            <% else %>N/A<% end_if %>
+        </dd>
 
 		<dt>Repository:</dt>
-		<dd><a href="$Repository" rel="nofollow">$Repository</a></dd>
+		<dd>
+            <% if $Repository %>
+                <a id="repository-url" href="$Repository" rel="nofollow">$Repository</a>
+            <% else %>N/A<% end_if %>
+        </dd>
 
 		<% if $Authors %>
 			<dt>Authors:</dt>
@@ -70,13 +78,11 @@
 
 	<hr>
 
-	<% if $Readme %>
+	<div id="readme-container">
 		<h3>Readme</h3>
 
 		<div id="readme" class="collapsed">
-			<div id="readme-inner">
-				$Readme
-			</div>
+			<div id="readme-inner">Loading...</div>
 			<a href="#" id="readme-toggle">
 				<i class="icon-arrow-up"></i>
 				<i class="icon-arrow-down"></i>
@@ -84,7 +90,7 @@
 		</div>
 
 		<hr>
-	<% end_if %>
+	</div>
 
 	<h3>Versions</h3>
 

@@ -21,7 +21,7 @@ class BuildAddonsTask extends BuildTask
      * {@inheritDoc}
      * @var string
      */
-    protected $description = 'Downloads README and screenshots';
+    protected $description = 'Updates metadata for addons we found with UpdateAddonsTask';
 
     /**
      * @var AddonBuilder

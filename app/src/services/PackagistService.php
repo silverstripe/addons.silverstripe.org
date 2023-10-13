@@ -2,10 +2,8 @@
 
 use Composer\Factory;
 use Composer\IO\NullIO;
-use Composer\Package\Loader\ArrayLoader;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
-use GuzzleHttp\Exception\ClientException;
 
 /**
  * Interacts with Packagist to retrieve package listings and details.
@@ -98,6 +96,12 @@ class PackagistService
             // Abandoned packages cause 404s, and we occasionally get rate limited.
             // Neither of those should cause a hard abort.
             echo sprintf('PackagistService: Failed to retrieve (%s)', $e->getMessage()) . PHP_EOL;
+            return null;
+        }
+
+        if (!isset($packages[$name])) {
+            echo sprintf('PackagistService: Not in packages array!', $name) . PHP_EOL;
+            Debug::dump($packages);
             return null;
         }
 

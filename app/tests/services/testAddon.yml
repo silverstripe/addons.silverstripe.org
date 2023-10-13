@@ -16,7 +16,6 @@ Addon:
     Name: sminnee/test-package
     Description: Test Description
     Type: module
-    Readme: "<p>Test Readme</p>"
     Released: 2018-07-06
     Repository: https://github.com/sminnee/test-package
     Downloads: 25

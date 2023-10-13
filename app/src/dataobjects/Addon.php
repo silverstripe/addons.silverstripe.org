@@ -19,7 +19,6 @@ class Addon extends DataObject
         'Name'              => 'Varchar(255)',
         'Description'       => 'Text',
         'Type'              => 'Varchar(100)',
-        'Readme'            => 'HTMLText',
         'Released'          => 'Datetime',
         'Repository'        => 'Varchar(255)',
         'Downloads'         => 'Int',
@@ -149,8 +148,7 @@ class Addon extends DataObject
             'vendor'        => array('type' => 'string'),
             'tags'          => array('type' => 'string'),
             'released'      => array('type' => 'date'),
-            'downloads'     => array('type' => 'long'),
-            'readme'        => array('type' => 'string')
+            'downloads'     => array('type' => 'long')
         ));
     }
 
@@ -165,7 +163,6 @@ class Addon extends DataObject
             'tags'          => $this->Keywords()->column('Name'),
             'released'      => $this->obj('Released')->Format('c'),
             'downloads'     => (int)$this->Downloads,
-            'readme'        => strip_tags($this->Readme),
             'SS_Published'  => true,
         ));
     }
@@ -201,7 +198,7 @@ class Addon extends DataObject
     public function addonAge()
     {
         $date = new DateTime();
-        $released = new DateTime($this->Released);
+        $released = new DateTime($this->Released ?? '100 years ago');
 
         return $date->diff($released);
     }
