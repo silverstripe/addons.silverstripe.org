@@ -1,3 +1,7 @@
+# Archived
+
+This repository is no longer maintained and addon.silverstripe.org has been decommisioned.
+
 # SilverStripe Addons
 
 [![Build Status](https://travis-ci.org/silverstripe/addons.silverstripe.org.svg?branch=master)](https://travis-ci.org/silverstripe/addons.silverstripe.org)
